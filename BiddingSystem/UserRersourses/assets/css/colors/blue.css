@@ -1,0 +1,166 @@
+a:hover{
+  color: #436EEE;
+}
+.btn-common {
+  background: #436EEE;
+}
+/* Back to Top */
+.back-to-top i {
+  background-color: #436EEE;
+}
+#color-style-switcher .bottom a i{
+  color: #436EEE;
+}
+/* Navbar */
+.slicknav_btn{
+  border-color: #436EEE;
+  border-radius: 2px;
+}
+.slicknav_menu .slicknav_btn .slicknav_icon-bar{
+  background: #436EEE;
+}
+.slicknav_menu .slicknav_btn:hover{
+  background: #436EEE;
+}
+.slicknav_nav .active a{
+  background: #436EEE;
+}
+.slicknav_nav a:hover, .slicknav_nav .active{
+  color: #436EEE;
+}
+.slicknav_nav .dropdown li a.active{
+  background: #436EEE;
+}
+.account-setting a:hover{
+  color: #436EEE;
+}
+/* Navbar */
+.navbar-default .navbar-nav > li:hover > a, .navbar-default .navbar-nav > li > a.active{
+  background: #436EEE;
+}
+.navbar-default .navbar-nav .dropdown{
+  border-color: #436EEE;
+}
+.dropdown > li:hover > a,
+.dropdown li a.active{
+  background-color: #436EEE;
+}
+/* Slider */
+#carousel-area .item .carousel-caption .price-sl{
+  color: #436EEE;
+}
+.dropdown-menu li a:hover, .dropdown-menu li a:focus, .dropdown-menu li a:active{
+  background: #436EEE;
+}
+/* Latest sales */
+.label-featured{
+  background: #436EEE;
+}
+.actions li .add-fav{
+  background: #436EEE;
+}
+.item-body .property-title a:hover{
+  color: #436EEE;
+}
+.item-foot a:hover{
+  color: #436EEE;
+}
+/* Feature Highlighta */
+.features-box .features-icon i{
+  color: #436EEE;
+}
+.owl-theme .owl-buttons div{
+  background: #436EEE!important;
+}
+/* Gallery */
+.controls a:hover, .controls .active{
+  background: #436EEE;
+}
+.controls a{
+  border-color: #436EEE;
+}
+.portfolio-item .icon i:hover{
+  color: #436EEE;
+  border-color: #436EEE;
+}
+/* Awesome Features */
+.features .features-box .features-content h4 i{
+  color: #436EEE;
+}
+.features .thum-ft{
+  box-shadow: 8px 8px 0px rgba(67,110,238,0.7);
+  border-color: #436EEE;
+}
+/* Counter */
+.counting .icon i{
+  color: #436EEE;
+}
+/* Blog */
+#blog .blog-item-img .blog-item-info{
+  background: #436EEE;
+}
+/* Footer */
+.footer-nav ul li a:hover{
+  color: #436EEE;
+}
+.footer-nav ul li a i{
+  color: #436EEE;
+}
+
+/* Grid active */
+.product-filter .grid-list-count .active{
+  color: #436EEE;
+}
+/* Pagination */
+.pagination .active > a, .pagination .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover{
+  background: #436EEE!important;
+}
+.pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover{
+  background: #436EEE!important;
+  border-color: #436EEE!important;
+}
+/* Property Page */
+.property-head .price-detail{
+  color: #436EEE;
+}
+.property-head .web-refernce strong{
+  color: #436EEE;
+}
+.widget-title{
+  border-bottom-color: #436EEE;
+}
+.widget-title::before{
+  border-bottom-color: #436EEE;
+}
+#sidebar .tag a:hover{
+  color: #436EEE;
+}
+.widget-area-sidebar .posts-list .widget-content a:hover{
+  color: #436EEE;
+}
+.widget-featured .widget-img .text span{
+  color: #436EEE;
+}
+.owl-theme .owl-controls .owl-page.active span, .owl-theme .owl-controls.clickable .owl-page:hover span{
+  background: #436EEE;
+}
+.nav-tabs > li > a{
+  border-color: #436EEE; 
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li > a:hover, .nav-tabs > li.active > a:hover{
+  background: #436EEE;
+  border-color: #436EEE; 
+}
+/* Contact Page */
+.support-inner .support-info .info-title i{
+  color: #436EEE;
+}
+.form-control:focus, textarea:focus{
+  border-color: #436EEE; 
+}
+.price .item-price{
+  color: #436EEE; 
+}
+.panel-default .panel-heading a{
+  background-color: #436EEE;   
+}

@@ -1,0 +1,13 @@
+1. Added column Title for table
+
+CREATE TABLE [dbo].[SUPPLIER_BID_EMAIL_CONTACT](
+	[PR_ID] [int] NULL,
+	[USER_ID] [int] NULL,
+	[Contact_Name] [varchar](100) NULL,
+	[Contact_No] [int] NULL,
+	[TITLE] [varchar](10) NULL
+) ON [PRIMARY]
+
+GO
+
+

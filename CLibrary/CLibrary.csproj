@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5CFFC82A-BF58-43C1-A774-791E90D1CD4C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CLibrary</RootNamespace>
+    <AssemblyName>CLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EPPlus, Version=5.1.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.5.1.1\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="itextsharp.xmlworker, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\itextsharp.xmlworker.5.5.13\lib\itextsharp.xmlworker.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\ControllerFactory.cs" />
+    <Compile Include="Common\DAOFactory.cs" />
+    <Compile Include="Common\DataAccessObject.cs" />
+    <Compile Include="Common\DBConnection.cs" />
+    <Compile Include="Common\DBFieldAttribute.cs" />
+    <Compile Include="Common\EmailGenerator.cs" />
+    <Compile Include="Common\Encryption.cs" />
+    <Compile Include="Common\ExtensionMethods.cs" />
+    <Compile Include="Common\GenetratePassword.cs" />
+    <Compile Include="Common\LocalTime.cs" />
+    <Compile Include="Common\ServiceResponse.cs" />
+    <Compile Include="Common\Utils.cs" />
+    <Compile Include="Controller\AddItemBOMController.cs" />
+    <Compile Include="Controller\AddItemController.cs" />
+    <Compile Include="Controller\AddItemMasterController.cs" />
+    <Compile Include="Controller\AfterPOController.cs" />
+    <Compile Include="Controller\BiddingController.cs" />
+    <Compile Include="Controller\BiddingItemController.cs" />
+    <Compile Include="Controller\BiddingMethodController.cs" />
+    <Compile Include="Controller\BiddingPlanController.cs" />
+    <Compile Include="Controller\BidHistoryController.cs" />
+    <Compile Include="Controller\Bid_Bond_Details_Controller.cs" />
+    <Compile Include="Controller\CompanyDepartmentController.cs" />
+    <Compile Include="Controller\CompanyLoginController.cs" />
+    <Compile Include="Controller\CompanyTypeController.cs" />
+    <Compile Include="Controller\CompanyUserAccessController.cs" />
+    <Compile Include="Controller\CurrencyRateController.cs" />
+    <Compile Include="Controller\DashboardController.cs" />
+    <Compile Include="Controller\DefContainerSizeController.cs" />
+    <Compile Include="Controller\DefCurrencyTypeController.cs" />
+    <Compile Include="Controller\DefPaymentModeController.cs" />
+    <Compile Include="Controller\DefPriceTermsController.cs" />
+    <Compile Include="Controller\DefTransportModeController.cs" />
+    <Compile Include="Controller\DepartmentReturnBatchController.cs" />
+    <Compile Include="Controller\DepartmentReturnController.cs" />
+    <Compile Include="Controller\DepartmentWarehouseController.cs" />
+    <Compile Include="Controller\DesignationController.cs" />
+    <Compile Include="Controller\DutyRatesController.cs" />
+    <Compile Include="Controller\EmailController.cs" />
+    <Compile Include="Controller\FollowUpRemarksController.cs" />
+    <Compile Include="Controller\FunctionActionController.cs" />
+    <Compile Include="Controller\GeneralSettingsController.cs" />
+    <Compile Include="Controller\GrnController.cs" />
+    <Compile Include="Controller\GRNDetailsController.cs" />
+    <Compile Include="Controller\GRNDIssueNoteController.cs" />
+    <Compile Include="Controller\GrndReturnNoteController.cs" />
+    <Compile Include="Controller\GrnFilesController.cs" />
+    <Compile Include="Controller\GrnReturnDetailsController.cs" />
+    <Compile Include="Controller\GrnReturnMasterController.cs" />
+    <Compile Include="Controller\HSController.cs" />
+    <Compile Include="Controller\IConversionController.cs" />
+    <Compile Include="Controller\IConversionTableMasterController.cs" />
+    <Compile Include="Controller\IItemMeasurementController.cs" />
+    <Compile Include="Controller\IMeasurementDetailController.cs" />
+    <Compile Include="Controller\ImportsController.cs" />
+    <Compile Include="Controller\ImportsHistoryController.cs" />
+    <Compile Include="Controller\IntIMeasurementMasterController.cs" />
+    <Compile Include="Controller\InventoryController.cs" />
+    <Compile Include="Controller\InvoiceDetailsController.cs" />
+    <Compile Include="Controller\InvoiceImageController.cs" />
+    <Compile Include="Controller\ItemCategoryOwnerController.cs" />
+    <Compile Include="Controller\ItemCategoryApprovalController.cs" />
+    <Compile Include="Controller\ItemCategoryController.cs" />
+    <Compile Include="Controller\ItemCategoryMasterController.cs" />
+    <Compile Include="Controller\ItemCategoryOwners2Controller.cs" />
+    <Compile Include="Controller\ItemImageUploadController.cs" />
+    <Compile Include="Controller\ItemSubCategoryController.cs" />
+    <Compile Include="Controller\ItemSubCategoryMasterController.cs" />
+    <Compile Include="Controller\MaterialRequestController.cs" />
+    <Compile Include="Controller\MRexpenseController.cs" />
+    <Compile Include="Controller\MRNBomController.cs" />
+    <Compile Include="Controller\MRNCapexDocController.cs" />
+    <Compile Include="Controller\MRNController.cs" />
+    <Compile Include="Controller\MrndIssueNoteBatchController.cs" />
+    <Compile Include="Controller\MrnUpdateLogController.cs" />
+    <Compile Include="Controller\PhysicalStockverificationDetailsController.cs" />
+    <Compile Include="Controller\PhysicalStockVerificationMasterController.cs" />
+    <Compile Include="Controller\PrCapexController.cs" />
+    <Compile Include="Controller\PrControllerV2.cs" />
+    <Compile Include="Controller\MrnControllerV2.cs" />
+    <Compile Include="Controller\MRNDetailController.cs" />
+    <Compile Include="Controller\MrnDetailsStatusLogController.cs" />
+    <Compile Include="Controller\MRNDIssueNoteController.cs" />
+    <Compile Include="Controller\MRNFileUploadController.cs" />
+    <Compile Include="Controller\MRNmasterController.cs" />
+    <Compile Include="Controller\POImportDetailController.cs" />
+    <Compile Include="Controller\PRStockDepartmentController.cs" />
+    <Compile Include="Controller\Mrn_Replace_FileUpload_Controller.cs" />
+    <Compile Include="Controller\MRsupportiveDocumentController.cs" />
+    <Compile Include="Controller\NaturseOfBusinessController.cs" />
+    <Compile Include="Controller\PODetailsController.cs" />
+    <Compile Include="Controller\POMasterController.cs" />
+    <Compile Include="Controller\PrAdditionalColumnController.cs" />
+    <Compile Include="Controller\PrCompanyPrTypeMappingController.cs" />
+    <Compile Include="Controller\PRDetailsStatusLogController.cs" />
+    <Compile Include="Controller\MRNStockDepartmentController.cs" />
+    <Compile Include="Controller\PRDStockInfoLogController.cs" />
+    <Compile Include="Controller\PRexpenseController.cs" />
+    <Compile Include="Controller\Procument_Plan_Type_Controller.cs" />
+    <Compile Include="Controller\CommitteeController.cs" />
+    <Compile Include="Controller\ProcurementCommitteeController.cs" />
+    <Compile Include="Controller\PrTypeController.cs" />
+    <Compile Include="Controller\PR_BillOfMeterialController.cs" />
+    <Compile Include="Controller\PR_DetailHistoryController.cs" />
+    <Compile Include="Controller\PR_DetailController.cs" />
+    <Compile Include="Controller\PR_FileUploadController.cs" />
+    <Compile Include="Controller\PR_MasterController.cs" />
+    <Compile Include="Controller\PR_SupportiveDocumentController.cs" />
+    <Compile Include="Controller\PR_Replace_FileUploadController.cs" />
+    <Compile Include="Controller\StockOverrideBatchLogController.cs" />
+    <Compile Include="Controller\StockOverrideLogController.cs" />
+    <Compile Include="Controller\SubCategoryStoreKeeperController.cs" />
+    <Compile Include="Controller\SupplierQuotationItemController.cs" />
+    <Compile Include="Controller\SupplierTypeController.cs" />
+    <Compile Include="Controller\TabulationDetailController.cs" />
+    <Compile Include="Controller\TabulationMasterController.cs" />
+    <Compile Include="Controller\TabulationRecommendationController.cs" />
+    <Compile Include="Controller\TabulationApprovalController.cs" />
+    <Compile Include="Controller\QuotationApprovalController.cs" />
+    <Compile Include="Controller\QuotationImageController.cs" />
+    <Compile Include="Controller\QuotationRecommendationController.cs" />
+    <Compile Include="Controller\RoleFunctionController.cs" />
+    <Compile Include="Controller\StockRaiseController.cs" />
+    <Compile Include="Controller\StockReleaseController.cs" />
+    <Compile Include="Controller\SupplierBidBondDetailsController.cs" />
+    <Compile Include="Controller\TempCoveringPrController.cs" />
+    <Compile Include="Controller\TempMRN_BOMController.cs" />
+    <Compile Include="Controller\TempMRN_FileUploadController.cs" />
+    <Compile Include="Controller\TempMRN_FileUploadReplacementController.cs" />
+    <Compile Include="Controller\TempMRN_SupportiveDocumentController.cs" />
+    <Compile Include="Controller\TempQuotatioForCoveringPrController.cs" />
+    <Compile Include="Controller\TRDetailsController.cs" />
+    <Compile Include="Controller\TrDetailStatusLogController.cs" />
+    <Compile Include="Controller\TrdIssueNoteBatchController.cs" />
+    <Compile Include="Controller\TRDIssueNoteController.cs" />
+    <Compile Include="Controller\TRMasterController.cs" />
+    <Compile Include="Controller\UserSubDepartmentController.cs" />
+    <Compile Include="Controller\UserWarehouseController.cs" />
+    <Compile Include="Controller\WarehouseController.cs" />
+    <Compile Include="Controller\SubDepartmentController.cs" />
+    <Compile Include="Controller\StockMasterController.cs" />
+    <Compile Include="Controller\SuperAdminController.cs" />
+    <Compile Include="Controller\SuplierImageUploadController.cs" />
+    <Compile Include="Controller\SupplierAssigneToCompanyController.cs" />
+    <Compile Include="Controller\SupplierBiddingFileUploadController.cs" />
+    <Compile Include="Controller\SupplierBOMController.cs" />
+    <Compile Include="Controller\SupplierCategoryController.cs" />
+    <Compile Include="Controller\SupplierController.cs" />
+    <Compile Include="Controller\SupplierLoginController.cs" />
+    <Compile Include="Controller\SupplierOutbxController.cs" />
+    <Compile Include="Controller\SupplierQuotationController.cs" />
+    <Compile Include="Controller\SupplierRatingController.cs" />
+    <Compile Include="Controller\SystemDivisionController.cs" />
+    <Compile Include="Controller\TempBOMController.cs" />
+    <Compile Include="Controller\TempPrFileUploadController.cs" />
+    <Compile Include="Controller\TempPR_SupportiveDocumentController.cs" />
+    <Compile Include="Controller\TempPR_FileUploadReplacementController.cs" />
+    <Compile Include="Controller\UnitMeasurementController.cs" />
+    <Compile Include="Controller\UserRoleController.cs" />
+    <Compile Include="Controller\WarehouseInventoryBatchesController.cs" />
+    <Compile Include="Domain\AddItem.cs" />
+    <Compile Include="Domain\AddItemBOM.cs" />
+    <Compile Include="Domain\AddItemMaster.cs" />
+    <Compile Include="Domain\AfterPO.cs" />
+    <Compile Include="Domain\Bidding.cs" />
+    <Compile Include="Domain\BiddingItem.cs" />
+    <Compile Include="Domain\BiddingMethod.cs" />
+    <Compile Include="Domain\BiddingPlan.cs" />
+    <Compile Include="Domain\BidHistory.cs" />
+    <Compile Include="Domain\Bid_Bond_Details.cs" />
+    <Compile Include="Domain\CommonReference.cs" />
+    <Compile Include="Domain\CompanyType.cs" />
+    <Compile Include="Domain\Conversion.cs" />
+    <Compile Include="Domain\ConversionTableMaster.cs" />
+    <Compile Include="Domain\CurrencyRate.cs" />
+    <Compile Include="Domain\DailyStockSummary.cs" />
+    <Compile Include="Domain\DefContainerSize.cs" />
+    <Compile Include="Domain\DefCurrencyType.cs" />
+    <Compile Include="Domain\DefPaymentMode.cs" />
+    <Compile Include="Domain\DefPriceTerms.cs" />
+    <Compile Include="Domain\DefTransportMode.cs" />
+    <Compile Include="Domain\DepartmentReturnBatch.cs" />
+    <Compile Include="Domain\DepartmentWarehouses.cs" />
+    <Compile Include="Domain\DepartmetReturn.cs" />
+    <Compile Include="Domain\DutyRates.cs" />
+    <Compile Include="Domain\DutyRatesHistory.cs" />
+    <Compile Include="Domain\FollowUpRemark.cs" />
+    <Compile Include="Domain\GeneralSettings.cs" />
+    <Compile Include="Domain\Grn.cs" />
+    <Compile Include="Domain\GrndReturnNote.cs" />
+    <Compile Include="Domain\GrnFiles.cs" />
+    <Compile Include="Domain\GrnReturnDetails.cs" />
+    <Compile Include="Domain\GrnReturnMaster.cs" />
+    <Compile Include="Domain\ImportCalucationDetails.cs" />
+    <Compile Include="Domain\ImportQuotation.cs" />
+    <Compile Include="Domain\ImportQuotationItem.cs" />
+    <Compile Include="Domain\Imports.cs" />
+    <Compile Include="Domain\ImportsHistory.cs" />
+    <Compile Include="Domain\InvoiceDetails.cs" />
+    <Compile Include="Domain\InvoiceImages.cs" />
+    <Compile Include="Domain\ItemCategoryOwners2.cs" />
+    <Compile Include="Domain\ItemMeasurement.cs" />
+    <Compile Include="Domain\MeasurementDetail.cs" />
+    <Compile Include="Domain\MeasurementMaster.cs" />
+    <Compile Include="Domain\MrndIssueNoteBatches.cs" />
+    <Compile Include="Domain\physicalStockVerificationDetails.cs" />
+    <Compile Include="Domain\PhysicalstockVerificationMaster.cs" />
+    <Compile Include="Domain\PrCapexDoc.cs" />
+    <Compile Include="Domain\MrnCapexDoc.cs" />
+    <Compile Include="Domain\PrBomV2.cs" />
+    <Compile Include="Domain\MrnBomV2.cs" />
+    <Compile Include="Domain\MRNDetailsStatusLog.cs" />
+    <Compile Include="Domain\PrDetailsV2.cs" />
+    <Compile Include="Domain\MrnDetailsV2.cs" />
+    <Compile Include="Domain\PrFileUploadV2.cs" />
+    <Compile Include="Domain\MrnFileUploadV2.cs" />
+    <Compile Include="Domain\PrMasterV2.cs" />
+    <Compile Include="Domain\MrnMasterV2.cs" />
+    <Compile Include="Domain\PrReplacementFileUploadV2.cs" />
+    <Compile Include="Domain\MrnReplacementFileUploadV2.cs" />
+    <Compile Include="Domain\PrSupportiveDocumentV2.cs" />
+    <Compile Include="Domain\MrnSupportiveDocumentV2.cs" />
+    <Compile Include="Domain\PrUpdateLog.cs" />
+    <Compile Include="Domain\MrnUpdateLog.cs" />
+    <Compile Include="Domain\StockOverrideBatchLog.cs" />
+    <Compile Include="Domain\StockOverrideLog.cs" />
+    <Compile Include="Domain\SupplierAgent2.cs" />
+    <Compile Include="Domain\SupplierRating.cs" />
+    <Compile Include="Domain\SupplierType.cs" />
+    <Compile Include="Domain\TempCoverigPr.cs" />
+    <Compile Include="Domain\TempQuotationsForCoverinPr.cs" />
+    <Compile Include="Domain\TrDetailStatusLog.cs" />
+    <Compile Include="Domain\TRDIssueNote.cs" />
+    <Compile Include="Domain\TrdIssueNoteBatches.cs" />
+    <Compile Include="Domain\TR_Details.cs" />
+    <Compile Include="Domain\TR_Master.cs" />
+    <Compile Include="Domain\VAT_NBT.cs" />
+    <Compile Include="Domain\POImportPriceTerms.cs" />
+    <Compile Include="Domain\POImportDateDef.cs" />
+    <Compile Include="Domain\POImportPaymentModeDef.cs" />
+    <Compile Include="Domain\POImportChargesDefinition.cs" />
+    <Compile Include="Domain\POImportShippingAgentDefinition.cs" />
+    <Compile Include="Domain\POImportReferenceDefinition.cs" />
+    <Compile Include="Domain\CompanyDepartment.cs" />
+    <Compile Include="Domain\CompanyLogin.cs" />
+    <Compile Include="Domain\CompanyUserAccess.cs" />
+    <Compile Include="Domain\Designation.cs" />
+    <Compile Include="Domain\FunctionAction.cs" />
+    <Compile Include="Domain\GeneralSetting.cs" />
+    <Compile Include="Domain\GRNDIssueNote.cs" />
+    <Compile Include="Domain\GrnMaster.cs" />
+    <Compile Include="Domain\HScode.cs" />
+    <Compile Include="Domain\Inventory.cs" />
+    <Compile Include="Domain\ItemCategory.cs" />
+    <Compile Include="Domain\ItemCategoryPOApproval.cs" />
+    <Compile Include="Domain\ItemCategoryBidApproval.cs" />
+    <Compile Include="Domain\CommitteeMember.cs" />
+    <Compile Include="Domain\ItemCategoryApproval.cs" />
+    <Compile Include="Domain\ItemCategoryMaster.cs" />
+    <Compile Include="Domain\ItemImageUpload.cs" />
+    <Compile Include="Domain\ItemCategoryOwners.cs" />
+    <Compile Include="Domain\ItemSubCategory.cs" />
+    <Compile Include="Domain\GrnDetails.cs" />
+    <Compile Include="Domain\ItemSubCategoryMaster.cs" />
+    <Compile Include="Domain\MaterialRequest.cs" />
+    <Compile Include="Domain\MRexpense.cs" />
+    <Compile Include="Domain\MRNBom.cs" />
+    <Compile Include="Domain\MrnDetails.cs" />
+    <Compile Include="Domain\MRNDIssueNote.cs" />
+    <Compile Include="Domain\MRNFileUpload.cs" />
+    <Compile Include="Domain\MrnMaster.cs" />
+    <Compile Include="Domain\PRStockDepartment.cs" />
+    <Compile Include="Domain\MRNSupportiveDocument.cs" />
+    <Compile Include="Domain\MRN_Master.cs" />
+    <Compile Include="Domain\Mrn_Replace_File_Upload.cs" />
+    <Compile Include="Domain\NaturseOfBusiness.cs" />
+    <Compile Include="Domain\PODetails.cs" />
+    <Compile Include="Domain\POHistory.cs" />
+    <Compile Include="Domain\POMaster.cs" />
+    <Compile Include="Domain\PrAdditionalColumn.cs" />
+    <Compile Include="Domain\PrCompanyPrTypeMapping.cs" />
+    <Compile Include="Domain\PRDetailsStatusLog.cs" />
+    <Compile Include="Domain\MRNStockDepartment.cs" />
+    <Compile Include="Domain\PRDStockInfo.cs" />
+    <Compile Include="Domain\PreviousPurchase.cs" />
+    <Compile Include="Domain\PRexpense.cs" />
+    <Compile Include="Domain\Committee.cs" />
+    <Compile Include="Domain\Procument_PlanType.cs" />
+    <Compile Include="Domain\ProcurementCommittee.cs" />
+    <Compile Include="Domain\PrType.cs" />
+    <Compile Include="Domain\PR_BillOfMeterial.cs" />
+    <Compile Include="Domain\PR_DetailsHistory.cs" />
+    <Compile Include="Domain\PR_Details.cs" />
+    <Compile Include="Domain\PR_FileUpload.cs" />
+    <Compile Include="Domain\PR_Master.cs" />
+    <Compile Include="Domain\PR_SupportiveDocument.cs" />
+    <Compile Include="Domain\PR_Replace_FileUpload.cs" />
+    <Compile Include="Domain\SubCategoryStoreKeeper.cs" />
+    <Compile Include="Domain\SupplierAgent.cs" />
+    <Compile Include="Domain\SupplierBidEmailContact.cs" />
+    <Compile Include="Domain\SupplierBidEmail.cs" />
+    <Compile Include="Domain\TabulationApproval.cs" />
+    <Compile Include="Domain\QuotationApproval.cs" />
+    <Compile Include="Domain\QuotationImage.cs" />
+    <Compile Include="Domain\QuotationImages.cs" />
+    <Compile Include="Domain\TabulationDetail.cs" />
+    <Compile Include="Domain\TabulationMaster.cs" />
+    <Compile Include="Domain\TabulationRecommendation.cs" />
+    <Compile Include="Domain\QuotationRecommendation.cs" />
+    <Compile Include="Domain\RoleFunction.cs" />
+    <Compile Include="Domain\StockRaise.cs" />
+    <Compile Include="Domain\StockRelease.cs" />
+    <Compile Include="Domain\SupplierBidBondDetails.cs" />
+    <Compile Include="Domain\SupplierQuotationItem.cs" />
+    <Compile Include="Domain\TempMRN_BOM.cs" />
+    <Compile Include="Domain\TempMRN_FileUpload.cs" />
+    <Compile Include="Domain\TempMRN_FileUploadReplacement.cs" />
+    <Compile Include="Domain\TempMRN_SupportiveDocument.cs" />
+    <Compile Include="Domain\Currency.cs" />
+    <Compile Include="Domain\UserSubDepartment.cs" />
+    <Compile Include="Domain\UserWarehouse.cs" />
+    <Compile Include="Domain\Warehouse.cs" />
+    <Compile Include="Domain\SubDepartment.cs" />
+    <Compile Include="Domain\StockMaster.cs" />
+    <Compile Include="Domain\SuperAdmin.cs" />
+    <Compile Include="Domain\SuplierImageUpload.cs" />
+    <Compile Include="Domain\Supplier.cs" />
+    <Compile Include="Domain\SupplierAssignedToCompany.cs" />
+    <Compile Include="Domain\SupplierBiddingFileUpload.cs" />
+    <Compile Include="Domain\SupplierBOM.cs" />
+    <Compile Include="Domain\SupplierCategory.cs" />
+    <Compile Include="Domain\SupplierLogin.cs" />
+    <Compile Include="Domain\SupplierOutbx.cs" />
+    <Compile Include="Domain\SupplierQuotation.cs" />
+    <Compile Include="Domain\SupplierRatings.cs" />
+    <Compile Include="Domain\SystemDivisionFunction.cs" />
+    <Compile Include="Domain\SystemDivision.cs" />
+    <Compile Include="Domain\TempBOM.cs" />
+    <Compile Include="Domain\TempPrFileUpload.cs" />
+    <Compile Include="Domain\TempPR_SupportiveDocument.cs" />
+    <Compile Include="Domain\TempPR_FileUploadReplacement.cs" />
+    <Compile Include="Domain\UnitMeasurement.cs" />
+    <Compile Include="Domain\UserRole.cs" />
+    <Compile Include="Domain\WarehouseInventory.cs" />
+    <Compile Include="Domain\WarehouseInventoryBatches.cs" />
+    <Compile Include="Domain\WarehouseInventoryRaise.cs" />
+    <Compile Include="Domain\WarehouseInventoryRelease.cs" />
+    <Compile Include="Helper\IssuedInventoryDetails.cs" />
+    <Compile Include="Helper\WarehouseInventoryDetail.cs" />
+    <Compile Include="Infrastructure\AddItemBOMDAO.cs" />
+    <Compile Include="Infrastructure\AddItemDAO.cs" />
+    <Compile Include="Infrastructure\AddItemMasterDAO.cs" />
+    <Compile Include="Infrastructure\AfterPO_DAO.cs" />
+    <Compile Include="Infrastructure\ArraySpec.cs" />
+    <Compile Include="Infrastructure\BiddingDAO.cs" />
+    <Compile Include="Infrastructure\BiddingItemDAO.cs" />
+    <Compile Include="Infrastructure\BiddingMethodDAO.cs" />
+    <Compile Include="Infrastructure\BiddingPlanDAO.cs" />
+    <Compile Include="Infrastructure\BidHistoryDAO.cs" />
+    <Compile Include="Infrastructure\Bid_Bond_Details_DAO.cs" />
+    <Compile Include="Infrastructure\CompanyDepartmentDAO.cs" />
+    <Compile Include="Infrastructure\CompanyLoginDAO.cs" />
+    <Compile Include="Infrastructure\CompanyTypeDAO.cs" />
+    <Compile Include="Infrastructure\CompanyUserAccessDAO.cs" />
+    <Compile Include="Infrastructure\CurrencyrateDAO.cs" />
+    <Compile Include="Infrastructure\DashboardDAO.cs" />
+    <Compile Include="Infrastructure\DefContainerSizeDAO.cs" />
+    <Compile Include="Infrastructure\DefCurrencyTypeDAO.cs" />
+    <Compile Include="Infrastructure\DefPaymentModeDAO.cs" />
+    <Compile Include="Infrastructure\DefPriceTermsDAO.cs" />
+    <Compile Include="Infrastructure\DefTransportModeDAO.cs" />
+    <Compile Include="Infrastructure\DepartmentReturnBatchDAO.cs" />
+    <Compile Include="Infrastructure\DepartmentReturnDAO.cs" />
+    <Compile Include="Infrastructure\DepartmentWarehouseDAO.cs" />
+    <Compile Include="Infrastructure\DesignationDAO.cs" />
+    <Compile Include="Infrastructure\DutyRatesDAO.cs" />
+    <Compile Include="Infrastructure\EmailDAO.cs" />
+    <Compile Include="Infrastructure\FollowUpRemarksDAO.cs" />
+    <Compile Include="Infrastructure\FunctionActionDAO.cs" />
+    <Compile Include="Infrastructure\GeneralSettingsDAO.cs" />
+    <Compile Include="Infrastructure\GrnDAO.cs" />
+    <Compile Include="Infrastructure\GRNDIssueNoteDAO.cs" />
+    <Compile Include="Infrastructure\GrndReturnNoteDAO.cs" />
+    <Compile Include="Infrastructure\GrnFilesDAO.cs" />
+    <Compile Include="Infrastructure\GrnReturnDetailsDAO.cs" />
+    <Compile Include="Infrastructure\GrnReturnMasterDAO.cs" />
+    <Compile Include="Infrastructure\HScodeDAO.cs" />
+    <Compile Include="Infrastructure\IConversionDAO.cs" />
+    <Compile Include="Infrastructure\IConversionTableMasterDAO.cs" />
+    <Compile Include="Infrastructure\IItemMeasurementDAO.cs" />
+    <Compile Include="Infrastructure\IMeasurementDetailDAO.cs" />
+    <Compile Include="Infrastructure\IMeasurementMasterDAO.cs" />
+    <Compile Include="Infrastructure\ImportsDAO.cs" />
+    <Compile Include="Infrastructure\ImportsHistoryDAO.cs" />
+    <Compile Include="Infrastructure\IntWarehouseInventoryBatchesDAO.cs" />
+    <Compile Include="Infrastructure\InventoryDAO.cs" />
+    <Compile Include="Infrastructure\InvoiceDetailsDAO.cs" />
+    <Compile Include="Infrastructure\InvoiceImagesDAO.cs" />
+    <Compile Include="Infrastructure\ItemCategoryApprovalDAO.cs" />
+    <Compile Include="Infrastructure\ItemCategoryOwnerDAO.cs" />
+    <Compile Include="Infrastructure\ItemCategoryDAO.cs" />
+    <Compile Include="Infrastructure\ItemCategoryMasterDAO.cs" />
+    <Compile Include="Infrastructure\ItemCategoryOwners2DAO.cs" />
+    <Compile Include="Infrastructure\ItemImageUploadDAO.cs" />
+    <Compile Include="Infrastructure\ItemSubCategoryDAO.cs" />
+    <Compile Include="Infrastructure\GRNDetailsDAO.cs" />
+    <Compile Include="Infrastructure\ItemSubCategoryMasterDAO.cs" />
+    <Compile Include="Infrastructure\MaterialRequestDAO.cs" />
+    <Compile Include="Infrastructure\MRexpenseDAO.cs" />
+    <Compile Include="Infrastructure\MRNBomDAO.cs" />
+    <Compile Include="Infrastructure\MrndIssueNoteBatchesDAO.cs" />
+    <Compile Include="Infrastructure\PhysicalstockVerificationDetailsDAO.cs" />
+    <Compile Include="Infrastructure\PhysicalStockVerificationMasterDAO.cs" />
+    <Compile Include="Infrastructure\PrCapexDocDAO.cs" />
+    <Compile Include="Infrastructure\MrnCapexDocDAO.cs" />
+    <Compile Include="Infrastructure\PrUpdateLogDAO.cs" />
+    <Compile Include="Infrastructure\PrSupportiveDocumentsDAOV2.cs" />
+    <Compile Include="Infrastructure\PrReplacementFileUploadDAOV2.cs" />
+    <Compile Include="Infrastructure\PrBomDAOV2.cs" />
+    <Compile Include="Infrastructure\MrnBomDAOV2.cs" />
+    <Compile Include="Infrastructure\MrnDAO.cs" />
+    <Compile Include="Infrastructure\MRNDetailDAO.cs" />
+    <Compile Include="Infrastructure\PrFileUploadDAOV2.cs" />
+    <Compile Include="Infrastructure\PrDetailsDAOV2.cs" />
+    <Compile Include="Infrastructure\MrnDetailsDAOV2.cs" />
+    <Compile Include="Infrastructure\MRNDIssueNoteDAO.cs" />
+    <Compile Include="Infrastructure\MRNFileUploadDAO.cs" />
+    <Compile Include="Infrastructure\MrnFileUploadDAOV2.cs" />
+    <Compile Include="Infrastructure\PrMasterDAOV2.cs" />
+    <Compile Include="Infrastructure\MrnMasterDAOV2.cs" />
+    <Compile Include="Infrastructure\MrnReplacementFileUploadDAOV2.cs" />
+    <Compile Include="Infrastructure\MrnSupportiveDocumentsDAOV2.cs" />
+    <Compile Include="Infrastructure\MrnUpdateLogDAO.cs" />
+    <Compile Include="Infrastructure\POImportDetailDAO.cs" />
+    <Compile Include="Infrastructure\PRStockDepartmentDAO.cs" />
+    <Compile Include="Infrastructure\MRN_MasterDAO.cs" />
+    <Compile Include="Infrastructure\Mrn_Replace_File_Upload_DAO.cs" />
+    <Compile Include="Infrastructure\MRsupportiveDocumentDAO.cs" />
+    <Compile Include="Infrastructure\NaturseOfBusinessDAO.cs" />
+    <Compile Include="Infrastructure\PODetailsDAO.cs" />
+    <Compile Include="Infrastructure\POMasterDAO.cs" />
+    <Compile Include="Infrastructure\PrAdditionalColumnDAO.cs" />
+    <Compile Include="Infrastructure\PrCompanyPrTypeMappingDAO.cs" />
+    <Compile Include="Infrastructure\MRNDetailsStatusLogDAO.cs" />
+    <Compile Include="Infrastructure\PRDetailsStatusLogDAO.cs" />
+    <Compile Include="Infrastructure\MRNStockDepartmentDAO.cs" />
+    <Compile Include="Infrastructure\PRDStockInfoLogDAO.cs" />
+    <Compile Include="Infrastructure\PRexpenseDAO.cs" />
+    <Compile Include="Infrastructure\Procument_Plan_Type_DAO.cs" />
+    <Compile Include="Infrastructure\CommitteeDAO.cs" />
+    <Compile Include="Infrastructure\ProcurementCommitteeDAO.cs" />
+    <Compile Include="Infrastructure\PrTypeDAO.cs" />
+    <Compile Include="Infrastructure\PR_BillOfMeterialDAO.cs" />
+    <Compile Include="Infrastructure\PR_DetailHistoryDAO.cs" />
+    <Compile Include="Infrastructure\PR_DetailDAO.cs" />
+    <Compile Include="Infrastructure\PR_FileUploadDAO.cs" />
+    <Compile Include="Infrastructure\PR_MasterDAO.cs" />
+    <Compile Include="Infrastructure\PR_SupportiveDocumentDAO.cs" />
+    <Compile Include="Infrastructure\PR_Replace_FileUploadDAO.cs" />
+    <Compile Include="Infrastructure\StockOverrideBatchLogDAO.cs" />
+    <Compile Include="Infrastructure\StockOverrideLogDAO.cs" />
+    <Compile Include="Infrastructure\SubCategoryStoreKeeperDAO.cs" />
+    <Compile Include="Infrastructure\SupplierTypeDAO.cs" />
+    <Compile Include="Infrastructure\TabulationApprovalDAO.cs" />
+    <Compile Include="Infrastructure\QuotationApprovalDAO.cs" />
+    <Compile Include="Infrastructure\QuotationImageDAO.cs" />
+    <Compile Include="Infrastructure\TabulationDetailDAO.cs" />
+    <Compile Include="Infrastructure\TabulationMasterDAO.cs" />
+    <Compile Include="Infrastructure\TabulationRecommendationDAO.cs" />
+    <Compile Include="Infrastructure\QuotationRecommendationDAO.cs" />
+    <Compile Include="Infrastructure\RoleFunctionDAO.cs" />
+    <Compile Include="Infrastructure\StockRaiseDAO.cs" />
+    <Compile Include="Infrastructure\StockReleaseDAO.cs" />
+    <Compile Include="Infrastructure\SupplierBidBondDetailDAO.cs" />
+    <Compile Include="Infrastructure\SupplierQuotationItemDAO.cs" />
+    <Compile Include="Infrastructure\TempCoveringPrDAO.cs" />
+    <Compile Include="Infrastructure\TempMRN_BOM_DAO.cs" />
+    <Compile Include="Infrastructure\TempMRN_FileUploadDAO.cs" />
+    <Compile Include="Infrastructure\TempMRN_FileUploadReplacementDAO.cs" />
+    <Compile Include="Infrastructure\TempMRN_SupportiveDocumentDAO.cs" />
+    <Compile Include="Infrastructure\TempQuotationForCoverigPrDAO.cs" />
+    <Compile Include="Infrastructure\TRDetailsDAO.cs" />
+    <Compile Include="Infrastructure\TrDetailStatusLogDAO.cs" />
+    <Compile Include="Infrastructure\TrdIssueNoteBatchesDAO.cs" />
+    <Compile Include="Infrastructure\TRDIssueNoteDAO.cs" />
+    <Compile Include="Infrastructure\TRMasterDAO.cs" />
+    <Compile Include="Infrastructure\UserSubDepartmentDAO.cs" />
+    <Compile Include="Infrastructure\UserWarehouseDAO.cs" />
+    <Compile Include="Infrastructure\WarehouseDAO.cs" />
+    <Compile Include="Infrastructure\SubDepartmentDAO.cs" />
+    <Compile Include="Infrastructure\StockMasterDAO.cs" />
+    <Compile Include="Infrastructure\SuperAdminDAO.cs" />
+    <Compile Include="Infrastructure\SuplierImageUploadDAO.cs" />
+    <Compile Include="Infrastructure\SupplierAssigneToCompanyDAO.cs" />
+    <Compile Include="Infrastructure\SupplierBiddingFileUploadDAO.cs" />
+    <Compile Include="Infrastructure\SupplierBOMDAO.cs" />
+    <Compile Include="Infrastructure\SupplierCategoryDAO.cs" />
+    <Compile Include="Infrastructure\SupplierDAO.cs" />
+    <Compile Include="Infrastructure\SupplierLoginDAO.cs" />
+    <Compile Include="Infrastructure\SupplierOutbxDAO.cs" />
+    <Compile Include="Infrastructure\SupplierQuotationDAO.cs" />
+    <Compile Include="Infrastructure\SupplierRatingDAO.cs" />
+    <Compile Include="Infrastructure\SystemDivisionDAO.cs" />
+    <Compile Include="Infrastructure\TempBOMDAO.cs" />
+    <Compile Include="Infrastructure\TempPrFileUploadDAO.cs" />
+    <Compile Include="Infrastructure\TempPR_SupportiveDocumentDAO.cs" />
+    <Compile Include="Infrastructure\TempPR_FileUploadReplacementDAO.cs" />
+    <Compile Include="Infrastructure\UnitMeasurementDAO.cs" />
+    <Compile Include="Infrastructure\UserRoleDAO.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ItemPurchaseHistory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\CLibrary.dll" />
+    <Content Include="bin\Debug\CLibrary.pdb" />
+    <Content Include="obj\Debug\CLibrary.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\CLibrary.dll" />
+    <Content Include="obj\Debug\CLibrary.pdb" />
+    <Content Include="obj\Release\CLibrary.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\CLibrary.dll" />
+    <Content Include="obj\Release\CLibrary.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="obj\Release\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="obj\Debug\CLibrary.csproj.CopyComplete" />
+    <None Include="obj\Debug\CLibrary.csproj.CoreCompileInputs.cache" />
+    <None Include="obj\Debug\CLibrary.csprojAssemblyReference.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\svn-81400321" />
+    <None Include="obj\Release\CLibrary.csprojResolveAssemblyReference.cache" />
+    <None Include="obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

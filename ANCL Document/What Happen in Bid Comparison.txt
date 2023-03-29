@@ -1,0 +1,14 @@
+when user select Tabulation sheet button   ---> Popu shows and during this ans SP "usp_InsertTabulationMaster" runs
+system inserts record into 'TABULATION_MASTER' table. this record is single record
+having BidId,Pid, TabulationId and other columns with empty
+Then in 'TABULATION_DETAIL' enters all the items without qty an other details
+
+
+When user selects qty --> javascript runs 
+Then when User select Finish Selection , an SP "usp_UpdateTabulationDetailsUnSelectedItems" runs.
+system will update the qty and taol value for that item and prid,bidid   in "TABULATION_DETAIL" table 
+Then system update the "TABULATION_MASTER" table saying item got selected  : IS_SELECTED column get updated to One
+
+
+Then System run SP "POPULATE_RECOMMENDATION"
+

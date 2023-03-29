@@ -1,0 +1,39 @@
+*** Release Note Q_0.0.1.0 ***
+
+Following are the modules and sub modules released in the specified version
+
+# Department module
+	* Manage Department
+
+# Warehouse Module
+	* Manage Warehouses
+	* Assign MRN to Store Keeper
+	* MRN Add To PR & Issue/Add Stock
+
+# Measurement Module
+	* Add Measurement
+
+# User Creation
+	* Create User
+	* View/Edit User
+	* Create User Role & Functions
+	* Define User Access
+
+# Supplier
+	* Create Supplier
+	* View/Edit Supplier
+	* Create Supplier Agent
+# Item
+	* Add Main Category
+	* Add Committee
+	* Add Main Category Owner
+	* Add Sub Category
+	* Add Sub Category Store Keeper
+	* Add Items
+
+# Material Request
+	* Create MRN
+	* View My MRN
+	* Approve MRN
+	* View All MRN
+

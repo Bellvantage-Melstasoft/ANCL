@@ -1,0 +1,15 @@
+USE [ANCL_BID_TEST]
+GO
+/****** Object:  Table [dbo].[VAT_NBT_VALUE]    Script Date: 12/5/2019 3:10:59 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[VAT_NBT_VALUE](
+	[EFFECTIVE_DATE] [date] NULL,
+	[VAT_VALUE] [decimal](18, 5) NULL,
+	[NBT_VALUE_1] [decimal](18, 5) NULL,
+	[NBT_VALUE_2] [decimal](18, 5) NULL
+) ON [PRIMARY]
+
+GO

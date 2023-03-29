@@ -1,0 +1,637 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using CLibrary.Controller;
+using CLibrary.Common;
+using CLibrary.Domain;
+using System.IO;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
+using System.Data;
+
+namespace BiddingSystem {
+    public partial class ViewPO : System.Web.UI.Page {
+        POMasterController pOMasterController = ControllerFactory.CreatePOMasterController();
+        PODetailsController pODetailsController = ControllerFactory.CreatePODetailsController();
+        CompanyDepartmentController companyDepartmentController = ControllerFactory.CreateCompanyDepartmentController();
+        PR_FileUploadController pr_FileUploadController = ControllerFactory.CreatePR_FileUploadController();
+        PR_MasterController pr_MasterController = ControllerFactory.CreatePR_MasterController();
+        PR_DetailController pr_DetailController = ControllerFactory.CreatePR_DetailController();
+        SupplierQuotationController supplierQuotationController = ControllerFactory.CreateSupplierQuotationController();
+        CompanyUserAccessController companyUserAccessController = ControllerFactory.CreateCompanyUserAccessController();
+        CompanyLoginController companyLoginController = ControllerFactory.CreateCompanyLoginController();
+        QuotationImageController quotationImageController = ControllerFactory.CreateQuotationImageController();
+        SupplierBiddingFileUploadController supplierBiddingFileUploadController = ControllerFactory.CreateSupplierBiddingFileUploadController();
+
+
+        // static string UserId = string.Empty;
+        // private string PRId = string.Empty;
+
+        // private string UserDept = string.Empty;
+        //  private string OurRef = string.Empty;
+        // private string PrCode = string.Empty;
+        // private string RequestedDate = string.Empty;
+        //  private string UserRef = string.Empty;
+        // private string RequesterName = string.Empty;
+        // private int basePr = 0;
+        //int CompanyId = 0;
+        // int PoId = 0;
+        //  static int quationid = 0;
+        protected void Page_Load(object sender, EventArgs e) {
+            if (Session["CompanyId"] != null && Session["UserId"].ToString() != null) {
+                ((BiddingAdmin)Page.Master).mainTabValue = "hrefPurchasing";
+                ((BiddingAdmin)Page.Master).subTabTitle = "subTabPurchasing";
+                //((BiddingAdmin)Page.Master).subTabValue = "CustomerApprovePO.aspx";
+                ((BiddingAdmin)Page.Master).subTabId = "ApprovePOLink";
+
+                // CompanyId = int.Parse(Session["CompanyId"].ToString());
+                // UserId = Session["UserId"].ToString();
+                CompanyLogin companyLogin = companyLoginController.GetUserbyuserId(int.Parse(Session["UserId"].ToString()));
+
+                if ((!companyUserAccessController.isAvilableAccess(int.Parse(Session["UserId"].ToString()), int.Parse(Session["CompanyId"].ToString()), 6, 7) && companyLogin.Usertype != "S") && companyLogin.Usertype != "GA") {
+                    Response.Redirect("AdminDashboard.aspx");
+                }
+
+                if (Session["PoId"] != null) {
+                    ViewState["PoId"] = int.Parse(Session["PoId"].ToString());
+                }
+                else {
+                    Response.Redirect("CusromerPOView.aspx");
+                }
+            }
+            else {
+                Response.Redirect("LoginPage.aspx");
+            }
+
+            if (!IsPostBack) {
+                try {
+                    POMaster pOMaster = pOMasterController.GetPoMasterObjByPoIdRaised(int.Parse(Request.QueryString.Get("PoId")), int.Parse(Session["CompanyId"].ToString()));
+                    SupplierQuotation ImportDetails = supplierQuotationController.GetImportDetails(int.Parse(Request.QueryString.Get("PoId")), int.Parse(Session["CompanyId"].ToString()));
+                    ViewState["PurchaseType"] = pOMaster.PurchaseType;
+
+                    ViewState["quationid"] = pOMaster.QuotationId;
+                    ViewState["basePr"] = pOMaster.BasePr;
+                    Session["BasePRID"] = pOMaster.BasePr;
+                    //lblBasedPr.Text = pr_MasterController.FetchApprovePRDataByPRId(int.Parse(ViewState["basePr"].ToString())).PrCode;
+                    //lblPOCode.Text = pOMaster.POCode;
+                    //lblSupplierName.Text = pOMaster._Supplier.SupplierName; ;
+                    //lblAddress.Text = pOMaster._Supplier.Address1 + "," + pOMaster._Supplier.Address2;
+                    //lblstorekeeper.Text = pOMaster.StoreKeeperName;
+                    foreach (PODetails item in pOMaster._PODetails) {
+                        item.supplierQuotationItem = supplierQuotationController.GetQuotationItemsByQuotationItemId(item.QuotationItemId);
+                    }
+                    //gvPurchaseOrderItems.DataSource = pOMaster._PODetails;
+                    //gvPurchaseOrderItems.DataBind();
+                    //
+                    lblCompName.Text = pOMaster._companyDepartment.DepartmentName;
+                    lblCompVatNo.Text = pOMaster._companyDepartment.VatNo;
+                    lblTpNo.Text = pOMaster._companyDepartment.PhoneNO;
+                    lblFax.Text = pOMaster._companyDepartment.FaxNO;
+                    lblcompAdd.Text = pOMaster._companyDepartment.Address1;
+                    // lblRefNo.Text = pr_MasterController.FetchApprovePRDataByPRId(basePr).Ref01;
+                    txtRemarks.Text = pOMaster.Remarks == "" ? "-" : pOMaster.Remarks;
+                    lblDepartment.Text = pOMaster.subdepartment;
+
+                    lblSupName.Text = pOMaster._Supplier.SupplierName;
+                    lblSupplierAddress.Text = pOMaster._Supplier.Address1;
+                    lblSupplierContact.Text = pOMaster._Supplier.OfficeContactNo + " / " + pOMaster._Supplier.PhoneNo;
+
+                    lblWarehouseName.Text = pOMaster._Warehouse.Location;
+                    lblWarehouseAddress.Text = pOMaster._Warehouse.Address;
+                    lblWarehouseContact.Text = pOMaster._Warehouse.PhoneNo;
+                    lblStoreKeeper.Text = pOMaster.StoreKeeper;
+
+                    lblPO.Text = pOMaster.POCode;
+                    lblPrCode.Text = "PR-" + pr_MasterController.FetchApprovePRDataByPRId(int.Parse(ViewState["basePr"].ToString())).PrCode;
+                    //lblQuotationFor.Text = pOMaster.Description;
+                    //lblSK.Text = pOMaster.StoreKeeperName;
+                    //lblDate.Text = LocalTime.Today.ToString(System.Configuration.ConfigurationSettings.AppSettings["datePatternBackend"]);
+                    
+                    lblPurchaseType.Text = pOMaster.PurchaseType == 1 ? "Local" : "Import";
+                    if (pOMaster.PurchaseProcedure == 2) {
+                        var ParentPR = pr_MasterController.GetPrForQuotationComparison(pOMaster.ClonedFromPR, int.Parse(Session["CompanyId"].ToString()));
+                        panelParentPr.Visible = true;
+                        lblParentPr.Text = "PR-" + ParentPR.PrCode;
+                    }
+                    if (pOMaster.PurchaseType == 2) {
+                        if (pOMaster.ImportItemType == 2) {
+                            gvPoItems.Columns[20].Visible = false;
+                        }
+                    }
+                    if (pOMaster.PurchaseType == 1) {
+                        gvPoItems.Columns[19].Visible = false;
+                        gvPoItems.Columns[20].Visible = false;
+                    }
+
+
+                    if (pOMaster.IsApproved == 1) {
+                        btnCancel.Visible = true;
+
+                        int result = pOMasterController.CheckPoGrns(int.Parse(Request.QueryString.Get("PoId")));
+                        if (result > 0) {
+                            btnCancel.Visible = false;
+                        }
+
+                    }
+
+                    if (pOMaster.IsCancelled == 1) {
+                        pnlCancel.Visible = true;
+                        lblCancel.Text = "PO Cancelled";
+                        btnCancel.Visible = false;
+
+                    }
+
+                    //if (pOMaster.IsApproved == 0) {
+                    //    lblPending.Visible = true;
+                    //}
+                    //else if (pOMaster.IsApproved == 1) {
+                    //    lblApproved.Visible = true;
+
+                    //}
+                    //else {
+                    //    lblRejected.Visible = true;
+                    //}
+                    if (pOMaster.PurchaseType == 2) {
+                        gvPoItems.Columns[16].Visible = false;
+                    }
+                    if (pOMaster.IsDerived == 0) {
+                        lblGeneral.Visible = true;
+                    }
+                    else if (pOMaster.IsDerived == 1 && pOMaster.IsDerivedType == 1) {
+                        lblModified.Visible = true;
+                    }
+                    else {
+                        lblCovering.Visible = true;
+                    }
+
+
+                    if (pOMaster.IsDerived == 1) {
+                        if (pOMaster.DerivedFromPOs.Count > 0) {
+                            gvDerivedFrom.DataSource = pOMaster.DerivedFromPOs;
+                            gvDerivedFrom.DataBind();
+                            pnlDerivedFrom.Visible = true;
+                        }
+                        //lblRemarks.Text = pOMaster.DerivingReason;
+                        //pnlReason.Visible = true;
+                    }
+                    if (pOMaster.PurchaseType == 2) {
+                        PanenImports.Visible = true;
+                        pnlLogo.Visible = true;
+
+                        lblCurrency.Text = ImportDetails.CurrencyShortname;
+                        //lblPriceTerms.Text = ImportDetails.TermName;
+                        lblPaymentMode.Text = ImportDetails.PaymentMode;
+                    }
+
+                    lblCreatedByDesignation.Text = pOMaster.CreatedDesignationName;
+                    //lblCreatedByName.Text = pOMaster.CreatedByName;
+                    lblCreatedDate.Text = pOMaster.CreatedDate.ToString("dd/MM/yyyy");
+
+
+                    if (File.Exists(HttpContext.Current.Server.MapPath(pOMaster.CreatedSignature)))
+                        imgCreatedBySignature.ImageUrl = pOMaster.CreatedSignature;
+                    else
+                        imgCreatedBySignature.ImageUrl = "UserSignature/NoSign.jpg";
+
+                    if (pOMaster.IsApproved != 0) {
+                        pnlApprovedBy.Visible = true;
+                        //lblApprovedByName.Text = pOMaster.ApprovedByName;
+                        lblApprovedByDesignation.Text = pOMaster.ApprovedDesignationName;
+                        lblApprovedDate.Text = pOMaster.ApprovedDate.ToString("dd/MM/yyyy");
+                        lblApprovalRemarks.Text = pOMaster.ApprovalRemarks;
+                        lblDate.Text = pOMaster.ApprovedDate.ToString(System.Configuration.ConfigurationSettings.AppSettings["datePatternBackend"]);
+                        if (File.Exists(HttpContext.Current.Server.MapPath(pOMaster.ApprovedSignature)))
+                            imgApprovedBySignature.ImageUrl = pOMaster.ApprovedSignature;
+                        else
+                            imgApprovedBySignature.ImageUrl = "UserSignature/NoSign.jpg";
+                    }
+
+                    if (pOMaster.IsApproved == 1) {
+                        lblApprovalText.InnerHtml = "Approved By";
+                    }
+                    else if (pOMaster.IsApproved == 2) {
+                        lblApprovalText.InnerHtml = "Rejected By";
+                    }
+
+                    if (pOMaster.DerivedPOs.Count > 0) {
+                        gvDerivedPOs.DataSource = pOMaster.DerivedPOs;
+                        gvDerivedPOs.DataBind();
+
+                        pnlDerrivedPOs.Visible = true;
+                    }
+                    /*if (pOMaster.IsDerived == 1 && pOMaster.IsApprovedByParentApprovedUser != 0 && pOMaster.ParentApprovedByName != "" && pOMaster.ParentApprovedByName != null) {
+                        pnlParentApprovedByDetails.Visible = true;
+                        lblParentApprovalRemarks.Text = pOMaster.ParentApprovedUserApprovalRemarks;
+                        lblParentApprovedByName.Text = pOMaster.ParentApprovedByName;
+                        lblParentApprovedDate.Text = pOMaster.ParentApprovedUserApprovalDate.ToString("dd/MM/yyyy");
+
+                        if (File.Exists(HttpContext.Current.Server.MapPath(pOMaster.ParentApprovedBySignature)))
+                            imgParentApprovedBySignature.ImageUrl = pOMaster.ParentApprovedBySignature;
+                        else
+                            imgParentApprovedBySignature.ImageUrl = "UserSignature/NoSign.jpg";
+                    }
+
+                    if (pOMaster.IsDerived == 1 && pOMaster.IsApprovedByParentApprovedUser == 1 && pOMaster.ParentApprovedByName != "" && pOMaster.ParentApprovedByName != null) {
+                        lblParentApprovalText.InnerHtml = "Parent Approved User: APPROVED";
+                    }
+                    else if (pOMaster.IsDerived == 1 && pOMaster.IsApprovedByParentApprovedUser == 2 && pOMaster.ParentApprovedByName != "" && pOMaster.ParentApprovedByName != null) {
+                        lblParentApprovalText.InnerHtml = "Parent Approved User: REJECTED";
+                    }*/
+                    if (pOMaster.GeneratedGRNs.Count > 0) {
+                        gvGRNs.DataSource = pOMaster.GeneratedGRNs;
+                        gvGRNs.DataBind();
+
+                        pnlGeneratedGRNs.Visible = true;
+                    }
+                    if (pOMaster.IsCurrent == 1) {
+                        if (pOMaster.GeneratedGRNs.FindAll(grn => grn.IsApproved == 2).Count == pOMaster.GeneratedGRNs.Count) {
+                            if (pOMaster.DerivedPOs == null || pOMaster.DerivedPOs.FindAll(grn => grn.IsApproved == 2).Count == pOMaster.DerivedPOs.Count) {
+                                //btnModify.Visible = true;
+                                btnModify.Visible = false;
+                                btnFollowUpRemark.Visible = true;
+                            }
+                            else {
+                                btnModify.Visible = false;
+                                btnFollowUpRemark.Visible = false;
+                            }
+                        }
+                        else {
+                            btnModify.Visible = false;
+                            btnFollowUpRemark.Visible = false;
+                        }
+                    }
+                    else {
+                        btnModify.Visible = false;
+                        btnFollowUpRemark.Visible = false;
+                    }
+                    if (pOMaster.IsCancelled == 1) {
+                        btnModify.Visible = false;
+                        btnFollowUpRemark.Visible = false;
+                    }
+                    int VarPoPurchaseType = 0;
+                    string VarSupplierAgentName = "";
+
+                    decimal Total = 0;
+                    for (int i = 0; i < pOMaster._PODetails.Count; i++) {
+                        VarPoPurchaseType = pOMaster._PODetails[i].PoPurchaseType;
+                        VarSupplierAgentName = pOMaster._PODetails[i].SupplierAgentName;
+
+                        if (pOMaster.PurchaseType == 2) {
+                            if (pOMaster._PODetails[i].PoPurchaseType == 1) {
+                                PanenImports.Visible = false;
+                                pnlLogo.Visible = false;
+                            }
+                            if (pOMaster._PODetails[i].PoPurchaseType == 2) {
+
+                                pOMaster._PODetails[i].SubTotal = pOMaster._PODetails[i].UnitPriceForeign * pOMaster._PODetails[i].Quantity;
+                                pOMaster._PODetails[i].VatAmount = 0;
+                                pOMaster._PODetails[i].TotalAmount = pOMaster._PODetails[i].SubTotal + pOMaster._PODetails[i].VatAmount;
+                                pOMaster.VatAmount = 0;
+                                Total = Total + pOMaster._PODetails[i].SubTotal;
+                                pOMaster.TotalAmount = Total;
+                            }
+                        }
+                    }
+
+                    if (pOMaster.PaymentMethod != null && pOMaster.PaymentMethod != "") {
+                        if (VarPoPurchaseType == 1) {
+                            lblPaymentType.Text = pOMaster.PaymentMethod == "1" ? "Cash Payment" : pOMaster.PaymentMethod == "2" ? "Cheque Payment" : pOMaster.PaymentMethod == "3" ? "Credit Payment" : pOMaster.PaymentMethod == "4" ? "Advance Payment" : "-";
+                        }
+                        else if (VarPoPurchaseType == 2) {
+                            lblPaymentType.Text = pOMaster.PaymentMethod == "1" ? "Advance" : pOMaster.PaymentMethod == "2" ? "On Arrival" : pOMaster.PaymentMethod == "3" ? "LC at sight" : pOMaster.PaymentMethod == "4" ? "L/C usance" : pOMaster.PaymentMethod == "5" ? "D/A" : pOMaster.PaymentMethod == "6" ? "D/P" : "-";
+
+                        }
+                        pnlPaymentMethod.Visible = true;
+                    }
+
+                    gvPoItems.DataSource = pOMaster._PODetails;
+                    gvPoItems.DataBind();
+
+                    tdSubTotal.InnerHtml = pOMaster._PODetails.Sum(pd => pd.SubTotal).ToString("N2");
+                    //tdNbt.InnerHtml = pOMaster.NBTAmount.ToString("N2");
+                    tdVat.InnerHtml = pOMaster.VatAmount.ToString("N2");
+                    tdNetTotal.InnerHtml = pOMaster.TotalAmount.ToString("N2");
+
+                    lblPoPurchaseType.Text = VarPoPurchaseType == 1 ? "Local" : "Import";
+                    lblAgentName.Text = VarSupplierAgentName;
+                }
+                catch (Exception ex) {
+                    throw ex;
+                }
+            }
+        }
+
+        protected void gvPOItems_RowDataBound(object sender, GridViewRowEventArgs e) {
+            if (e.Row.RowType == DataControlRowType.Header) {
+                if (ViewState["PurchaseType"].ToString() != "2") {
+
+                    e.Row.Cells[5].CssClass = "hidden";
+                }
+            }
+
+            if (e.Row.RowType == DataControlRowType.DataRow) {
+                if (ViewState["PurchaseType"].ToString() != "2") {
+
+                    e.Row.Cells[5].CssClass = "hidden";
+                }
+            }
+        }
+
+
+        //protected void btnView_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        int x = ((GridViewRow)((LinkButton)sender).NamingContainer).RowIndex;
+        //        int itemId = int.Parse(gvPurchaseOrderItems.Rows[x].Cells[0].Text);
+        //        List<PR_FileUpload> pr_FileUpload = pr_FileUploadController.FtechUploadeFiles(int.Parse(PRId), itemId);
+        //        gvUploadFiles.DataSource = pr_FileUpload;
+        //        gvUploadFiles.DataBind();
+
+        //        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { $('#myModal').modal('show'); });   </script>", false);
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+
+        //}
+
+        //-----------2 : Rejected 1: Approved
+        //protected void btnApprove_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        int result = pOMasterController.ApprovePOMaster(int.Parse(ViewState["PoId"].ToString()), int.Parse(Session["UserId"].ToString()));
+        //        if (result > 0)
+        //        {
+        //            result = pODetailsController.ApprovePoDetails(int.Parse(ViewState["PoId"].ToString()));
+        //            if (result > 0)
+        //            {
+        //                result = pOMasterController.updatePaymentMethodByPoId(int.Parse(ViewState["PoId"].ToString()), int.Parse(Session["CompanyId"].ToString()), ddlPaymentMethod.SelectedValue == "card" ? "V" : "C");
+        //                if (result > 0)
+        //                {
+        //                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { swal({ type: 'success',title:'SUCCESS',text: 'Your work has been saved', showConfirmButton: false,timer: 1500}).then((result) => { window.location = 'CustomerApprovePO.aspx'}); });   </script>", false);
+        //                }
+        //                else
+        //                {
+        //                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { swal({ type: 'error',title: 'Error On Updating Payment Method', showConfirmButton: false,timer: 1500}); });   </script>", false);
+        //                }
+        //            }
+        //            else
+        //            {
+        //                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { swal({ type: 'error',title: 'Error On Approving PO Details', showConfirmButton: false,timer: 1500}); });   </script>", false);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { swal({ type: 'error',title: 'Error On Approving PO Master', showConfirmButton: false,timer: 1500}); });   </script>", false);
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
+
+        protected void lbtnViewGrn_Click(object sender, EventArgs e) {
+
+            int GrnId = int.Parse(((sender as LinkButton).NamingContainer as GridViewRow).Cells[0].Text);
+
+            Response.Redirect("CompanyGrnReportView.aspx?PoID=0&GrnId=" + GrnId);
+        }
+
+        protected void btnModify_Click(object sender, EventArgs e) {
+
+            Response.Redirect("EditPO.aspx?PoId=" + int.Parse(Session["PoId"].ToString()));
+        }
+
+        protected void lbtnViewPO_Click(object sender, EventArgs e) {
+            int PoId = int.Parse(((sender as LinkButton).NamingContainer as GridViewRow).Cells[0].Text);
+
+            Response.Redirect("ViewPO.aspx?PoId=" + PoId);
+            //Session["PoId"] = PoId;
+            //Response.Redirect("ViewPO.aspx");
+        }
+
+        protected void btnTerminated_Click(object sender, EventArgs e) {
+            int podId = int.Parse(((sender as LinkButton).NamingContainer as GridViewRow).Cells[0].Text);
+
+            gvTerminatedDetails.DataSource = pODetailsController.TerminatedPO(podId);
+            gvTerminatedDetails.DataBind();
+
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { $('#mdlTerminated').modal('show'); });   </script>", false);
+
+        }
+
+        protected void btnPrint_Click(object sender, EventArgs e) {
+
+            ControllerFactory.CreatePOMasterController().UpdatePrintCount(int.Parse(HttpContext.Current.Request.QueryString.Get("PoId")));
+            ScriptManager.RegisterClientScriptBlock(Updatepanel1, this.Updatepanel1.GetType(), "none", "<script>    $(document).ready(function () { var printWindow = window.open('ViewPOForPrint.aspx?PoId=" + HttpContext.Current.Request.QueryString.Get("PoId") + "'); printWindow.print(); printWindow.onafterprint = window.close; });   </script>", false);
+           // ScriptManager.RegisterClientScriptBlock(Updatepanel1, this.Updatepanel1.GetType(), "none", "<script>    $(document).ready(function () { var printWindow = window.open('ViewPOForPrint.aspx?PoId=" + HttpContext.Current.Request.QueryString.Get("PoId") + "');  });   </script>", false);
+        }
+
+        protected void btnFollowUpRemark_Click(object sender, EventArgs e) {
+
+            List<FollowUpRemark> remarks = ControllerFactory.CreateFollowUpRemarksController().GetRemarks(int.Parse(Request.QueryString.Get("PoId")), int.Parse(Session["CompanyId"].ToString()));
+            gvRemarks.DataSource = remarks;
+            gvRemarks.DataBind();
+
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { $('#mdlFollowUpRemark').modal('show'); });   </script>", false);
+
+        }
+
+        protected void btnReject_Click(object sender, EventArgs e) {
+            try {
+                int result = pOMasterController.rejectPOMaster(int.Parse(ViewState["PoId"].ToString()));
+                if (result > 0) {
+                    result = pODetailsController.RejectPoDetails(int.Parse(ViewState["PoId"].ToString()));
+                    if (result > 0) {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { swal({ type: 'success',title:'SUCCESS',text: 'Your work has been saved', showConfirmButton: false,timer: 1500}).then((result) => { window.location = 'CustomerApprovePO.aspx'}); });   </script>", false);
+                    }
+                    else {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { swal({ type: 'error',title: 'Error On Rejecting PO Details', showConfirmButton: false,timer: 1500}); });   </script>", false);
+                    }
+                }
+                else {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { swal({ type: 'error',title: 'Error On Rejecting PO Master', showConfirmButton: false,timer: 1500}); });   </script>", false);
+                }
+
+            }
+            catch (Exception ex) {
+                throw ex;
+            }
+        }
+
+        public class POSubmitted {
+            public POSubmitted(int ItemId, int PrId, int PoId, decimal UnitPrice, decimal VatAmount, decimal NbtAmount, decimal TotalAmount, decimal CustomizedUnitPrice, decimal CustomizedVatAmount, decimal CustomizedNbtAmount, decimal CustomizedTotalAmount) {
+                prId = PrId;
+                itemId = ItemId;
+                poId = PoId;
+                unitPrice = UnitPrice;
+                vatAmount = VatAmount;
+                nbtAmount = NbtAmount;
+                totalAmount = TotalAmount;
+                customizedUnitPrice = CustomizedUnitPrice;
+                customizedVatAmount = CustomizedVatAmount;
+                customizedNbtAmount = CustomizedNbtAmount;
+                customizedTotalAmount = CustomizedTotalAmount;
+            }
+
+            private int itemId;
+            private int prId;
+            private int poId;
+            private decimal unitPrice;
+            private decimal vatAmount;
+            private decimal nbtAmount;
+            private decimal totalAmount;
+            private decimal customizedUnitPrice;
+            private decimal customizedVatAmount;
+            private decimal customizedNbtAmount;
+            private decimal customizedTotalAmount;
+
+            public int ItemId {
+                get { return itemId; }
+                set { itemId = value; }
+            }
+
+            public int PrId {
+                get { return prId; }
+                set { prId = value; }
+            }
+
+            public int PoId {
+                get { return poId; }
+                set { poId = value; }
+            }
+
+            public decimal UnitPrice {
+                get { return unitPrice; }
+                set { unitPrice = value; }
+            }
+
+            public decimal VatAmount {
+                get { return vatAmount; }
+                set { vatAmount = value; }
+            }
+
+            public decimal NbtAmount {
+                get { return nbtAmount; }
+                set { nbtAmount = value; }
+            }
+
+            public decimal TotalAmount {
+                get { return totalAmount; }
+                set { totalAmount = value; }
+            }
+
+            public decimal CustomizedUnitPrice {
+                get { return customizedUnitPrice; }
+                set { customizedUnitPrice = value; }
+            }
+
+            public decimal CustomizedVatAmount {
+                get { return customizedVatAmount; }
+                set { customizedVatAmount = value; }
+            }
+
+            public decimal CustomizedNbtAmount {
+                get { return customizedNbtAmount; }
+                set { customizedNbtAmount = value; }
+            }
+
+            public decimal CustomizedTotalAmount {
+                get { return customizedTotalAmount; }
+                set { customizedTotalAmount = value; }
+            }
+        }
+
+
+
+        public override void VerifyRenderingInServerForm(Control control) {
+
+        }
+
+        protected void btnViewAttachments_Click(object sender, EventArgs e) {
+
+
+            var qutaion = supplierQuotationController.GetSupplierQuotationbyQutationId(int.Parse(ViewState["quationid"].ToString()));
+
+            gvDocs.DataSource = supplierBiddingFileUploadController.GetFilesByQuotationId(int.Parse(ViewState["quationid"].ToString()));
+            gvDocs.DataBind();
+
+            gvImages.DataSource = quotationImageController.GetQuotationImages(int.Parse(ViewState["quationid"].ToString()));
+            gvImages.DataBind();
+            txtTermsAndConditions.Text = qutaion.TermsAndCondition;
+            ScriptManager.RegisterClientScriptBlock(Updatepanel1, this.Updatepanel1.GetType(), "none", "<script>    $(document).ready(function () { $('#mdlAttachments').modal('show') });   </script>", false);
+        }
+
+        protected void btnConfirm_Click(object sender, EventArgs e) {
+            int result = pOMasterController.CancelPo(int.Parse(Request.QueryString.Get("PoId")));
+
+            //List<POMaster> PoList = pOMasterController.GetAPPROVEDPosByPrId(int.Parse(ViewState["basePr"].ToString()));
+            //List<POMaster> PoCancelledList = PoList.Where(w => w.IsCancelled == 1).ToList();
+
+            List<PODetails> PodetailsList = pODetailsController.GetPoDetails(int.Parse(Request.QueryString.Get("PoId")));
+
+            //if (PoList.Count == PoCancelledList.Count) {
+            //   // ControllerFactory.CreatePR_DetailController().UpdatePRStatus(int.Parse(Session["UserId"].ToString()),, "PO_CNCLD");
+            //}
+
+            List<int> ItemIds = new List<int>();
+            for (int i = 0; i < PodetailsList.Count; i++) {
+                int itemid = PodetailsList[i].ItemId;
+
+                ItemIds.Add(itemid);
+            }
+
+            if (ItemIds.Count > 0) {
+                ControllerFactory.CreatePR_DetailController().UpdatePRStatusFoeCancelledPos(int.Parse(Session["UserId"].ToString()), "PO_CNCLD", ItemIds, int.Parse(ViewState["basePr"].ToString()));
+
+            }
+
+
+
+            if (result > 0) {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { swal({ type: 'success',title:'SUCCESS',text: 'Your work has been saved', showConfirmButton: false,timer: 1500}).then((result) => { window.location = 'CustomerViewAllPO.aspx'}); });   </script>", false);
+
+                for (int i = 0; i < ItemIds.Count; i++) {
+
+                    ControllerFactory.CreatePRDetailsStatusLogController().UpdatePRStatusLogForPoCancel(int.Parse(Session["UserId"].ToString()), "PO_CNCLD", ItemIds[i], int.Parse(ViewState["basePr"].ToString()));
+
+                }
+            }
+
+        }
+        protected void btnDelete_Click(object sender, EventArgs e) {
+
+
+            int RemarkId = int.Parse(hdnRemarkId.Value);
+
+            int Delete = ControllerFactory.CreateFollowUpRemarksController().DeleteRemark(RemarkId);
+
+            List<FollowUpRemark> remarks = ControllerFactory.CreateFollowUpRemarksController().GetRemarks(int.Parse(Request.QueryString.Get("PoId")), int.Parse(Session["CompanyId"].ToString()));
+            gvRemarks.DataSource = remarks;
+            gvRemarks.DataBind();
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { $('#mdlFollowUpRemark').modal('show'); });   </script>", false);
+
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e) {
+            int Save = ControllerFactory.CreateFollowUpRemarksController().SaveRemark(int.Parse(Request.QueryString.Get("PoId")), int.Parse(Session["UserId"].ToString()), txtFollowUpRemark.Text);
+
+            if (Save > 0) {
+                txtFollowUpRemark.Text = "";
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>  $('div').removeClass('modal-backdrop');  $(document).ready(function () { swal({ type: 'success',title:'SUCCESS',text: 'Your work has been saved', showConfirmButton: false,timer: 1500}) });   </script>", false);
+
+            }
+
+        }
+    }
+}

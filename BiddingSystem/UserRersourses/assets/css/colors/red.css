@@ -1,0 +1,166 @@
+a:hover{
+  color: #ef4836;
+}
+.btn-common {
+  background: #ef4836;
+}
+/* Back to Top */
+.back-to-top i {
+  background-color: #ef4836;
+}
+#color-style-switcher .bottom a i{
+  color: #ef4836;
+}
+/* Navbar */
+.slicknav_btn{
+  border-color: #ef4836;
+  border-radius: 2px;
+}
+.slicknav_menu .slicknav_btn .slicknav_icon-bar{
+  background: #ef4836;
+}
+.slicknav_menu .slicknav_btn:hover{
+  background: #ef4836;
+}
+.slicknav_nav .active a{
+  background: #ef4836;
+}
+.slicknav_nav a:hover, .slicknav_nav .active{
+  color: #ef4836;
+}
+.slicknav_nav .dropdown li a.active{
+  background: #ef4836;
+}
+.account-setting a:hover{
+  color: #ef4836;
+}
+/* Navbar */
+.navbar-default .navbar-nav > li:hover > a, .navbar-default .navbar-nav > li > a.active{
+  background: #ef4836;
+}
+.navbar-default .navbar-nav .dropdown{
+  border-color: #ef4836;
+}
+.dropdown > li:hover > a,
+.dropdown li a.active{
+  background-color: #ef4836;
+}
+/* Slider */
+#carousel-area .item .carousel-caption .price-sl{
+  color: #ef4836;
+}
+.dropdown-menu li a:hover, .dropdown-menu li a:focus, .dropdown-menu li a:active{
+  background: #ef4836;
+}
+/* Latest sales */
+.label-featured{
+  background: #ef4836;
+}
+.actions li .add-fav{
+  background: #ef4836;
+}
+.item-body .property-title a:hover{
+  color: #ef4836;
+}
+.item-foot a:hover{
+  color: #ef4836;
+}
+/* Feature Highlighta */
+.features-box .features-icon i{
+  color: #ef4836;
+}
+.owl-theme .owl-buttons div{
+  background: #ef4836!important;
+}
+/* Gallery */
+.controls a:hover, .controls .active{
+  background: #ef4836;
+}
+.controls a{
+  border-color: #ef4836;
+}
+.portfolio-item .icon i:hover{
+  color: #ef4836;
+  border-color: #ef4836;
+}
+/* Awesome Features */
+.features .features-box .features-content h4 i{
+  color: #ef4836;
+}
+.features .thum-ft{
+  box-shadow: 8px 8px 0px rgba(239, 72, 54, 0.7);
+  border-color: #ef4836;
+}
+/* Counter */
+.counting .icon i{
+  color: #ef4836;
+}
+/* Blog */
+#blog .blog-item-img .blog-item-info{
+  background: #ef4836;
+}
+/* Footer */
+.footer-nav ul li a:hover{
+  color: #ef4836;
+}
+.footer-nav ul li a i{
+  color: #ef4836;
+}
+
+/* Grid active */
+.product-filter .grid-list-count .active{
+  color: #ef4836;
+}
+/* Pagination */
+.pagination .active > a, .pagination .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover{
+  background: #ef4836!important;
+}
+.pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover{
+  background: #ef4836!important;
+  border-color: #ef4836!important;
+}
+/* Property Page */
+.property-head .price-detail{
+  color: #ef4836;
+}
+.property-head .web-refernce strong{
+  color: #ef4836;
+}
+.widget-title{
+  border-bottom-color: #ef4836;
+}
+.widget-title::before{
+  border-bottom-color: #ef4836;
+}
+#sidebar .tag a:hover{
+  color: #ef4836;
+}
+.widget-area-sidebar .posts-list .widget-content a:hover{
+  color: #ef4836;
+}
+.widget-featured .widget-img .text span{
+  color: #ef4836;
+}
+.owl-theme .owl-controls .owl-page.active span, .owl-theme .owl-controls.clickable .owl-page:hover span{
+  background: #ef4836;
+}
+.nav-tabs > li > a{
+  border-color: #ef4836; 
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li > a:hover, .nav-tabs > li.active > a:hover{
+  background: #ef4836;
+  border-color: #ef4836; 
+}
+/* Contact Page */
+.support-inner .support-info .info-title i{
+  color: #ef4836;
+}
+.form-control:focus, textarea:focus{
+  border-color: #ef4836; 
+}
+.price .item-price{
+  color: #ef4836;
+}
+.panel-default .panel-heading a{
+  background-color: #ef4836;
+}

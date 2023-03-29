@@ -1,0 +1,33 @@
+1.) First create User role & assign role function  . User Creation ->Create User Role & Function
+  eg : Role : MRN Creator ,  System Function : Create & Edit MRN
+       Role : MRN Approval  , System Function : Create & Edit MRN , Approve MRN
+       Role : Store Keeper  , System Function : Create & Edit  MRN , View Submitted MRN (1.Used to Add to PR) , Genearte GRN ,
+       (After GRN Approved)  View GRN (Issue item to store or Warehouse) ,View Submitted MRN (1.Used to Add to Inventory) ,
+       Warhouse -> View Issued Inventory (After Adding to inventory he issues the item to requester), Create & Edit PR.       
+	MRN Approval can be deapartment Head . If so he can See "Material Requests -> View Delivered Inventory" . After Store keeper issues to 		requester . Head of Department confirms that he or requester in his department got the item.
+
+        I write following  step by step of Store Keeper functionality
+        1.) Store keeper can directly create PR or MRN . But MRN can be to anyone  but PR is only Store keeper.
+        2.) Consider a staff created MRN. MRN Approved by his department head. Then Store Keeper goes to View Submiitted MRN and add to PR
+        3.) PR is Approved by Department Head (Same who approved MRN). Then Procuremnets & Purchaing happens . Then GRN is Raise or Created By 	Store Keeper.
+        4.) This is Approved by Head of Warehouses or Stores. Then Store Keeper Goes to "View GRN" and issues items bought to Stores/Warehouse.
+            The Invenotry gets updated.
+        5.) Then Under MRN Request , View Submitted MRN he can open the plus mark and see the avaialble stocks got updated .Store Keeper Add 	    inventory into stores (what he got he enters again to Stores)
+        6.) Then Under Warehouse , View Issued Inventory here he issues the item to requesters. But still item didnt get reduced from availble 	stock.
+	7.) Then Department head who approved the MRN finds item in under Material Requests "View Delivered Inventory" and confirms that he got 	this item. Now the stock get reduced.
+                
+2.) Create User
+
+	While creating User assign system role.
+
+3.) Create Department
+	Go to Edit User and assign Department for User.
+     
+4.) Assign Head Of Department.
+
+        Assign who is Head of Stores.
+
+Then Noremal MRN or PR Procedures
+
+
+

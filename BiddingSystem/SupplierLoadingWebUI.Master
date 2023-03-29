@@ -1,0 +1,624 @@
+﻿
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SupplierLoadingWebUI.master.cs" Inherits="BiddingSystem.SupplierLoadingWebUI" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Online Bidding Web Portal | Home </title>
+	<!--/tags -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Grocery Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	<script>
+	    addEventListener("load", function () {
+	        setTimeout(hideURLbar, 0);
+	    }, false);
+
+	    function hideURLbar() {
+	        window.scrollTo(0, 1);
+	    }
+	</script>
+	<!--//tags -->
+	<link href="SupplierUIResources/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="SupplierUIResources/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="SupplierUIResources/css/font-awesome.css" rel="stylesheet">
+	<!--pop-up-box-->
+	<link href="SupplierUIResources/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+	<!--//pop-up-box-->
+	<!-- price range -->
+	<link rel="stylesheet" type="text/css" href="SupplierUIResources/css/jquery-ui1.css">
+	<!-- fonts -->
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+     <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>--%>
+    <script src="googleapis-1.6.1-jquery.min.js"></script>
+
+     <!-- Bootstrap style (Search method) --> 
+  <%--  <link id="callCss" href="AppResources/themes/bootshop/bootstrap.min.css" rel="stylesheet" type="text/css" media="screen"/>--%>
+   <%-- <link href="AppResources/themes/css/base.css" rel="stylesheet" type="text/css" media="screen"/>--%>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <body>
+	<!-- top-header -->
+	<%--<div class="header-most-top">
+		<p>Online Bidding Web Portal</p>
+	</div>--%>
+	<!-- //top-header -->
+	<!-- header-bot-->
+	<div class="header-bot" style="background:#cad1e0;">
+		<div class="header-bot_inner_wthreeinfo_header_mid">
+			<!-- header-bot-->
+			<div class="col-md-4 logo_agile">
+				<h1>
+					<a href="index.html">
+						<span>B</span>idding
+						<span>P</span>ortal
+						<%--<img src="SupplierUIResources/images/logo2.png" alt=" ">--%>
+					</a>
+				</h1>
+			</div>
+			<!-- header-bot -->
+			<div class="col-md-8 header">
+				<!-- header lists -->
+				<ul>
+					<li style="visibility:hidden;">
+						<a class="play-icon popup-with-zoom-anim" href="#small-dialog1">
+							<span class="fa fa-map-marker" aria-hidden="true"></span> Shop Locator</a>
+					</li>
+					<li style="visibility:hidden;">
+						<a href="#" data-toggle="modal" data-target="#myModal1">
+							<span class="fa fa-truck" aria-hidden="true"></span>Track Order</a>
+					</li>
+					<li style="visibility:hidden;">
+						<span class="fa fa-phone" aria-hidden="true"></span> 001 234 5678
+					</li>
+					<li>
+						<a href="#" data-toggle="modal" data-target="#myModal1">
+							<span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign In </a>
+					</li>
+					<li>
+						<a href="#" data-toggle="modal" data-target="#myModal2">
+							<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Sign Up </a>
+					</li>
+				</ul>
+				<!-- //header lists -->
+				<!-- search -->
+				<%--<div class="agileits_search">
+					<form action="#" method="post">
+						<input name="Search" type="search" placeholder="Search By Item Name" required="">
+						<button type="submit" class="btn btn-default" aria-label="Left Align">
+							<span class="fa fa-search" aria-hidden="true"> </span>
+						</button>
+					</form>
+				</div>--%>
+				<!-- //search -->
+				<!-- cart details -->
+				<div class="top_nav_right">
+					<div class="wthreecartaits wthreecartaits2 cart cart box_1">
+					<%--	<form action="#" method="post" class="last">
+							<input type="hidden" name="cmd" value="_cart">
+							<input type="hidden" name="display" value="1">
+                     
+						<button class="w3view-cart" type="submit" name="submit" value="">
+								<i class="fa fa-download-arrow-down" aria-hidden="true"></i>
+							</button>
+                             <img src="SupplierUIResources/images/download.gif" style="width: 100px;margin-top: -20px;height: 60px;cursor: pointer;"/>
+						</form>--%>
+					</div>
+				</div>
+				<!-- //cart details -->
+				<div class="clearfix"></div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<!-- shop locator (popup) -->
+	<!-- Button trigger modal(shop-locator) -->
+	<div id="small-dialog1" class="mfp-hide">
+		
+	</div>
+	<!-- //shop locator (popup) -->
+	<!-- signin Model -->
+	<!-- Modal1 -->
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div <%--class="modal-content"--%> style="background-image:url(SupplierUIResources/images/image.jpg);">
+				<div class="modal-header">
+					<button type="button" class="close" style="color:white;" data-dismiss="modal">&times;</button>
+                    <h3 class="agileinfo_sign" style="color:white;">Sign In </h3>
+				</div>
+
+
+
+           
+
+
+				<div class="modal-body modal-body-sub_agile">
+					<div class="main-mailposi">
+						<%--<span class="fa fa-envelope-o" aria-hidden="true"></span>--%>
+					</div>
+					<div class="modal_body_left modal_body_left1">
+						<%--<h3 class="agileinfo_sign">Sign In </h3>--%>
+						
+						<form action="#" method="post">
+
+
+
+                                 <div class="container">
+                 <div class="row">
+                    
+                  <div class="col-sm-1">
+                      <span class="label-input100" style="color:White; font-weight:bold;">Username</span>
+     
+                 </div>
+                    <div class="col-md-2">
+                        <div class="styled-input agile-styled-input-top" style="width:350px;">
+                                
+								<input type="text" placeholder="User Name" name="Name" id="txtUserName" required="">
+							</div>
+     
+                 </div>
+               
+                 </div>
+
+                <div class="row">
+                    
+                <div class="col-sm-1">
+                     <span class="label-input100" style="color:White; font-weight:bold;">Password</span>
+     
+                 </div>
+                    <div class="col-md-2">
+
+                        <div class="styled-input"style="width:350px;"  >
+                               
+								<input type="password" placeholder="Password" name="password" id="txtPwd" required="">
+							</div>
+     
+                 </div>
+               
+                 </div>
+
+
+                 <div class="row">
+                    
+                    <div class="col-md-1">
+                     
+     
+                 </div>
+               
+                <div class="col-md-2">
+                        <input type="submit" value="Sign In" onclick="return login();" style="border-radius: 12px;" >
+     
+                 </div>
+               
+                 </div>
+            
+
+                         <%--    <div class="col align-self-center">
+							
+							
+
+                                 <div class="container-login100-form-btn">
+                   
+                              <%--<asp:ImageButton ID="btnLogin" runat="server"
+                               Text="Login"
+                                ImageAlign="left"
+                                ImageUrl="LoginResources/images/imgbutton.png"
+                                 OnClick="btnLogin_Click"/>--%>
+					<%--</div>
+							
+                                 </div>--%>
+                            <br />
+
+                            <p style="color:white;">
+							Sign In now, Let's start Bidding. Don't have an account?
+
+							<a href="#" data-toggle="modal" data-target="#myModal2">
+                                <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Sign Up </a>
+								<%--Sign Up Now</a>--%>
+						</p>
+                                         </div>
+						</form>
+						<div class="clearfix"></div>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<!-- //Modal content-->
+		</div>
+	</div>
+	<!-- //Modal1 -->
+	<!-- //signin Model -->
+	<!-- signup Model -->
+	<!-- Modal2 -->
+	<div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<!-- Modal content-->
+			<div <%--class="modal-content"--%> style="background-image:url(SupplierUIResources/images/image.jpg)">
+				<div class="modal-header">
+					<button type="button" class="close" style="color:white;" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body modal-body-sub_agile">
+					<div class="main-mailposi">
+						<%--<span class="fa fa-envelope-o" aria-hidden="true"></span>--%>
+					</div>
+					<div class="modal_body_left modal_body_left1">
+						<h3 class="agileinfo_sign" style="color:white;">Sign Up</h3>
+						<p style="color:aqua;">
+							Come join the Online Bidding Portal! Let's set up your Account.
+						</p>
+						<form action="#" method="post">
+							<div class="styled-input agile-styled-input-top">
+                                <label style="display:inline;color:white;">
+                                Supplier Name</label><label id="nameAlert" style="color: red; display:inline; font-size: small;"></label>
+								<input type="text" placeholder="" name="Name" required="" id="txtSupplierName" AutoComplete="off">
+							</div>
+							<div class="styled-input">
+                                <label  style="display:inline;color:white;">Email address</label><label id="emailValidaAlert" style="color: red; font-size: small;"></label>
+								<input type="email" placeholder="" name="Email" required="" id="txtEmailAddress"  AutoComplete="off">
+							</div>
+							<div class="styled-input">
+                                 <label  style="display:inline;color:white;">Contact No</label><label id="contactNoAlert" style="color: red; display:inline; font-size: small;"></label>
+								<input type="text" placeholder="" name="ContactNo" id="txtContactNo" required="" AutoComplete="off" >
+							</div>
+
+                            <div class="styled-input">
+                                 <label  style="display:inline;color:white;">User name</label><label id="usernameAlert" style="color: red; display:inline; font-size: small;"></label>
+								<input type="text" placeholder="" name="Username" id="txtUsernameR" required="" AutoComplete="off" >
+							</div>
+
+							<div class="styled-input">
+                                 <label  style="display:inline;color:white;">Password</label><label id="passwordAlert" style="color: red; display:inline; font-size: small;"></label>
+								<input type="password" id="txtpasswordR"  AutoComplete="off" placeholder="" name="Password"  required="">
+							</div>
+
+                            <div class="styled-input">
+                                 <label  style="display:inline;color:white;">Confirm Password</label><label id="confirmPasswordAlert" style="color: red; display:inline; font-size: small;"></label>&nbsp;<label id="PasswordMatchAlert" style="color: red; font-size: small;"></label>
+								<input type="password" id="txtConfirmPassword"  AutoComplete="off"style="color:aqua;" placeholder="Re-enter password" name="Confirm Password"  required="">
+							</div>
+
+                            <br />
+							<input type="submit" value="Sign Up" onclick="return signUp();" style="border-radius: 12px;">
+						</form>
+						<p style="color:yellow;">
+							<a href="#">By clicking register, I agree to your terms</a>
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- //Modal content-->
+		</div>
+	</div>
+	<!-- //Modal2 -->
+	<!-- //signup Model -->
+	<!-- //header-bot -->
+	<!-- navigation -->
+	
+	<!-- //navigation -->
+	<!-- banner -->
+
+    	<!-- special offers -->
+	<%--<div class="featured-section" id="projects">--%>
+	<!-- //special offers -->
+	<!-- //banner -->
+    <div style="background-image: url(SupplierUIResources/images/imgBackground.jpg)/*background-color:#cad1e0;height: auto;*/">
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+
+	<!-- newsletter -->
+	<%--<div class="footer-top" style="visibility:hidden;">
+		
+	</div>
+	<!-- //newsletter -->
+	<!-- footer -->
+	<footer style="visibility:hidden;">
+	<!--footerbottom1-->
+	</footer>--%>
+	<!-- //footer -->
+	<!-- copyright -->
+	<div class="copy-right">
+		<div class="container">
+        <strong>Copyright &copy; 2018 <a href="http://www.bellvantage.com">Bellvantage (pvt) Ltd.</a>.</strong> All rights
+
+			</p>
+		</div>
+	</div>
+	<!-- //copyright -->
+
+	<!-- js-files -->
+	<!-- jquery -->
+	<script src="SupplierUIResources/js/jquery-2.1.4.min.js"></script>
+	<!-- //jquery -->
+
+	<!-- popup modal (for signin & signup)-->
+	<script src="SupplierUIResources/js/jquery.magnific-popup.js"></script>
+
+       <script type="text/javascript">
+        var response;
+        function login()
+        {
+          if(validateLoginForm())
+          {
+            var postData = JSON.stringify({ 
+                "email": $("#txtUserName").val(),
+                "password": $("#txtPwd").val()
+            });
+            $.ajax({
+                type: "POST",
+                url: "SupplierInitialFrontView.aspx/login",
+                data: postData,
+                contentType: "application/json; charset=utf-8",
+                success: function(result){
+                    response=result.d;
+                    if(response == "1")
+                    {
+                       window.location = "SupplierInitialFrontViewInner.aspx";   
+                    }
+                    else if (response == "0")
+                    {
+                        //document.getElementById("errorMessage").innerHTML="Invalid Credentials!!";
+                        alert('Login failed')   
+                    }
+                     else if (response == "2")
+                    {
+                        document.getElementById("errorMessage").innerHTML="Account Has been Deactivated";   
+                    }
+                  
+                },
+            }); 
+           event.preventDefault();
+            }
+        }
+
+
+        function validateLoginForm()
+        {
+            var email=$('#txtUserName').val();
+            var password=$('#txtPwd').val();
+            if(email == "" && password == "")
+            {
+                $('#txtUserName').focus();
+                $('#txtPwd').focus();
+                return false;
+            }
+            else if(email == "" || password == "")
+            {
+                if(email == "")
+                {
+                    $('#txtUserName').focus();
+                    return false;
+                }
+                if(password == "")
+                {
+                    $('#txtPwd').focus();
+                    return false;
+                }
+            }
+            else
+            {
+                return true;
+            }
+        }
+	    $(document).ready(function () {
+	        $('.popup-with-zoom-anim').magnificPopup({
+	            type: 'inline',
+	            fixedContentPos: false,
+	            fixedBgPos: true,
+	            overflowY: 'auto',
+	            closeBtnInside: true,
+	            preloader: false,
+	            midClick: true,
+	            removalDelay: 300,
+	            mainClass: 'my-mfp-zoom-in'
+	        });
+
+	    });
+	</script>
+	<!-- Large modal -->
+	<!-- <script>
+		$('#').modal('show');
+	</script> -->
+	<!-- //popup modal (for signin & signup)-->
+
+	<!-- cart-js -->
+	<script src="SupplierUIResources/js/minicart.js"></script>
+	<script>
+	    paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
+
+	    paypalm.minicartk.cart.on('checkout', function (evt) {
+	        var items = this.items(),
+				len = items.length,
+				total = 0,
+				i;
+
+	        // Count the number of each item in the cart
+	        for (i = 0; i < len; i++) {
+	            total += items[i].get('quantity');
+	        }
+
+	        if (total < 3) {
+	            alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
+	            evt.preventDefault();
+	        }
+	    });
+	</script>
+	<!-- //cart-js -->
+
+	<!-- price range (top products) -->
+	<script src="SupplierUIResources/js/jquery-ui.js"></script>
+	<script>
+		//<![CDATA[
+	    $(window).load(function () {
+	        $("#slider-range").slider({
+	            range: true,
+	            min: 0,
+	            max: 9000,
+	            values: [50, 6000],
+	            slide: function (event, ui) {
+	                $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+	            }
+	        });
+	        $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
+
+	    }); //]]>
+	</script>
+	<!-- //price range (top products) -->
+
+	<!-- flexisel (for special offers) -->
+	<script src="SupplierUIResources/js/jquery.flexisel.js"></script>
+	<script>
+	    function displayLatestBids() {
+	        $("#flexiselDemo1").flexisel({
+	            visibleItems: 4,
+	            animationSpeed: 1000,
+	            autoPlay: true,
+	            autoPlaySpeed: 3000,
+	            pauseOnHover: true,
+	            enableResponsiveBreakpoints: true,
+	            responsiveBreakpoints: {
+	                portrait: {
+	                    changePoint: 480,
+	                    visibleItems: 1
+	                },
+	                landscape: {
+	                    changePoint: 640,
+	                    visibleItems: 2
+	                },
+	                tablet: {
+	                    changePoint: 768,
+	                    visibleItems: 2
+	                }
+
+	            }
+	        });
+
+
+	    }
+	    $(window).load(displayLatestBids());
+	   
+	    
+	</script>
+	<!-- //flexisel (for special offers) -->
+
+	<!-- password-script -->
+	<script>
+	    window.onload = function () {
+	        document.getElementById("password1").onchange = validatePassword;
+	        document.getElementById("password2").onchange = validatePassword;
+	    }
+
+	    function validatePassword() {
+	        var pass2 = document.getElementById("password2").value;
+	        var pass1 = document.getElementById("password1").value;
+	        if (pass1 != pass2)
+	            document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+	        else
+	            document.getElementById("password2").setCustomValidity('');
+	        //empty string means no validation error
+	    }
+	</script>
+	<!-- //password-script -->
+
+	<!-- smoothscroll -->
+	<script src="SupplierUIResources/js/SmoothScroll.min.js"></script>
+	<!-- //smoothscroll -->
+
+	<!-- start-smooth-scrolling -->
+	<script src="SupplierUIResources/js/move-top.js"></script>
+	<script src="SupplierUIResources/js/easing.js"></script>
+	<script>
+	    jQuery(document).ready(function ($) {
+	        $(".scroll").click(function (event) {
+	            event.preventDefault();
+
+	            $('html,body').animate({
+	                scrollTop: $(this.hash).offset().top
+	            }, 1000);
+	        });
+	    });
+	</script>
+	<!-- //end-smooth-scrolling -->
+
+	<!-- smooth-scrolling-of-move-up -->
+	<script>
+	    $(document).ready(function () {
+	        /*
+	        var defaults = {
+	        containerID: 'toTop', // fading element id
+	        containerHoverID: 'toTopHover', // fading element hover id
+	        scrollSpeed: 1200,
+	        easingType: 'linear' 
+	        };
+	        */
+	        $().UItoTop({
+	            easingType: 'easeOutQuart'
+	        });
+
+	    });
+	</script>
+	<!-- //smooth-scrolling-of-move-up -->
+
+	<!-- for bootstrap working -->
+	<script src="SupplierUIResources/js/bootstrap.js"></script>
+	<!-- //for bootstrap working -->
+	<!-- //js-files -->
+
+
+    <script>
+        function signUp() 
+        {
+                var postData = JSON.stringify({
+                                    "name": $("#txtSupplierName").val(),
+                                    "email": $("#txtEmailAddress").val(),
+                                    "contactNo": $("#txtContactNo").val(),
+                                    "username": $("#txtUsernameR").val(),
+                                    "password": $("#txtpasswordR").val()
+                                });
+                               
+                                $.ajax({
+                                    type: "POST",
+                                    url: "SupplierInitialFrontView.aspx/register",
+                                    data: postData,
+                                    contentType: "application/json; charset=utf-8",
+                                    success: function (result) {
+                                        response = result.d;
+                                        if (response == "1") {
+                                            window.location = "SupplierInitialFrontView.aspx";
+                                        }
+                                        else if (response == "0") {
+                                          //  document.getElementById("lblregisterAlert").innerHTML = "Login Problem";
+                                          alert('login Failed');
+                                        }
+                                        else if (response == "-1") {
+                                           // document.getElementById("lblregisterAlert").innerHTML = "Email Address or Username already exist";
+                                          alert('login Failed');                                        
+                                        }
+
+                                    },
+
+                                });
+
+           
+          
+        }
+    
+    </script>
+
+
+
+        
+    <script src="AppResources/themes/js/google-code-prettify/prettify.js" type="text/javascript"></script>
+    <script src="AppResources/themes/js/bootshop.js" type="text/javascript"></script>
+    <script src="AppResources/themes/js/jquery.lightbox-0.5.js" type="text/javascript"></script>
+
+</body>
+
+    
+    </form>
+</body>
+</html>

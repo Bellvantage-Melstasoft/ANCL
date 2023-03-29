@@ -1,0 +1,25 @@
+ANCL Hosting 
+https://member3.myasp.net/
+pathum83
+Bell_123
+
+
+GO to Pathum premium Plan -> then see ancl.ezbidlanka --> there is file icon next to it--> click it
+Zip the local files in machine
+See the images showing which floder doesnot need to get zipped. This is done while going live and user entered real data
+these files can be uploaded test document or images.
+Then go again to site with files there if already exist zip file before then delete
+Then in search bar clik the left ican and go to site setting and allow flash if blocked or ask for is selected as defualt
+Then wait until page refresh
+Then upload the zip file wait until refresh
+Then select check box of zip file clcik fourth icon (unzip file)
+Then it will direct to another page (see photo)
+Select folder ancl  , check the checkbox overtite existing files and folder -> then Submit
+Then go back clciking website (second icon) to goto file folders of ancl OR
+CLcik Database
+1. for 2012 sql server
+Go to "DB_A3F007_anclBid" and click action -> restore Databse -> here got to second tab (upload back file -> then sumbit 
+and wait page refresh.
+2. For 2014 sql server
+Go to "DB_A3F007_anclBidTest" and click action -> restore Databse -> here got to second tab (upload back file -> then sumbit 
+and wait page refresh.

@@ -1,0 +1,39 @@
+*** Release Note Q_0.0.1.1 ***
+
+This release includes fixes for bugs and errors reported and Q_0.0.1.0 and New modules. Following are the new modules and sub modules released in the specified version.
+
+# Material Request
+	* View Delivered Inventory
+
+# Purchase Requests
+	* Create PR
+	* View My PR
+	* Confirm PR
+	* Stock Availability/Expense Approve
+	* View All PR
+
+# Purchasing
+	* Create Bid & Procurement Plan
+	* Accept Bid Opening
+	* Update Procurement Plan/Email Bids to Suppliers
+	* In-Progress Bids
+	* Closed Bids
+	* Tabulation Review Approval
+	* Bid Comparision
+	* View/Create PO
+	* View All PO
+	* View My PO
+	* Generate GRN
+	* GRN Approval
+	* View GRN
+
+# Committee Approval
+	* Recommendation(TECH)
+	* Approval(SUB,PROCU)
+
+# Manual Bids
+	* In-Progress Manual Bids
+	* Closed Manual Bids
+	* Submit Quotations
+	* Update Bid Bond Details
+	* View Rejected Quotations

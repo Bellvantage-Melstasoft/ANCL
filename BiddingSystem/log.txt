@@ -1,0 +1,1245 @@
+ERROR - TEst
+System.Exception: TEst ---> System.DivideByZeroException: Attempted to divide by zero.
+   --- End of inner exception stack trace ---
+   at BiddingSystem.CreateMRN_V2.Page_Load(Object sender, EventArgs e) in C:\Users\Yashoman\Desktop\ANCL_Bid\BiddingSystem\CreateMRN_V2.aspx.cs:line 17
+ERROR - TEst
+System.Exception: TEst ---> System.DivideByZeroException: Attempted to divide by zero.
+   --- End of inner exception stack trace ---
+   at BiddingSystem.CreateMRN_V2.Page_Load(Object sender, EventArgs e) in C:\Users\Yashoman\Desktop\ANCL_Bid\BiddingSystem\CreateMRN_V2.aspx.cs:line 17
+ERROR - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_MRN_BOM_MRN_DETAILS". The conflict occurred in database "ANCL_BID_TEST_NEW", table "dbo.MRN_DETAILS", column 'MRND_ID'.
+The statement has been terminated.
+System.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_MRN_BOM_MRN_DETAILS". The conflict occurred in database "ANCL_BID_TEST_NEW", table "dbo.MRN_DETAILS", column 'MRND_ID'.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at CLibrary.Infrastructure.MrnBomDAOV2Impl.Save(MrnBomV2 mrnBom, DBConnection dbConnection) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Infrastructure\MrnBomDAOV2.cs:line 24
+   at CLibrary.Controller.MrnControllerV2Impl.UpdateMrn(MrnMasterV2 mrn) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Controller\MrnControllerV2.cs:line 358
+   at BiddingSystem.EditMRN_V2.Save(MrnMasterV2 mrnMaster) in C:\Users\Yashoman\Desktop\ANCL_Bid\BiddingSystem\EditMRN_V2.aspx.cs:line 207
+ClientConnectionId:cc51636b-12dd-48d6-ab7e-c529b5033469
+Error Number:547,State:0,Class:16
+ERROR - The INSERT statement conflicted with the FOREIGN KEY constraint "FK_MRN_BOM_MRN_DETAILS". The conflict occurred in database "ANCL_BID_TEST_NEW", table "dbo.MRN_DETAILS", column 'MRND_ID'.
+The statement has been terminated.
+System.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_MRN_BOM_MRN_DETAILS". The conflict occurred in database "ANCL_BID_TEST_NEW", table "dbo.MRN_DETAILS", column 'MRND_ID'.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at CLibrary.Infrastructure.MrnBomDAOV2Impl.Save(MrnBomV2 mrnBom, DBConnection dbConnection)
+   at CLibrary.Controller.MrnControllerV2Impl.UpdateMrn(MrnMasterV2 mrn)
+   at BiddingSystem.EditMRN_V2.Save(MrnMasterV2 mrnMaster) in C:\Users\Yashoman\Desktop\ANCL_Bid\BiddingSystem\EditMRN_V2.aspx.cs:line 207
+ClientConnectionId:cc51636b-12dd-48d6-ab7e-c529b5033469
+Error Number:547,State:0,Class:16
+ERROR - Value cannot be null.
+Parameter name: s
+System.ArgumentNullException: Value cannot be null.
+Parameter name: s
+   at System.Convert.FromBase64String(String s)
+   at CLibrary.Controller.MrnControllerV2Impl.UpdateMrn(MrnMasterV2 mrn) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Controller\MrnControllerV2.cs:line 360
+   at BiddingSystem.EditMRN_V2.Save(MrnMasterV2 mrnMaster) in C:\Users\Yashoman\Desktop\ANCL_Bid\BiddingSystem\EditMRN_V2.aspx.cs:line 207
+ERROR - Value cannot be null.
+Parameter name: s
+System.ArgumentNullException: Value cannot be null.
+Parameter name: s
+   at System.Convert.FromBase64String(String s)
+   at CLibrary.Controller.MrnControllerV2Impl.UpdateMrn(MrnMasterV2 mrn) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Controller\MrnControllerV2.cs:line 360
+   at BiddingSystem.EditMRN_V2.Save(MrnMasterV2 mrnMaster) in C:\Users\Yashoman\Desktop\ANCL_Bid\BiddingSystem\EditMRN_V2.aspx.cs:line 207
+ERROR - Value cannot be null.
+Parameter name: s
+System.ArgumentNullException: Value cannot be null.
+Parameter name: s
+   at System.Convert.FromBase64String(String s)
+   at CLibrary.Controller.MrnControllerV2Impl.UpdateMrn(MrnMasterV2 mrn) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Controller\MrnControllerV2.cs:line 360
+   at BiddingSystem.EditMRN_V2.Save(MrnMasterV2 mrnMaster) in C:\Users\Yashoman\Desktop\ANCL_Bid\BiddingSystem\EditMRN_V2.aspx.cs:line 207
+ERROR - Value cannot be null.
+Parameter name: s
+System.ArgumentNullException: Value cannot be null.
+Parameter name: s
+   at System.Convert.FromBase64String(String s)
+   at CLibrary.Controller.MrnControllerV2Impl.UpdateMrn(MrnMasterV2 mrn) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Controller\MrnControllerV2.cs:line 360
+   at BiddingSystem.EditMRN_V2.Save(MrnMasterV2 mrnMaster) in C:\Users\Yashoman\Desktop\ANCL_Bid\BiddingSystem\EditMRN_V2.aspx.cs:line 207
+ERROR - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at CLibrary.Infrastructure.MrnUpdateLogDAOImpl.Save(MrnUpdateLog log, DBConnection dbConnection) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Infrastructure\MrnUpdateLogDAO.cs:line 21
+   at CLibrary.Controller.MrnControllerV2Impl.UpdateMrn(MrnMasterV2 mrn) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Controller\MrnControllerV2.cs:line 360
+   at BiddingSystem.EditMRN_V2.Save(MrnMasterV2 mrnMaster) in C:\Users\Yashoman\Desktop\ANCL_Bid\BiddingSystem\EditMRN_V2.aspx.cs:line 207
+ERROR - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Controller\MrnControllerV2.cs:line 194
+   at BiddingSystem.CreatePR_V2.Save(PrMasterV2 prMaster) in C:\Users\Yashoman\Desktop\ANCL_Bid\BiddingSystem\CreatePR_V2.aspx.cs:line 226
+ERROR - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at CLibrary.Controller.PrControllerV2Impl.SavePr(PrMasterV2 pr) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Controller\PrControllerV2.cs:line 171
+   at BiddingSystem.CreatePR_V2.Save(PrMasterV2 prMaster) in C:\Users\Yashoman\Desktop\ANCL_Bid\BiddingSystem\CreatePR_V2.aspx.cs:line 190
+ERROR - Invalid column name 'COMPANY_ID'.
+Invalid column name 'COMPANY_ID'.
+Invalid column name 'PR_TYPE'.
+Invalid column name 'EXPECTED_DATE'.
+Invalid column name 'PURCHASE_PROCEDURE'.
+Invalid column name 'REQUIRED_FOR'.
+Invalid column name 'PR_CATEGORY_ID'.
+Invalid column name 'PR_SUB_CATEGORY_ID'.
+Invalid column name 'IS_PR_APPROVED'.
+Invalid column name 'STATUS'.
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'COMPANY_ID'.
+Invalid column name 'COMPANY_ID'.
+Invalid column name 'PR_TYPE'.
+Invalid column name 'EXPECTED_DATE'.
+Invalid column name 'PURCHASE_PROCEDURE'.
+Invalid column name 'REQUIRED_FOR'.
+Invalid column name 'PR_CATEGORY_ID'.
+Invalid column name 'PR_SUB_CATEGORY_ID'.
+Invalid column name 'IS_PR_APPROVED'.
+Invalid column name 'STATUS'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.PrMasterDAOV2Impl.SavePr(PrMasterV2 pr, DBConnection dbConnection) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Infrastructure\PrMasterDAOV2.cs:line 61
+   at CLibrary.Controller.PrControllerV2Impl.SavePr(PrMasterV2 pr) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Controller\PrControllerV2.cs:line 171
+   at BiddingSystem.CreatePR_V2.Save(PrMasterV2 prMaster)
+ClientConnectionId:cf8419a3-008f-413f-bb34-458ddcd624a1
+Error Number:207,State:1,Class:16
+ERROR - Invalid object name 'PR_UPDATE_LOG'.
+System.Data.SqlClient.SqlException (0x80131904): Invalid object name 'PR_UPDATE_LOG'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at CLibrary.Infrastructure.PrUpdateLogDAOImpl.Save(PrUpdateLog log, DBConnection dbConnection) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Infrastructure\PrUpdateLogDAO.cs:line 48
+   at CLibrary.Controller.PrControllerV2Impl.UpdatePr(PrMasterV2 pr) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Controller\PrControllerV2.cs:line 382
+   at BiddingSystem.EditPR_V2.Save(PrMasterV2 prMaster) in C:\Users\Yashoman\Desktop\ANCL_Bid\BiddingSystem\EditPR_V2.aspx.cs:line 170
+ClientConnectionId:8246bc56-e7c2-44f5-aacf-b14a4f14d7f0
+Error Number:208,State:1,Class:16
+ERROR - The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Controller\MrnControllerV2.cs:line 228
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in C:\Users\Yashoman\Desktop\ANCL_Bid\BiddingSystem\CreateMRN_V2.aspx.cs:line 204
+ERROR - The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+System.FormatException: The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters. 
+   at System.Convert.FromBase64_Decode(Char* startInputPtr, Int32 inputLength, Byte* startDestPtr, Int32 destLength)
+   at System.Convert.FromBase64CharPtr(Char* inputPtr, Int32 inputLength)
+   at System.Convert.FromBase64String(String s)
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Controller\MrnControllerV2.cs:line 228
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in C:\Users\Yashoman\Desktop\ANCL_Bid\BiddingSystem\CreateMRN_V2.aspx.cs:line 204
+ERROR - Value cannot be null.
+Parameter name: s
+System.ArgumentNullException: Value cannot be null.
+Parameter name: s
+   at System.Convert.FromBase64String(String s)
+   at CLibrary.Controller.MrnControllerV2Impl.UpdateMrn(MrnMasterV2 mrn) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Controller\MrnControllerV2.cs:line 481
+   at BiddingSystem.EditMRN_V2.Save(MrnMasterV2 mrnMaster) in C:\Users\Yashoman\Desktop\ANCL_Bid\BiddingSystem\EditMRN_V2.aspx.cs:line 208
+ERROR - Value cannot be null.
+Parameter name: s
+System.ArgumentNullException: Value cannot be null.
+Parameter name: s
+   at System.Convert.FromBase64String(String s)
+   at CLibrary.Controller.MrnControllerV2Impl.UpdateMrn(MrnMasterV2 mrn) in C:\Users\Yashoman\Desktop\ANCL_Bid\CLibrary\Controller\MrnControllerV2.cs:line 481
+   at BiddingSystem.EditMRN_V2.Save(MrnMasterV2 mrnMaster) in C:\Users\Yashoman\Desktop\ANCL_Bid\BiddingSystem\EditMRN_V2.aspx.cs:line 208
+ERROR - Value cannot be null.
+Parameter name: String
+System.ArgumentNullException: Value cannot be null.
+Parameter name: String
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at BiddingSystem.ViewQuotationTRApproval.RejectClick(PrMasterV2 prMaster)
+ERROR - Invalid JSON primitive: CLibrary.Domain.PrMasterV2.
+System.ArgumentException: Invalid JSON primitive: CLibrary.Domain.PrMasterV2.
+   at System.Web.Script.Serialization.JavaScriptObjectDeserializer.DeserializePrimitiveObject()
+   at System.Web.Script.Serialization.JavaScriptObjectDeserializer.DeserializeInternal(Int32 depth)
+   at System.Web.Script.Serialization.JavaScriptObjectDeserializer.BasicDeserialize(String input, Int32 depthLimit, JavaScriptSerializer serializer)
+   at System.Web.Script.Serialization.JavaScriptSerializer.Deserialize(JavaScriptSerializer serializer, String input, Type type, Int32 depthLimit)
+   at System.Web.Script.Serialization.JavaScriptSerializer.Deserialize[T](String input)
+   at BiddingSystem.ViewQuotationTRApproval.ApproveClick(SupplierQuotationItem SupQutItem) in E:\Adee_Projects\ANCL\Working\BiddingSystem\ViewQuotationTRApproval.aspx.cs:line 355
+ERROR - Invalid JSON primitive: CLibrary.Domain.PrMasterV2.
+System.ArgumentException: Invalid JSON primitive: CLibrary.Domain.PrMasterV2.
+   at System.Web.Script.Serialization.JavaScriptObjectDeserializer.DeserializePrimitiveObject()
+   at System.Web.Script.Serialization.JavaScriptObjectDeserializer.DeserializeInternal(Int32 depth)
+   at System.Web.Script.Serialization.JavaScriptObjectDeserializer.BasicDeserialize(String input, Int32 depthLimit, JavaScriptSerializer serializer)
+   at System.Web.Script.Serialization.JavaScriptSerializer.Deserialize(JavaScriptSerializer serializer, String input, Type type, Int32 depthLimit)
+   at System.Web.Script.Serialization.JavaScriptSerializer.Deserialize[T](String input)
+   at BiddingSystem.ViewQuotationTRApproval.ApproveClick(SupplierQuotationItem SupQutItem) in E:\Adee_Projects\ANCL\Working\BiddingSystem\ViewQuotationTRApproval.aspx.cs:line 355
+ERROR - Invalid JSON primitive: CLibrary.Domain.PrMasterV2.
+System.ArgumentException: Invalid JSON primitive: CLibrary.Domain.PrMasterV2.
+   at System.Web.Script.Serialization.JavaScriptObjectDeserializer.DeserializePrimitiveObject()
+   at System.Web.Script.Serialization.JavaScriptObjectDeserializer.DeserializeInternal(Int32 depth)
+   at System.Web.Script.Serialization.JavaScriptObjectDeserializer.BasicDeserialize(String input, Int32 depthLimit, JavaScriptSerializer serializer)
+   at System.Web.Script.Serialization.JavaScriptSerializer.Deserialize(JavaScriptSerializer serializer, String input, Type type, Int32 depthLimit)
+   at System.Web.Script.Serialization.JavaScriptSerializer.Deserialize[T](String input)
+   at BiddingSystem.ViewQuotationTRApproval.ApproveClick(SupplierQuotationItem SupQutItem) in E:\Adee_Projects\ANCL\Working\BiddingSystem\ViewQuotationTRApproval.aspx.cs:line 355
+ERROR - This SqlTransaction has completed; it is no longer usable.
+System.InvalidOperationException: This SqlTransaction has completed; it is no longer usable.
+   at System.Data.SqlClient.SqlTransaction.ZombieCheck()
+   at System.Data.SqlClient.SqlTransaction.Rollback()
+   at CLibrary.Common.DBConnection.RollBack() in E:\Adee_Projects\ANCL\Working\CLibrary\Common\DBConnection.cs:line 56
+   at CLibrary.Controller.TabulationMasterControllerImpl.UpdateTabulationDetails(Int32 UserId, Decimal totVAt, Decimal totNbt, Decimal totNetTot, Decimal totSubTot, Int32 BidId, Int32 TabulationId, Int32 PrId, Int32 CategoryId, Int32 DesignationId, String finalizedRemark, List`1 TabulationDetailsList) in E:\Adee_Projects\ANCL\Working\CLibrary\Controller\TabulationMasterController.cs:line 347
+   at BiddingSystem.CompareQuotationsNew.FinalizeTabulationClick(SupplierQuotationItem SupQutItem)
+ERROR - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at BiddingSystem.CompareQuotationsNew.ReOpenBidClick(SupplierQuotationItem SupQutItem) in E:\Adee_Projects\ANCL\Working\BiddingSystem\CompareQuotationsNew.aspx.cs:line 329
+ERROR - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at BiddingSystem.CompareQuotationsNew.ReOpenBidClick(SupplierQuotationItem SupQutItem) in E:\Adee_Projects\ANCL\Working\BiddingSystem\CompareQuotationsNew.aspx.cs:line 329
+ERROR - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at BiddingSystem.CompareQuotationsNew.ReOpenBidClick(SupplierQuotationItem SupQutItem) in E:\Adee_Projects\ANCL\Working\BiddingSystem\CompareQuotationsNew.aspx.cs:line 329
+ERROR - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at BiddingSystem.CompareQuotationsNew.ReOpenBidClick(SupplierQuotationItem SupQutItem) in E:\Adee_Projects\ANCL\Working\BiddingSystem\CompareQuotationsNew.aspx.cs:line 329
+ERROR - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at BiddingSystem.CompareQuotationsNew.ReOpenBidClick(SupplierQuotationItem SupQutItem) in E:\Adee_Projects\ANCL\Working\BiddingSystem\CompareQuotationsNew.aspx.cs:line 329
+ERROR - Invalid JSON primitive: CLibrary.Domain.PrMasterV2.
+System.ArgumentException: Invalid JSON primitive: CLibrary.Domain.PrMasterV2.
+   at System.Web.Script.Serialization.JavaScriptObjectDeserializer.DeserializePrimitiveObject()
+   at System.Web.Script.Serialization.JavaScriptObjectDeserializer.DeserializeInternal(Int32 depth)
+   at System.Web.Script.Serialization.JavaScriptObjectDeserializer.BasicDeserialize(String input, Int32 depthLimit, JavaScriptSerializer serializer)
+   at System.Web.Script.Serialization.JavaScriptSerializer.Deserialize(JavaScriptSerializer serializer, String input, Type type, Int32 depthLimit)
+   at System.Web.Script.Serialization.JavaScriptSerializer.Deserialize[T](String input)
+   at BiddingSystem.ViewQuotationTRApproval.RejectClick(PrMasterV2 prMaster) in E:\Adee_Projects\ANCL\Working\BiddingSystem\ViewQuotationTRApproval.aspx.cs:line 263
+ERROR - Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at CLibrary.Common.DBConnection.RollBack() in D:\ANCL\CLibrary\Common\DBConnection.cs:line 56
+   at CLibrary.Common.DBConnection..ctor() in D:\ANCL\CLibrary\Common\DBConnection.cs:line 44
+   at CLibrary.Controller.ItemSubCategoryControllerImpl.FetchItemSubCategoryByCategoryId(Int32 CategoryId, Int32 companyid) in D:\ANCL\CLibrary\Controller\ItemSubCategoryController.cs:line 148
+   at BiddingSystem.CreatePR_V2.GetSubCategories(Int32 CategoryId) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 247
+ERROR - Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+System.Data.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding. ---> System.ComponentModel.Win32Exception (0x80004005): The wait operation timed out
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.AddItemsSQLImpl.GetItemsForMrnAndPr(Int32 MainCategoryId, Int32 SubCategoryId, Int32 ItemType, Int32 companyId, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\AddItemDAO.cs:line 623
+   at CLibrary.Controller.AddItemControllerImpl.GetItemsForMrnAndPr(Int32 MainCategoryId, Int32 SubCategoryId, Int32 ItemType, Int32 companyId) in D:\ANCL\CLibrary\Controller\AddItemController.cs:line 463
+   at BiddingSystem.CreateMRN_V2.GetItems(Int32 CategoryId, Int32 SubCategoryId, Int32 ItemType) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 176
+ClientConnectionId:e1427ffc-57c8-401f-852a-cdd7d267b630
+Error Number:-2,State:0,Class:11
+ERROR - Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+System.Data.SqlClient.SqlException (0x80131904): Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding. ---> System.ComponentModel.Win32Exception (0x80004005): The wait operation timed out
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.AddItemsSQLImpl.GetItemsForMrnAndPr(Int32 MainCategoryId, Int32 SubCategoryId, Int32 ItemType, Int32 companyId, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\AddItemDAO.cs:line 623
+   at CLibrary.Controller.AddItemControllerImpl.GetItemsForMrnAndPr(Int32 MainCategoryId, Int32 SubCategoryId, Int32 ItemType, Int32 companyId) in D:\ANCL\CLibrary\Controller\AddItemController.cs:line 463
+   at BiddingSystem.CreateMRN_V2.GetItems(Int32 CategoryId, Int32 SubCategoryId, Int32 ItemType) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 176
+ClientConnectionId:e1427ffc-57c8-401f-852a-cdd7d267b630
+Error Number:-2,State:0,Class:11
+ERROR - Arithmetic overflow error converting numeric to data type numeric.
+System.Data.SqlClient.SqlException (0x80131904): Arithmetic overflow error converting numeric to data type numeric.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ClientConnectionId:fc040dd2-5e65-4a21-982a-0a6464dc191c
+Error Number:8115,State:8,Class:16
+ERROR - Arithmetic overflow error converting numeric to data type numeric.
+System.Data.SqlClient.SqlException (0x80131904): Arithmetic overflow error converting numeric to data type numeric.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ClientConnectionId:fc040dd2-5e65-4a21-982a-0a6464dc191c
+Error Number:8115,State:8,Class:16
+ERROR - Arithmetic overflow error converting numeric to data type numeric.
+System.Data.SqlClient.SqlException (0x80131904): Arithmetic overflow error converting numeric to data type numeric.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ClientConnectionId:fc040dd2-5e65-4a21-982a-0a6464dc191c
+Error Number:8115,State:8,Class:16
+ERROR - Arithmetic overflow error converting numeric to data type numeric.
+System.Data.SqlClient.SqlException (0x80131904): Arithmetic overflow error converting numeric to data type numeric.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ClientConnectionId:fc040dd2-5e65-4a21-982a-0a6464dc191c
+Error Number:8115,State:8,Class:16
+ERROR - Arithmetic overflow error converting numeric to data type numeric.
+System.Data.SqlClient.SqlException (0x80131904): Arithmetic overflow error converting numeric to data type numeric.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ClientConnectionId:fc040dd2-5e65-4a21-982a-0a6464dc191c
+Error Number:8115,State:8,Class:16
+ERROR - Arithmetic overflow error converting numeric to data type numeric.
+System.Data.SqlClient.SqlException (0x80131904): Arithmetic overflow error converting numeric to data type numeric.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ClientConnectionId:fc040dd2-5e65-4a21-982a-0a6464dc191c
+Error Number:8115,State:8,Class:16
+ERROR - Arithmetic overflow error converting numeric to data type numeric.
+System.Data.SqlClient.SqlException (0x80131904): Arithmetic overflow error converting numeric to data type numeric.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ClientConnectionId:fc040dd2-5e65-4a21-982a-0a6464dc191c
+Error Number:8115,State:8,Class:16
+ERROR - Arithmetic overflow error converting numeric to data type numeric.
+System.Data.SqlClient.SqlException (0x80131904): Arithmetic overflow error converting numeric to data type numeric.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ClientConnectionId:b07fdcfb-808f-4c4c-af34-32d4ff57792c
+Error Number:8115,State:8,Class:16
+ERROR - Arithmetic overflow error converting numeric to data type numeric.
+System.Data.SqlClient.SqlException (0x80131904): Arithmetic overflow error converting numeric to data type numeric.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ClientConnectionId:bdff7307-fb37-47ec-9a63-052edc677832
+Error Number:8115,State:8,Class:16
+ERROR - Arithmetic overflow error converting numeric to data type numeric.
+System.Data.SqlClient.SqlException (0x80131904): Arithmetic overflow error converting numeric to data type numeric.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ClientConnectionId:bdff7307-fb37-47ec-9a63-052edc677832
+Error Number:8115,State:8,Class:16
+ERROR - Arithmetic overflow error converting numeric to data type numeric.
+System.Data.SqlClient.SqlException (0x80131904): Arithmetic overflow error converting numeric to data type numeric.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ClientConnectionId:bdff7307-fb37-47ec-9a63-052edc677832
+Error Number:8115,State:8,Class:16
+ERROR - Arithmetic overflow error converting numeric to data type numeric.
+System.Data.SqlClient.SqlException (0x80131904): Arithmetic overflow error converting numeric to data type numeric.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ClientConnectionId:bdff7307-fb37-47ec-9a63-052edc677832
+Error Number:8115,State:8,Class:16
+ERROR - Arithmetic overflow error converting numeric to data type numeric.
+System.Data.SqlClient.SqlException (0x80131904): Arithmetic overflow error converting numeric to data type numeric.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ClientConnectionId:bdff7307-fb37-47ec-9a63-052edc677832
+Error Number:8115,State:8,Class:16
+ERROR - Arithmetic overflow error converting numeric to data type numeric.
+System.Data.SqlClient.SqlException (0x80131904): Arithmetic overflow error converting numeric to data type numeric.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ClientConnectionId:bdff7307-fb37-47ec-9a63-052edc677832
+Error Number:8115,State:8,Class:16
+ERROR - Arithmetic overflow error converting numeric to data type numeric.
+System.Data.SqlClient.SqlException (0x80131904): Arithmetic overflow error converting numeric to data type numeric.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ClientConnectionId:3d5e943f-a73a-4ae9-9d58-65ac263bf462
+Error Number:8115,State:8,Class:16
+ERROR - Arithmetic overflow error converting numeric to data type numeric.
+System.Data.SqlClient.SqlException (0x80131904): Arithmetic overflow error converting numeric to data type numeric.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ClientConnectionId:c5dcf0a0-0e42-421d-9e77-fdeb590c2b49
+Error Number:8115,State:8,Class:16
+ERROR - Arithmetic overflow error converting numeric to data type numeric.
+System.Data.SqlClient.SqlException (0x80131904): Arithmetic overflow error converting numeric to data type numeric.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteScalar()
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ClientConnectionId:c5dcf0a0-0e42-421d-9e77-fdeb590c2b49
+Error Number:8115,State:8,Class:16
+ERROR - Input string was not in a correct format.
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseDecimal(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Decimal.Parse(String s)
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreateMRN_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 367
+ERROR - Invalid column name 'MRN_ID'.
+Invalid column name 'ITEM_ID'.
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'MRN_ID'.
+Invalid column name 'ITEM_ID'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.MRNBomDAOImpl.GetList(Int32 Mrnid, Int32 itemId, DBConnection dbConnection) in E:\Adee_Projects\ANCL\Working\CLibrary\Infrastructure\MRNBomDAO.cs:line 45
+   at CLibrary.Controller.MRNBomControllerImpl.GetList(Int32 Mrnid, Int32 itemId) in E:\Adee_Projects\ANCL\Working\CLibrary\Controller\MRNBomController.cs:line 56
+   at BiddingSystem.EditMRN_V2.GetItemDescription(Int32 ItemId, Int32 MrndId) in E:\Adee_Projects\ANCL\Working\BiddingSystem\EditMRN_V2.aspx.cs:line 334
+ClientConnectionId:d4d75747-4942-4e6b-913b-a32c4b448777
+Error Number:207,State:1,Class:16
+ERROR - Input string was not in a correct format.
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseDecimal(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Decimal.Parse(String s)
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreateMRN_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 367
+ERROR - Input string was not in a correct format.
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseDecimal(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Decimal.Parse(String s)
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ERROR - Input string was not in a correct format.
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseDecimal(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Decimal.Parse(String s)
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ERROR - Input string was not in a correct format.
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseDecimal(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Decimal.Parse(String s)
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection)
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM)
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 213
+ERROR - Input string was not in a correct format.
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseDecimal(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Decimal.Parse(String s)
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit)
+ERROR - Input string was not in a correct format.
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseDecimal(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Decimal.Parse(String s)
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit)
+ERROR - Input string was not in a correct format.
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseDecimal(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Decimal.Parse(String s)
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit)
+ERROR - Input string was not in a correct format.
+System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseDecimal(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.Decimal.Parse(String s)
+   at CLibrary.Infrastructure.ConversionDAO.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\IConversionDAO.cs:line 47
+   at CLibrary.Controller.ConversionController.DoConversion(Int32 ItemId, Int32 CompanyId, Decimal Qty, Int32 FromUOM, Int32 ToUOM) in D:\ANCL\CLibrary\Controller\IConversionController.cs:line 53
+   at BiddingSystem.CreatePR_V2.UnitConversion(String ddlItemName, String ddlWarehouse, String ddlMeasurement, String ddlMeasurementUnit)
+ERROR - Cannot insert the value NULL into column 'APPROVAL_TYPE', table 'ANCL_BID_QA.dbo.TABULATION_MASTER'; column does not allow nulls. UPDATE fails.
+The statement has been terminated.
+System.Data.SqlClient.SqlException (0x80131904): Cannot insert the value NULL into column 'APPROVAL_TYPE', table 'ANCL_BID_QA.dbo.TABULATION_MASTER'; column does not allow nulls. UPDATE fails.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at CLibrary.Infrastructure.TabulationMasterDAOImpl.PopulateRecommendation(Int32 TabulationId, Int32 CategoryId, Decimal NetTotal, Int32 UserId, Int32 DesignationId, String Remarks, DBConnection dBConnection) in D:\ANCL\CLibrary\Infrastructure\TabulationMasterDAO.cs:line 79
+   at CLibrary.Controller.TabulationMasterControllerImpl.UpdateTabulationDetails(Int32 UserId, Decimal totVAt, Decimal totNbt, Decimal totNetTot, Decimal totSubTot, Int32 BidId, Int32 TabulationId, Int32 PrId, Int32 CategoryId, Int32 DesignationId, String finalizedRemark, List`1 TabulationDetailsList) in D:\ANCL\CLibrary\Controller\TabulationMasterController.cs:line 350
+   at BiddingSystem.CompareQuotationsNew.FinalizeTabulationClick(SupplierQuotationItem SupQutItem) in D:\ANCL\BiddingSystem\CompareQuotationsNew.aspx.cs:line 354
+ClientConnectionId:e4a09f6e-1953-45e9-a690-066f13a5bf66
+Error Number:515,State:2,Class:16
+ERROR - Must declare the scalar variable "@FILE_DATA".
+System.Data.SqlClient.SqlException (0x80131904): Must declare the scalar variable "@FILE_DATA".
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlCommand.RunExecuteNonQueryTds(String methodName, Boolean async, Int32 timeout, Boolean asyncWrite)
+   at System.Data.SqlClient.SqlCommand.InternalExecuteNonQuery(TaskCompletionSource`1 completion, String methodName, Boolean sendToPipe, Int32 timeout, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
+   at CLibrary.Infrastructure.PrCapexDocDAOImpl.Save(PrCapexDoc doc, DBConnection dbConnection)
+   at CLibrary.Controller.PrControllerV2Impl.SavePr(PrMasterV2 pr)
+   at BiddingSystem.CreatePR_V2.Save(PrMasterV2 prMaster)
+ClientConnectionId:debfdc36-490e-4df6-bc5d-8724a93b365a
+Error Number:137,State:2,Class:15
+ERROR - This SqlTransaction has completed; it is no longer usable.
+System.InvalidOperationException: This SqlTransaction has completed; it is no longer usable.
+   at System.Data.SqlClient.SqlTransaction.ZombieCheck()
+   at System.Data.SqlClient.SqlTransaction.Rollback()
+   at CLibrary.Common.DBConnection.RollBack() in D:\ANCL\CLibrary\Common\DBConnection.cs:line 56
+   at CLibrary.Controller.BiddingControllerImpl.GetPrdIdByBidId(Int32 bidId) in D:\ANCL\CLibrary\Controller\BiddingController.cs:line 1288
+   at BiddingSystem.CompareQuotationsNew.FinalizeTabulationClick(SupplierQuotationItem SupQutItem) in D:\ANCL\BiddingSystem\CompareQuotationsNew.aspx.cs:line 361
+ERROR - Incorrect syntax near '0'.
+Incorrect syntax near ')'.
+System.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near '0'.
+Incorrect syntax near ')'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.PrMasterDAOV2Impl.SavePr(PrMasterV2 pr, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\PrMasterDAOV2.cs:line 91
+   at CLibrary.Controller.PrControllerV2Impl.SavePr(PrMasterV2 pr) in D:\ANCL\CLibrary\Controller\PrControllerV2.cs:line 263
+   at BiddingSystem.CreatePR_V2.Save(PrMasterV2 prMaster) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 352
+ClientConnectionId:092adf46-7766-4376-8a70-edc28c56caaa
+Error Number:102,State:1,Class:15
+ERROR - Incorrect syntax near '0'.
+Incorrect syntax near ')'.
+System.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near '0'.
+Incorrect syntax near ')'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.PrMasterDAOV2Impl.SavePr(PrMasterV2 pr, DBConnection dbConnection)
+   at CLibrary.Controller.PrControllerV2Impl.SavePr(PrMasterV2 pr)
+   at BiddingSystem.CreatePR_V2.Save(PrMasterV2 prMaster) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 352
+ClientConnectionId:092adf46-7766-4376-8a70-edc28c56caaa
+Error Number:102,State:1,Class:15
+ERROR - Incorrect syntax near '0'.
+Incorrect syntax near ')'.
+System.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near '0'.
+Incorrect syntax near ')'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.PrMasterDAOV2Impl.SavePr(PrMasterV2 pr, DBConnection dbConnection)
+   at CLibrary.Controller.PrControllerV2Impl.SavePr(PrMasterV2 pr)
+   at BiddingSystem.CreatePR_V2.Save(PrMasterV2 prMaster) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 352
+ClientConnectionId:092adf46-7766-4376-8a70-edc28c56caaa
+Error Number:102,State:1,Class:15
+ERROR - Incorrect syntax near '0'.
+Incorrect syntax near ')'.
+System.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near '0'.
+Incorrect syntax near ')'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.PrMasterDAOV2Impl.SavePr(PrMasterV2 pr, DBConnection dbConnection)
+   at CLibrary.Controller.PrControllerV2Impl.SavePr(PrMasterV2 pr)
+   at BiddingSystem.CreatePR_V2.Save(PrMasterV2 prMaster) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 352
+ClientConnectionId:092adf46-7766-4376-8a70-edc28c56caaa
+Error Number:102,State:1,Class:15
+ERROR - Incorrect syntax near 'OUTPUT'.
+Incorrect syntax near ')'.
+System.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near 'OUTPUT'.
+Incorrect syntax near ')'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.PrMasterDAOV2Impl.SavePr(PrMasterV2 pr, DBConnection dbConnection)
+   at CLibrary.Controller.PrControllerV2Impl.SavePr(PrMasterV2 pr)
+   at BiddingSystem.CreatePR_V2.Save(PrMasterV2 prMaster) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 352
+ClientConnectionId:092adf46-7766-4376-8a70-edc28c56caaa
+Error Number:102,State:1,Class:15
+ERROR - Incorrect syntax near 'OUTPUT'.
+Incorrect syntax near ')'.
+System.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near 'OUTPUT'.
+Incorrect syntax near ')'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.PrMasterDAOV2Impl.SavePr(PrMasterV2 pr, DBConnection dbConnection)
+   at CLibrary.Controller.PrControllerV2Impl.SavePr(PrMasterV2 pr)
+   at BiddingSystem.CreatePR_V2.Save(PrMasterV2 prMaster) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 352
+ClientConnectionId:092adf46-7766-4376-8a70-edc28c56caaa
+Error Number:102,State:1,Class:15
+ERROR - Incorrect syntax near 'OUTPUT'.
+Incorrect syntax near ','.
+System.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near 'OUTPUT'.
+Incorrect syntax near ','.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.PrMasterDAOV2Impl.SavePr(PrMasterV2 pr, DBConnection dbConnection)
+   at CLibrary.Controller.PrControllerV2Impl.SavePr(PrMasterV2 pr)
+   at BiddingSystem.CreatePR_V2.Save(PrMasterV2 prMaster) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 352
+ClientConnectionId:092adf46-7766-4376-8a70-edc28c56caaa
+Error Number:102,State:1,Class:15
+ERROR - Incorrect syntax near 'OUTPUT'.
+Incorrect syntax near ','.
+System.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near 'OUTPUT'.
+Incorrect syntax near ','.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.PrMasterDAOV2Impl.SavePr(PrMasterV2 pr, DBConnection dbConnection)
+   at CLibrary.Controller.PrControllerV2Impl.SavePr(PrMasterV2 pr)
+   at BiddingSystem.CreatePR_V2.Save(PrMasterV2 prMaster) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 352
+ClientConnectionId:092adf46-7766-4376-8a70-edc28c56caaa
+Error Number:102,State:1,Class:15
+ERROR - Incorrect syntax near the keyword 'WHERE'.
+System.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near the keyword 'WHERE'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.MrnMasterDAOV2Impl.SaveMrn(MrnMasterV2 mrn, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\MrnMasterDAOV2.cs:line 114
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn) in D:\ANCL\CLibrary\Controller\MrnControllerV2.cs:line 246
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ClientConnectionId:32189940-000e-4ae5-969e-a4027c2e39c5
+Error Number:156,State:1,Class:15
+ERROR - Incorrect syntax near the keyword 'WHERE'.
+System.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near the keyword 'WHERE'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.MrnMasterDAOV2Impl.SaveMrn(MrnMasterV2 mrn, DBConnection dbConnection)
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn)
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ClientConnectionId:32189940-000e-4ae5-969e-a4027c2e39c5
+Error Number:156,State:1,Class:15
+ERROR - Invalid column name 'LOCAL'.
+System.Data.SqlClient.SqlException (0x80131904): Invalid column name 'LOCAL'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.MrnMasterDAOV2Impl.SaveMrn(MrnMasterV2 mrn, DBConnection dbConnection)
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn)
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ClientConnectionId:32189940-000e-4ae5-969e-a4027c2e39c5
+Error Number:207,State:1,Class:16
+ERROR - Conversion failed when converting the nvarchar value 'IMP100' to data type int.
+System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the nvarchar value 'IMP100' to data type int.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.MrnMasterDAOV2Impl.SaveMrn(MrnMasterV2 mrn, DBConnection dbConnection)
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn)
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ClientConnectionId:32189940-000e-4ae5-969e-a4027c2e39c5
+Error Number:245,State:1,Class:16
+ERROR - Incorrect syntax near 'ALL'.
+System.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near 'ALL'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.MrnMasterDAOV2Impl.SaveMrn(MrnMasterV2 mrn, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\MrnMasterDAOV2.cs:line 110
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn) in D:\ANCL\CLibrary\Controller\MrnControllerV2.cs:line 246
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ClientConnectionId:2ac8784a-c054-4592-96b8-86f981b532ea
+Error Number:102,State:1,Class:15
+ERROR - Conversion failed when converting the nvarchar value '-LOCAL-319' to data type int.
+System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the nvarchar value '-LOCAL-319' to data type int.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.MrnMasterDAOV2Impl.SaveMrn(MrnMasterV2 mrn, DBConnection dbConnection)
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn)
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ClientConnectionId:2ac8784a-c054-4592-96b8-86f981b532ea
+Error Number:245,State:1,Class:16
+ERROR - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn)
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ERROR - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn)
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ERROR - Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn)
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ERROR - Must declare the scalar variable "@MRN_ID".
+System.Data.SqlClient.SqlException (0x80131904): Must declare the scalar variable "@MRN_ID".
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.MrnMasterDAOV2Impl.SaveMrn(MrnMasterV2 mrn, DBConnection dbConnection)
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn)
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ClientConnectionId:2ac8784a-c054-4592-96b8-86f981b532ea
+Error Number:137,State:1,Class:16
+ERROR - Incorrect syntax near the keyword 'SELECT'.
+System.Data.SqlClient.SqlException (0x80131904): Incorrect syntax near the keyword 'SELECT'.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.MrnMasterDAOV2Impl.SaveMrn(MrnMasterV2 mrn, DBConnection dbConnection)
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn)
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ClientConnectionId:22972a6b-16fb-4933-9c5f-9bd866acb5c8
+Error Number:156,State:1,Class:15
+ERROR - Conversion failed when converting the varchar value 'LOCAL 278' to data type int.
+System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the varchar value 'LOCAL 278' to data type int.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.PrMasterDAOV2Impl.SavePr(PrMasterV2 pr, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\PrMasterDAOV2.cs:line 96
+   at CLibrary.Controller.PrControllerV2Impl.SavePr(PrMasterV2 pr) in D:\ANCL\CLibrary\Controller\PrControllerV2.cs:line 263
+   at BiddingSystem.CreatePR_V2.Save(PrMasterV2 prMaster) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 352
+ClientConnectionId:2450e333-8d7c-4085-b720-678b3ac9e59a
+Error Number:245,State:1,Class:16
+ERROR - Conversion failed when converting the varchar value 'LOCAL 278' to data type int.
+System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the varchar value 'LOCAL 278' to data type int.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.PrMasterDAOV2Impl.SavePr(PrMasterV2 pr, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\PrMasterDAOV2.cs:line 96
+   at CLibrary.Controller.PrControllerV2Impl.SavePr(PrMasterV2 pr) in D:\ANCL\CLibrary\Controller\PrControllerV2.cs:line 263
+   at BiddingSystem.CreatePR_V2.Save(PrMasterV2 prMaster) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 352
+ClientConnectionId:2450e333-8d7c-4085-b720-678b3ac9e59a
+Error Number:245,State:1,Class:16
+ERROR - Must declare the scalar variable "@MRN_ID".
+System.Data.SqlClient.SqlException (0x80131904): Must declare the scalar variable "@MRN_ID".
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.MrnMasterDAOV2Impl.SaveMrn(MrnMasterV2 mrn, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\MrnMasterDAOV2.cs:line 112
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn) in D:\ANCL\CLibrary\Controller\MrnControllerV2.cs:line 246
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ClientConnectionId:9d876f85-9ae6-40c6-94f5-e32a2994454b
+Error Number:137,State:1,Class:16
+ERROR - Must declare the scalar variable "@MRN_ID".
+System.Data.SqlClient.SqlException (0x80131904): Must declare the scalar variable "@MRN_ID".
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.MrnMasterDAOV2Impl.SaveMrn(MrnMasterV2 mrn, DBConnection dbConnection)
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn)
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ClientConnectionId:9d876f85-9ae6-40c6-94f5-e32a2994454b
+Error Number:137,State:1,Class:16
+ERROR - Conversion failed when converting the nvarchar value 'LCL259' to data type int.
+System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the nvarchar value 'LCL259' to data type int.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at CLibrary.Infrastructure.MrnMasterDAOV2Impl.SaveMrn(MrnMasterV2 mrn, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\MrnMasterDAOV2.cs:line 116
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn) in D:\ANCL\CLibrary\Controller\MrnControllerV2.cs:line 246
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ClientConnectionId:fa9a946f-ca4e-422f-b2bf-75621f0a59de
+Error Number:245,State:1,Class:16
+ERROR - Conversion failed when converting the nvarchar value 'LCL259' to data type int.
+System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the nvarchar value 'LCL259' to data type int.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at CLibrary.Infrastructure.MrnMasterDAOV2Impl.SaveMrn(MrnMasterV2 mrn, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\MrnMasterDAOV2.cs:line 116
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn) in D:\ANCL\CLibrary\Controller\MrnControllerV2.cs:line 246
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ClientConnectionId:fa9a946f-ca4e-422f-b2bf-75621f0a59de
+Error Number:245,State:1,Class:16
+ERROR - Conversion failed when converting the nvarchar value 'LCL259' to data type int.
+System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the nvarchar value 'LCL259' to data type int.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at CLibrary.Infrastructure.MrnMasterDAOV2Impl.SaveMrn(MrnMasterV2 mrn, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\MrnMasterDAOV2.cs:line 116
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn) in D:\ANCL\CLibrary\Controller\MrnControllerV2.cs:line 246
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ClientConnectionId:fa9a946f-ca4e-422f-b2bf-75621f0a59de
+Error Number:245,State:1,Class:16
+ERROR - Conversion failed when converting the nvarchar value 'LCL259' to data type int.
+System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the nvarchar value 'LCL259' to data type int.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at CLibrary.Infrastructure.MrnMasterDAOV2Impl.SaveMrn(MrnMasterV2 mrn, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\MrnMasterDAOV2.cs:line 116
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn) in D:\ANCL\CLibrary\Controller\MrnControllerV2.cs:line 246
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ClientConnectionId:fa9a946f-ca4e-422f-b2bf-75621f0a59de
+Error Number:245,State:1,Class:16
+ERROR - Conversion failed when converting the nvarchar value 'LCL259' to data type int.
+System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the nvarchar value 'LCL259' to data type int.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at CLibrary.Infrastructure.MrnMasterDAOV2Impl.SaveMrn(MrnMasterV2 mrn, DBConnection dbConnection)
+   at CLibrary.Controller.MrnControllerV2Impl.SaveMrn(MrnMasterV2 mrn)
+   at BiddingSystem.CreateMRN_V2.Save(MrnMasterV2 mrnMaster) in D:\ANCL\BiddingSystem\CreateMRN_V2.aspx.cs:line 245
+ClientConnectionId:fa9a946f-ca4e-422f-b2bf-75621f0a59de
+Error Number:245,State:1,Class:16
+ERROR - Conversion failed when converting the varchar value 'LCL407' to data type int.
+System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the varchar value 'LCL407' to data type int.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior, String method)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader()
+   at CLibrary.Infrastructure.PrMasterDAOV2Impl.SavePr(PrMasterV2 pr, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\PrMasterDAOV2.cs:line 100
+   at CLibrary.Controller.PrControllerV2Impl.SavePr(PrMasterV2 pr) in D:\ANCL\CLibrary\Controller\PrControllerV2.cs:line 263
+   at BiddingSystem.CreatePR_V2.Save(PrMasterV2 prMaster) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 352
+ClientConnectionId:f23b2260-03b5-4e21-b525-a8a613f05300
+Error Number:245,State:1,Class:16
+ERROR - Conversion failed when converting the varchar value 'LCL407' to data type int.
+System.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the varchar value 'LCL407' to data type int.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at System.Data.SqlClient.SqlDataReader.TryReadInternal(Boolean setTimeout, Boolean& more)
+   at System.Data.SqlClient.SqlDataReader.Read()
+   at CLibrary.Infrastructure.PrMasterDAOV2Impl.SavePr(PrMasterV2 pr, DBConnection dbConnection) in D:\ANCL\CLibrary\Infrastructure\PrMasterDAOV2.cs:line 104
+   at CLibrary.Controller.PrControllerV2Impl.SavePr(PrMasterV2 pr) in D:\ANCL\CLibrary\Controller\PrControllerV2.cs:line 263
+   at BiddingSystem.CreatePR_V2.Save(PrMasterV2 prMaster) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 352
+ClientConnectionId:6709eb35-eb6b-418b-a04e-ed3b36921844
+Error Number:245,State:1,Class:16
+ERROR - A transport-level error has occurred when sending the request to the server. (provider: TCP Provider, error: 0 - An existing connection was forcibly closed by the remote host.)
+System.Data.SqlClient.SqlException (0x80131904): A transport-level error has occurred when sending the request to the server. (provider: TCP Provider, error: 0 - An existing connection was forcibly closed by the remote host.) ---> System.ComponentModel.Win32Exception (0x80004005): An existing connection was forcibly closed by the remote host
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.SNIWritePacket(SNIHandle handle, SNIPacket packet, UInt32& sniError, Boolean canAccumulate, Boolean callerHasConnectionLock)
+   at System.Data.SqlClient.TdsParserStateObject.WriteSni(Boolean canAccumulate)
+   at System.Data.SqlClient.TdsParserStateObject.WritePacket(Byte flushMode, Boolean canAccumulate)
+   at System.Data.SqlClient.TdsParser.TdsExecuteTransactionManagerRequest(Byte[] buffer, TransactionManagerRequestType request, String transactionName, TransactionManagerIsolationLevel isoLevel, Int32 timeout, SqlInternalTransaction transaction, TdsParserStateObject stateObj, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransactionYukon(TransactionRequest transactionRequest, String transactionName, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalConnectionTds.ExecuteTransaction(TransactionRequest transactionRequest, String name, IsolationLevel iso, SqlInternalTransaction internalTransaction, Boolean isDelegateControlRequest)
+   at System.Data.SqlClient.SqlInternalTransaction.Commit()
+   at System.Data.SqlClient.SqlTransaction.Commit()
+   at CLibrary.Common.DBConnection.Commit() in D:\ANCL\CLibrary\Common\DBConnection.cs:line 50
+   at CLibrary.Controller.AddItemControllerImpl.GetItemsForMrnAndPr(Int32 MainCategoryId, Int32 SubCategoryId, Int32 ItemType, Int32 companyId) in D:\ANCL\CLibrary\Controller\AddItemController.cs:line 485
+   at BiddingSystem.CreatePR_V2.GetItems(Int32 CategoryId, Int32 SubCategoryId, Int32 ItemType) in D:\ANCL\BiddingSystem\CreatePR_V2.aspx.cs:line 272
+ClientConnectionId:ebf41c6b-7f0e-4e62-88aa-04752e0ee421
+Error Number:10054,State:0,Class:20

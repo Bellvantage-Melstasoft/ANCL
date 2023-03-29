@@ -1,0 +1,307 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BiddingAdmin.Master" AutoEventWireup="true" CodeBehind="ViewPrForManualQuotationSubmission.aspx.cs" Inherits="BiddingSystem.ViewPrForManualQuotationSubmission" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentSection" runat="server">
+
+
+    <script src="AdminResources/js/jquery1.8.min.js"></script>
+    <script type="text/javascript">
+        $("[src*=plus]").live("click", function () {
+            $(this).closest("tr").after("<tr><td></td><td colspan = '999'>" + $(this).next().html() + "</td></tr>")
+            $(this).attr("src", "images/minus.png");
+        });
+        $("[src*=minus]").live("click", function () {
+            $(this).attr("src", "images/plus.png");
+            $(this).closest("tr").next().remove();
+        });
+    </script>
+
+    <style type="text/css">
+
+        .ChildGrid td {
+            background-color: #eee !important;
+            color: black;
+            font-size: 10pt;
+            line-height: 200%;
+            text-align: center;
+        }
+
+        .ChildGrid th {
+            color: White;
+            font-size: 10pt;
+            line-height: 200%;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            background-color: #67778e !important;
+            color: white;
+        }
+
+        .ChildGridTwo td {
+            background-color: #dcd4d4 !important;
+            color: black;
+            font-size: 10pt;
+            line-height: 200%;
+            text-align: center;
+        }
+
+        .ChildGridTwo th {
+            color: White;
+            font-size: 10pt;
+            line-height: 200%;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: center;
+            background-color: #56585b !important;
+            color: white;
+        }
+    </style>
+    <script src="AdminResources/js/jquery-1.10.2.min.js"></script>
+    <link href="AppResources/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+
+    <section class="content-header">
+        <h1>
+            Submit Quotation
+            <small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="AdminDashboard.aspx"><i class="fa fa-home"></i> Home</a></li>
+            <li class="active"> Submit Quotation</li>
+        </ol>
+    </section>
+    <br />
+    <form id="Form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <asp:UpdatePanel ID="Updatepanel1" runat="server">
+            <ContentTemplate>
+                <section class="content" style="padding-top:0px">
+                    <div class="box box-info" id="panelPurchaseRequset" runat="server">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Approved Purchase Requests</h3>
+
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <asp:GridView runat="server" ID="gvPurchaseRequest" HeaderStyle-BackColor="#3C8DBC" HeaderStyle-ForeColor="White" DataKeyNames="PrId" GridLines="None" CssClass="table table-responsive" OnRowDataBound="gvPurchaseRequest_RowDataBound"
+                                            AutoGenerateColumns="false" EmptyDataText="No PR Found">
+                                            <Columns>
+
+                                                <asp:TemplateField HeaderText="Bid Item">
+                                                    <ItemTemplate>
+                                                        <img alt="" style="cursor: pointer;margin-top: -6px;" src="images/plus.png" />
+                                                        <asp:Panel ID="pnlBids" runat="server" Style="display: none">
+                                                            <asp:GridView ID="gvBids" runat="server" CssClass="table table-responsive ChildGrid" OnRowDataBound="gvBids_RowDataBound"
+                                                                GridLines="None" AutoGenerateColumns="false" DataKeyNames="BidId" Caption="Bids for Purchase Request">
+                                                                <Columns>
+
+                                                                    <asp:TemplateField>
+                                                                        <ItemTemplate>
+                                                                            <img alt="" style="cursor: pointer;margin-top: -6px;"
+                                                                                src="images/plus.png" />
+                                                                            <asp:Panel ID="pnlBidItems" runat="server"
+                                                                                Style="display: none">
+                                                                                <asp:GridView ID="gvBidItems" runat="server"
+                                                                                    CssClass="table table-responsive ChildGridTwo"
+                                                                                    GridLines="None"
+                                                                                    AutoGenerateColumns="false" Caption="Items in Bid">
+                                                                                    <Columns>
+                                                                                        <asp:BoundField DataField="BiddingItemId"
+                                                                                            HeaderText="BidItemId"
+                                                                                            HeaderStyle-CssClass="hidden"
+                                                                                            ItemStyle-CssClass="hidden" />
+                                                                                        <asp:BoundField DataField="BidId"
+                                                                                            HeaderText="BidItemId"
+                                                                                            HeaderStyle-CssClass="hidden"
+                                                                                            ItemStyle-CssClass="hidden" />
+                                                                                        <asp:BoundField DataField="PrdId"
+                                                                                            HeaderText="PRDId"
+                                                                                            HeaderStyle-CssClass="hidden"
+                                                                                            ItemStyle-CssClass="hidden" />
+                                                                                        <asp:BoundField DataField="CategoryId"
+                                                                                            HeaderText="Item Id"
+                                                                                            HeaderStyle-CssClass="hidden"
+                                                                                            ItemStyle-CssClass="hidden" />
+                                                                                        <asp:BoundField DataField="CategoryName"
+                                                                                            HeaderText="Category Name" />
+                                                                                        <asp:BoundField DataField="SubCategoryId"
+                                                                                            HeaderText="Item Id"
+                                                                                            HeaderStyle-CssClass="hidden"
+                                                                                            ItemStyle-CssClass="hidden" />
+                                                                                        <asp:BoundField DataField="SubCategoryName"
+                                                                                            HeaderText="Sub-Category Name" />
+                                                                                        <asp:BoundField DataField="ItemId"
+                                                                                            HeaderText="Item Id"
+                                                                                            HeaderStyle-CssClass="hidden"
+                                                                                            ItemStyle-CssClass="hidden" />
+                                                                                        <asp:BoundField DataField="ItemName"
+                                                                                            HeaderText="Item Name" />
+                                                                                        <%--<asp:BoundField DataField="Qty"
+                                                                                            HeaderText="Quantity" />--%>
+                                                                                        <asp:TemplateField HeaderText="Quantity">
+                                                                                    <ItemTemplate>
+                                                                                        <asp:label ID="lblInventory"  type="text" runat="server" Text='<%# decimal.Parse(Eval("Qty").ToString()).ToString() + " " + Eval("UnitShortName").ToString() %>'></asp:label>
+                                                                                    </ItemTemplate>
+                                                                                </asp:TemplateField>
+                                                                                        <asp:BoundField DataField="EstimatedPrice"
+                                                                                            HeaderText="Estimated Price (Unit)" />
+
+                                                                                        <%--<asp:TemplateField HeaderText="More Details">
+                                                                                            <ItemTemplate>
+                                                                                                <asp:LinkButton ID="btnMoreBidItemDetails"
+                                                                                                    runat="server" Text="View"
+                                                                                                    OnClick="btnMoreBidItemDetails_Click" />
+                                                                                            </ItemTemplate>
+                                                                                        </asp:TemplateField>--%>
+
+
+                                                                                    </Columns>
+                                                                                </asp:GridView>
+                                                                            </asp:Panel>
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+
+                                                                    <asp:BoundField DataField="BidId" HeaderText="BidId"
+                                                                        HeaderStyle-CssClass="hidden"
+                                                                        ItemStyle-CssClass="hidden" />
+                                                                    <asp:BoundField DataField="PrId" HeaderText="PrId"
+                                                                        HeaderStyle-CssClass="hidden"
+                                                                        ItemStyle-CssClass="hidden" />
+                                                                    <asp:TemplateField HeaderText="Bid Code"
+                                                                        HeaderStyle-HorizontalAlign="Center"
+                                                                        ItemStyle-HorizontalAlign="Center">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label runat="server" Text='<%# "B"+Eval("BidCode").ToString() %>' />
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:BoundField DataField="CreatedUserName"
+                                                                        HeaderText="Created By" />
+                                                                    <asp:BoundField DataField="CreateDate" HeaderText="Created Date"
+                                                                        DataFormatString='<%$ appSettings:datePattern %>' />
+                                                                    <asp:BoundField DataField="StartDate" HeaderText="Start Date"
+                                                                        DataFormatString='<%$ appSettings:datePattern %>' />
+                                                                    <asp:BoundField DataField="EndDate" HeaderText="End Date"
+                                                                        DataFormatString='<%$ appSettings:datePattern %>' />
+                                                                    <asp:TemplateField HeaderText="Bid Opened For">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label runat="server" Text='<%# Eval("BidOpeningPeriod").ToString()+" Days" %>' />
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Bid Type">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label runat="server" Text='<%# Eval("BidOpenType").ToString() =="1" ? "Online":Eval("BidOpenType").ToString() =="2" ? "Manual":"Online & Manual" %>' />
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:TemplateField HeaderText="Bid Status">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label runat="server" Text='<%# Eval("IsApproved").ToString() =="0" ? "Pending":Eval("IsApproved").ToString() =="1" ? "Approved":"Rejected" %>'
+                                                                                ForeColor='<%# Eval("IsApproved").ToString() =="0" ? System.Drawing.Color.DeepSkyBlue:Eval("IsApproved").ToString() =="1" ? System.Drawing.Color.Green:System.Drawing.Color.Red %>' />
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                    <asp:BoundField DataField="ApprovalRemarks"
+                                                                        HeaderText="Remarks" NullDisplayText="-" />
+
+                                                                     <asp:TemplateField HeaderText="Cloned Status">
+                                                                        <ItemTemplate>
+                                                                            <asp:Label ID="Label1" CssClass ="label label-info" runat="server" Text='<%# Eval("IsCloned").ToString() =="1" ? "Cloned":"Not Cloned" %>'></asp:Label>
+                                                                            
+                                                                         </ItemTemplate>
+                                                                    </asp:TemplateField>
+
+                                                                     <asp:BoundField DataField="PurchaseType" HeaderText="Purchase Type"
+                                                                        HeaderStyle-CssClass="hidden"
+                                                                        ItemStyle-CssClass="hidden" />
+                                                                    <asp:TemplateField HeaderText="Action">
+                                                                        <ItemTemplate>
+                                                                            <%--<asp:Button CssClass="btn btn-sm btn-primary" runat="server" ID="lbtnView"
+                                                                                Text="Submit Quotation"  OnClick="btnView_Click" OnClientClick="showLoadingImage(this)">     
+                                                                            </asp:Button>--%>
+                                                                            <asp:Button CssClass="btn btn-sm btn-primary" runat="server" ID="btnSubmit1"
+                                                                                Text="Submit Quotation"  OnClick="btnViewNew_Click" OnClientClick="showLoadingImage(this)">     
+                                                                            </asp:Button>
+                                                                            <asp:Image  runat="server" ID="loadingImage" class="loadingImage hidden"  src="AdminResources/images/Spinner-0.6s-200px.gif" style="max-height: 40px" />
+                                                                        </ItemTemplate>
+                                                                    </asp:TemplateField>
+                                                                </Columns>
+                                                            </asp:GridView>
+                                                        </asp:Panel>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                
+                                                <asp:BoundField DataField="PrId"  HeaderText="PrId" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"/>
+                                                <asp:TemplateField HeaderText="PR Code">
+							                        <ItemTemplate>
+								                        <asp:Label runat="server" Text='<%# "PR-"+Eval("PrCode").ToString() %>'></asp:Label>
+							                        </ItemTemplate>
+						                        </asp:TemplateField>
+                                                <asp:BoundField DataField="PrCategoryId"  HeaderText="PR Category Id" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"/>
+                                                <asp:BoundField DataField="ItemName"  HeaderText="Items"/>
+                                                <%--<asp:BoundField DataField="CreatedDate" HeaderText="Date Of Request"
+                                                    DataFormatString='<%$ appSettings:dateTimePattern %>' />--%>
+                                                <%--<asp:BoundField DataField="RequiredFor" HeaderText="Quotation For" />--%>
+                                                <asp:BoundField DataField="PrCategoryName"  HeaderText="PR Category Name"/>
+                                                 <asp:BoundField DataField="RequiredFor"  HeaderText="Quotation For" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                                                <asp:BoundField DataField="CreatedDate" HeaderText="Created On"
+                                                                             DataFormatString='<%$ appSettings:dateTimePattern %>' />
+                                                <asp:BoundField DataField="CreatedByName"  HeaderText="Created By" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />                   
+                                                 <asp:TemplateField HeaderText="PR Type">
+                                                                         <ItemTemplate>
+                                                                             <asp:Label runat="server" ID="lblprtype" Text='<%#Eval("PrType").ToString()=="1"? "Stock":"Non-Stock"%>' ForeColor='<%#Eval("PrType").ToString()=="1"? System.Drawing.Color.Maroon:System.Drawing.Color.Navy%>'></asp:Label>
+                                                                         </ItemTemplate>
+                                                                </asp:TemplateField>   
+                                                <asp:TemplateField HeaderText="Purchasing Type">
+                                    <ItemTemplate>
+                                        <asp:Label
+                                            runat="server"
+                                            Visible='<%# Eval("PurchaseType").ToString() == "1" ? true : false %>'
+                                            Text="Local" CssClass="label label-warning"/>
+                                        <asp:Label
+                                            runat="server"
+                                            Visible='<%# Eval("PurchaseType").ToString() == "2" ? true : false %>'
+                                            Text="Import" CssClass="label label-success"/>
+                                    </ItemTemplate>
+                                </asp:TemplateField>    
+                                                
+                                                 <asp:BoundField DataField="SubmittedQuotatiionsCount" HeaderText="No Of Quotation Submitted" />
+
+                                                 <asp:TemplateField HeaderText="Expense Type">
+                                    <ItemTemplate>
+                                        <asp:Label
+                                            runat="server"
+                                            Visible='<%# Eval("ExpenseType").ToString() == "1" ? true : false %>'
+                                            Text="Capital Expense" CssClass="label label-warning"/>
+                                        <asp:Label
+                                            runat="server"
+                                            Visible='<%# Eval("ExpenseType").ToString() == "2" ? true : false %>'
+                                            Text="Operational Expense" CssClass="label label-success"/>
+                                    </ItemTemplate>
+                                </asp:TemplateField>       
+                                                
+                                            </Columns>
+                                        </asp:GridView>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </section>
+            </ContentTemplate>
+           
+        </asp:UpdatePanel>
+    </form>
+
+    <script type="text/javascript">
+        function showLoadingImage(obj) {
+            $(obj).parent().find("img").removeClass("hidden")
+        }
+    </script>
+</asp:Content>
