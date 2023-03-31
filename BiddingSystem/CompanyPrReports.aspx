@@ -193,8 +193,8 @@
                                     <%--<select id="ddlPRType" class="form-control select2" onchange="loadItem();">--%>
                                     <asp:DropDownList ID="ddlPRType" runat="server" class="form-control select2">
                                         <asp:ListItem Value="">-Please Select-</asp:ListItem>
-                                        <asp:ListItem Value="0">Stock</asp:ListItem>
-                                        <asp:ListItem Value="1">>Non-Stock</asp:ListItem>
+                                        <asp:ListItem Value="1">Stock</asp:ListItem>
+                                        <asp:ListItem Value="2">Non-Stock</asp:ListItem>
 
                                     </asp:DropDownList>
                                 </div>
@@ -207,13 +207,23 @@
                                     <asp:DropDownList ID="ddlPurchasingType" runat="server" class="form-control select2">
                                         <asp:ListItem Value="">-Please Select-</asp:ListItem>
                                         <asp:ListItem Value="0">Local</asp:ListItem>
-                                        <asp:ListItem Value="1">>Import</asp:ListItem>
+                                        <asp:ListItem Value="1">Import</asp:ListItem>
 
                                     </asp:DropDownList>
 
                                 </div>
                             </div>
                         </div>
+
+                        <%--Button search--%>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-info" Text="Search" OnClick="btnSearch_Click" />
+                                <asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" OnClick="btnSearchAll_Click" Text="Get All" />
+
+                            </div>
+                        </div>
+
 
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -267,10 +277,24 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Status">
                                                         <ItemTemplate>
-                                                            <asp:Label runat="server" ID="llSt" Text='<%#Eval("StatusName") == null ? "":Eval("StatusName").ToString()%>' CssClass="label label-info"></asp:Label>
+                                                            <%--                                                            <asp:Label runat="server" ID="llSt" Text='<%#Eval("StatusName") == null ? "":Eval("StatusName").ToString()%>' CssClass="label label-info"></asp:Label>--%>
+                                                            <itemtemplate>
+                                                                <asp:Label
+                                                                    runat="server"
+                                                                    Visible='<%# Eval("IsPrApproved").ToString() == "0" ? true : false %>'
+                                                                    Text="Pending" CssClass="label label-warning" />
+                                                                <asp:Label
+                                                                    runat="server"
+                                                                    Visible='<%# Eval("IsPrApproved").ToString() == "1" ? true : false %>'
+                                                                    Text="APPROVED" CssClass="label label-success" />
+                                                                <asp:Label
+                                                                    runat="server"
+                                                                    Visible='<%# Eval("IsPrApproved").ToString() == "2" ? true : false %>'
+                                                                    Text="Rejected" CssClass="label label-danger" />
+                                                            </itemtemplate>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Action">
                                                         <ItemTemplate>
                                                             <asp:LinkButton runat="server" ID="lbtnView" Text="View" OnClick="btnView_Click"></asp:LinkButton>
                                                         </ItemTemplate>
