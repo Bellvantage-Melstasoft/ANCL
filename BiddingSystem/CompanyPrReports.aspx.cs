@@ -13,9 +13,9 @@ namespace BiddingSystem
 {
     public partial class CompanyPrReports : System.Web.UI.Page
     {
-       
-       // static string UserId = string.Empty;
-     //   int CompanyId = 0;
+
+        // static string UserId = string.Empty;
+        //   int CompanyId = 0;
         CompanyLoginController companyLoginController = ControllerFactory.CreateCompanyLoginController();
         PR_MasterController pr_MasterController = ControllerFactory.CreatePR_MasterController();
         CompanyUserAccessController companyUserAccessController = ControllerFactory.CreateCompanyUserAccessController();
@@ -29,10 +29,10 @@ namespace BiddingSystem
 
             if (Session["CompanyId"] != null && Session["UserId"].ToString() != null)
             {
-              //  CompanyId = int.Parse(Session["CompanyId"].ToString());
-              //  UserId = Session["UserId"].ToString();
+                //  CompanyId = int.Parse(Session["CompanyId"].ToString());
+                //  UserId = Session["UserId"].ToString();
                 CompanyLogin companyLogin = companyLoginController.GetUserbyuserId(int.Parse(Session["UserId"].ToString()));
-                if ((!companyUserAccessController.isAvilableAccess(int.Parse(Session["UserId"].ToString()), int.Parse(Session["CompanyId"].ToString()), 8, 1) && companyLogin.Usertype != "S") &&  companyLogin.Usertype != "GA")
+                if ((!companyUserAccessController.isAvilableAccess(int.Parse(Session["UserId"].ToString()), int.Parse(Session["CompanyId"].ToString()), 8, 1) && companyLogin.Usertype != "S") && companyLogin.Usertype != "GA")
                 {
                     Response.Redirect("AdminDashboard.aspx");
                 }
@@ -51,6 +51,8 @@ namespace BiddingSystem
                         //pr_Master = pr_MasterController.FetchApprovePRDataByDeptIdReports(int.Parse(Session["CompanyId"].ToString())).OrderByDescending(x => x.PrId).ToList();
                         //gvPurchaseRequest.DataSource = pr_Master;
                         //gvPurchaseRequest.DataBind();
+
+                        BindDataDropDown();
                     }
                     catch (Exception ex)
                     {
@@ -58,6 +60,15 @@ namespace BiddingSystem
                     }
                 }
             }
+        }
+
+        private void BindDataDropDown()
+        {
+            List<SubDepartment> departments = new List<SubDepartment>();
+            SubDepartmentControllerInterface subDepartmentController = ControllerFactory.CreateSubDepartmentController();
+
+            //departments = subDepartmentController.;
+
         }
 
         protected void btnPoCodeSearch_Click(object sender, EventArgs e)
@@ -70,7 +81,8 @@ namespace BiddingSystem
                 //string prCode = txtPoCode.Text;
                 //List<PR_Master> pr_Master = new List<PR_Master>();
                 //pr_Master = pr_MasterController.FetchApprovePRDataByDeptIdReports(int.Parse(Session["CompanyId"].ToString())).Where(x => x.PrCode.Contains(prCode)).ToList();
-                if (txtPoCode.Text != "") {
+                if (txtPoCode.Text != "")
+                {
                     //string newString = Regex.Replace(txtPoCode.Text, "[^.0-9]", "");
                     //int PrCode = int.Parse(newString);
                     string PrCode = txtPoCode.Text;
@@ -107,7 +119,7 @@ namespace BiddingSystem
         {
             try
             {
-              //  ddlStatus.SelectedIndex = 0;
+                //  ddlStatus.SelectedIndex = 0;
                 txtPoCode.Text = "";
                 //  string status = ddlStatus.SelectedValue;
                 //List<PR_Master> prMasterListByDepartmentid = new List<PR_Master>();
@@ -116,13 +128,14 @@ namespace BiddingSystem
                 //gvPurchaseRequest.DataBind();
                 //ScriptManager.RegisterClientScriptBlock(Updatepanel1, this.Updatepanel1.GetType(), "none", "<script>   $(document).ready(function () {  $('#ContentSection_txtStartDate').attr('data-date', moment($('#ContentSection_txtStartDate').val(), 'YYYY-MM-DD').format($('#ContentSection_txtStartDate').attr('data-date-format')));$('#ContentSection_txtEndDate').attr('data-date', moment($('#ContentSection_txtEndDate').val(), 'YYYY-MM-DD').format($('#ContentSection_txtEndDate').attr('data-date-format'))); });   </script>", false);
 
-                if (txtStartDate.Text != "" && txtEndDate.Text != "") {
+                if (txtStartDate.Text != "" && txtEndDate.Text != "")
+                {
                     List<PrMasterV2> pr_Master = pr_MasterController.FetchPrByDate(int.Parse(Session["CompanyId"].ToString()), DateTime.Parse(txtEndDate.Text), DateTime.Parse(txtStartDate.Text));
 
                     gvPurchaseRequest.DataSource = pr_Master;
                     gvPurchaseRequest.DataBind();
                 }
-                }
+            }
             catch (Exception ex)
             {
                 throw ex;

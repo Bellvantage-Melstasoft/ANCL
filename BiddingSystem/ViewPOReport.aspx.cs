@@ -8,9 +8,7 @@ using CLibrary.Controller;
 using CLibrary.Common;
 using CLibrary.Domain;
 using System.IO;
-using iTextSharp.text;
-using iTextSharp.text.html.simpleparser;
-using iTextSharp.text.pdf;
+
 using System.Data;
 
 namespace BiddingSystem
@@ -28,21 +26,21 @@ namespace BiddingSystem
         CompanyLoginController companyLoginController = ControllerFactory.CreateCompanyLoginController();
         QuotationImageController quotationImageController = ControllerFactory.CreateQuotationImageController();
         SupplierBiddingFileUploadController supplierBiddingFileUploadController = ControllerFactory.CreateSupplierBiddingFileUploadController();
-      
 
-       // static string UserId = string.Empty;
-       // private string PRId = string.Empty;
 
-       // private string UserDept = string.Empty;
-      //  private string OurRef = string.Empty;
-       // private string PrCode = string.Empty;
-       // private string RequestedDate = string.Empty;
-      //  private string UserRef = string.Empty;
-       // private string RequesterName = string.Empty;
-       // private int basePr = 0;
+        // static string UserId = string.Empty;
+        // private string PRId = string.Empty;
+
+        // private string UserDept = string.Empty;
+        //  private string OurRef = string.Empty;
+        // private string PrCode = string.Empty;
+        // private string RequestedDate = string.Empty;
+        //  private string UserRef = string.Empty;
+        // private string RequesterName = string.Empty;
+        // private int basePr = 0;
         //int CompanyId = 0;
-       // int PoId = 0;
-      //  static int quationid = 0;
+        // int PoId = 0;
+        //  static int quationid = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["CompanyId"] != null && Session["UserId"].ToString() != null)
@@ -52,8 +50,8 @@ namespace BiddingSystem
                 //((BiddingAdmin)Page.Master).subTabValue = "CustomerApprovePO.aspx";
                 ((BiddingAdmin)Page.Master).subTabId = "ApprovePOLink";
 
-               // CompanyId = int.Parse(Session["CompanyId"].ToString());
-               // UserId = Session["UserId"].ToString();
+                // CompanyId = int.Parse(Session["CompanyId"].ToString());
+                // UserId = Session["UserId"].ToString();
                 CompanyLogin companyLogin = companyLoginController.GetUserbyuserId(int.Parse(Session["UserId"].ToString()));
 
                 if ((!companyUserAccessController.isAvilableAccess(int.Parse(Session["UserId"].ToString()), int.Parse(Session["CompanyId"].ToString()), 6, 7) && companyLogin.Usertype != "S") && companyLogin.Usertype != "GA")
@@ -61,7 +59,8 @@ namespace BiddingSystem
                     Response.Redirect("AdminDashboard.aspx");
                 }
 
-                if (Session["PoId"] != null) {
+                if (Session["PoId"] != null)
+                {
                     ViewState["PoId"] = int.Parse(Session["PoId"].ToString());
                 }
                 else
@@ -73,7 +72,7 @@ namespace BiddingSystem
             {
                 Response.Redirect("LoginPage.aspx");
             }
-           
+
             if (!IsPostBack)
             {
                 try
@@ -93,7 +92,7 @@ namespace BiddingSystem
                     foreach (PODetails item in pOMaster._PODetails)
                     {
                         item.supplierQuotationItem = supplierQuotationController.GetQuotationItemsByQuotationItemId(item.QuotationItemId);
-                    }                    
+                    }
                     //gvPurchaseOrderItems.DataSource = pOMaster._PODetails;
                     //gvPurchaseOrderItems.DataBind();
                     //
@@ -113,59 +112,70 @@ namespace BiddingSystem
                     lblWarehouseContact.Text = pOMaster._Warehouse.PhoneNo;
                     lblPurchasingType.Text = pOMaster.PurchaseType == 1 ? "Local" : "Import";
                     lblPO.Text = pOMaster.POCode;
-                    lblPrCode.Text = "PR-"+ pr_MasterController.FetchApprovePRDataByPRId(int.Parse(ViewState["basePr"].ToString())).PrCode;
+                    lblPrCode.Text = "PR-" + pr_MasterController.FetchApprovePRDataByPRId(int.Parse(ViewState["basePr"].ToString())).PrCode;
                     //lblQuotationFor.Text = pOMaster.Description;
                     //lblSK.Text = pOMaster.StoreKeeperName;
                     lblDate.Text = LocalTime.Today.ToString(System.Configuration.ConfigurationSettings.AppSettings["datePatternBackend"]);
 
-                    if (pOMaster.PurchaseType == 2) {
-                        if (pOMaster.ImportItemType == 2) {
+                    if (pOMaster.PurchaseType == 2)
+                    {
+                        if (pOMaster.ImportItemType == 2)
+                        {
                             gvPoItems.Columns[20].Visible = false;
                         }
                     }
 
-                    if (pOMaster.PurchaseType == 1) {
+                    if (pOMaster.PurchaseType == 1)
+                    {
                         gvPoItems.Columns[19].Visible = false;
                         gvPoItems.Columns[20].Visible = false;
                     }
-                    if (pOMaster.PurchaseType == 2) {
+                    if (pOMaster.PurchaseType == 2)
+                    {
                         gvPoItems.Columns[16].Visible = false;
                     }
-                    if (pOMaster.IsApproved == 0) {
+                    if (pOMaster.IsApproved == 0)
+                    {
                         lblPending.Visible = true;
                     }
-                    else if (pOMaster.IsApproved == 1) {
+                    else if (pOMaster.IsApproved == 1)
+                    {
                         lblApproved.Visible = true;
                     }
-                    else {
+                    else
+                    {
                         lblRejected.Visible = true;
                     }
 
-                    if (pOMaster.IsDerived == 0) {
+                    if (pOMaster.IsDerived == 0)
+                    {
                         lblGeneral.Visible = true;
                     }
-                    else if (pOMaster.IsDerived == 1 && pOMaster.IsDerivedType == 1) {
+                    else if (pOMaster.IsDerived == 1 && pOMaster.IsDerivedType == 1)
+                    {
                         lblModified.Visible = true;
                     }
-                    else {
+                    else
+                    {
                         lblCovering.Visible = true;
                     }
 
-                    
+
 
                     //tdSubTotal.InnerHtml = pOMaster._PODetails.Sum(pd => pd.SubTotal).ToString("N2");
                     ////tdNbt.InnerHtml = pOMaster.NBTAmount.ToString("N2");
                     //tdVat.InnerHtml = pOMaster.VatAmount.ToString("N2");
                     //tdNetTotal.InnerHtml = pOMaster.TotalAmount.ToString("N2");
 
-                    
-                    if (pOMaster.PurchaseType == 2) {
+
+                    if (pOMaster.PurchaseType == 2)
+                    {
                         PanenImports.Visible = true;
                         pnlLogo.Visible = true;
-                       
+
                         lblCurrency.Text = ImportDetails.CurrencyShortname;
-                    //lblPriceTerms.Text = ImportDetails.TermName;
-                    lblPaymentMode.Text = ImportDetails.PaymentMode;
+                        //lblPriceTerms.Text = ImportDetails.TermName;
+                        lblPaymentMode.Text = ImportDetails.PaymentMode;
                     }
 
 
@@ -179,7 +189,8 @@ namespace BiddingSystem
                     else
                         imgCreatedBySignature.ImageUrl = "UserSignature/NoSign.jpg";
 
-                    if (pOMaster.IsApproved != 0) {
+                    if (pOMaster.IsApproved != 0)
+                    {
                         pnlApprovedBy.Visible = true;
                         //lblApprovedByName.Text = pOMaster.ApprovedByName;
                         lblApprovedByDesignation.Text = pOMaster.ApprovedDesignationName;
@@ -191,15 +202,18 @@ namespace BiddingSystem
                             imgApprovedBySignature.ImageUrl = "UserSignature/NoSign.jpg";
                     }
 
-                    if (pOMaster.IsApproved == 1) {
+                    if (pOMaster.IsApproved == 1)
+                    {
                         lblApprovalText.InnerHtml = "Approved By";
                     }
-                    else if (pOMaster.IsApproved == 2) {
+                    else if (pOMaster.IsApproved == 2)
+                    {
                         lblApprovalText.InnerHtml = "Rejected By";
                     }
 
-                    
-                    if (pOMaster.IsDerived == 1 && pOMaster.IsApprovedByParentApprovedUser != 0 && pOMaster.ParentApprovedByName != "" && pOMaster.ParentApprovedByName != null) {
+
+                    if (pOMaster.IsDerived == 1 && pOMaster.IsApprovedByParentApprovedUser != 0 && pOMaster.ParentApprovedByName != "" && pOMaster.ParentApprovedByName != null)
+                    {
                         pnlParentApprovedByDetails.Visible = true;
                         lblParentApprovalRemarks.Text = pOMaster.ParentApprovedUserApprovalRemarks;
                         //lblParentApprovedByName.Text = pOMaster.ParentApprovedByName;
@@ -212,13 +226,15 @@ namespace BiddingSystem
                             imgParentApprovedBySignature.ImageUrl = "UserSignature/NoSign.jpg";
                     }
 
-                    if (pOMaster.IsDerived == 1 && pOMaster.IsApprovedByParentApprovedUser == 1 && pOMaster.ParentApprovedByName != "" && pOMaster.ParentApprovedByName != null) {
+                    if (pOMaster.IsDerived == 1 && pOMaster.IsApprovedByParentApprovedUser == 1 && pOMaster.ParentApprovedByName != "" && pOMaster.ParentApprovedByName != null)
+                    {
                         lblParentApprovalText.InnerHtml = "Parent Approved User: APPROVED";
                     }
-                    else if (pOMaster.IsDerived == 1 && pOMaster.IsApprovedByParentApprovedUser == 2 && pOMaster.ParentApprovedByName != "" && pOMaster.ParentApprovedByName != null) {
+                    else if (pOMaster.IsDerived == 1 && pOMaster.IsApprovedByParentApprovedUser == 2 && pOMaster.ParentApprovedByName != "" && pOMaster.ParentApprovedByName != null)
+                    {
                         lblParentApprovalText.InnerHtml = "Parent Approved User: REJECTED";
                     }
-                    
+
                     //gvPoItems.DataSource = pOMaster._PODetails;
                     //gvPoItems.DataBind();
 
@@ -226,15 +242,19 @@ namespace BiddingSystem
                     string VarSupplierAgentName = "";
                     decimal Total = 0;
 
-                    for (int i = 0; i < pOMaster._PODetails.Count; i++) {
+                    for (int i = 0; i < pOMaster._PODetails.Count; i++)
+                    {
                         VarPoPurchaseType = pOMaster._PODetails[i].PoPurchaseType;
                         VarSupplierAgentName = pOMaster._PODetails[i].SupplierAgentName;
-                        if (pOMaster.PurchaseType == 2) {
-                            if (pOMaster._PODetails[i].PoPurchaseType == 1) {
+                        if (pOMaster.PurchaseType == 2)
+                        {
+                            if (pOMaster._PODetails[i].PoPurchaseType == 1)
+                            {
                                 PanenImports.Visible = false;
                                 pnlLogo.Visible = false;
                             }
-                            if (pOMaster._PODetails[i].PoPurchaseType == 2) {
+                            if (pOMaster._PODetails[i].PoPurchaseType == 2)
+                            {
 
                                 pOMaster._PODetails[i].SubTotal = pOMaster._PODetails[i].UnitPriceForeign * pOMaster._PODetails[i].Quantity;
                                 pOMaster._PODetails[i].VatAmount = 0;
@@ -245,11 +265,14 @@ namespace BiddingSystem
                             }
                         }
                     }
-                    if (pOMaster.PaymentMethod != null && pOMaster.PaymentMethod != "") {
-                        if (VarPoPurchaseType == 1) {
+                    if (pOMaster.PaymentMethod != null && pOMaster.PaymentMethod != "")
+                    {
+                        if (VarPoPurchaseType == 1)
+                        {
                             lblPaymentType.Text = pOMaster.PaymentMethod == "1" ? "Cash Payment" : pOMaster.PaymentMethod == "2" ? "Cheque Payment" : pOMaster.PaymentMethod == "3" ? "Credit Payment" : pOMaster.PaymentMethod == "4" ? "Advance Payment" : "-";
                         }
-                        else if (VarPoPurchaseType == 2) {
+                        else if (VarPoPurchaseType == 2)
+                        {
                             lblPaymentType.Text = pOMaster.PaymentMethod == "1" ? "Advance" : pOMaster.PaymentMethod == "2" ? "On Arrival" : pOMaster.PaymentMethod == "3" ? "LC at sight" : pOMaster.PaymentMethod == "4" ? "L/C usance" : pOMaster.PaymentMethod == "5" ? "D/A" : pOMaster.PaymentMethod == "6" ? "D/P" : "-";
 
                         }
@@ -273,28 +296,34 @@ namespace BiddingSystem
             }
         }
 
-        protected void gvPOItems_RowDataBound(object sender, GridViewRowEventArgs e) {
-            if (e.Row.RowType == DataControlRowType.Header) {
-                if (ViewState["PurchaseType"].ToString() != "2") {
+        protected void gvPOItems_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                if (ViewState["PurchaseType"].ToString() != "2")
+                {
 
                     e.Row.Cells[5].CssClass = "hidden";
                 }
             }
 
-            if (e.Row.RowType == DataControlRowType.DataRow) {
-                if (ViewState["PurchaseType"].ToString() != "2") {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (ViewState["PurchaseType"].ToString() != "2")
+                {
 
                     e.Row.Cells[5].CssClass = "hidden";
                 }
             }
         }
-        
 
-       
-        
-        protected void btnTerminated_Click(object sender, EventArgs e) {
+
+
+
+        protected void btnTerminated_Click(object sender, EventArgs e)
+        {
             int podId = int.Parse(((sender as LinkButton).NamingContainer as GridViewRow).Cells[0].Text);
-            
+
             gvTerminatedDetails.DataSource = pODetailsController.TerminatedPO(podId);
             gvTerminatedDetails.DataBind();
 
@@ -302,13 +331,14 @@ namespace BiddingSystem
 
         }
 
-        protected void btnPrint_Click(object sender, EventArgs e) {
+        protected void btnPrint_Click(object sender, EventArgs e)
+        {
 
             ControllerFactory.CreatePOMasterController().UpdatePrintCount(int.Parse(HttpContext.Current.Request.QueryString.Get("PoId")));
             ScriptManager.RegisterClientScriptBlock(Updatepanel1, this.Updatepanel1.GetType(), "none", "<script>    $(document).ready(function () { var printWindow = window.open('ViewPOForPrint.aspx?PoId=" + HttpContext.Current.Request.QueryString.Get("PoId") + "'); printWindow.print(); printWindow.onafterprint = window.close; });   </script>", false);
         }
 
-       
+
 
         public class POSubmitted
         {
@@ -414,7 +444,7 @@ namespace BiddingSystem
         protected void btnViewAttachments_Click(object sender, EventArgs e)
         {
 
-           
+
             var qutaion = supplierQuotationController.GetSupplierQuotationbyQutationId(int.Parse(ViewState["quationid"].ToString()));
 
             gvDocs.DataSource = supplierBiddingFileUploadController.GetFilesByQuotationId(int.Parse(ViewState["quationid"].ToString()));
