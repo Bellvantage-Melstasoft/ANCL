@@ -4,11 +4,14 @@ using System.Linq;
 using System.Text;
 using CLibrary.Common;
 
-namespace CLibrary.Domain {
-    public class MrnDetailsV2 {
+namespace CLibrary.Domain
+{
+    [Serializable]
+    public class MrnDetailsV2
+    {
 
         private int measurementId;
-        
+
         [DBField("MRND_ID")]
         public int MrndId { get; set; }
         [DBField("MRN_ID")]
@@ -63,7 +66,7 @@ namespace CLibrary.Domain {
         [DBField("STATUS_NAME")]
         public string StatusName { get; set; }
 
-        
+
 
 
         [DBField("WAREHOUSE_ID")]
@@ -91,7 +94,7 @@ namespace CLibrary.Domain {
         /// </summary>
         public int Todo { get; set; }
 
-       
+
 
         public List<MrnBomV2> MrnBoms { get; set; }
         public List<MrnFileUploadV2> MrnFileUploads { get; set; }

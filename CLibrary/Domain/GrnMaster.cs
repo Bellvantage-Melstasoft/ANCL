@@ -7,13 +7,15 @@ using CLibrary.Domain;
 
 namespace CLibrary.Domain
 {
-   public class GrnMaster
+    [Serializable]
+
+    public class GrnMaster
     {
         private int grnId;
         private int poId;
         private int supplierid;
         private DateTime goodReceivedDate;
-        private decimal  totalAmount;
+        private decimal totalAmount;
         private string createdBy;
         private DateTime createdDate;
         private string grnNote;
@@ -23,7 +25,7 @@ namespace CLibrary.Domain
         private int companyId;
         private decimal totalNbt;
         private decimal totalVat;
-        private string quotationFor,approvalremaks;
+        private string quotationFor, approvalremaks;
 
 
 

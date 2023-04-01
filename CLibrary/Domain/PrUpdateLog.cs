@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using CLibrary.Common;
 
-namespace CLibrary.Domain {
-    public class PrUpdateLog {
+namespace CLibrary.Domain
+{
+    [Serializable]
+    public class PrUpdateLog
+    {
         [DBField("PR_ID")]
         public int PrId { get; set; }
         [DBField("UPDATED_BY")]

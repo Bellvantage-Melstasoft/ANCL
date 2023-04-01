@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using CLibrary.Common;
 
-namespace CLibrary.Domain {
-    public class PrDetailsV2 {
+namespace CLibrary.Domain
+{
+    [Serializable]
+    public class PrDetailsV2
+    {
         [DBField("PRD_ID")]
         public int PrdId { get; set; }
         [DBField("PR_ID")]
@@ -49,7 +52,7 @@ namespace CLibrary.Domain {
         public DateTime TerminatedOn { get; set; }
         [DBField("TERMINATION_REMARKS")]
         public string TerminationRemarks { get; set; }
-       
+
         [DBField("EXPECTED_DATE")]
         public DateTime ExpectedDate { get; set; }
         [DBField("IS_ACTIVE")]
@@ -113,7 +116,7 @@ namespace CLibrary.Domain {
 
         [DBField("STATUS_NAME")]
         public string StatusName { get; set; }
-        
+
 
         [DBField("DETAIL_ID_ITEM")]
         public int DetailIdWHItem { get; set; }
@@ -139,7 +142,7 @@ namespace CLibrary.Domain {
         [DBField("SPARE_PART_NUMBER")]
         public string SparePartNo { get; set; }
 
-       
+
         [DBField("PURCHASE_TYPE")]
         public int PurchaseType { get; set; }
 

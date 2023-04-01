@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using CLibrary.Common;
 
-namespace CLibrary.Domain {
-    public class PrMasterV2 {
+namespace CLibrary.Domain
+{
+    [Serializable]
+    public class PrMasterV2
+    {
         [DBField("PR_ID")]
         public int PrId { get; set; }
         [DBField("PR_CODE")]
@@ -94,8 +97,8 @@ namespace CLibrary.Domain {
         public int IsClone { get; set; }
         [DBField("APPROVED_BY_NAME")]
         public string ApprovedByName { get; set; }
-        
-       
+
+
         [DBField("IS_ACTIVE")]
         public int IsActive { get; set; }
         [DBField("STORE_KEEPER_ID")]
@@ -129,7 +132,7 @@ namespace CLibrary.Domain {
         public string TerminatedSignature { get; set; }
         [DBField("CREATED_DATETIME")]
         public DateTime CreatedDateTime { get; set; }
-        
+
 
         [DBField("UPDATED_DATETIME")]
         public DateTime UpdatedDateTime { get; set; }
@@ -161,7 +164,7 @@ namespace CLibrary.Domain {
         public List<PrUpdateLog> PrUpdateLogs { get; set; }
         public Warehouse Warehouse { get; set; }
         public List<Bidding> Bids { get; set; }
-        
+
         public SubDepartment SubDepartment { get; set; }
         public MrnMasterV2 MrnMaster { get; set; }
         public PrDetailsV2 PrDetail { get; set; }

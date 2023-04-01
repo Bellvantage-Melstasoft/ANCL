@@ -104,6 +104,8 @@ namespace BiddingSystem
                     string PrCode = txtPoCode.Text;
                     List<PrMasterV2> pr_Master = pr_MasterController.FetchPrByPrCode(int.Parse(Session["CompanyId"].ToString()), PrCode);
 
+                    ViewState["pr_Master"] = pr_Master;
+
                     gvPurchaseRequest.DataSource = pr_Master;
                     gvPurchaseRequest.DataBind();
                 }
@@ -147,7 +149,7 @@ namespace BiddingSystem
                 if (txtStartDate.Text != "" && txtEndDate.Text != "")
                 {
                     List<PrMasterV2> pr_Master = pr_MasterController.FetchPrByDate(int.Parse(Session["CompanyId"].ToString()), DateTime.Parse(txtEndDate.Text), DateTime.Parse(txtStartDate.Text));
-
+                    ViewState["pr_Master"] = pr_Master;
                     gvPurchaseRequest.DataSource = pr_Master;
                     gvPurchaseRequest.DataBind();
                 }
@@ -186,35 +188,114 @@ namespace BiddingSystem
         {
             List<PrMasterV2> pr_Master = new List<PrMasterV2>();
             List<PrMasterV2> pr_Master2 = new List<PrMasterV2>();
-            //pr_Master = pr_MasterController.FetchPrALl();
+            pr_Master = pr_MasterController.FetchPrALl();
+
+            ViewState["pr_Master"] = pr_Master;
 
             //pr_Master2 = pr_Master.Where(x => x.PrCode == txtPoCode.Text && x.PurchaseType == Convert.ToInt32(ddlPurchasingType.SelectedValue) && x.IsPrApproved == Convert.ToInt32(ddlStatus.SelectedValue)).ToList();
 
 
             //pr_Master2 = pr_Master2.Where(x => x.PrType == Convert.ToInt32(ddlPRType.SelectedValue) && x.CreatedDate <= DateTime.Parse(txtEndDate.Text) && x.CreatedDate >= DateTime.Parse(txtStartDate.Text)).ToList();
 
-            if (txtPoCode.Text != "" && txtStartDate.Text != "" && txtEndDate.Text != "" && ddlPRType.SelectedValue != "" && ddlPurchasingType.SelectedValue != "" && ddlStatus.SelectedValue != "")
+            //if (txtPoCode.Text != "" && txtStartDate.Text != "" && txtEndDate.Text != "" && ddlPRType.SelectedValue != "" && ddlPurchasingType.SelectedValue != "" && ddlStatus.SelectedValue != "")
+            //{
+            //    pr_Master2 = pr_Master.Where(x => x.PrCode == txtPoCode.Text && x.CreatedDate <= DateTime.Parse(txtEndDate.Text) && x.CreatedDate >= DateTime.Parse(txtStartDate.Text) && x.PrType == Convert.ToInt32(ddlPRType.SelectedValue) && x.PurchaseType == Convert.ToInt32(ddlPurchasingType.SelectedValue) && x.IsPrApproved == Convert.ToInt32(ddlStatus.SelectedValue)).ToList();
+
+            //}
+            //else if (txtPoCode.Text != "" && txtStartDate.Text != "" && txtEndDate.Text != "" && ddlPRType.SelectedValue != "" && ddlPurchasingType.SelectedValue != "" && ddlStatus.SelectedValue == "")
+            //{
+            //    pr_Master2 = pr_Master.Where(x => x.PrCode == txtPoCode.Text && x.CreatedDate <= DateTime.Parse(txtEndDate.Text) && x.CreatedDate >= DateTime.Parse(txtStartDate.Text) && x.PrType == Convert.ToInt32(ddlPRType.SelectedValue) && x.PurchaseType == Convert.ToInt32(ddlPurchasingType.SelectedValue)).ToList();
+
+            //}
+            //else if (txtPoCode.Text != "" && txtStartDate.Text != "" && txtEndDate.Text != "" && ddlPRType.SelectedValue != "" && ddlPurchasingType.SelectedValue == "" && ddlStatus.SelectedValue == "")
+            //{
+            //    pr_Master2 = pr_Master.Where(x => x.PrCode == txtPoCode.Text && x.CreatedDate <= DateTime.Parse(txtEndDate.Text) && x.CreatedDate >= DateTime.Parse(txtStartDate.Text) && x.PrType == Convert.ToInt32(ddlPRType.SelectedValue)).ToList();
+
+            //}
+            //else if (txtPoCode.Text != "" && txtStartDate.Text != "" && txtEndDate.Text != "" && ddlPRType.SelectedValue == "" && ddlPurchasingType.SelectedValue == "" && ddlStatus.SelectedValue == "")
+            //{
+            //    pr_Master2 = pr_Master.Where(x => x.PrCode == txtPoCode.Text && x.CreatedDate <= DateTime.Parse(txtEndDate.Text) && x.CreatedDate >= DateTime.Parse(txtStartDate.Text)).ToList();
+
+            //}
+
+            gvPurchaseRequest.DataSource = pr_Master;
+            gvPurchaseRequest.DataBind();
+        }
+
+        protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<PrMasterV2> pr_Master = new List<PrMasterV2>();
+            List<PrMasterV2> pr_Master2 = new List<PrMasterV2>();
+            pr_Master = (List<PrMasterV2>)ViewState["pr_Master"];
+            pr_Master = (List<PrMasterV2>)ViewState["pr_Master"];
+            pr_Master2 = (List<PrMasterV2>)ViewState["pr_Master"];
+
+            if (ddlStatus.SelectedValue != "")
             {
-                pr_Master2 = pr_Master.Where(x => x.PrCode == txtPoCode.Text && x.CreatedDate <= DateTime.Parse(txtEndDate.Text) && x.CreatedDate >= DateTime.Parse(txtStartDate.Text) && x.PrType == Convert.ToInt32(ddlPRType.SelectedValue) && x.PurchaseType == Convert.ToInt32(ddlPurchasingType.SelectedValue) && x.IsPrApproved == Convert.ToInt32(ddlStatus.SelectedValue)).ToList();
+                pr_Master = pr_Master.Where(x => x.PrIsApproved == Convert.ToInt32(ddlStatus.SelectedValue)).ToList();
+                ViewState["pr_Master"] = pr_Master;
+                gvPurchaseRequest.DataSource = pr_Master;
 
             }
-            else if (txtPoCode.Text != "" && txtStartDate.Text != "" && txtEndDate.Text != "" && ddlPRType.SelectedValue != "" && ddlPurchasingType.SelectedValue != "" && ddlStatus.SelectedValue == "")
+            else
             {
-                pr_Master2 = pr_Master.Where(x => x.PrCode == txtPoCode.Text && x.CreatedDate <= DateTime.Parse(txtEndDate.Text) && x.CreatedDate >= DateTime.Parse(txtStartDate.Text) && x.PrType == Convert.ToInt32(ddlPRType.SelectedValue) && x.PurchaseType == Convert.ToInt32(ddlPurchasingType.SelectedValue)).ToList();
-
-            }
-            else if (txtPoCode.Text != "" && txtStartDate.Text != "" && txtEndDate.Text != "" && ddlPRType.SelectedValue != "" && ddlPurchasingType.SelectedValue == "" && ddlStatus.SelectedValue == "")
-            {
-                pr_Master2 = pr_Master.Where(x => x.PrCode == txtPoCode.Text && x.CreatedDate <= DateTime.Parse(txtEndDate.Text) && x.CreatedDate >= DateTime.Parse(txtStartDate.Text) && x.PrType == Convert.ToInt32(ddlPRType.SelectedValue)).ToList();
-
-            }
-            else if (txtPoCode.Text != "" && txtStartDate.Text != "" && txtEndDate.Text != "" && ddlPRType.SelectedValue == "" && ddlPurchasingType.SelectedValue == "" && ddlStatus.SelectedValue == "")
-            {
-                pr_Master2 = pr_Master.Where(x => x.PrCode == txtPoCode.Text && x.CreatedDate <= DateTime.Parse(txtEndDate.Text) && x.CreatedDate >= DateTime.Parse(txtStartDate.Text)).ToList();
+                gvPurchaseRequest.DataSource = pr_Master2;
 
             }
 
-            gvPurchaseRequest.DataSource = pr_Master2;
+
+
+            gvPurchaseRequest.DataBind();
+        }
+
+        protected void ddlPRType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<PrMasterV2> pr_Master = new List<PrMasterV2>();
+            List<PrMasterV2> pr_Master2 = new List<PrMasterV2>();
+            pr_Master = (List<PrMasterV2>)ViewState["pr_Master"];
+            pr_Master2 = (List<PrMasterV2>)ViewState["pr_Master"];
+
+            if (ddlPRType.SelectedValue != "")
+            {
+                pr_Master = pr_Master.Where(x => x.PrType == Convert.ToInt32(ddlPRType.SelectedValue)).ToList();
+                ViewState["pr_Master"] = pr_Master;
+                gvPurchaseRequest.DataSource = pr_Master;
+
+            }
+            else
+            {
+                gvPurchaseRequest.DataSource = pr_Master2;
+
+
+            }
+
+
+            gvPurchaseRequest.DataBind();
+        }
+
+        protected void ddlPurchasingType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<PrMasterV2> pr_Master = new List<PrMasterV2>();
+            List<PrMasterV2> pr_Master2 = new List<PrMasterV2>();
+
+            pr_Master = (List<PrMasterV2>)ViewState["pr_Master"];
+            pr_Master2 = (List<PrMasterV2>)ViewState["pr_Master"];
+
+
+            if (ddlPurchasingType.SelectedValue != "")
+            {
+                pr_Master = pr_Master.Where(x => x.PurchaseType == Convert.ToInt32(ddlPurchasingType.SelectedValue)).ToList();
+                ViewState["pr_Master"] = pr_Master;
+                gvPurchaseRequest.DataSource = pr_Master;
+            }
+            else
+            {
+                gvPurchaseRequest.DataSource = pr_Master2;
+
+            }
+
+
+
             gvPurchaseRequest.DataBind();
         }
     }

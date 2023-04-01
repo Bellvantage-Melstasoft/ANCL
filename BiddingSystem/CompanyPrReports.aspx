@@ -110,12 +110,12 @@
                             <div class="col-sm-12">
                                 <div class="col-sm-4">
                                     <label>PR Code</label>
-                                    <%--     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPoCode" ValidationGroup="btnPoCodeSearch" ForeColor="Red">*</asp:RequiredFieldValidator>--%>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPoCode" ValidationGroup="btnPoCodeSearch" ForeColor="Red">*</asp:RequiredFieldValidator>
                                     <asp:TextBox ID="txtPoCode" runat="server" CssClass="form-control" PlaceHolder="LCL1 / IMP1"></asp:TextBox>
-                                    <%--  <span class="input-group-btn">
+                                    <span class="input-group-btn">
                                         <asp:Button runat="server" ID="btnPoCodeSearch" ValidationGroup="btnPoCodeSearch" OnClick="btnPoCodeSearch_Click" CssClass="btn btn-info" Text="Search" />
 
-                                    </span>--%>
+                                    </span>
                                 </div>
 
                                 <%--<div class="col-sm-4">
@@ -136,16 +136,16 @@
 
                                 <div class="col-sm-4">
                                     <label>Date</label>
-                                    <%--                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtStartDate" ValidationGroup="btnPoDateSearch" ForeColor="Red">*</asp:RequiredFieldValidator>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtEndDate" ValidationGroup="btnPoDateSearch" ForeColor="Red">*</asp:RequiredFieldValidator>--%>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtStartDate" ValidationGroup="btnPoDateSearch" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtEndDate" ValidationGroup="btnPoDateSearch" ForeColor="Red">*</asp:RequiredFieldValidator>
                                     <div class="input-group margin">
                                         <asp:TextBox ID="txtStartDate" type="date" runat="server" Width="50%" data-date="" data-date-format="DD MMMM YYYY" CssClass="form-control " placeholder="from"></asp:TextBox>
 
                                         <asp:TextBox ID="txtEndDate" type="date" runat="server" Width="50%" data-date="" data-date-format="DD MMMM YYYY" CssClass="form-control" placeholder="to"></asp:TextBox>
 
-                                        <%-- <span class="input-group-btn">
+                                        <span class="input-group-btn">
                                             <asp:Button runat="server" ID="btnPoDateSearch" ValidationGroup="btnPoDateSearch" OnClick="btnPoDateSearch_Click" CssClass="btn btn-info" Text="Search" />
-                                        </span>--%>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -157,7 +157,7 @@
                                 <div class="form-group">
                                     <label>Status</label>
                                     <div class="input-group margin">
-                                        <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control">
+                                        <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control" AutoPostBack="true" OnSelectedIndexChanged="ddlStatus_SelectedIndexChanged">
                                             <asp:ListItem Value="">-Please Select-</asp:ListItem>
                                             <asp:ListItem Value="0">Pending</asp:ListItem>
                                             <asp:ListItem Value="1">Approved</asp:ListItem>
@@ -191,7 +191,7 @@
                                     <label>PR TYPE</label><span class="required basicRequired">
                                     </span>
                                     <%--<select id="ddlPRType" class="form-control select2" onchange="loadItem();">--%>
-                                    <asp:DropDownList ID="ddlPRType" runat="server" class="form-control select2">
+                                    <asp:DropDownList ID="ddlPRType" runat="server" class="form-control select2" AutoPostBack="true" OnSelectedIndexChanged="ddlPRType_SelectedIndexChanged">
                                         <asp:ListItem Value="">-Please Select-</asp:ListItem>
                                         <asp:ListItem Value="1">Stock</asp:ListItem>
                                         <asp:ListItem Value="2">Non-Stock</asp:ListItem>
@@ -204,10 +204,10 @@
                                 <div class="form-group">
                                     <label>PURCHASING TYPE</label><span
                                         class="required basicRequired"></span>
-                                    <asp:DropDownList ID="ddlPurchasingType" runat="server" class="form-control select2">
+                                    <asp:DropDownList ID="ddlPurchasingType" runat="server" class="form-control select2" AutoPostBack="true" OnSelectedIndexChanged="ddlPurchasingType_SelectedIndexChanged">
                                         <asp:ListItem Value="">-Please Select-</asp:ListItem>
-                                        <asp:ListItem Value="0">Local</asp:ListItem>
-                                        <asp:ListItem Value="1">Import</asp:ListItem>
+                                        <asp:ListItem Value="1">Local</asp:ListItem>
+                                        <asp:ListItem Value="2">Import</asp:ListItem>
 
                                     </asp:DropDownList>
 

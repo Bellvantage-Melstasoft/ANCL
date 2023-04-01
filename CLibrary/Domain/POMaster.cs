@@ -7,6 +7,7 @@ using CLibrary.Domain;
 
 namespace CLibrary.Domain
 {
+    [Serializable]
     public class POMaster
     {
         private int poID;
@@ -26,7 +27,7 @@ namespace CLibrary.Domain
         private int isReceived;
         private string receivedBy;
         private DateTime isApprovedDate;
-        private string paymentMethod,quotationFor;
+        private string paymentMethod, quotationFor;
 
 
         [DBField("PO_IS_CONFIRMED_APPROVAL")]
@@ -315,11 +316,11 @@ namespace CLibrary.Domain
 
         [DBField("PURCHASE_TYPE")]
         public int PurchaseType { get; set; }
-        
+
         public List<POMaster> DerivedFromPOs { get; set; }
         public List<POMaster> DerivedPOs { get; set; }
         public List<GrnMaster> GeneratedGRNs { get; set; }
-        
+
 
         [DBField("SUB_TOTAL")]
         public decimal SubTotal { get; set; }
@@ -339,7 +340,7 @@ namespace CLibrary.Domain
 
         [DBField("IMPORT_ITEM_TYPE")]
         public int ImportItemType { get; set; }
-        
+
 
         [DBField("APPROVED_DESIGNATION_NAME")]
         public string ApprovedDesignationName { get; set; }
@@ -350,7 +351,7 @@ namespace CLibrary.Domain
         [DBField("PARENT_APPROVED_DESIGNATION_NAME")]
         public string ParentApprovedDesignationName { get; set; }
 
-        
+
         [DBField("PURCHASE_PROCEDURE")]
         public int PurchaseProcedure { get; set; }
 
