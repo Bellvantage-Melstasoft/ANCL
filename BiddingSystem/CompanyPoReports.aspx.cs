@@ -134,5 +134,13 @@ namespace BiddingSystem
             ScriptManager.RegisterClientScriptBlock(Updatepanel1, this.Updatepanel1.GetType(), "none", "<script>   $(document).ready(function () {  $('#ContentSection_txtStartDate').attr('data-date', moment($('#ContentSection_txtStartDate').val(), 'YYYY-MM-DD').format($('#ContentSection_txtStartDate').attr('data-date-format')));$('#ContentSection_txtEndDate').attr('data-date', moment($('#ContentSection_txtEndDate').val(), 'YYYY-MM-DD').format($('#ContentSection_txtEndDate').attr('data-date-format'))); });   </script>", false);
         }
 
+        protected void btnSearchAll_Click(object sender, EventArgs e)
+        {
+            List<POMaster> pOMasterList = new List<POMaster>();
+            pOMasterList = pOMasterController.GetAllPOMAster();
+            gvPurchaseOrder.DataSource = pOMasterList;
+            gvPurchaseOrder.DataBind();
+
+        }
     }
 }

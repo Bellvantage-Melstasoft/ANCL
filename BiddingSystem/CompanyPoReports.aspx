@@ -370,73 +370,74 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="col-sm-4">
-                                        <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-info" Text="Search" />
-                                        <asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" Text="Get All" />
+                                    <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-info" Text="Search" />
+                                    <asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" OnClick="btnSearchAll_Click" Text="Get All" />
 
-                    </div>
-                </div>
-                            </div>
 
-                                <div class="box-tools pull-right">
-                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
                                 </div>
-                </div>
-
-                <asp:ScriptManager runat="server"></asp:ScriptManager>
-                            <asp:UpdatePanel ID="Updatepanel1" runat="server">
-                                <ContentTemplate>
-
-                                    <div class="box-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="table-responsive">
-                                                    <asp:GridView runat="server" ID="gvPurchaseOrder" EmptyDataText="No Records Found" GridLines="None" CssClass="table table-responsive"
-                                                        AutoGenerateColumns="false" HeaderStyle-BackColor="#3C8DBC" HeaderStyle-ForeColor="White">
-                                                        <Columns>
-                                                            <asp:BoundField DataField="PoID" HeaderText="PoID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-                                                            <asp:BoundField DataField="POCode" HeaderText="PO Code" />
-                                                            <asp:BoundField DataField="PrCode" HeaderText="PR Code" />
-                                                            <asp:TemplateField HeaderText="Department Name">
-                                                                <ItemTemplate>
-                                                                    <asp:Label runat="server" ID="lbldepartmentName" Text='<%# Eval("subdepartment") ==null?"Stores":Eval("subdepartment") %>'></asp:Label>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:BoundField DataField="Description" HeaderText="Description" />
-                                                            <asp:BoundField DataField="SupplierName" HeaderText="Supplier Name" />
-                                                            <asp:BoundField DataField="CreatedDate" HeaderText="PO Created Date" DataFormatString='<%$ appSettings:dateTimePattern %>' />
-                                                            <asp:BoundField DataField="CreatedBy" HeaderText="PO Created By" />
-                                                            <asp:TemplateField HeaderText="Approval Status">
-                                                                <ItemTemplate>
-                                                                    <asp:Label
-                                                                        runat="server"
-                                                                        Visible='<%# Eval("IsApproved").ToString() == "0" ? true : false %>'
-                                                                        Text="Pending" CssClass="label label-warning" />
-                                                                    <asp:Label
-                                                                        runat="server"
-                                                                        Visible='<%# Eval("IsApproved").ToString() == "1" ? true : false %>'
-                                                                        Text="APPROVED" CssClass="label label-success" />
-                                                                    <asp:Label
-                                                                        runat="server"
-                                                                        Visible='<%# Eval("IsApproved").ToString() == "2" ? true : false %>'
-                                                                        Text="Rejected" CssClass="label label-danger" />
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField>
-                                                                <ItemTemplate>
-                                                                    <asp:LinkButton runat="server" ID="lbtnView" Text="View" OnClick="btnView_Click"></asp:LinkButton>
-                                                                </ItemTemplate>
-                                                            </asp:TemplateField>
-                                                        </Columns>
-                                                    </asp:GridView>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                </ContentTemplate>
-                            </asp:UpdatePanel>
+                            </div>
                         </div>
+
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                        </div>
+                    </div>
+
+                    <asp:ScriptManager runat="server"></asp:ScriptManager>
+                    <asp:UpdatePanel ID="Updatepanel1" runat="server">
+                        <ContentTemplate>
+
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <asp:GridView runat="server" ID="gvPurchaseOrder" EmptyDataText="No Records Found" GridLines="None" CssClass="table table-responsive"
+                                                AutoGenerateColumns="false" HeaderStyle-BackColor="#3C8DBC" HeaderStyle-ForeColor="White">
+                                                <Columns>
+                                                    <asp:BoundField DataField="PoID" HeaderText="PoID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                                                    <asp:BoundField DataField="POCode" HeaderText="PO Code" />
+                                                    <asp:BoundField DataField="PrCode" HeaderText="PR Code" />
+                                                    <asp:TemplateField HeaderText="Department Name">
+                                                        <ItemTemplate>
+                                                            <asp:Label runat="server" ID="lbldepartmentName" Text='<%# Eval("subdepartment") ==null?"Stores":Eval("subdepartment") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:BoundField DataField="Description" HeaderText="Description" />
+                                                    <asp:BoundField DataField="SupplierName" HeaderText="Supplier Name" />
+                                                    <asp:BoundField DataField="CreatedDate" HeaderText="PO Created Date" DataFormatString='<%$ appSettings:dateTimePattern %>' />
+                                                    <asp:BoundField DataField="CreatedBy" HeaderText="PO Created By" />
+                                                    <asp:TemplateField HeaderText="Approval Status">
+                                                        <ItemTemplate>
+                                                            <asp:Label
+                                                                runat="server"
+                                                                Visible='<%# Eval("IsApproved").ToString() == "0" ? true : false %>'
+                                                                Text="Pending" CssClass="label label-warning" />
+                                                            <asp:Label
+                                                                runat="server"
+                                                                Visible='<%# Eval("IsApproved").ToString() == "1" ? true : false %>'
+                                                                Text="APPROVED" CssClass="label label-success" />
+                                                            <asp:Label
+                                                                runat="server"
+                                                                Visible='<%# Eval("IsApproved").ToString() == "2" ? true : false %>'
+                                                                Text="Rejected" CssClass="label label-danger" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField>
+                                                        <ItemTemplate>
+                                                            <asp:LinkButton runat="server" ID="lbtnView" Text="View" OnClick="btnView_Click"></asp:LinkButton>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                            </asp:GridView>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
             </section>
 
 
