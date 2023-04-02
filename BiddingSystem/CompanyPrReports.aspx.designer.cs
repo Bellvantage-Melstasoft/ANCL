@@ -42,15 +42,6 @@ namespace BiddingSystem
         protected global::System.Web.UI.WebControls.TextBox txtPoCode;
 
         /// <summary>
-        /// btnPoCodeSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPoCodeSearch;
-
-        /// <summary>
         /// RequiredFieldValidator2 control.
         /// </summary>
         /// <remarks>
@@ -85,15 +76,6 @@ namespace BiddingSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEndDate;
-
-        /// <summary>
-        /// btnPoDateSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPoDateSearch;
 
         /// <summary>
         /// ddlStatus control.
