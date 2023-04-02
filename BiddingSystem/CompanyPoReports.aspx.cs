@@ -142,5 +142,40 @@ namespace BiddingSystem
             gvPurchaseOrder.DataBind();
 
         }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            List<POMaster> pOMasterList = new List<POMaster>();
+            pOMasterList = pOMasterController.GetAllPOMAster();
+
+            if (ddlStatus.SelectedValue != "")
+            {
+                pOMasterList = pOMasterList.Where(x => x.IsApproved == Convert.ToInt32(ddlStatus.SelectedValue)).ToList();
+
+            }
+            //if (ddlPRType.SelectedValue != "")
+            //{
+            //    pOMasterList = pOMasterList.Where(x => x. == Convert.ToInt32(ddlPRType.SelectedValue)).ToList();
+            //}
+
+            //if (ddlPurchasingType.SelectedValue != "")
+            //{
+            //    pOMasterList = pOMasterList.Where(x => x.PurchaseType == Convert.ToInt32(ddlPurchasingType.SelectedValue)).ToList();
+
+            //}
+
+            //if (txtPoCode.Text != "")
+            //{
+            //    pOMasterList = pOMasterList.Where(x => x.PrCode == txtPoCode.Text).ToList();
+            //}
+
+            if (txtStartDate.Text != "" && txtEndDate.Text != "")
+            {
+                pOMasterList = pOMasterList.Where(x => x.CreatedDate <= DateTime.Parse(txtEndDate.Text) && x.CreatedDate >= DateTime.Parse(txtStartDate.Text)).ToList();
+            }
+
+            gvPurchaseOrder.DataSource = pOMasterList;
+            gvPurchaseOrder.DataBind();
+        }
     }
 }

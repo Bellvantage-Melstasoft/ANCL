@@ -370,7 +370,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="col-sm-4">
-                                    <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-info" Text="Search" />
+                                    <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-info" Text="Search" OnClick="btnSearch_Click" />
                                     <asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" OnClick="btnSearchAll_Click" Text="Get All" />
 
 
