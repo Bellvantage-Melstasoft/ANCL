@@ -14,6 +14,10 @@ namespace CLibrary.Controller
         int SavePOMaster(int departmentid, int prId, int supplierId, DateTime createdDate, string createdBy, decimal vatAmount, decimal nbtAmount, string vatRegNo, string sVatRegNo, decimal totalAmount, int isApproved, string approvedBy, int isReceived, DateTime receivedDate, int BasePr, decimal totalCustomizedAmount, decimal totalCustomizedVat, decimal totalCustomizedNbt, string paymentmethod);
         int SavePOMasterPO(int poId, string pocode, int departmentid, int supplierId, DateTime createdDate, string createdBy, decimal vatAmount, decimal nbtAmount, string vatRegNo, string sVatRegNo, decimal totalAmount, int isApproved, string approvedBy, int isReceived, DateTime receivedDate, int BasePr, decimal totalCustomizedAmount, decimal totalCustomizedVat, decimal totalCustomizedNbt);
         int updatePODetails(int PoId, decimal vatAmount, decimal nbtAmount, decimal totalAmount, decimal customizedTotalAmount, decimal customizedVatAmount, decimal customizedNbtAmount);
+
+        //Get All PO MASTER LIST
+        List<POMaster> GetAllPOMAster();
+
         List<POMaster> GetPoMasterListByDepartmentId(int departmentid);
         POMaster GetPoMasterObjByPoId(int PoId);
         int PoMasterApproval(int poId, int isApprove, int departmentid);
@@ -44,7 +48,7 @@ namespace CLibrary.Controller
         int SavePO(List<POMaster> PoMasters, int UserId);
         List<POMaster> GetPoMasterListWithImport(int departmentid);
         int ApprovePOMaster(int poId, int userId);
-        List<int> GetPoCountForDashboard(int CompanyId,int yearsearch , int purchaseType);
+        List<int> GetPoCountForDashboard(int CompanyId, int yearsearch, int purchaseType);
         List<ItemPurchaseHistory> GetItemPurchaseHistories(int ItemId);
         List<int> SavePONew(List<POMaster> PoMasters, int UserId);
         List<POMaster> ViewAllPOS(int CompanyId, DateTime date, string prcode, string pocode, List<int> caregoryIds, List<int> warehouseIds, int poType, List<int> supplierIds = null);
@@ -95,35 +99,69 @@ namespace CLibrary.Controller
             }
         }
 
-        public List<POMaster> GetAllPosByPrId(int PrId) {
+
+        //Get All PO MASTER LIST
+        public List<POMaster> GetAllPOMAster()
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
-                return pOMasterDAO.GetAllPosByPrId(PrId, dbConnection);
+                return pOMasterDAO.GetAllPOMAster(dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public List<POMaster> GetAPPROVEDPosByPrId(int PrId) {
+        public List<POMaster> GetAllPosByPrId(int PrId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
-                return pOMasterDAO.GetAPPROVEDPosByPrId(PrId, dbConnection);
+                return pOMasterDAO.GetAllPosByPrId(PrId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
+                    dbConnection.Commit();
+                }
+            }
+        }
+
+        public List<POMaster> GetAPPROVEDPosByPrId(int PrId)
+        {
+            DBConnection dbConnection = new DBConnection();
+            try
+            {
+                POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
+                return pOMasterDAO.GetAPPROVEDPosByPrId(PrId, dbConnection);
+            }
+            catch (Exception)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -151,52 +189,67 @@ namespace CLibrary.Controller
             }
         }
 
-        public List<POMaster> GetAllPosByPrIdFor(List<int> PrId) {
+        public List<POMaster> GetAllPosByPrIdFor(List<int> PrId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.GetAllPosByPrIdFor(PrId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public int CancelPo(int Poid) {
+        public int CancelPo(int Poid)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.CancelPo(Poid, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public int UpdatePoEmailStatus(int Poid) {
+        public int UpdatePoEmailStatus(int Poid)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.UpdatePoEmailStatus(Poid, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -231,7 +284,7 @@ namespace CLibrary.Controller
             }
         }
 
-        public POMaster GetPoMasterObjByPoIdRaised(int PoId,  int companyId)
+        public POMaster GetPoMasterObjByPoIdRaised(int PoId, int companyId)
         {
             DBConnection dbConnection = new DBConnection();
             try
@@ -642,13 +695,13 @@ namespace CLibrary.Controller
             }
         }
 
-        public List<int> GetPoCountForDashboard(int CompanyId,int yearsearch, int purchaseType)
+        public List<int> GetPoCountForDashboard(int CompanyId, int yearsearch, int purchaseType)
         {
             DBConnection dbConnection = new DBConnection();
             try
             {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
-                return pOMasterDAO.GetPoCountForDashboard(CompanyId,  yearsearch, purchaseType, dbConnection);
+                return pOMasterDAO.GetPoCountForDashboard(CompanyId, yearsearch, purchaseType, dbConnection);
             }
             catch (Exception)
             {
@@ -686,272 +739,352 @@ namespace CLibrary.Controller
             }
         }
 
-        public List<ItemPurchaseHistory> GetItemPurchaseHistories(int ItemId) {
+        public List<ItemPurchaseHistory> GetItemPurchaseHistories(int ItemId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.GetItemPurchaseHistories(ItemId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public List<int> SavePONew(List<POMaster> PoMasters, int UserId) {
+        public List<int> SavePONew(List<POMaster> PoMasters, int UserId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.SavePONew(PoMasters, UserId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
-        public List<POMaster> ViewAllPOS(int CompanyId, DateTime date, string prcode, string pocode, List<int> caregoryIds, List<int> warehouseIds, int poType, List<int> supplierId = null) {
+        public List<POMaster> ViewAllPOS(int CompanyId, DateTime date, string prcode, string pocode, List<int> caregoryIds, List<int> warehouseIds, int poType, List<int> supplierId = null)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.ViewAllPOS(CompanyId, date, prcode, pocode, caregoryIds, warehouseIds, poType, dbConnection, supplierId);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public List<POMaster> ViewCancelledPOS(int CompanyId, DateTime date, string prcode, string pocode, List<int> caregoryIds, List<int> warehouseIds, int poType) {
+        public List<POMaster> ViewCancelledPOS(int CompanyId, DateTime date, string prcode, string pocode, List<int> caregoryIds, List<int> warehouseIds, int poType)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.ViewCancelledPOS(CompanyId, date, prcode, pocode, caregoryIds, warehouseIds, poType, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public List<POMaster> ViewMyPOS(int UserId, int CompanyId, DateTime date, string prcode, string pocode, List<int> caregoryIds, List<int> warehouseIds, int poType) {
+        public List<POMaster> ViewMyPOS(int UserId, int CompanyId, DateTime date, string prcode, string pocode, List<int> caregoryIds, List<int> warehouseIds, int poType)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.ViewMyPOS(UserId, CompanyId, date, prcode, pocode, caregoryIds, warehouseIds, poType, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public POMaster GetPoMasterToEditPO(int PoId, int CompanyId) {
+        public POMaster GetPoMasterToEditPO(int PoId, int CompanyId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.GetPoMasterToEditPO(PoId, CompanyId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public List<int> UpdatePO(POMaster poMaster, int UserId) {
+        public List<int> UpdatePO(POMaster poMaster, int UserId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
-                
+
                 return pOMasterDAO.UpdatePO(poMaster, UserId, dbConnection);
-                
+
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public List<POMaster> GetPosForApproval(int CompanyId, int UserId) {
+        public List<POMaster> GetPosForApproval(int CompanyId, int UserId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.GetPosForApproval(CompanyId, UserId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public List<POMaster> GetPosForInvoice(int CompanyId, int UserId) {
+        public List<POMaster> GetPosForInvoice(int CompanyId, int UserId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.GetPosForInvoice(CompanyId, UserId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public List<POMaster> GetPosForPrint(int CompanyId, int UserId) {
+        public List<POMaster> GetPosForPrint(int CompanyId, int UserId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.GetPosForPrint(CompanyId, UserId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
-        public POMaster GetPoMasterToViewPO(int PoId, int CompanyId) {
+        public POMaster GetPoMasterToViewPO(int PoId, int CompanyId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.GetPoMasterToViewPO(PoId, CompanyId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public List<POMaster> GetModifiedPosForApproval(int CompanyId, int UserId) {
+        public List<POMaster> GetModifiedPosForApproval(int CompanyId, int UserId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.GetModifiedPosForApproval(CompanyId, UserId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public int ParentApprovePO(int PoId, string Remarks, int PaymentMethod, int PoType,int UserId, int IsParentApproved, string PoRemark) { 
-        DBConnection dbConnection = new DBConnection();
-            try {
-                POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
-                return pOMasterDAO.ParentApprovePO(PoId, Remarks, PaymentMethod, PoType, UserId, IsParentApproved,  PoRemark, dbConnection);
-            }
-            catch (Exception) {
-                dbConnection.RollBack();
-                throw;
-            }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
-                    dbConnection.Commit();
-                }
-            }
-        }
-
-        public int ApproveGeneralPO(int PoId,int UserId, string Remarks, int PaymentMethod, string PoRemark) {
+        public int ParentApprovePO(int PoId, string Remarks, int PaymentMethod, int PoType, int UserId, int IsParentApproved, string PoRemark)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
+                POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
+                return pOMasterDAO.ParentApprovePO(PoId, Remarks, PaymentMethod, PoType, UserId, IsParentApproved, PoRemark, dbConnection);
+            }
+            catch (Exception)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
+                    dbConnection.Commit();
+                }
+            }
+        }
+
+        public int ApproveGeneralPO(int PoId, int UserId, string Remarks, int PaymentMethod, string PoRemark)
+        {
+            DBConnection dbConnection = new DBConnection();
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.ApproveGeneralPO(PoId, UserId, Remarks, PaymentMethod, PoRemark, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public int RejectGeneralPO(int PoId, int UserId, string Remarks, int PaymentMethod) {
+        public int RejectGeneralPO(int PoId, int UserId, string Remarks, int PaymentMethod)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.RejectGeneralPO(PoId, UserId, Remarks, PaymentMethod, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
-        public int ParentRejectPO(int PoId, string Remarks, int PaymentMethod, int PoType, int UserId, int IsParentApproved, int RejectionAction, int ParentPOId) {
+        public int ParentRejectPO(int PoId, string Remarks, int PaymentMethod, int PoType, int UserId, int IsParentApproved, int RejectionAction, int ParentPOId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.ParentRejectPO(PoId, Remarks, PaymentMethod, PoType, UserId, IsParentApproved, RejectionAction, ParentPOId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -1007,7 +1140,7 @@ namespace CLibrary.Controller
             try
             {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
-                POMaster po = pOMasterDAO.GetPoMasterToGenerateGRN(PoId, CompanyId,  dbConnection);
+                POMaster po = pOMasterDAO.GetPoMasterToGenerateGRN(PoId, CompanyId, dbConnection);
 
                 for (int i = 0; i < po.PoDetails.Count; i++)
                 {
@@ -1025,10 +1158,12 @@ namespace CLibrary.Controller
                         }
                     }
 
-                    if (po.PoDetails[i].HasVat == 1) {
+                    if (po.PoDetails[i].HasVat == 1)
+                    {
                         //po.PoDetails[i].VatAmount = Math.Round(((po.PoDetails[i].SubTotal + po.PoDetails[i].NbtAmount) * vatVal), 2);
 
-                        if (po.PoDetails[i].PoPurchaseType != 2) {
+                        if (po.PoDetails[i].PoPurchaseType != 2)
+                        {
                             po.PoDetails[i].VatAmount = Math.Round(((po.PoDetails[i].SubTotal) * vatVal), 2);
                         }
                     }
@@ -1081,68 +1216,88 @@ namespace CLibrary.Controller
             }
         }
 
-        public int UpdatePrintCount(int PoId) {
+        public int UpdatePrintCount(int PoId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.UpdatePrintCount(PoId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public int GetPoId(int PrId) {
+        public int GetPoId(int PrId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.GetPoId(PrId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
-        public int ApprovedCoveringPOCount(int PrId) {
+        public int ApprovedCoveringPOCount(int PrId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.ApprovedCoveringPOCount(PrId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public int CheckPoGrns(int PoId) {
+        public int CheckPoGrns(int PoId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 return pOMasterDAO.CheckPoGrns(PoId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
