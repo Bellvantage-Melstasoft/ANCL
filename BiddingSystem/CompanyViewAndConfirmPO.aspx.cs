@@ -8,9 +8,7 @@ using CLibrary.Controller;
 using CLibrary.Common;
 using CLibrary.Domain;
 using System.IO;
-using iTextSharp.text;
-using iTextSharp.text.html.simpleparser;
-using iTextSharp.text.pdf;
+
 
 namespace BiddingSystem
 {
@@ -35,7 +33,7 @@ namespace BiddingSystem
         private string RequestedDate = string.Empty;
         private string UserRef = string.Empty;
         private string RequesterName = string.Empty;
-        private int basePr = 0; 
+        private int basePr = 0;
         int CompanyId = 0;
         static int PoId = 0;
 
@@ -52,7 +50,7 @@ namespace BiddingSystem
                 UserId = Session["UserId"].ToString();
                 CompanyLogin companyLogin = companyLoginController.GetUserbyuserId(int.Parse(Session["UserId"].ToString()));
 
-                if ((!companyUserAccessController.isAvilableAccess(int.Parse(UserId), CompanyId, 6, 7) && companyLogin.Usertype != "S") &&  companyLogin.Usertype != "GA")
+                if ((!companyUserAccessController.isAvilableAccess(int.Parse(UserId), CompanyId, 6, 7) && companyLogin.Usertype != "S") && companyLogin.Usertype != "GA")
                 {
                     Response.Redirect("AdminDashboard.aspx");
                 }
@@ -169,7 +167,7 @@ namespace BiddingSystem
             private decimal nbtAmount;
             private decimal totalAmount;
             private decimal customizedUnitPrice;
-            private decimal customizedVatAmount; 
+            private decimal customizedVatAmount;
             private decimal customizedNbtAmount;
             private decimal customizedTotalAmount;
 
@@ -242,7 +240,7 @@ namespace BiddingSystem
 
         public override void VerifyRenderingInServerForm(Control control)
         {
-         
+
         }
     }
 }

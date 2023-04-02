@@ -41,7 +41,7 @@ namespace CLibrary.Controller
                 }
             }
         }
-
+        //Get All Pr
         public List<PrType> FetchAllPRTypes()
         {
             DBConnection dbConnection = new DBConnection();

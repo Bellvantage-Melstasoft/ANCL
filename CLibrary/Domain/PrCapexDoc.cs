@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using CLibrary.Common;
 
-namespace CLibrary.Domain {
-    public class PrCapexDoc {
+namespace CLibrary.Domain
+{
+    [Serializable]
+    public class PrCapexDoc
+    {
         [DBField("FILE_ID")]
         public int FileId { get; set; }
         [DBField("PR_ID")]

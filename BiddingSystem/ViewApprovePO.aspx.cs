@@ -8,14 +8,14 @@ using CLibrary.Controller;
 using CLibrary.Common;
 using CLibrary.Domain;
 using System.IO;
-using iTextSharp.text;
-using iTextSharp.text.html.simpleparser;
-using iTextSharp.text.pdf;
+
 using System.Data;
 using System.Web.Script.Serialization;
 
-namespace BiddingSystem {
-    public partial class ViewApprovePO : System.Web.UI.Page {
+namespace BiddingSystem
+{
+    public partial class ViewApprovePO : System.Web.UI.Page
+    {
         POMasterController pOMasterController = ControllerFactory.CreatePOMasterController();
         PODetailsController pODetailsController = ControllerFactory.CreatePODetailsController();
         CompanyDepartmentController companyDepartmentController = ControllerFactory.CreateCompanyDepartmentController();
@@ -42,8 +42,10 @@ namespace BiddingSystem {
         //int CompanyId = 0;
         // int PoId = 0;
         //  static int quationid = 0;
-        protected void Page_Load(object sender, EventArgs e) {
-            if (Session["CompanyId"] != null && Session["UserId"].ToString() != null) {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["CompanyId"] != null && Session["UserId"].ToString() != null)
+            {
                 ((BiddingAdmin)Page.Master).mainTabValue = "hrefPurchasing";
                 ((BiddingAdmin)Page.Master).subTabTitle = "subTabPurchasing";
                 ((BiddingAdmin)Page.Master).subTabValue = "ViewApprovePO.aspx";
@@ -53,7 +55,8 @@ namespace BiddingSystem {
                 // UserId = Session["UserId"].ToString();
                 CompanyLogin companyLogin = companyLoginController.GetUserbyuserId(int.Parse(Session["UserId"].ToString()));
 
-                if ((!companyUserAccessController.isAvilableAccess(int.Parse(Session["UserId"].ToString()), int.Parse(Session["CompanyId"].ToString()), 6, 7) && companyLogin.Usertype != "S") && companyLogin.Usertype != "GA") {
+                if ((!companyUserAccessController.isAvilableAccess(int.Parse(Session["UserId"].ToString()), int.Parse(Session["CompanyId"].ToString()), 6, 7) && companyLogin.Usertype != "S") && companyLogin.Usertype != "GA")
+                {
                     Response.Redirect("AdminDashboard.aspx");
                 }
 
@@ -65,11 +68,13 @@ namespace BiddingSystem {
                 //    Response.Redirect("CusromerPOView.aspx");
                 //}
             }
-            else {
+            else
+            {
                 Response.Redirect("LoginPage.aspx");
             }
 
-            if (!IsPostBack) {
+            if (!IsPostBack)
+            {
 
 
                 ddlPaymentMethodForeign.DataSource = defPaymentModeController.FetchDefPaymentModeList();
@@ -95,17 +100,21 @@ namespace BiddingSystem {
                 lblPrCode.Text = "PR-" + poMaster.PrCode;
                 lblPurchaseType.Text = poMaster.PurchaseType == 1 ? "Local" : "Import";
                 // lblQuotationFor.Text = poMaster.QuotationFor;
-                if (poMaster.PurchaseProcedure == 2) {
+                if (poMaster.PurchaseProcedure == 2)
+                {
                     var ParentPR = pr_MasterController.GetPrForQuotationComparison(poMaster.ClonedFromPR, int.Parse(Session["CompanyId"].ToString()));
                     panelParentPr.Visible = true;
                     lblParentPr.Text = "PR-" + ParentPR.PrCode;
                 }
-                if (poMaster.PurchaseType == 2) {
-                    if (poMaster.ImportItemType == 2) {
+                if (poMaster.PurchaseType == 2)
+                {
+                    if (poMaster.ImportItemType == 2)
+                    {
                         gvPoItems.Columns[16].Visible = false;
                     }
                 }
-                if (poMaster.PurchaseType == 1) {
+                if (poMaster.PurchaseType == 1)
+                {
                     gvPoItems.Columns[15].Visible = false;
                     gvPoItems.Columns[16].Visible = false;
                 }
@@ -114,7 +123,8 @@ namespace BiddingSystem {
                 //gvPoItems.DataSource = poMaster.PoDetails;
                 //gvPoItems.DataBind();
 
-                if (poMaster.PurchaseType == 2) {
+                if (poMaster.PurchaseType == 2)
+                {
                     PanenImports.Visible = true;
                     pnlLogo.Visible = true;
                     lblCurrency.Text = ImportDetails.CurrencyShortname;
@@ -122,16 +132,19 @@ namespace BiddingSystem {
                     lblPaymentMode.Text = ImportDetails.PaymentMode;
                 }
 
-                if (poMaster.PaymentMethod != null && poMaster.PaymentMethod != "") {
+                if (poMaster.PaymentMethod != null && poMaster.PaymentMethod != "")
+                {
                     lblPaymentMethod.Text = poMaster.PaymentMethod == "1" ? "Cash Payment" : poMaster.PaymentMethod == "2" ? "Cheque Payment" : "Credit";
                     pnlPaymentMethod.Visible = true;
                     ddlPaymentMethod.SelectedValue = poMaster.PaymentMethod;
                 }
 
-                for (int i = 0; i < poMaster.PoDetails.Count; i++) {
+                for (int i = 0; i < poMaster.PoDetails.Count; i++)
+                {
                     VarPoPurchaseType = poMaster.PoDetails[i].PoPurchaseType;
                     VarSupplierAgentName = poMaster.PoDetails[i].SupplierAgentName;
-                    if (poMaster.PurchaseType == 2 && poMaster.PoDetails[i].PoPurchaseType == 1) {
+                    if (poMaster.PurchaseType == 2 && poMaster.PoDetails[i].PoPurchaseType == 1)
+                    {
                         PanenImports.Visible = false;
                         pnlLogo.Visible = false;
                     }
@@ -146,36 +159,43 @@ namespace BiddingSystem {
                 tdVat.InnerHtml = poMaster.VatAmount.ToString("N2");
                 tdNetTotal.InnerHtml = poMaster.TotalAmount.ToString("N2");
 
-                if (poMaster.PurchaseType == 2) {
+                if (poMaster.PurchaseType == 2)
+                {
                     gvPoItems.Columns[12].Visible = false;
                 }
-                
-               
-                if (poMaster.IsDerived == 0) {
+
+
+                if (poMaster.IsDerived == 0)
+                {
                     lblGeneral.Visible = true;
                     ViewState["PoType"] = "0";  //General
                     hdnPoType.Value = "0";
                     pnlSelectPaymentMethod.Visible = true;
                 }
-                else if (poMaster.IsDerived == 1 && poMaster.IsDerivedType == 1) {
+                else if (poMaster.IsDerived == 1 && poMaster.IsDerivedType == 1)
+                {
                     lblModified.Visible = true;
                     ViewState["PoType"] = "1";  //Modified
                     hdnPoType.Value = "1";
                     pnlSelectPaymentMethod.Visible = true;
                 }
-                else {
+                else
+                {
                     lblCovering.Visible = true;
                     ViewState["PoType"] = "2";  //Covering
                     hdnPoType.Value = "2";
                 }
 
-                if (poMaster.IsApproved == 0) {
+                if (poMaster.IsApproved == 0)
+                {
                     lblPending.Visible = true;
                 }
-                else if (poMaster.IsApproved == 1) {
+                else if (poMaster.IsApproved == 1)
+                {
                     lblApproved.Visible = true;
                 }
-                else {
+                else
+                {
                     lblRejected.Visible = true;
                 }
 
@@ -189,8 +209,10 @@ namespace BiddingSystem {
                     imgCreatedBySignature.ImageUrl = "UserSignature/NoSign.jpg";
 
 
-                if (poMaster.IsDerived == 1) {
-                    if (poMaster.DerivedFromPOs.Count > 0) {
+                if (poMaster.IsDerived == 1)
+                {
+                    if (poMaster.DerivedFromPOs.Count > 0)
+                    {
                         gvDerivedFrom.DataSource = poMaster.DerivedFromPOs;
                         gvDerivedFrom.DataBind();
                         pnlDerivedFrom.Visible = true;
@@ -199,28 +221,33 @@ namespace BiddingSystem {
                     //pnlReason.Visible = true;
                 }
 
-                if (poMaster.DerivedPOs.Count > 0) {
+                if (poMaster.DerivedPOs.Count > 0)
+                {
                     gvDerivedPOs.DataSource = poMaster.DerivedPOs;
                     gvDerivedPOs.DataBind();
 
                     pnlDerrivedPOs.Visible = true;
                 }
 
-                if (poMaster.GeneratedGRNs.Count > 0) {
+                if (poMaster.GeneratedGRNs.Count > 0)
+                {
                     gvGRNs.DataSource = poMaster.GeneratedGRNs;
                     gvGRNs.DataBind();
 
                     pnlGeneratedGRNs.Visible = true;
                 }
-                
-                if (poMaster.IsDerived == 1 && poMaster.IsApprovedByParentApprovedUser == 0) {
+
+                if (poMaster.IsDerived == 1 && poMaster.IsApprovedByParentApprovedUser == 0)
+                {
                     ViewState["ApproverType"] = "1";    //ParentApprover
                 }
-                else {
+                else
+                {
                     ViewState["ApproverType"] = "2";    //LimitApprover
                 }
 
-                if (poMaster.IsDerived == 1 && poMaster.IsApprovedByParentApprovedUser != 0 && poMaster.ParentApprovedByName != "" && poMaster.ParentApprovedByName != null) {
+                if (poMaster.IsDerived == 1 && poMaster.IsApprovedByParentApprovedUser != 0 && poMaster.ParentApprovedByName != "" && poMaster.ParentApprovedByName != null)
+                {
                     pnlParentApprovedByDetails.Visible = true;
                     lblParentApprovalRemarks.Text = poMaster.ParentApprovedUserApprovalRemarks;
                     //lblParentApprovedByName.Text = poMaster.ParentApprovedByName;
@@ -233,21 +260,27 @@ namespace BiddingSystem {
                         imgParentApprovedBySignature.ImageUrl = "UserSignature/NoSign.jpg";
                 }
 
-                if (poMaster.IsDerived == 1 && poMaster.IsApprovedByParentApprovedUser == 1 && poMaster.ParentApprovedByName != "" && poMaster.ParentApprovedByName != null) {
+                if (poMaster.IsDerived == 1 && poMaster.IsApprovedByParentApprovedUser == 1 && poMaster.ParentApprovedByName != "" && poMaster.ParentApprovedByName != null)
+                {
                     lblParentApprovalText.InnerHtml = "Parent Approved User: APPROVED";
                 }
-                else if (poMaster.IsDerived == 1 && poMaster.IsApprovedByParentApprovedUser == 2 && poMaster.ParentApprovedByName != "" && poMaster.ParentApprovedByName != null) {
+                else if (poMaster.IsDerived == 1 && poMaster.IsApprovedByParentApprovedUser == 2 && poMaster.ParentApprovedByName != "" && poMaster.ParentApprovedByName != null)
+                {
                     lblParentApprovalText.InnerHtml = "Parent Approved User: REJECTED";
                 }
                 decimal Total = 0;
-                for (int i = 0; i < poMaster.PoDetails.Count; i++) {
-                    if (poMaster.PurchaseType == 2 ){
-                        if (poMaster.PoDetails[i].PoPurchaseType == 1) {
+                for (int i = 0; i < poMaster.PoDetails.Count; i++)
+                {
+                    if (poMaster.PurchaseType == 2)
+                    {
+                        if (poMaster.PoDetails[i].PoPurchaseType == 1)
+                        {
                             PanenImports.Visible = false;
                             pnlLogo.Visible = false;
                         }
 
-                        if (poMaster.PoDetails[i].PoPurchaseType == 2) {
+                        if (poMaster.PoDetails[i].PoPurchaseType == 2)
+                        {
 
                             poMaster.PoDetails[i].SubTotal = poMaster.PoDetails[i].UnitPriceForeign * poMaster.PoDetails[i].Quantity;
                             poMaster.PoDetails[i].VatAmount = 0;
@@ -269,49 +302,59 @@ namespace BiddingSystem {
                 tdNetTotal.InnerHtml = poMaster.TotalAmount.ToString("N2");
 
                 ViewState["PoMaster"] = new JavaScriptSerializer().Serialize(poMaster);
-                if (poMaster.PurchaseType == 2 && int.Parse(ViewState["PoPurchaseType"].ToString()) == 2) {
+                if (poMaster.PurchaseType == 2 && int.Parse(ViewState["PoPurchaseType"].ToString()) == 2)
+                {
                     pnlSelectPaymentMethod.Visible = false;
                     pnlSelectPaymentMethodForeign.Visible = true;
                 }
             }
-            
+
         }
 
-        protected void gvPOItems_RowDataBound(object sender, GridViewRowEventArgs e) {
-            if (e.Row.RowType == DataControlRowType.Header) {
-                if (ViewState["PurchaseType"].ToString() != "2") {
+        protected void gvPOItems_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                if (ViewState["PurchaseType"].ToString() != "2")
+                {
 
                     e.Row.Cells[4].CssClass = "hidden";
                 }
             }
 
-            if (e.Row.RowType == DataControlRowType.DataRow) {
-                if (ViewState["PurchaseType"].ToString() != "2") {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (ViewState["PurchaseType"].ToString() != "2")
+                {
 
                     e.Row.Cells[4].CssClass = "hidden";
                 }
             }
         }
-        protected void lbtnViewPO_Click(object sender, EventArgs e) {
+        protected void lbtnViewPO_Click(object sender, EventArgs e)
+        {
             int PoId = int.Parse(((sender as LinkButton).NamingContainer as GridViewRow).Cells[0].Text);
 
             Response.Redirect("ViewPO.aspx?PoId=" + PoId);
         }
 
-        protected void lbtnViewGrn_Click(object sender, EventArgs e) {
+        protected void lbtnViewGrn_Click(object sender, EventArgs e)
+        {
             int GrnId = int.Parse(((sender as LinkButton).NamingContainer as GridViewRow).Cells[0].Text);
 
             Response.Redirect("CompanyGrnReportView.aspx?PoID=0&GrnId=" + GrnId);
         }
 
-        protected void btnApprove_Click(object sender, EventArgs e) {
+        protected void btnApprove_Click(object sender, EventArgs e)
+        {
             POMaster newPo = new JavaScriptSerializer().Deserialize<POMaster>(ViewState["PoMaster"].ToString());
             string Remark = txtRemarks.Text;
             int result = 0;
             int VarPoPurchaseType = int.Parse(ViewState["VarPoPurchaseType"].ToString());
             int PaymentMetod = 0;
-            if (VarPoPurchaseType == 1) {
-                if(ddlPaymentMethod.SelectedValue != "")
+            if (VarPoPurchaseType == 1)
+            {
+                if (ddlPaymentMethod.SelectedValue != "")
                 {
                     PaymentMetod = int.Parse(ddlPaymentMethod.SelectedValue);
                 }
@@ -320,10 +363,11 @@ namespace BiddingSystem {
                     ScriptManager.RegisterClientScriptBlock(Updatepanel1, this.Updatepanel1.GetType(), "none", "<script>    $(document).ready(function () { swal({ type: 'error',title: 'Please Select Payment Method', showConfirmButton: false,timer: 3000}); });   </script>", false);
                     return;
                 }
-                
+
             }
-            else {
-                if(ddlPaymentMethodForeign.SelectedValue != "")
+            else
+            {
+                if (ddlPaymentMethodForeign.SelectedValue != "")
                 {
                     PaymentMetod = int.Parse(ddlPaymentMethodForeign.SelectedValue);
                 }
@@ -335,25 +379,30 @@ namespace BiddingSystem {
 
             }
 
-            if (newPo.IsDerived == 0) {
+            if (newPo.IsDerived == 0)
+            {
                 result = pOMasterController.ApproveGeneralPO(newPo.PoID, int.Parse(Session["UserId"].ToString()), hdnRemarks.Value.ProcessString(), PaymentMetod, Remark);
             }
-            else {
+            else
+            {
                 result = pOMasterController.ParentApprovePO(newPo.PoID, hdnRemarks.Value.ProcessString(), PaymentMetod, int.Parse(ViewState["PoType"].ToString()), int.Parse(Session["UserId"].ToString()), newPo.IsApprovedByParentApprovedUser, Remark);
 
             }
 
 
-            if (result > 0) {
+            if (result > 0)
+            {
                 ScriptManager.RegisterClientScriptBlock(Updatepanel1, this.Updatepanel1.GetType(), "none", "<script>    $(document).ready(function () { swal({ type: 'success',title: 'Your work has been saved'}).then((result) => { window.location = '" + Request.QueryString.Get("Redirect") + ".aspx' }); });   </script>", false);
             }
-            else {
+            else
+            {
                 ScriptManager.RegisterClientScriptBlock(Updatepanel1, this.Updatepanel1.GetType(), "none", "<script>    $(document).ready(function () { swal({ type: 'error',title: 'Error On Approving PO', showConfirmButton: false,timer: 3000}); });   </script>", false);
             }
 
         }
 
-        protected void btnReject_Click(object sender, EventArgs e) {
+        protected void btnReject_Click(object sender, EventArgs e)
+        {
             POMaster po = new JavaScriptSerializer().Deserialize<POMaster>(ViewState["PoMaster"].ToString());
             int result = 0;
             int VarPoPurchaseType = int.Parse(ViewState["VarPoPurchaseType"].ToString());
@@ -367,12 +416,13 @@ namespace BiddingSystem {
 
             if (VarPoPurchaseType == 1)
             {
-                
-                if(po.IsDerived != 0 && ddlPaymentMethod.SelectedValue != "")
+
+                if (po.IsDerived != 0 && ddlPaymentMethod.SelectedValue != "")
                 {
                     PaymentMetod = int.Parse(ddlPaymentMethod.SelectedValue);
 
-                }else if(ddlPaymentMethod.SelectedValue == "")
+                }
+                else if (ddlPaymentMethod.SelectedValue == "")
                 {
                     ScriptManager.RegisterClientScriptBlock(Updatepanel1, this.Updatepanel1.GetType(), "none", "<script>    $(document).ready(function () { swal({ type: 'error',title: 'Please Select Payment Method', showConfirmButton: false,timer: 3000}); });   </script>", false);
                     return;
@@ -380,7 +430,7 @@ namespace BiddingSystem {
             }
             else
             {
-                
+
                 if (po.IsDerived != 0 && ddlPaymentMethodForeign.SelectedValue != "")
                 {
                     PaymentMetod = int.Parse(ddlPaymentMethodForeign.SelectedValue);
@@ -392,23 +442,28 @@ namespace BiddingSystem {
                 }
             }
 
-            if (po.IsDerived == 0) {
+            if (po.IsDerived == 0)
+            {
                 result = pOMasterController.RejectGeneralPO(po.PoID, int.Parse(Session["UserId"].ToString()), hdnRemarks.Value.ProcessString(), 0);
             }
-            else {
+            else
+            {
                 result = pOMasterController.ParentRejectPO(po.PoID, hdnRemarks.Value.ProcessString(), PaymentMetod, int.Parse(ViewState["PoType"].ToString()), int.Parse(Session["UserId"].ToString()), po.IsApprovedByParentApprovedUser, hdnRejectionAction.Value != "" ? int.Parse(hdnRejectionAction.Value) : 0, po.IsDerivedFromPo);
 
             }
-            if (result > 0) {
+            if (result > 0)
+            {
                 ScriptManager.RegisterClientScriptBlock(Updatepanel1, this.Updatepanel1.GetType(), "none", "<script>    $(document).ready(function () { swal({ type: 'success',title: 'Your work has been saved'}).then((result) => { window.location = '" + Request.QueryString.Get("Redirect") + ".aspx' }); });   </script>", false);
             }
-            else {
+            else
+            {
                 ScriptManager.RegisterClientScriptBlock(Updatepanel1, this.Updatepanel1.GetType(), "none", "<script>    $(document).ready(function () { swal({ type: 'error',title: 'Error On Approving PO', showConfirmButton: false,timer: 3000}); });   </script>", false);
             }
 
         }
 
-        protected void ddlPaymentMethod_SelectedIndexChanged(object sender, EventArgs e) {
+        protected void ddlPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)
+        {
             //if (ddlPaymentMethod.SelectedValue == "4") {
             //    btnInvoice.Visible = true;
             //}
@@ -417,17 +472,21 @@ namespace BiddingSystem {
             //}
         }
 
-        protected void btnInvoice_Click(object sender, EventArgs e) {
+        protected void btnInvoice_Click(object sender, EventArgs e)
+        {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { $('#mdlInvDetails').modal('show'); });   </script>", false);
 
         }
 
-        protected void btnAdd_Click(object sender, EventArgs e) {
-            try {
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
                 Random r = new Random();
-                if (ViewState["InvoiceDetails"] == null) {
+                if (ViewState["InvoiceDetails"] == null)
+                {
                     List<InvoiceDetails> invoiceDetails = new List<InvoiceDetails>();
-                    
+
                     InvoiceDetails newDetail = new InvoiceDetails();
                     newDetail.num = r.Next();
                     newDetail.InvoiceNo = txtInvNo.Text;
@@ -439,7 +498,8 @@ namespace BiddingSystem {
                     invoiceDetails.Add(newDetail);
                     ViewState["InvoiceDetails"] = new JavaScriptSerializer().Serialize(invoiceDetails);
                 }
-                else {
+                else
+                {
                     List<InvoiceDetails> invoiceDetails = new JavaScriptSerializer().Deserialize<List<InvoiceDetails>>(ViewState["InvoiceDetails"].ToString());
                     InvoiceDetails newDetail = new InvoiceDetails();
 
@@ -456,7 +516,7 @@ namespace BiddingSystem {
 
                 gvAddedInvDetails.Visible = true;
                 btnDone.Visible = true;
-                
+
                 gvAddedInvDetails.DataSource = new JavaScriptSerializer().Deserialize<List<InvoiceDetails>>(ViewState["InvoiceDetails"].ToString());
                 gvAddedInvDetails.DataBind();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () {$('div').removeClass('modal-backdrop'); $('#mdlInvDetails').modal('show'); });   </script>", false);
@@ -467,25 +527,29 @@ namespace BiddingSystem {
                 txtVatNo.Text = "";
                 ChkPayment.Checked = false;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
 
             }
 
-            }
-        protected void btnDelete_Click(object sender, EventArgs e) {
+        }
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
             List<InvoiceDetails> invoiceDetails = new JavaScriptSerializer().Deserialize<List<InvoiceDetails>>(ViewState["InvoiceDetails"].ToString());
             int Rnum = int.Parse(((sender as Button).NamingContainer as GridViewRow).Cells[0].Text);
 
-            for (int i = 0; i < invoiceDetails.Count; i++) {
+            for (int i = 0; i < invoiceDetails.Count; i++)
+            {
                 InvoiceDetails DInvoiceDetails = invoiceDetails[i];
-                if (invoiceDetails[i].num == Rnum) {
+                if (invoiceDetails[i].num == Rnum)
+                {
                     invoiceDetails[i].status = 2;
                     invoiceDetails.Remove(DInvoiceDetails);
                 }
-                
+
             }
 
-            
+
             gvAddedInvDetails.DataSource = invoiceDetails.Where(x => x.status != 2);
             gvAddedInvDetails.DataBind();
             ViewState["InvoiceDetails"] = new JavaScriptSerializer().Serialize(invoiceDetails);
@@ -493,18 +557,22 @@ namespace BiddingSystem {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () {$('div').removeClass('modal-backdrop'); $('#mdlInvDetails').modal('show'); });   </script>", false);
 
         }
-        protected void btnPrevInv_Click(object sender, EventArgs e) {
-            try {
+        protected void btnPrevInv_Click(object sender, EventArgs e)
+        {
+            try
+            {
                 gvPrevInvoices.DataSource = invoiceDetailsController.GetPreviousInvoices(int.Parse(Request.QueryString.Get("PoId")));
                 gvPrevInvoices.DataBind();
 
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>   $('div').removeClass('modal-backdrop'); $(document).ready(function () { $('#mdlPrevInvoices').modal('show'); });   </script>", false);
             }
-            catch (Exception EX) {
+            catch (Exception EX)
+            {
 
             }
         }
-        protected void btnDone_Click(object sender, EventArgs e) {
+        protected void btnDone_Click(object sender, EventArgs e)
+        {
             //string InvoiceNo = txtInvNo.Text;
             //DateTime Date = DateTime.Parse(txtDate.Text);
             //decimal Amount = decimal.Parse(txtAmount.Text);
@@ -515,21 +583,25 @@ namespace BiddingSystem {
             // int paymentType = int.Parse(ddlPaymentMethod.SelectedValue);
             int VarPoPurchaseType = int.Parse(ViewState["VarPoPurchaseType"].ToString());
             int PaymentMetod = 0;
-            if (VarPoPurchaseType == 1) {
+            if (VarPoPurchaseType == 1)
+            {
                 PaymentMetod = int.Parse(ddlPaymentMethod.SelectedValue);
             }
-            else {
+            else
+            {
                 PaymentMetod = int.Parse(ddlPaymentMethodForeign.SelectedValue);
             }
             int PoId = int.Parse(Request.QueryString.Get("PoId"));
 
             int Result = 0;
-            for (int i = 0; i < invoiceDetails.Count; i++) {
-                
-            // Result = invoiceDetailsController.SaveInvoiceDetailsInPO(PoId, 0, paymentType, invoiceDetails[i].InvoiceNo, invoiceDetails[i].InvoiceDate, invoiceDetails[i].InvoiceAmount, invoiceDetails[i].VatNo, invoiceDetails[i].IsPaymentSettled); 
+            for (int i = 0; i < invoiceDetails.Count; i++)
+            {
+
+                // Result = invoiceDetailsController.SaveInvoiceDetailsInPO(PoId, 0, paymentType, invoiceDetails[i].InvoiceNo, invoiceDetails[i].InvoiceDate, invoiceDetails[i].InvoiceAmount, invoiceDetails[i].VatNo, invoiceDetails[i].IsPaymentSettled); 
             }
 
-            if (Result > 0) {
+            if (Result > 0)
+            {
                 ScriptManager.RegisterClientScriptBlock(Updatepanel1, this.Updatepanel1.GetType(), "none", "<script>   $('div').removeClass('modal-backdrop'); $(document).ready(function () { swal({ type: 'success',title: 'Your work has been saved'}) });   </script>", false);
                 ddlPaymentMethod.SelectedValue = PaymentMetod.ToString();
                 gvAddedInvDetails.DataSource = null;
@@ -542,15 +614,18 @@ namespace BiddingSystem {
 
         }
 
-        
-        protected void btnBack_Click(object sender, EventArgs e) {
-            try {
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            try
+            {
 
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { $('div').removeClass('modal-backdrop'); $('#mdlPrevInvoices').modal('hide'); $('#mdlInvDetails').modal('show'); });   </script>", false);
                 gvPrevInvoices.DataSource = null;
                 gvPrevInvoices.DataBind();
             }
-            catch (Exception EX) {
+            catch (Exception EX)
+            {
 
             }
         }

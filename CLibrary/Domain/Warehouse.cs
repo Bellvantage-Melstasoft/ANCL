@@ -6,10 +6,11 @@ using System.Text;
 
 namespace CLibrary.Domain
 {
+    [Serializable]
     public class Warehouse
     {
-        private int warehouseID, isActive, companyID,headOfWarehouseID;
-        private string location, phoneNo, headOfWarehouseName,address;
+        private int warehouseID, isActive, companyID, headOfWarehouseID;
+        private string location, phoneNo, headOfWarehouseName, address;
 
         [DBField("IS_ACTIVE")]
         public int IsActive
