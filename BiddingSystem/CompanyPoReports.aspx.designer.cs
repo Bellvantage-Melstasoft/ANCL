@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BiddingSystem {
-    
-    
-    public partial class CompanyPoReports {
-        
+namespace BiddingSystem
+{
+
+
+    public partial class CompanyPoReports
+    {
+
         /// <summary>
         /// lblDateNow control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDateNow;
-        
+
         /// <summary>
         /// lblPOCode control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPOCode;
-        
+
         /// <summary>
         /// lblRefNo control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblRefNo;
-        
+
         /// <summary>
         /// lblCompanyName control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCompanyName;
-        
+
         /// <summary>
         /// lblVatNo control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblVatNo;
-        
+
         /// <summary>
         /// lblPhoneNo control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPhoneNo;
-        
+
         /// <summary>
         /// lblFaxNo control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblFaxNo;
-        
+
         /// <summary>
         /// lblSupplierName control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSupplierName;
-        
+
         /// <summary>
         /// lblAddress control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblAddress;
-        
+
         /// <summary>
         /// gvPurchaseOrderItems control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvPurchaseOrderItems;
-        
+
         /// <summary>
         /// lblSubtotal control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblSubtotal;
-        
+
         /// <summary>
         /// lblVatTotal control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblVatTotal;
-        
+
         /// <summary>
         /// lblNbtTotal control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblNbtTotal;
-        
+
         /// <summary>
         /// lblTotal control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotal;
-        
+
         /// <summary>
         /// panelPurchaseRequset control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl panelPurchaseRequset;
-        
+
         /// <summary>
         /// RequiredFieldValidator5 control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
-        
+
         /// <summary>
         /// txtPoCode control.
         /// </summary>
@@ -164,16 +166,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPoCode;
-        
-        /// <summary>
-        /// btnPoCodeSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPoCodeSearch;
-        
+
         /// <summary>
         /// RequiredFieldValidator1 control.
         /// </summary>
@@ -182,7 +175,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-        
+
         /// <summary>
         /// ddlStatus control.
         /// </summary>
@@ -191,34 +184,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
-        
-        /// <summary>
-        /// btnPoStatusSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPoStatusSearch;
-        
-        /// <summary>
-        /// RequiredFieldValidator2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
-        
-        /// <summary>
-        /// RequiredFieldValidator4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
-        
+
         /// <summary>
         /// txtStartDate control.
         /// </summary>
@@ -227,7 +193,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtStartDate;
-        
+
         /// <summary>
         /// txtEndDate control.
         /// </summary>
@@ -236,16 +202,52 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEndDate;
-        
+
         /// <summary>
-        /// btnPoDateSearch control.
+        /// ddlPRType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPoDateSearch;
-        
+        protected global::System.Web.UI.WebControls.DropDownList ddlPRType;
+
+        /// <summary>
+        /// ddlPurchasingType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPurchasingType;
+
+        /// <summary>
+        /// ddlDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDepartment;
+
+        /// <summary>
+        /// btnSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearch;
+
+        /// <summary>
+        /// btnSearchAll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearchAll;
+
         /// <summary>
         /// Updatepanel1 control.
         /// </summary>
@@ -254,7 +256,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel Updatepanel1;
-        
+
         /// <summary>
         /// gvPurchaseOrder control.
         /// </summary>
@@ -263,7 +265,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvPurchaseOrder;
-        
+
         /// <summary>
         /// gvPurchaseOrderItems1 control.
         /// </summary>

@@ -12,8 +12,8 @@ namespace BiddingSystem
 {
     public partial class CompanyPoReports : System.Web.UI.Page
     {
-       // static string UserId = string.Empty;
-      //  int CompanyId = 0;
+        // static string UserId = string.Empty;
+        //  int CompanyId = 0;
         POMasterController pOMasterController = ControllerFactory.CreatePOMasterController();
         CompanyUserAccessController companyUserAccessController = ControllerFactory.CreateCompanyUserAccessController();
         CompanyLoginController companyLoginController = ControllerFactory.CreateCompanyLoginController();
@@ -27,11 +27,11 @@ namespace BiddingSystem
 
             if (Session["CompanyId"] != null && Session["UserId"].ToString() != null)
             {
-            //    CompanyId = int.Parse(Session["CompanyId"].ToString());
-             //   UserId = Session["UserId"].ToString();
+                //    CompanyId = int.Parse(Session["CompanyId"].ToString());
+                //   UserId = Session["UserId"].ToString();
                 CompanyLogin companyLogin = companyLoginController.GetUserbyuserId(int.Parse(Session["UserId"].ToString()));
-                
-                    if ((!companyUserAccessController.isAvilableAccess(int.Parse(Session["UserId"].ToString()), int.Parse(Session["CompanyId"].ToString()), 8, 2) && companyLogin.Usertype != "S") &&  companyLogin.Usertype != "GA")
+
+                if ((!companyUserAccessController.isAvilableAccess(int.Parse(Session["UserId"].ToString()), int.Parse(Session["CompanyId"].ToString()), 8, 2) && companyLogin.Usertype != "S") && companyLogin.Usertype != "GA")
                 {
                     Response.Redirect("AdminDashboard.aspx");
                 }
@@ -50,6 +50,8 @@ namespace BiddingSystem
                         //pOMasterListByDepartmentid = pOMasterController.GetPoMasterListByDepartmentId(int.Parse(Session["CompanyId"].ToString())).OrderByDescending(x => x.PoID).ToList();
                         //gvPurchaseOrder.DataSource = pOMasterListByDepartmentid;
                         //gvPurchaseOrder.DataBind();
+
+                        BindDataDropDown();
                     }
                     catch (Exception ex)
                     {
@@ -69,13 +71,30 @@ namespace BiddingSystem
 
 
                 Session["PoId"] = PoId;
-                Response.Redirect("ViewPOReport.aspx?PoId=" + PoId );
+                Response.Redirect("ViewPOReport.aspx?PoId=" + PoId);
             }
 
             catch (Exception ex)
             {
                 throw ex;
             }
+
+        }
+
+
+        //Bind Department to dropdown
+        private void BindDataDropDown()
+        {
+            List<SubDepartment> departments = new List<SubDepartment>();
+            SubDepartmentControllerInterface subDepartmentController = ControllerFactory.CreateSubDepartmentController();
+
+            departments = subDepartmentController.getAllDepartmentList(int.Parse(Session["CompanyId"].ToString()));
+
+            ddlDepartment.DataSource = departments;
+            ddlDepartment.DataValueField = "SubDepartmentID";
+            ddlDepartment.DataTextField = "SubDepartmentName";
+            ddlDepartment.DataBind();
+            ddlDepartment.Items.Insert(0, new ListItem("-Select Department-", ""));
 
         }
 
@@ -86,19 +105,19 @@ namespace BiddingSystem
             txtEndDate.Text = "";
             string poCode = txtPoCode.Text;
             List<POMaster> pOMasterListByDepartmentid = new List<POMaster>();
-            pOMasterListByDepartmentid = pOMasterController.GetPoMasterListByDepartmentId(int.Parse(Session["CompanyId"].ToString())).Where(x => x.POCode.Contains(poCode)).ToList(); 
+            pOMasterListByDepartmentid = pOMasterController.GetPoMasterListByDepartmentId(int.Parse(Session["CompanyId"].ToString())).Where(x => x.POCode.Contains(poCode)).ToList();
             gvPurchaseOrder.DataSource = pOMasterListByDepartmentid;
             gvPurchaseOrder.DataBind();
 
         }
         protected void btnPoStatusSearch_Click(object sender, EventArgs e)
         {
-            txtPoCode.Text ="";
+            txtPoCode.Text = "";
             txtStartDate.Text = "";
             txtEndDate.Text = "";
             string status = ddlStatus.SelectedValue;
             List<POMaster> pOMasterListByDepartmentid = new List<POMaster>();
-            pOMasterListByDepartmentid = pOMasterController.GetPoMasterListByDepartmentId(int.Parse(Session["CompanyId"].ToString())).Where(x =>x.IsApproved==int.Parse(status)).ToList(); 
+            pOMasterListByDepartmentid = pOMasterController.GetPoMasterListByDepartmentId(int.Parse(Session["CompanyId"].ToString())).Where(x => x.IsApproved == int.Parse(status)).ToList();
             gvPurchaseOrder.DataSource = pOMasterListByDepartmentid;
             gvPurchaseOrder.DataBind();
 
