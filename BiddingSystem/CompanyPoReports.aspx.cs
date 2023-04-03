@@ -169,6 +169,11 @@ namespace BiddingSystem
             //    pOMasterList = pOMasterList.Where(x => x.PrCode == txtPoCode.Text).ToList();
             //}
 
+            if (ddlDepartment.SelectedValue != "")
+            {
+                pOMasterList = pOMasterList.Where(x => x.DepartmentId == Convert.ToInt32(ddlDepartment.SelectedValue)).ToList();
+            }
+
             if (txtStartDate.Text != "" && txtEndDate.Text != "")
             {
                 pOMasterList = pOMasterList.Where(x => x.CreatedDate <= DateTime.Parse(txtEndDate.Text) && x.CreatedDate >= DateTime.Parse(txtStartDate.Text)).ToList();
