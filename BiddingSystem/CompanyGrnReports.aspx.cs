@@ -146,6 +146,45 @@ namespace BiddingSystem
             gvPurchaseOrder.DataBind();
 
         }
+
+        protected void btnSearchAll_Click(object sender, EventArgs e)
+        {
+            List<GrnMaster> GrnMasterList = new List<GrnMaster>();
+            GrnMasterList = grnController.GetAllGRNmasterList();
+
+            gvPurchaseOrder.DataSource = GrnMasterList;
+            gvPurchaseOrder.DataBind();
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            List<GrnMaster> GrnMasterList = new List<GrnMaster>();
+            GrnMasterList = grnController.GetAllGRNmasterList();
+
+
+            if (ddlStatus.SelectedValue != "")
+            {
+                GrnMasterList = GrnMasterList.Where(x => x.IsApproved == Convert.ToInt32(ddlStatus.SelectedValue)).ToList();
+
+            }
+
+            if (txtPOCode.Text != "")
+            {
+                GrnMasterList = GrnMasterList.Where(x => x.POCode == txtPOCode.Text).ToList();
+
+            }
+
+            if (txtGrnCode.Text != "")
+            {
+                GrnMasterList = GrnMasterList.Where(x => x.GrnCode == txtGrnCode.Text).ToList();
+
+            }
+
+            gvPurchaseOrder.DataSource = GrnMasterList;
+            gvPurchaseOrder.DataBind();
+
+        }
+
         //protected void btnGrnDateSearch_Click(object sender, EventArgs e)
         //{
         //    string status = ddlStatus.SelectedValue;
