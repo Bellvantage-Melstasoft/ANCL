@@ -61,10 +61,10 @@ namespace BiddingSystem
                     defineUserAccess.Visible = true;
 
                     liSupplier.Visible = true;
-                   // approveSuppier.Visible = true;
+                    // approveSuppier.Visible = true;
                     createSupplier.Visible = true;
                     editSupplier.Visible = true;
-                   // createSupplierAgent.Visible = true;
+                    // createSupplierAgent.Visible = true;
 
                     itemCategory.Visible = true;
                     addMainCategory.Visible = true;
@@ -76,15 +76,15 @@ namespace BiddingSystem
 
 
                     liCreateTR.Visible = true;
-                   
+
                     liViewMyTR.Visible = true;
-                   
+
                     liViewAllTR.Visible = true;
-                   
+
                     liApproveTR.Visible = true;
-                   
+
                     liViewSubmittedTR.Visible = true;
-                    
+
 
                     liMRN.Visible = true;
                     liCreateMRN.Visible = true;
@@ -173,6 +173,7 @@ namespace BiddingSystem
                     prReports.Visible = true;
                     poReports.Visible = true;
                     grnReports.Visible = true;
+                    SupplierItemReport.Visible = true;
                     //biddingReports.Visible = true;
                     //supplierReports.Visible = true;
                     IssueNoteReport.Visible = true;
@@ -188,7 +189,7 @@ namespace BiddingSystem
                     liManualBids.Visible = true;
                     manualSupplierBids.Visible = true;
                     updateSupplierBidBondDetails.Visible = true;
-                   // viewPrRejectedQuotationTabulationSheet.Visible = true;
+                    // viewPrRejectedQuotationTabulationSheet.Visible = true;
 
                     pendingManualBidsid.Visible = true;
                     closebidsManual.Visible = true;
@@ -196,7 +197,7 @@ namespace BiddingSystem
                     liMeasurement.Visible = true;
                     liMeasurement1.Visible = true;
 
-                    
+
                 }
                 else
                 {
@@ -218,8 +219,8 @@ namespace BiddingSystem
                                         liMeasurement1.Visible = true;
                                         break;
                                 }
-                                break;         
-                                                       
+                                break;
+
                             case 2:  // User Creation
                                 liUserCreation.Visible = true;
 
@@ -246,7 +247,7 @@ namespace BiddingSystem
                                 switch (actionId)
                                 {
                                     case 1:
-                                      //  approveSuppier.Visible = true;
+                                        //  approveSuppier.Visible = true;
                                         break;
                                     case 2:
                                         createSupplier.Visible = true;
@@ -330,7 +331,7 @@ namespace BiddingSystem
                                         bidComparrision.Visible = true;
                                         break;
                                     case 7:
-                                       // ApprovePO.Visible = true;
+                                        // ApprovePO.Visible = true;
                                         break;
                                     case 8:
                                         viewPO.Visible = true;
@@ -372,7 +373,7 @@ namespace BiddingSystem
                                         ApprovePO.Visible = true;
                                         break;
                                     case 23:
-                                       // ApproveModifiedPO.Visible = true;
+                                        // ApproveModifiedPO.Visible = true;
                                         break;
                                     case 24:
                                         addImportsRates.Visible = true;
@@ -386,7 +387,7 @@ namespace BiddingSystem
                                     case 27:
                                         ViewInvoices.Visible = true;
                                         break;
-                                     case 28:
+                                    case 28:
                                         viewCancelledPO.Visible = true;
                                         break;
                                     case 29:
@@ -430,7 +431,7 @@ namespace BiddingSystem
                                         //viewPrRejectedQuotationTabulationSheet.Visible = true;
                                         break;
 
-                                       
+
                                 }
                                 break;
 
@@ -451,7 +452,7 @@ namespace BiddingSystem
                                         grnReports.Visible = true;
                                         break;
                                     case 4:
-                                       // biddingReports.Visible = true;
+                                        // biddingReports.Visible = true;
                                         break;
                                     case 5:
                                         //supplierReports.Visible = true;
@@ -480,11 +481,11 @@ namespace BiddingSystem
 
 
                             case 9: // General Settings
-                               // liGeneralSetting.Visible = true;
+                                    // liGeneralSetting.Visible = true;
                                 switch (actionId)
                                 {
                                     case 1:
-                                      //  generalSetting.Visible = true;
+                                        //  generalSetting.Visible = true;
                                         break;
                                 }
                                 break;
@@ -550,10 +551,10 @@ namespace BiddingSystem
                                         liViewAllMRN.Visible = true;
                                         break;
                                     case 7:
-                                       // liViewMyMRNRequests.Visible = true;
+                                        // liViewMyMRNRequests.Visible = true;
                                         break;
                                     case 8:
-                                       // mrnInquiryReport.Visible = true;
+                                        // mrnInquiryReport.Visible = true;
                                         break;
                                     case 9:
                                         liConfirmReceivedInventory.Visible = true;
@@ -564,9 +565,9 @@ namespace BiddingSystem
                                     case 11:
                                         liReceivedIvetory.Visible = true;
                                         break;
-                                   
+
                                 }
-                                break; 
+                                break;
                             case 13:  // Committee Approval
                                 liApproval.Visible = true;
                                 switch (actionId)
@@ -588,7 +589,8 @@ namespace BiddingSystem
 
                             case 14:
                                 liTR.Visible = true;
-                                switch (actionId) {
+                                switch (actionId)
+                                {
                                     case 1:
                                         liCreateTR.Visible = true;
                                         break;
@@ -607,7 +609,7 @@ namespace BiddingSystem
                                     case 6:
                                         liViewDeliveredTrInventory.Visible = true;
                                         break;
-                                    
+
 
                                 }
                                 break;

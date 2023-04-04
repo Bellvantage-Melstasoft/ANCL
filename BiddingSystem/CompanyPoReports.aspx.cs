@@ -164,10 +164,10 @@ namespace BiddingSystem
 
             //}
 
-            //if (txtPoCode.Text != "")
-            //{
-            //    pOMasterList = pOMasterList.Where(x => x.PrCode == txtPoCode.Text).ToList();
-            //}
+            if (txtPoCode.Text != "")
+            {
+                pOMasterList = pOMasterList.Where(x => x.PrCode == txtPoCode.Text).ToList();
+            }
 
             if (ddlDepartment.SelectedValue != "")
             {

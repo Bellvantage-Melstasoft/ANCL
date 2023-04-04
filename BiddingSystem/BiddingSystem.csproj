@@ -276,6 +276,7 @@
     <Content Include="ReturnStockToWreouse.aspx" />
     <Content Include="RejectedReceivedInventory.aspx" />
     <Content Include="CustomerApprovePOPrint.aspx" />
+    <Content Include="SupplierItemReport.aspx" />
     <Content Include="ViewQuotationTRApprovalNewImportsSparePart.aspx" />
     <Content Include="ViewReturnedGRNDetails.aspx" />
     <Content Include="ViewReturnGRN.aspx" />
@@ -796,6 +797,13 @@
     </Compile>
     <Compile Include="CustomerApprovePOPrint.aspx.designer.cs">
       <DependentUpon>CustomerApprovePOPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierItemReport.aspx.cs">
+      <DependentUpon>SupplierItemReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SupplierItemReport.aspx.designer.cs">
+      <DependentUpon>SupplierItemReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewQuotationTRApprovalNewImportsSparePart.aspx.cs">
       <DependentUpon>ViewQuotationTRApprovalNewImportsSparePart.aspx</DependentUpon>
