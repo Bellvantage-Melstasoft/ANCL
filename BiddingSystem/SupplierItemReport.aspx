@@ -133,6 +133,19 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="box-body with-border">
+                                <div class="row">
+                                    <div class="col-md-12" style="color: black; overflow-x: scroll;">
+                                        <asp:GridView runat="server" ID="gvSupplierItemReport" EmptyDataText="No Data To Show!"
+                                            CssClass="table table-responsive tablegv" AutoGenerateColumns="false"
+                                            GridLines="None" HeaderStyle-BackColor="#3C8DBC" HeaderStyle-ForeColor="White">
+                                            <Columns>
+                                            </Columns>
+                                        </asp:GridView>
+                                    </div>
+                                </div>
+
+                            </div>
                         </div>
                     </section>
                 </ContentTemplate>
