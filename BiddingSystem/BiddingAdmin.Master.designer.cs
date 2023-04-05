@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BiddingSystem {
-    
-    
-    public partial class BiddingAdmin {
-        
+namespace BiddingSystem
+{
+
+
+    public partial class BiddingAdmin
+    {
+
         /// <summary>
         /// Head1 control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
-        
+
         /// <summary>
         /// liadmin control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liadmin;
-        
+
         /// <summary>
         /// liDepartment control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liDepartment;
-        
+
         /// <summary>
         /// liManageDepartments control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liManageDepartments;
-        
+
         /// <summary>
         /// liWarehouse control.
         /// </summary>
@@ -56,7 +58,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liWarehouse;
-        
+
         /// <summary>
         /// liManageWarehouses control.
         /// </summary>
@@ -65,7 +67,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liManageWarehouses;
-        
+
         /// <summary>
         /// liTransferInventory control.
         /// </summary>
@@ -74,7 +76,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liTransferInventory;
-        
+
         /// <summary>
         /// liIssuedInventory control.
         /// </summary>
@@ -83,7 +85,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liIssuedInventory;
-        
+
         /// <summary>
         /// liInventoryReport control.
         /// </summary>
@@ -92,7 +94,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liInventoryReport;
-        
+
         /// <summary>
         /// liAssignStoreKeeperToMRN control.
         /// </summary>
@@ -101,7 +103,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liAssignStoreKeeperToMRN;
-        
+
         /// <summary>
         /// liAssignedMRN control.
         /// </summary>
@@ -110,7 +112,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liAssignedMRN;
-        
+
         /// <summary>
         /// liEditInventory control.
         /// </summary>
@@ -119,7 +121,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liEditInventory;
-        
+
         /// <summary>
         /// liApproveRejectedInventory control.
         /// </summary>
@@ -128,7 +130,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liApproveRejectedInventory;
-        
+
         /// <summary>
         /// liReturnStockToWreouse control.
         /// </summary>
@@ -137,7 +139,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liReturnStockToWreouse;
-        
+
         /// <summary>
         /// liMeasurement control.
         /// </summary>
@@ -146,7 +148,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liMeasurement;
-        
+
         /// <summary>
         /// liMeasurement1 control.
         /// </summary>
@@ -155,7 +157,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liMeasurement1;
-        
+
         /// <summary>
         /// liUserCreation control.
         /// </summary>
@@ -164,7 +166,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liUserCreation;
-        
+
         /// <summary>
         /// createUser control.
         /// </summary>
@@ -173,7 +175,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl createUser;
-        
+
         /// <summary>
         /// editUser control.
         /// </summary>
@@ -182,7 +184,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl editUser;
-        
+
         /// <summary>
         /// createRole control.
         /// </summary>
@@ -191,7 +193,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl createRole;
-        
+
         /// <summary>
         /// defineUserAccess control.
         /// </summary>
@@ -200,7 +202,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl defineUserAccess;
-        
+
         /// <summary>
         /// liSupplier control.
         /// </summary>
@@ -209,7 +211,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liSupplier;
-        
+
         /// <summary>
         /// approveSuppier control.
         /// </summary>
@@ -218,7 +220,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl approveSuppier;
-        
+
         /// <summary>
         /// createSupplier control.
         /// </summary>
@@ -227,7 +229,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl createSupplier;
-        
+
         /// <summary>
         /// editSupplier control.
         /// </summary>
@@ -236,7 +238,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl editSupplier;
-        
+
         /// <summary>
         /// createSupplierAgent control.
         /// </summary>
@@ -245,7 +247,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl createSupplierAgent;
-        
+
         /// <summary>
         /// itemCategory control.
         /// </summary>
@@ -254,7 +256,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl itemCategory;
-        
+
         /// <summary>
         /// addMainCategory control.
         /// </summary>
@@ -263,7 +265,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl addMainCategory;
-        
+
         /// <summary>
         /// addAddCommittee control.
         /// </summary>
@@ -272,7 +274,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl addAddCommittee;
-        
+
         /// <summary>
         /// addMainCategoryOwners control.
         /// </summary>
@@ -281,7 +283,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl addMainCategoryOwners;
-        
+
         /// <summary>
         /// addSubCategory control.
         /// </summary>
@@ -290,7 +292,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl addSubCategory;
-        
+
         /// <summary>
         /// addSubCategoryStoreKeeper control.
         /// </summary>
@@ -299,7 +301,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl addSubCategoryStoreKeeper;
-        
+
         /// <summary>
         /// addItems control.
         /// </summary>
@@ -308,7 +310,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl addItems;
-        
+
         /// <summary>
         /// liMRN control.
         /// </summary>
@@ -317,7 +319,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liMRN;
-        
+
         /// <summary>
         /// liCreateMRN control.
         /// </summary>
@@ -326,7 +328,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liCreateMRN;
-        
+
         /// <summary>
         /// liViewMRN control.
         /// </summary>
@@ -335,7 +337,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liViewMRN;
-        
+
         /// <summary>
         /// liApproveMRN control.
         /// </summary>
@@ -344,7 +346,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liApproveMRN;
-        
+
         /// <summary>
         /// liAvailabilityExpenseMRN control.
         /// </summary>
@@ -353,7 +355,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liAvailabilityExpenseMRN;
-        
+
         /// <summary>
         /// liViewAllMRN control.
         /// </summary>
@@ -362,7 +364,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liViewAllMRN;
-        
+
         /// <summary>
         /// liDeliveredMRN control.
         /// </summary>
@@ -371,7 +373,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liDeliveredMRN;
-        
+
         /// <summary>
         /// liConfirmReceivedInventory control.
         /// </summary>
@@ -380,7 +382,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liConfirmReceivedInventory;
-        
+
         /// <summary>
         /// liRejectedReceivedInventory control.
         /// </summary>
@@ -389,7 +391,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liRejectedReceivedInventory;
-        
+
         /// <summary>
         /// liReceivedIvetory control.
         /// </summary>
@@ -398,7 +400,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liReceivedIvetory;
-        
+
         /// <summary>
         /// liTR control.
         /// </summary>
@@ -407,7 +409,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liTR;
-        
+
         /// <summary>
         /// liCreateTR control.
         /// </summary>
@@ -416,7 +418,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liCreateTR;
-        
+
         /// <summary>
         /// liViewMyTR control.
         /// </summary>
@@ -425,7 +427,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liViewMyTR;
-        
+
         /// <summary>
         /// liViewAllTR control.
         /// </summary>
@@ -434,7 +436,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liViewAllTR;
-        
+
         /// <summary>
         /// liApproveTR control.
         /// </summary>
@@ -443,7 +445,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liApproveTR;
-        
+
         /// <summary>
         /// liViewSubmittedTR control.
         /// </summary>
@@ -452,7 +454,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liViewSubmittedTR;
-        
+
         /// <summary>
         /// liViewDeliveredTrInventory control.
         /// </summary>
@@ -461,7 +463,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liViewDeliveredTrInventory;
-        
+
         /// <summary>
         /// liPurchaseRequest control.
         /// </summary>
@@ -470,7 +472,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liPurchaseRequest;
-        
+
         /// <summary>
         /// createPR control.
         /// </summary>
@@ -479,7 +481,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl createPR;
-        
+
         /// <summary>
         /// liViewPR control.
         /// </summary>
@@ -488,7 +490,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liViewPR;
-        
+
         /// <summary>
         /// approvePR control.
         /// </summary>
@@ -497,7 +499,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl approvePR;
-        
+
         /// <summary>
         /// liViewPRRequestsExpenseApprove control.
         /// </summary>
@@ -506,7 +508,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liViewPRRequestsExpenseApprove;
-        
+
         /// <summary>
         /// liViewAllPR control.
         /// </summary>
@@ -515,7 +517,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liViewAllPR;
-        
+
         /// <summary>
         /// prInquiryReport control.
         /// </summary>
@@ -524,7 +526,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl prInquiryReport;
-        
+
         /// <summary>
         /// liPurchasing control.
         /// </summary>
@@ -533,7 +535,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liPurchasing;
-        
+
         /// <summary>
         /// submitForBidding control.
         /// </summary>
@@ -542,7 +544,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl submitForBidding;
-        
+
         /// <summary>
         /// approveforBidOpeningg control.
         /// </summary>
@@ -551,7 +553,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl approveforBidOpeningg;
-        
+
         /// <summary>
         /// viewSubmittedforBid control.
         /// </summary>
@@ -560,7 +562,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl viewSubmittedforBid;
-        
+
         /// <summary>
         /// inProgressBid control.
         /// </summary>
@@ -569,7 +571,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl inProgressBid;
-        
+
         /// <summary>
         /// closedBids control.
         /// </summary>
@@ -578,7 +580,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl closedBids;
-        
+
         /// <summary>
         /// approveBidsBeforeComparison control.
         /// </summary>
@@ -587,7 +589,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl approveBidsBeforeComparison;
-        
+
         /// <summary>
         /// bidComparrision control.
         /// </summary>
@@ -596,7 +598,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl bidComparrision;
-        
+
         /// <summary>
         /// createPo control.
         /// </summary>
@@ -605,7 +607,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl createPo;
-        
+
         /// <summary>
         /// ViewAllPO control.
         /// </summary>
@@ -614,7 +616,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewAllPO;
-        
+
         /// <summary>
         /// ViewMyPO control.
         /// </summary>
@@ -623,7 +625,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewMyPO;
-        
+
         /// <summary>
         /// ApprovePO control.
         /// </summary>
@@ -632,7 +634,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ApprovePO;
-        
+
         /// <summary>
         /// ApprovedPOInvoices control.
         /// </summary>
@@ -641,7 +643,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ApprovedPOInvoices;
-        
+
         /// <summary>
         /// addImportDetail control.
         /// </summary>
@@ -650,7 +652,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl addImportDetail;
-        
+
         /// <summary>
         /// addImportsRates control.
         /// </summary>
@@ -659,7 +661,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl addImportsRates;
-        
+
         /// <summary>
         /// addAfterPO control.
         /// </summary>
@@ -668,7 +670,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl addAfterPO;
-        
+
         /// <summary>
         /// viewAfterPO control.
         /// </summary>
@@ -677,7 +679,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl viewAfterPO;
-        
+
         /// <summary>
         /// viewPO control.
         /// </summary>
@@ -686,7 +688,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl viewPO;
-        
+
         /// <summary>
         /// viewCancelledPO control.
         /// </summary>
@@ -695,7 +697,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl viewCancelledPO;
-        
+
         /// <summary>
         /// CustomerApprovePOPrint control.
         /// </summary>
@@ -704,7 +706,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl CustomerApprovePOPrint;
-        
+
         /// <summary>
         /// generateGRN control.
         /// </summary>
@@ -713,7 +715,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl generateGRN;
-        
+
         /// <summary>
         /// grnApproval control.
         /// </summary>
@@ -722,7 +724,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl grnApproval;
-        
+
         /// <summary>
         /// companyViewApprovedGRN control.
         /// </summary>
@@ -731,7 +733,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl companyViewApprovedGRN;
-        
+
         /// <summary>
         /// CustomerGRNReturn control.
         /// </summary>
@@ -740,7 +742,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl CustomerGRNReturn;
-        
+
         /// <summary>
         /// ViewReturnGRN control.
         /// </summary>
@@ -749,7 +751,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewReturnGRN;
-        
+
         /// <summary>
         /// ViewInvoices control.
         /// </summary>
@@ -758,7 +760,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewInvoices;
-        
+
         /// <summary>
         /// AddRates control.
         /// </summary>
@@ -767,7 +769,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl AddRates;
-        
+
         /// <summary>
         /// bidHistory control.
         /// </summary>
@@ -776,7 +778,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl bidHistory;
-        
+
         /// <summary>
         /// liApproval control.
         /// </summary>
@@ -785,7 +787,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liApproval;
-        
+
         /// <summary>
         /// techApproval control.
         /// </summary>
@@ -794,7 +796,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl techApproval;
-        
+
         /// <summary>
         /// procurementApproval control.
         /// </summary>
@@ -803,7 +805,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl procurementApproval;
-        
+
         /// <summary>
         /// ViewPrForQuotationRejectedRecommendation control.
         /// </summary>
@@ -812,7 +814,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewPrForQuotationRejectedRecommendation;
-        
+
         /// <summary>
         /// ViewPrForQuotationRejectedApprovalNew control.
         /// </summary>
@@ -821,7 +823,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewPrForQuotationRejectedApprovalNew;
-        
+
         /// <summary>
         /// liManualBids control.
         /// </summary>
@@ -830,7 +832,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liManualBids;
-        
+
         /// <summary>
         /// pendingManualBidsid control.
         /// </summary>
@@ -839,7 +841,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl pendingManualBidsid;
-        
+
         /// <summary>
         /// closebidsManual control.
         /// </summary>
@@ -848,7 +850,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl closebidsManual;
-        
+
         /// <summary>
         /// manualSupplierBids control.
         /// </summary>
@@ -857,7 +859,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl manualSupplierBids;
-        
+
         /// <summary>
         /// updateSupplierBidBondDetails control.
         /// </summary>
@@ -866,7 +868,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl updateSupplierBidBondDetails;
-        
+
         /// <summary>
         /// liReports control.
         /// </summary>
@@ -875,7 +877,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liReports;
-        
+
         /// <summary>
         /// mrReports control.
         /// </summary>
@@ -884,7 +886,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl mrReports;
-        
+
         /// <summary>
         /// prReports control.
         /// </summary>
@@ -893,7 +895,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl prReports;
-        
+
         /// <summary>
         /// poReports control.
         /// </summary>
@@ -902,7 +904,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl poReports;
-        
+
         /// <summary>
         /// grnReports control.
         /// </summary>
@@ -911,7 +913,16 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl grnReports;
-        
+
+        /// <summary>
+        /// SupplierItemReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SupplierItemReport;
+
         /// <summary>
         /// InventoryReportFull control.
         /// </summary>
@@ -920,7 +931,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl InventoryReportFull;
-        
+
         /// <summary>
         /// IssueNoteReport control.
         /// </summary>
@@ -929,7 +940,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl IssueNoteReport;
-        
+
         /// <summary>
         /// ReceivedMRNReport control.
         /// </summary>
@@ -938,7 +949,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ReceivedMRNReport;
-        
+
         /// <summary>
         /// StockOverriddenReport control.
         /// </summary>
@@ -947,7 +958,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl StockOverriddenReport;
-        
+
         /// <summary>
         /// PurchaseRequisitionReport control.
         /// </summary>
@@ -956,7 +967,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl PurchaseRequisitionReport;
-        
+
         /// <summary>
         /// liGeneralSetting control.
         /// </summary>
@@ -965,7 +976,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl liGeneralSetting;
-        
+
         /// <summary>
         /// generalSetting control.
         /// </summary>
@@ -974,7 +985,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl generalSetting;
-        
+
         /// <summary>
         /// li1 control.
         /// </summary>
@@ -983,7 +994,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl li1;
-        
+
         /// <summary>
         /// Li2 control.
         /// </summary>
@@ -992,7 +1003,7 @@ namespace BiddingSystem {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Li2;
-        
+
         /// <summary>
         /// ContentSection control.
         /// </summary>

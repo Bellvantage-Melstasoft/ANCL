@@ -276,7 +276,6 @@
 
 
             <section class="content">
-
                 <div class="box box-info" id="panelPurchaseRequset" runat="server">
                     <div class="box-header with-border" id="viewPOSection">
 
@@ -328,7 +327,6 @@
                         </div>
 
                         <%-- Next Filter Row --%>
-
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="col-sm-4">
@@ -454,8 +452,6 @@
                         <asp:BoundField DataField="VatAmount" HeaderText="Vat Amount" DataFormatString="{0:N2}" />
                         <asp:BoundField DataField="NbtAmount" HeaderText="NBT Amount" DataFormatString="{0:N2}" />
                         <asp:BoundField DataField="TotalAmount" HeaderText="Total Amount" DataFormatString="{0:N2}" />
-
-
                     </Columns>
                 </asp:GridView>
             </div>

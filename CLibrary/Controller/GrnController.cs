@@ -5,19 +5,23 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace CLibrary.Controller
 {
-   public interface GrnController
+    public interface GrnController
     {
         int SaveGrnMaster(int poId, int companyId, int supplierid, DateTime goodReceivedDate, decimal totalAmount, string createdBy, DateTime createdDate, string grnNote, string InvoiceNo);
         int SaveGrnMasterDup(int GrnId, int poId, int companyId, int supplierid, DateTime goodReceivedDate, decimal totalAmount, string createdBy, DateTime createdDate, string grnNote, int BasedGrn, string InvoiceNo);
         int UpdateRejectedGrn(int grnid, int poId, DateTime goodReceivedDate, string grnNote);
         List<GrnMaster> GetGRNmasterListByDepartmentId(int departmentid);
+
+        //Get All 
+        List<GrnMaster> GetAllGRNmasterList();
         GrnMaster GetGrnMasterByPoId(int PoId);
         GrnMaster GetGrnMasterByGrnID(int grnId, int poID);
-        int grnMasterApproval(int grnId, int isApprove, string approvedby, int departmentId,string GrnCode);
+        int grnMasterApproval(int grnId, int isApprove, string approvedby, int departmentId, string GrnCode);
         List<GrnMaster> GetgrnMasterListByByDateRange(int departmentid, DateTime startdate, DateTime enddate);
         List<GrnMaster> GetgrnMasterListByPoCode(int departmentid, string poCode);
 
@@ -59,12 +63,36 @@ namespace CLibrary.Controller
                 POMasterDAO pOMasterDAO = DAOFactory.createPOMasterDAO();
                 GrnDAO grnDAO = DAOFactory.createGrnDAO();
                 GrnMaster grnMasterObj = new GrnMaster();
-                grnMasterObj = grnDAO.GetGrnMasterByGrnID(grnId,poID, dbConnection);
+                grnMasterObj = grnDAO.GetGrnMasterByGrnID(grnId, poID, dbConnection);
                 grnMasterObj._companyDepartment = companyDepartmentDAO.GetDepartmentByDepartmentId(grnMasterObj.CompanyId, dbConnection);
                 grnMasterObj._Supplier = supplierDAO.GetSupplierBySupplierId(grnMasterObj.Supplierid, dbConnection);
                 grnMasterObj._POMaster = pOMasterDAO.GetPoMasterObjByPoId(grnMasterObj.PoId, dbConnection);
                 return grnMasterObj;
-               
+
+            }
+            catch (Exception)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
+                    dbConnection.Commit();
+                }
+            }
+        }
+
+
+        //Get All 
+        public List<GrnMaster> GetAllGRNmasterList()
+        {
+            DBConnection dbConnection = new DBConnection();
+            try
+            {
+                GrnDAO grnDAO = DAOFactory.createGrnDAO();
+                return grnDAO.GetAllGRNmasterList(dbConnection);
             }
             catch (Exception)
             {
@@ -86,7 +114,7 @@ namespace CLibrary.Controller
             try
             {
                 GrnDAO grnDAO = DAOFactory.createGrnDAO();
-                return grnDAO.GetGrnMasterByPoId( PoId, dbConnection);
+                return grnDAO.GetGrnMasterByPoId(PoId, dbConnection);
             }
             catch (Exception)
             {
@@ -108,7 +136,7 @@ namespace CLibrary.Controller
             try
             {
                 GrnDAO grnDAO = DAOFactory.createGrnDAO();
-                return grnDAO.GetgrnMasterListByByDateRange( departmentid,  startdate,  enddate, dbConnection);
+                return grnDAO.GetgrnMasterListByByDateRange(departmentid, startdate, enddate, dbConnection);
             }
             catch (Exception)
             {
@@ -130,7 +158,7 @@ namespace CLibrary.Controller
             try
             {
                 GrnDAO grnDAO = DAOFactory.createGrnDAO();
-                return grnDAO.GetGRNmasterListByDepartmentId( departmentid, dbConnection);
+                return grnDAO.GetGRNmasterListByDepartmentId(departmentid, dbConnection);
             }
             catch (Exception)
             {
@@ -146,35 +174,45 @@ namespace CLibrary.Controller
             }
         }
 
-        public List<GrnMaster> GetGRNmasterListByPOCode(int departmentid, string PoCode) {
+        public List<GrnMaster> GetGRNmasterListByPOCode(int departmentid, string PoCode)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 GrnDAO grnDAO = DAOFactory.createGrnDAO();
                 return grnDAO.GetGRNmasterListByPOCode(departmentid, PoCode, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public List<GrnMaster> GetGRNmasterListBygrnCode(int departmentid, string GrnCode) {
+        public List<GrnMaster> GetGRNmasterListBygrnCode(int departmentid, string GrnCode)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 GrnDAO grnDAO = DAOFactory.createGrnDAO();
                 return grnDAO.GetGRNmasterListBygrnCode(departmentid, GrnCode, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -186,7 +224,7 @@ namespace CLibrary.Controller
             try
             {
                 GrnDAO grnDAO = DAOFactory.createGrnDAO();
-                return grnDAO.GetgrnMasterListByPoCode( departmentid,  poCode, dbConnection);
+                return grnDAO.GetgrnMasterListByPoCode(departmentid, poCode, dbConnection);
             }
             catch (Exception)
             {
@@ -202,13 +240,13 @@ namespace CLibrary.Controller
             }
         }
 
-        public int grnMasterApproval(int grnId, int isApprove, string approvedby, int departmentId,string GrnCode)
+        public int grnMasterApproval(int grnId, int isApprove, string approvedby, int departmentId, string GrnCode)
         {
             DBConnection dbConnection = new DBConnection();
             try
             {
                 GrnDAO grnDAO = DAOFactory.createGrnDAO();
-                return grnDAO.grnMasterApproval( grnId,  isApprove,  approvedby, departmentId,GrnCode, dbConnection);
+                return grnDAO.grnMasterApproval(grnId, isApprove, approvedby, departmentId, GrnCode, dbConnection);
             }
             catch (Exception)
             {
@@ -230,7 +268,7 @@ namespace CLibrary.Controller
             try
             {
                 GrnDAO grnDAO = DAOFactory.createGrnDAO();
-                return grnDAO.SaveGrnMaster( poId,  companyId,  supplierid,  goodReceivedDate,  totalAmount,  createdBy,  createdDate,  grnNote, InvoiceNo, dbConnection);
+                return grnDAO.SaveGrnMaster(poId, companyId, supplierid, goodReceivedDate, totalAmount, createdBy, createdDate, grnNote, InvoiceNo, dbConnection);
             }
             catch (Exception)
             {
@@ -252,7 +290,7 @@ namespace CLibrary.Controller
             try
             {
                 GrnDAO grnDAO = DAOFactory.createGrnDAO();
-                return grnDAO.SaveGrnMasterDup(GrnId, poId, companyId, supplierid, goodReceivedDate, totalAmount, createdBy, createdDate, grnNote,BasedGrn, InvoiceNo, dbConnection);
+                return grnDAO.SaveGrnMasterDup(GrnId, poId, companyId, supplierid, goodReceivedDate, totalAmount, createdBy, createdDate, grnNote, BasedGrn, InvoiceNo, dbConnection);
             }
             catch (Exception)
             {
@@ -274,7 +312,7 @@ namespace CLibrary.Controller
             try
             {
                 GrnDAO grnDAO = DAOFactory.createGrnDAO();
-                return grnDAO.UpdateRejectedGrn( grnid,  poId,  goodReceivedDate,  grnNote, dbConnection);
+                return grnDAO.UpdateRejectedGrn(grnid, poId, goodReceivedDate, grnNote, dbConnection);
             }
             catch (Exception)
             {
@@ -487,35 +525,44 @@ namespace CLibrary.Controller
                 }
             }
         }
-        public int GenerateGRN(GrnMaster grnMaster, int PoId, int PrId, int UserId, List<InvoiceDetails> invoiceDetails, List<InvoiceImages> invoiceImages) {
+        public int GenerateGRN(GrnMaster grnMaster, int PoId, int PrId, int UserId, List<InvoiceDetails> invoiceDetails, List<InvoiceImages> invoiceImages)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 GrnDAO grnDAO = DAOFactory.createGrnDAO();
                 InvoiceDetailsDAO invoiceDetailsDAO = DAOFactory.CreateInvoiceDetailsDAO();
-                int GRnId =  grnDAO.GenerateGRN(grnMaster, dbConnection);
-                if (GRnId > 0) {
-                    if (invoiceDetails.Count > 0) {
-                        for (int i = 0; i < invoiceDetails.Count; i++) {
+                int GRnId = grnDAO.GenerateGRN(grnMaster, dbConnection);
+                if (GRnId > 0)
+                {
+                    if (invoiceDetails.Count > 0)
+                    {
+                        for (int i = 0; i < invoiceDetails.Count; i++)
+                        {
                             int Result = invoiceDetailsDAO.SaveInvoiceDetailsInPO(PoId, GRnId, invoiceDetails[i].PaymentType, invoiceDetails[i].InvoiceNo, invoiceDetails[i].InvoiceDate, invoiceDetails[i].InvoiceAmount, invoiceDetails[i].VatNo, invoiceDetails[i].IsPaymentSettled, invoiceDetails[i].Remark, invoiceDetails[i].RemarkOn, invoiceImages, dbConnection);
                         }
                     }
                     return GRnId;
                 }
-                else {
+                else
+                {
                     dbConnection.RollBack();
                     return -1;
                 }
 
-                
+
 
 
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -581,18 +628,23 @@ namespace CLibrary.Controller
             }
         }
 
-        public int UpdateGrnCoverigPR(int GrId, int CompanyId) {
+        public int UpdateGrnCoverigPR(int GrId, int CompanyId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 GrnDAO grnDAO = DAOFactory.createGrnDAO();
                 return grnDAO.UpdateGrnCoverigPR(GrId, CompanyId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -620,18 +672,23 @@ namespace CLibrary.Controller
             }
         }
 
-        public List<GrnMaster> GetGrnForReturn(int departmentid) {
+        public List<GrnMaster> GetGrnForReturn(int departmentid)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 GrnDAO grnDAO = DAOFactory.createGrnDAO();
                 return grnDAO.GetGrnForReturn(departmentid, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }

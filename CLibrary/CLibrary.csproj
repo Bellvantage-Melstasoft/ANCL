@@ -175,6 +175,7 @@
     <Compile Include="Controller\StockOverrideBatchLogController.cs" />
     <Compile Include="Controller\StockOverrideLogController.cs" />
     <Compile Include="Controller\SubCategoryStoreKeeperController.cs" />
+    <Compile Include="Controller\SupplierItemReportController.cs" />
     <Compile Include="Controller\SupplierQuotationItemController.cs" />
     <Compile Include="Controller\SupplierTypeController.cs" />
     <Compile Include="Controller\TabulationDetailController.cs" />
@@ -290,6 +291,7 @@
     <Compile Include="Domain\StockOverrideBatchLog.cs" />
     <Compile Include="Domain\StockOverrideLog.cs" />
     <Compile Include="Domain\SupplierAgent2.cs" />
+    <Compile Include="Domain\SupplierAddItemReport.cs" />
     <Compile Include="Domain\SupplierRating.cs" />
     <Compile Include="Domain\SupplierType.cs" />
     <Compile Include="Domain\TempCoverigPr.cs" />
@@ -525,6 +527,7 @@
     <Compile Include="Infrastructure\StockOverrideBatchLogDAO.cs" />
     <Compile Include="Infrastructure\StockOverrideLogDAO.cs" />
     <Compile Include="Infrastructure\SubCategoryStoreKeeperDAO.cs" />
+    <Compile Include="Infrastructure\SupplierItemReportDAO.cs" />
     <Compile Include="Infrastructure\SupplierTypeDAO.cs" />
     <Compile Include="Infrastructure\TabulationApprovalDAO.cs" />
     <Compile Include="Infrastructure\QuotationApprovalDAO.cs" />
