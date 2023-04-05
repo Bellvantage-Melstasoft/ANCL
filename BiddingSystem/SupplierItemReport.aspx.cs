@@ -15,6 +15,8 @@ namespace BiddingSystem
 
         CompanyUserAccessController companyUserAccessController = ControllerFactory.CreateCompanyUserAccessController();
         CompanyLoginController companyLoginController = ControllerFactory.CreateCompanyLoginController();
+        SupplierItemReportController supplierItemReportController = ControllerFactory.CreateSupplierItemReportController();
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -42,7 +44,9 @@ namespace BiddingSystem
 
                 if (!IsPostBack)
                 {
-                    BindDataSource();
+
+                    BindCategory();
+                    BindSubCategory();
                 }
             }
             catch (Exception ex)
@@ -54,12 +58,62 @@ namespace BiddingSystem
 
         private void BindDataSource()
         {
-            SupplierItemReportController supplierItemReportController = ControllerFactory.CreateSupplierItemReportController();
             List<SupplierAddItemReport> supplierAddItemReports = supplierItemReportController.GetSuppliers();
 
             gvSupplierItemReport.DataSource = supplierAddItemReports;
             gvSupplierItemReport.DataBind();
 
+        }
+        private void BindSubCategory()
+        {
+            ItemSubCategoryController itemSubCategoryController = ControllerFactory.CreateItemSubCategoryController();
+            ddlSubCategory.DataSource = itemSubCategoryController.FetchItemSubCategoryList(6);
+            ddlSubCategory.DataTextField = "SubCategoryName";
+            ddlSubCategory.DataValueField = "SubCategoryId";
+            ddlSubCategory.DataBind();
+            ddlSubCategory.Items.Insert(0, new ListItem("-Select-", ""));
+        }
+
+        private void BindCategory()
+        {
+            ItemCategoryController itemCategoryController = ControllerFactory.CreateItemCategoryController();
+            ddlCategory.DataSource = itemCategoryController.FetchItemCategoryList(6);
+            ddlCategory.DataTextField = "CategoryName";
+            ddlCategory.DataValueField = "CategoryId";
+            ddlCategory.DataBind();
+            ddlCategory.Items.Insert(0, new ListItem("-Select-", ""));
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            List<SupplierAddItemReport> supplierAddItemReports = supplierItemReportController.GetSuppliers();
+
+
+            if (ddlStatus.SelectedValue != "")
+            {
+                supplierAddItemReports = supplierAddItemReports.Where(x => x.IsApproved == Convert.ToInt32(ddlStatus.SelectedValue)).ToList();
+
+            }
+
+            if (ddlSubCategory.SelectedValue != "")
+            {
+                supplierAddItemReports = supplierAddItemReports.Where(x => x.SubCategoryId == Convert.ToInt32(ddlSubCategory.SelectedValue)).ToList();
+
+            }
+
+            if (ddlCategory.SelectedValue != "")
+            {
+                supplierAddItemReports = supplierAddItemReports.Where(x => x.CategoryId == Convert.ToInt32(ddlCategory.SelectedValue)).ToList();
+
+            }
+
+            gvSupplierItemReport.DataSource = supplierAddItemReports;
+            gvSupplierItemReport.DataBind();
+        }
+
+        protected void btnSearchAll_Click(object sender, EventArgs e)
+        {
+            BindDataSource();
         }
     }
 }

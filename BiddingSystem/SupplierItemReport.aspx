@@ -89,34 +89,33 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="col-sm-4">
-                                            <label>PR Type</label>
+                                            <label>
+                                                Category
                                             <div class="input-group margin">
-                                                <asp:DropDownList ID="ddlPRType" runat="server" class="form-control select2">
-                                                    <asp:ListItem Value="">-Please Select-</asp:ListItem>
-                                                    <asp:ListItem Value="1">Stock</asp:ListItem>
-                                                    <asp:ListItem Value="2">Non-Stock</asp:ListItem>
-
+                                                <asp:DropDownList ID="ddlCategory" runat="server" class="form-control">
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4">
-                                            <label>Purchase Type</label>
+                                            <label>Sub Category</label>
 
                                             <div class="input-group margin">
-                                                <asp:DropDownList ID="ddlPurchasingType" runat="server" class="form-control select2">
-                                                    <asp:ListItem Value="">-Please Select-</asp:ListItem>
-                                                    <asp:ListItem Value="1">Local</asp:ListItem>
-                                                    <asp:ListItem Value="2">Import</asp:ListItem>
+                                                <asp:DropDownList ID="ddlSubCategory" runat="server" class="form-control">
                                                 </asp:DropDownList>
 
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4">
-                                            <label>Department Type</label>
+                                            <label>Status</label>
                                             <div class="input-group margin">
-                                                <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control">
+                                                <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control">
+                                                    <asp:ListItem Value="">-Please Select-</asp:ListItem>
+                                                    <asp:ListItem Value="0">Pending</asp:ListItem>
+                                                    <asp:ListItem Value="1">Approved</asp:ListItem>
+                                                    <asp:ListItem Value="2">Rejected</asp:ListItem>
+
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
@@ -127,8 +126,8 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="col-sm-4">
-                                            <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-info" Text="Search" />
-                                            <asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" Text="Get All" />
+                                            <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-info" Text="Search" OnClick="btnSearch_Click" />
+                                            <asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" Text="Get All" OnClick="btnSearchAll_Click" />
                                         </div>
                                     </div>
                                 </div>
@@ -143,7 +142,7 @@
                                                 <asp:BoundField DataField="SupplierId" HeaderText="SUPPLIER ID" />
                                                 <asp:BoundField DataField="SupplierName" HeaderText="SUPPLIER NAME " />
                                                 <asp:BoundField DataField="ItemName" HeaderText="ITEM NAME" />
-                                                <asp:BoundField DataField="SupplierName" HeaderText="CREATED DATE " />
+                                                <asp:BoundField DataField="CreatedDate" HeaderText="CREATED DATE " DataFormatString="{0:d}" />
                                                 <asp:BoundField DataField="CategoryId" HeaderText="CATEGORY ID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                                                 <asp:BoundField DataField="SubCategoryId" HeaderText="SUB CATEGORY ID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                                                 <asp:BoundField DataField="GrnCode" HeaderText="GRN CODE " />
