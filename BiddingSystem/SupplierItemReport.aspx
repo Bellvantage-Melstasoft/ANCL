@@ -140,6 +140,29 @@
                                             CssClass="table table-responsive tablegv" AutoGenerateColumns="false"
                                             GridLines="None" HeaderStyle-BackColor="#3C8DBC" HeaderStyle-ForeColor="White">
                                             <Columns>
+                                                <asp:BoundField DataField="SupplierId" HeaderText="SUPPLIER ID" />
+                                                <asp:BoundField DataField="SupplierName" HeaderText="SUPPLIER NAME " />
+                                                <asp:BoundField DataField="ItemName" HeaderText="ITEM NAME" />
+                                                <asp:BoundField DataField="SupplierName" HeaderText="CREATED DATE " />
+                                                <asp:BoundField DataField="CategoryId" HeaderText="CATEGORY ID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                                                <asp:BoundField DataField="SubCategoryId" HeaderText="SUB CATEGORY ID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                                                <asp:BoundField DataField="GrnCode" HeaderText="GRN CODE " />
+                                                <asp:TemplateField HeaderText="Approval Status">
+                                                    <ItemTemplate>
+                                                        <asp:Label
+                                                            runat="server"
+                                                            Visible='<%# Eval("IsApproved").ToString() == "0" ? true : false %>'
+                                                            Text="Pending" CssClass="label label-warning" />
+                                                        <asp:Label
+                                                            runat="server"
+                                                            Visible='<%# Eval("IsApproved").ToString() == "1" ? true : false %>'
+                                                            Text="APPROVED" CssClass="label label-success" />
+                                                        <asp:Label
+                                                            runat="server"
+                                                            Visible='<%# Eval("IsApproved").ToString() == "2" ? true : false %>'
+                                                            Text="Rejected" CssClass="label label-danger" />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                             </Columns>
                                         </asp:GridView>
                                     </div>
