@@ -54,6 +54,11 @@ namespace BiddingSystem
 
         private void BindDataSource()
         {
+            SupplierItemReportController supplierItemReportController = ControllerFactory.CreateSupplierItemReportController();
+            List<SupplierAddItemReport> supplierAddItemReports = supplierItemReportController.GetSuppliers();
+
+            gvSupplierItemReport.DataSource = supplierAddItemReports;
+            gvSupplierItemReport.DataBind();
 
         }
     }

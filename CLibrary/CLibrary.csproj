@@ -291,7 +291,7 @@
     <Compile Include="Domain\StockOverrideBatchLog.cs" />
     <Compile Include="Domain\StockOverrideLog.cs" />
     <Compile Include="Domain\SupplierAgent2.cs" />
-    <Compile Include="Domain\SupplierItemReport.cs" />
+    <Compile Include="Domain\SupplierAddItemReport.cs" />
     <Compile Include="Domain\SupplierRating.cs" />
     <Compile Include="Domain\SupplierType.cs" />
     <Compile Include="Domain\TempCoverigPr.cs" />
