@@ -1240,6 +1240,12 @@ namespace CLibrary.Common
             return (SupplierItemReportDAO)supplierItemReportDAO;
         }
 
+        public static AddItemPOReportsDAO CreateAddItemPOReportsDAO()
+        {
+            AddItemPOReportsDAO addItemPOReportsDAO = new AddItemPOReportsDAOSqlImpl();
+            return (AddItemPOReportsDAO)addItemPOReportsDAO;
+        }
+
 
     }
 }

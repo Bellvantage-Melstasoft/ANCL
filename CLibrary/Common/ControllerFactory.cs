@@ -903,5 +903,11 @@ namespace CLibrary.Common
             SupplierItemReportController supplierItemReportController = new SupplierItemReportControllerImpl();
             return (SupplierItemReportController)supplierItemReportController;
         }
+
+        public static AddItemPOReportsController CreateAddItemPOReportsController()
+        {
+            AddItemPOReportsController addItemPOReportsController = new AddItemPOReportsControllerImpl();
+            return (AddItemPOReportsController)addItemPOReportsController;
+        }
     }
 }

@@ -174,6 +174,7 @@ namespace BiddingSystem
                     poReports.Visible = true;
                     grnReports.Visible = true;
                     SupplierItemReport.Visible = true;
+                    ItemPoreport.Visible = true;
                     //biddingReports.Visible = true;
                     //supplierReports.Visible = true;
                     IssueNoteReport.Visible = true;
