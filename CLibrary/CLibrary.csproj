@@ -78,6 +78,7 @@
     <Compile Include="Controller\AddItemBOMController.cs" />
     <Compile Include="Controller\AddItemController.cs" />
     <Compile Include="Controller\AddItemMasterController.cs" />
+    <Compile Include="Controller\AddItemPOReportsController.cs" />
     <Compile Include="Controller\AfterPOController.cs" />
     <Compile Include="Controller\BiddingController.cs" />
     <Compile Include="Controller\BiddingItemController.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Domain\AddItem.cs" />
     <Compile Include="Domain\AddItemBOM.cs" />
     <Compile Include="Domain\AddItemMaster.cs" />
+    <Compile Include="Domain\AddItemPOReports.cs" />
     <Compile Include="Domain\AfterPO.cs" />
     <Compile Include="Domain\Bidding.cs" />
     <Compile Include="Domain\BiddingItem.cs" />
@@ -417,6 +419,7 @@
     <Compile Include="Infrastructure\AddItemBOMDAO.cs" />
     <Compile Include="Infrastructure\AddItemDAO.cs" />
     <Compile Include="Infrastructure\AddItemMasterDAO.cs" />
+    <Compile Include="Infrastructure\AddItemPOReportsDAO.cs" />
     <Compile Include="Infrastructure\AfterPO_DAO.cs" />
     <Compile Include="Infrastructure\ArraySpec.cs" />
     <Compile Include="Infrastructure\BiddingDAO.cs" />
