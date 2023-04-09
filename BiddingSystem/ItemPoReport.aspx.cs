@@ -48,7 +48,6 @@ namespace BiddingSystem
                     BindSubCategory();
                     BindItem();
                     BindSupplier();
-                    BindDataSource();
                 }
             }
             catch (Exception ex)
@@ -151,6 +150,11 @@ namespace BiddingSystem
             gvItemPoReport.DataSource = addItemPOReports;
             gvItemPoReport.DataBind();
 
+        }
+
+        protected void btnSearchAll_Click(object sender, EventArgs e)
+        {
+            BindDataSource();
         }
     }
 }
