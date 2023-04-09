@@ -8,11 +8,15 @@ namespace CLibrary.Infrastructure
 {
     public interface SupplierDAO
     {
-        int saveSupplier(string supplierName, string address1, string address2, string email, string officeContactno, string mobileno, string requestedDate, string businssRegNo, string vatregNo, int companytypeId, int businessCategory, string logoPath, int IsrequestFromSupplier, int IdCreatedBAmin, int IsApproved, int IsActive,int supplierType, int isRegistered, string SupRegNo, DBConnection dbConnection);
+        int saveSupplier(string supplierName, string address1, string address2, string email, string officeContactno, string mobileno, string requestedDate, string businssRegNo, string vatregNo, int companytypeId, int businessCategory, string logoPath, int IsrequestFromSupplier, int IdCreatedBAmin, int IsApproved, int IsActive, int supplierType, int isRegistered, string SupRegNo, DBConnection dbConnection);
         int saveSupplierLogo(int supplierId, string logoPath, DBConnection dbConnection);
-        int updateSupplier(int supplierId, string supplierName, string address1, string address2, string officeContactno, string mobileno, string businssRegNo, string vatregNo, int companytypeId, int businessCategory, string logoPath, int IsrequestFromSupplier, int IdCreatedBAmin, int IsApproved, int IsActive,string emailAddress , int Suppliertype, int IssupplierRegistred, string SupRegNo, DBConnection dbConnection);
+        int updateSupplier(int supplierId, string supplierName, string address1, string address2, string officeContactno, string mobileno, string businssRegNo, string vatregNo, int companytypeId, int businessCategory, string logoPath, int IsrequestFromSupplier, int IdCreatedBAmin, int IsApproved, int IsActive, string emailAddress, int Suppliertype, int IssupplierRegistred, string SupRegNo, DBConnection dbConnection);
         int updateSupplierByAdmin(int supplierId, string supplierName, string address1, string address2, string email, string officeContactno, string mobileno, string businssRegNo, string vatregNo, int companytypeId, int businessCategory, string logoPath, int IsrequestFromSupplier, int IdCreatedBAmin, int IsApproved, int IsActive, DBConnection dbConnection);
         List<Supplier> GetSupplierList(DBConnection dbConnection);
+
+        //Get All Supplier List
+        List<Supplier> GetAllSupplierList(DBConnection dbConnection);
+
         Supplier GetSupplierBySupplierId(int supplierId, DBConnection dbConnection);
         bool checkExistingEmailAddress(string emailAddress, DBConnection dbConnection);
         bool checkExistingSuppliername(string supplierName, DBConnection dbConnection);
@@ -28,8 +32,8 @@ namespace CLibrary.Infrastructure
         List<Supplier> GetAllSuppliersForQuotationSubmission(List<int> CategoryIds, DBConnection dbConnection);
         List<Supplier> GetAllSuppliersToSendBidEmail(int CategoryId, DBConnection dbConnection);
         void SaveSupplierEmailForBidSubmission(int prId, int bidId, int supplierId, string supplierName, string emailAddress, DBConnection dbConnection);
-       List<SupplierBidEmail> GetSupplierAssignedToBid(int prId, int bidId, DBConnection dbConnection);
-        void SaveSupplierBidEmailContact(int prId, string contactName, string ContactNo, string Title ,DBConnection dbConnection);
+        List<SupplierBidEmail> GetSupplierAssignedToBid(int prId, int bidId, DBConnection dbConnection);
+        void SaveSupplierBidEmailContact(int prId, string contactName, string ContactNo, string Title, DBConnection dbConnection);
         List<SupplierBidEmailContact> GetSupplierBidEmailContact(int prId, DBConnection dbConnection);
         void DeleteSupplierBidEmailContact(int prId, DBConnection dbConnection);
         List<CommonReference> getCountry(DBConnection dbConnection);
@@ -47,7 +51,7 @@ namespace CLibrary.Infrastructure
         List<Supplier> FetchClearingAgentList(DBConnection dbConnection);
         List<Supplier> FetchSupplierAgent(DBConnection dbConnection);
         Supplier getSupplierByPOId(int PoId, DBConnection dbConnection);
-    }    
+    }
 
     public class SupplierDAOSQLImpl : SupplierDAO
     {
@@ -152,13 +156,28 @@ namespace CLibrary.Infrastructure
         }
 
 
+        //Get All Supplier List
+        public List<Supplier> GetAllSupplierList(DBConnection dbConnection)
+        {
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "SELECT * FROM SUPPLIER";
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-        public int saveSupplier(string supplierName, string address1, string address2, string email, string officeContactno, string mobileno, string requestedDate, string businssRegNo, string vatregNo, int companytypeId, int businessCategory, string logoPath, int IsrequestFromSupplier, int IdCreatedBAmin, int IsApproved, int IsActive,int supplierType, int isRegistered, string SupRegNo, DBConnection dbConnection)
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
+                DataAccessObject dataAccessObject = new DataAccessObject();
+                return dataAccessObject.ReadCollection<Supplier>(dbConnection.dr);
+            }
+        }
+
+
+        public int saveSupplier(string supplierName, string address1, string address2, string email, string officeContactno, string mobileno, string requestedDate, string businssRegNo, string vatregNo, int companytypeId, int businessCategory, string logoPath, int IsrequestFromSupplier, int IdCreatedBAmin, int IsApproved, int IsActive, int supplierType, int isRegistered, string SupRegNo, DBConnection dbConnection)
         {
             int supplierId = 0;
             dbConnection.cmd.CommandText = "SELECT COUNT(*) AS cnt FROM " + dbLibrary + ".SUPPLIER WHERE  SUPPLIER_NAME ='" + supplierName + "'";
             var existCount = decimal.Parse(dbConnection.cmd.ExecuteScalar().ToString());
-            if (existCount == 0) {
+            if (existCount == 0)
+            {
                 dbConnection.cmd.CommandText = "DECLARE @SUPPLIER_ID int " +
                                            "INSERT INTO " + dbLibrary + ".SUPPLIER (SUPPLIER_NAME , ADDRESS01, ADDRESS02 , EMAIL,  OFFICE_CONTACT_NO,  MOBILE_NO,  REQUESTED_DATE,  BUSINESS_REGISTRATION_NO,  VAT_REG_NO,  COMPNY_TYPE,  BUSINESS_CATEGORY,  SUPPLIER_LOGO,  IS_REQUESTFROM_SUPPLIER,  IS_CREATEDBY_ADMIN,  IS_APPROVED ,  IS_ACTIVE,SUPPLIER_TYPE, IS_REGISTERED_SUPPLIER, SUPPLIER_REGISTRATION_N0)" +
                                            "  OUTPUT inserted.SUPPLIER_ID as SUPPLIER_ID" +
@@ -166,9 +185,10 @@ namespace CLibrary.Infrastructure
                                            " select @SUPPLIER_ID";
                 dbConnection.cmd.CommandType = System.Data.CommandType.Text;
                 supplierId = int.Parse(dbConnection.cmd.ExecuteScalar().ToString());
-                
+
             }
-            else {
+            else
+            {
                 supplierId = -1;
             }
             return supplierId;
@@ -181,17 +201,17 @@ namespace CLibrary.Infrastructure
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
-        public int updateSupplier(int supplierId, string supplierName, string address1, string address2, string officeContactno, string mobileno, string businssRegNo, string vatregNo, int companytypeId, int businessCategory, string logoPath, int IsrequestFromSupplier, int IdCreatedBAmin, int IsApproved, int IsActive,string emailAddress, int Suppliertype, int IssupplierRegistred, string SupRegNo, DBConnection dbConnection)
+        public int updateSupplier(int supplierId, string supplierName, string address1, string address2, string officeContactno, string mobileno, string businssRegNo, string vatregNo, int companytypeId, int businessCategory, string logoPath, int IsrequestFromSupplier, int IdCreatedBAmin, int IsApproved, int IsActive, string emailAddress, int Suppliertype, int IssupplierRegistred, string SupRegNo, DBConnection dbConnection)
         {
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "UPDATE " + dbLibrary + ".SUPPLIER "+
-                                           " SET  SUPPLIER_NAME = '" + supplierName + "', ADDRESS01 = '" + address1 + "',ADDRESS02 ='" + address2 + "' ,"+
-                                           " OFFICE_CONTACT_NO = '" + officeContactno + "',  MOBILE_NO = '" + mobileno + "',"+
-                                           " BUSINESS_REGISTRATION_NO = '" + businssRegNo + "',  VAT_REG_NO = '" + vatregNo + "', SUPPLIER_TYPE = "+ Suppliertype + " ,"+
-                                           "  COMPNY_TYPE = " + companytypeId + ",  BUSINESS_CATEGORY = " + businessCategory + ","+
-                                           "  SUPPLIER_LOGO = '" + logoPath + "',  IS_REQUESTFROM_SUPPLIER = " + IsrequestFromSupplier + ","+
-                                           "  IS_CREATEDBY_ADMIN = " + IdCreatedBAmin + ",  IS_APPROVED  = " + IsApproved + ",  IS_ACTIVE = " + IsActive + " , IS_REGISTERED_SUPPLIER = "+ IssupplierRegistred + ", SUPPLIER_REGISTRATION_N0 = '"+ SupRegNo + "', " +
-                                           " EMAIL = '"+emailAddress+"' " +
+            dbConnection.cmd.CommandText = "UPDATE " + dbLibrary + ".SUPPLIER " +
+                                           " SET  SUPPLIER_NAME = '" + supplierName + "', ADDRESS01 = '" + address1 + "',ADDRESS02 ='" + address2 + "' ," +
+                                           " OFFICE_CONTACT_NO = '" + officeContactno + "',  MOBILE_NO = '" + mobileno + "'," +
+                                           " BUSINESS_REGISTRATION_NO = '" + businssRegNo + "',  VAT_REG_NO = '" + vatregNo + "', SUPPLIER_TYPE = " + Suppliertype + " ," +
+                                           "  COMPNY_TYPE = " + companytypeId + ",  BUSINESS_CATEGORY = " + businessCategory + "," +
+                                           "  SUPPLIER_LOGO = '" + logoPath + "',  IS_REQUESTFROM_SUPPLIER = " + IsrequestFromSupplier + "," +
+                                           "  IS_CREATEDBY_ADMIN = " + IdCreatedBAmin + ",  IS_APPROVED  = " + IsApproved + ",  IS_ACTIVE = " + IsActive + " , IS_REGISTERED_SUPPLIER = " + IssupplierRegistred + ", SUPPLIER_REGISTRATION_N0 = '" + SupRegNo + "', " +
+                                           " EMAIL = '" + emailAddress + "' " +
                                            " WHERE  SUPPLIER_ID = " + supplierId + "";
             return dbConnection.cmd.ExecuteNonQuery();
 
@@ -297,7 +317,7 @@ namespace CLibrary.Infrastructure
         public List<Supplier> GetAllSuppliersToSendBidEmail(int CategoryId, DBConnection dbConnection)
         {
             string sql = "SELECT SUPPLIER_ID,SUPPLIER_NAME,EMAIL,IS_REGISTERED_SUPPLIER FROM SUPPLIER WHERE (EMAIL IS NOT NULL OR EMAIL !='') AND IS_ACTIVE = 1 AND SUPPLIER_ID IN (\n" +
-                            "SELECT SUPPLIER_ID FROM SUPPLIER_CATEGORY WHERE CATEGORY_ID = "+CategoryId+")";
+                            "SELECT SUPPLIER_ID FROM SUPPLIER_CATEGORY WHERE CATEGORY_ID = " + CategoryId + ")";
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = sql;
@@ -311,14 +331,16 @@ namespace CLibrary.Infrastructure
             }
         }
 
-        public Supplier getSupplierByPOId(int PoId, DBConnection dbConnection) {
-            string sql = "SELECT * FROM SUPPLIER WHERE SUPPLIER_ID =(SELECT SUPPLIER_ID FROM PO_MASTER WHERE PO_ID = "+ PoId + ") ";
+        public Supplier getSupplierByPOId(int PoId, DBConnection dbConnection)
+        {
+            string sql = "SELECT * FROM SUPPLIER WHERE SUPPLIER_ID =(SELECT SUPPLIER_ID FROM PO_MASTER WHERE PO_ID = " + PoId + ") ";
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = sql;
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.GetSingleOject<Supplier>(dbConnection.dr);
             }
@@ -327,16 +349,16 @@ namespace CLibrary.Infrastructure
         public void SaveSupplierEmailForBidSubmission(int prId, int bidId, int supplierId, string supplierName, string emailAddress, DBConnection dbConnection)
         {
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "SELECT COUNT(*) AS cnt FROM " + dbLibrary + ".SUPPLIER_BID_EMAIL WHERE PR_ID = " + prId + " AND Bid_Id = "+ bidId + " " ;
+            dbConnection.cmd.CommandText = "SELECT COUNT(*) AS cnt FROM " + dbLibrary + ".SUPPLIER_BID_EMAIL WHERE PR_ID = " + prId + " AND Bid_Id = " + bidId + " ";
             var countExistEmail = decimal.Parse(dbConnection.cmd.ExecuteScalar().ToString());
 
             if (countExistEmail > 0)
             {
-                dbConnection.cmd.CommandText = "DELETE FROM " + dbLibrary + ".SUPPLIER_BID_EMAIL WHERE PR_ID = " + prId + " AND Bid_Id = " + bidId + " AND SUPPLIER_ID= "+supplierId+" ";
+                dbConnection.cmd.CommandText = "DELETE FROM " + dbLibrary + ".SUPPLIER_BID_EMAIL WHERE PR_ID = " + prId + " AND Bid_Id = " + bidId + " AND SUPPLIER_ID= " + supplierId + " ";
                 dbConnection.cmd.ExecuteNonQuery();
                 dbConnection.cmd.CommandText = "INSERT INTO " + dbLibrary + ".SUPPLIER_BID_EMAIL(PR_ID,Bid_Id,SUPPLIER_ID,SUPPLIER_NAME,EMAIL)" +
-                                               " VALUES("+prId+","+bidId+","+supplierId+",'"+supplierName+"' ,'"+emailAddress+"')";
-               dbConnection.cmd.ExecuteNonQuery();
+                                               " VALUES(" + prId + "," + bidId + "," + supplierId + ",'" + supplierName + "' ,'" + emailAddress + "')";
+                dbConnection.cmd.ExecuteNonQuery();
             }
             else
             {
@@ -348,7 +370,7 @@ namespace CLibrary.Infrastructure
 
         public List<SupplierBidEmail> GetSupplierAssignedToBid(int prId, int bidId, DBConnection dbConnection)
         {
-            string sql = "SELECT * FROM " + dbLibrary + ".SUPPLIER_BID_EMAIL WHERE PR_ID = " + prId + " AND Bid_Id = " + bidId + " "; 
+            string sql = "SELECT * FROM " + dbLibrary + ".SUPPLIER_BID_EMAIL WHERE PR_ID = " + prId + " AND Bid_Id = " + bidId + " ";
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = sql;
@@ -362,7 +384,7 @@ namespace CLibrary.Infrastructure
             }
         }
 
-        public void SaveSupplierBidEmailContact(int prId, string contactName, string ContactNo,string Title, DBConnection dbConnection)
+        public void SaveSupplierBidEmailContact(int prId, string contactName, string ContactNo, string Title, DBConnection dbConnection)
         {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "SELECT COUNT(*) AS cnt FROM " + dbLibrary + ".SUPPLIER_BID_EMAIL_CONTACT WHERE  PR_ID = " + prId + " AND Contact_Name='" + contactName + "' ";
@@ -370,7 +392,7 @@ namespace CLibrary.Infrastructure
             if (existCount == 0)
             {
                 dbConnection.cmd.CommandText = "INSERT INTO " + dbLibrary + ".SUPPLIER_BID_EMAIL_CONTACT(PR_ID,USER_ID ,Contact_Name,Contact_No,TITLE)" +
-                                                " VALUES(" + prId + ", 0 ,'" + contactName + "','" + ContactNo + "','"+Title+"')";
+                                                " VALUES(" + prId + ", 0 ,'" + contactName + "','" + ContactNo + "','" + Title + "')";
 
                 dbConnection.cmd.ExecuteNonQuery();
             }
@@ -393,9 +415,9 @@ namespace CLibrary.Infrastructure
         }
 
         public void DeleteSupplierBidEmailContact(int prId, DBConnection dbConnection)
-        {           
+        {
             dbConnection.cmd.CommandText = "DELETE FROM " + dbLibrary + ".SUPPLIER_BID_EMAIL_CONTACT WHERE PR_ID = " + prId + " ";
-            dbConnection.cmd.ExecuteNonQuery();              
+            dbConnection.cmd.ExecuteNonQuery();
         }
 
         public List<CommonReference> getCountry(DBConnection dbConnection)
@@ -424,12 +446,14 @@ namespace CLibrary.Infrastructure
             }
         }
 
-        public List<Supplier> FetchSupplierAgent(DBConnection dbConnection) {
+        public List<Supplier> FetchSupplierAgent(DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "SELECT * FROM SUPPLIER WHERE SUPPLIER_TYPE = 2 ";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<Supplier>(dbConnection.dr);
             }
@@ -438,7 +462,7 @@ namespace CLibrary.Infrastructure
         public int insertSupplierAgentDetails(int supplierId, string name, string address, string email, string contactNo, DBConnection dbConnection)
         {
             int status = 0;
-            dbConnection.cmd.CommandText = "SELECT COUNT(*) AS cnt FROM " + dbLibrary + ".SUPPLIER_AGENT WHERE  SUPPLIER_ID = " + supplierId + " AND AGENT_NAME='"+ name + "' ";
+            dbConnection.cmd.CommandText = "SELECT COUNT(*) AS cnt FROM " + dbLibrary + ".SUPPLIER_AGENT WHERE  SUPPLIER_ID = " + supplierId + " AND AGENT_NAME='" + name + "' ";
             var existCount = decimal.Parse(dbConnection.cmd.ExecuteScalar().ToString());
             int maxAgentId = 0;
             if (existCount == 0)
@@ -469,7 +493,7 @@ namespace CLibrary.Infrastructure
                                            " WHERE AGENT_ID =" + agentId + "";
             var existCount = decimal.Parse(dbConnection.cmd.ExecuteScalar().ToString());
 
-            if (existCount> 0)
+            if (existCount > 0)
             {
                 dbConnection.cmd.CommandText = "UPDATE " + dbLibrary + ".SUPPLIER_AGENT " +
                                                " SET  AGENT_NAME  ='" + name + "', " +
@@ -586,14 +610,16 @@ namespace CLibrary.Infrastructure
             dbConnection.cmd.ExecuteNonQuery();
         }
 
-        public List<Supplier> FetchClearingAgentList(DBConnection dbConnection) {
+        public List<Supplier> FetchClearingAgentList(DBConnection dbConnection)
+        {
             string sql = "SELECT SUPPLIER_ID, SUPPLIER_NAME FROM SUPPLIER WHERE SUPPLIER_TYPE = 3";
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = sql;
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<Supplier>(dbConnection.dr);
             }

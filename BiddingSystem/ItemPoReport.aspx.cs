@@ -45,6 +45,8 @@ namespace BiddingSystem
 
                     BindCategory();
                     BindSubCategory();
+                    BindItem();
+                    BindSupplier();
                 }
             }
             catch (Exception ex)
@@ -76,11 +78,26 @@ namespace BiddingSystem
 
         private void BindSupplier()
         {
-
+            List<Supplier> supplierList = new List<Supplier>();
+            SupplierController supplierController = ControllerFactory.CreateSupplierController();
+            supplierList = supplierController.GetAllSupplierList();
+            ddlSupplier.DataSource = supplierList;
+            ddlSupplier.DataTextField = "supplierName";
+            ddlSupplier.DataValueField = "supplierId";
+            ddlSupplier.DataBind();
+            ddlSupplier.Items.Insert(0, new ListItem("-Select-", ""));
         }
 
         private void BindItem()
         {
+            List<AddItem> addItems = new List<AddItem>();
+            AddItemController addItemController = ControllerFactory.CreateAddItemController();
+            addItems = addItemController.FetchItemList();
+            ddlItem.DataSource = addItems;
+            ddlItem.DataTextField = "ItemName";
+            ddlItem.DataValueField = "ItemId";
+            ddlItem.DataBind();
+            ddlItem.Items.Insert(0, new ListItem("-Select-", ""));
 
         }
 
