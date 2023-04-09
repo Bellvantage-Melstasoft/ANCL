@@ -14,7 +14,8 @@ namespace BiddingSystem
     {
         CompanyUserAccessController companyUserAccessController = ControllerFactory.CreateCompanyUserAccessController();
         CompanyLoginController companyLoginController = ControllerFactory.CreateCompanyLoginController();
-        SupplierItemReportController supplierItemReportController = ControllerFactory.CreateSupplierItemReportController();
+        AddItemPOReportsController addItemPOReportsController = ControllerFactory.CreateAddItemPOReportsController();
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -47,6 +48,7 @@ namespace BiddingSystem
                     BindSubCategory();
                     BindItem();
                     BindSupplier();
+                    BindDataSource();
                 }
             }
             catch (Exception ex)
@@ -54,6 +56,14 @@ namespace BiddingSystem
 
                 throw;
             }
+        }
+
+        private void BindDataSource()
+        {
+            List<AddItemPOReports> addItemPOReports = addItemPOReportsController.GetItemPoReports();
+            gvItemPoReport.DataSource = addItemPOReports;
+            gvItemPoReport.DataBind();
+
         }
 
         private void BindSubCategory()
@@ -101,5 +111,46 @@ namespace BiddingSystem
 
         }
 
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            List<AddItemPOReports> addItemPOReports = new List<AddItemPOReports>();
+            addItemPOReports = addItemPOReportsController.GetItemPoReports();
+            if (ddlStatus.SelectedValue != "")
+            {
+                addItemPOReports = addItemPOReports.Where(x => x.IsApproved == Convert.ToInt32(ddlStatus.SelectedValue)).ToList();
+
+            }
+
+            if (ddlSubCategory.SelectedValue != "")
+            {
+                addItemPOReports = addItemPOReports.Where(x => x.SubCategoryId == Convert.ToInt32(ddlSubCategory.SelectedValue)).ToList();
+
+            }
+
+            if (ddlCategory.SelectedValue != "")
+            {
+                addItemPOReports = addItemPOReports.Where(x => x.CategoryId == Convert.ToInt32(ddlCategory.SelectedValue)).ToList();
+
+            }
+            if (ddlItem.SelectedValue != "")
+            {
+                addItemPOReports = addItemPOReports.Where(x => x.ItemID == Convert.ToInt32(ddlItem.SelectedValue)).ToList();
+            }
+
+            if (ddlSupplier.SelectedValue != "")
+            {
+                addItemPOReports = addItemPOReports.Where(x => x.SupplierId == Convert.ToInt32(ddlSupplier.SelectedValue)).ToList();
+
+            }
+            if (txtEndDate.Text != "" && txtStartDate.Text != "")
+            {
+                addItemPOReports = addItemPOReports.Where(x => x.CreatedDate <= DateTime.Parse(txtEndDate.Text) && x.CreatedDate >= DateTime.Parse(txtStartDate.Text)).ToList();
+
+            }
+
+            gvItemPoReport.DataSource = addItemPOReports;
+            gvItemPoReport.DataBind();
+
+        }
     }
 }

@@ -96,13 +96,13 @@ namespace BiddingSystem
         protected global::System.Web.UI.WebControls.Label lblAddress;
 
         /// <summary>
-        /// gvPurchaseOrderItems control.
+        /// gvItemPoReportsss control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPurchaseOrderItems;
+        protected global::System.Web.UI.WebControls.GridView gvItemPoReportsss;
 
         /// <summary>
         /// lblSubtotal control.
@@ -240,13 +240,13 @@ namespace BiddingSystem
         protected global::System.Web.UI.UpdatePanel Updatepanel1;
 
         /// <summary>
-        /// gvPurchaseOrder control.
+        /// gvItemPoReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPurchaseOrder;
+        protected global::System.Web.UI.WebControls.GridView gvItemPoReport;
 
         /// <summary>
         /// gvPurchaseOrderItems1 control.
