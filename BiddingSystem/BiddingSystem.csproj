@@ -265,6 +265,7 @@
     <Content Include="EditInventory.aspx" />
     <Content Include="GenerateGRNNewImport.aspx" />
     <Content Include="DepartmentReturnApproval.aspx" />
+    <Content Include="ItemPoReport.aspx" />
     <Content Include="RecommendQuotationsItemWiseImportSparePart.aspx" />
     <Content Include="RecommendQuotationsItemWiseImport.aspx" />
     <Content Include="RecommendQuotationsItemWiseRejectedImportsSparePart.aspx" />
@@ -720,6 +721,13 @@
     </Compile>
     <Compile Include="DepartmentReturnApproval.aspx.designer.cs">
       <DependentUpon>DepartmentReturnApproval.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ItemPoReport.aspx.cs">
+      <DependentUpon>ItemPoReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItemPoReport.aspx.designer.cs">
+      <DependentUpon>ItemPoReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="RecommendQuotationsItemWiseImportSparePart.aspx.cs">
       <DependentUpon>RecommendQuotationsItemWiseImportSparePart.aspx</DependentUpon>
