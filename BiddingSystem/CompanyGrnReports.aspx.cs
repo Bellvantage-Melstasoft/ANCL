@@ -52,6 +52,7 @@ namespace BiddingSystem
 
                         //gvPurchaseOrder.DataSource = GrnMasterListByCompanyId;
                         //gvPurchaseOrder.DataBind();
+                        BindDataDropDown();
 
 
                     }
@@ -84,6 +85,22 @@ namespace BiddingSystem
             }
 
         }
+
+        //Bind Department to dropdown
+        private void BindDataDropDown()
+        {
+            List<SubDepartment> departments = new List<SubDepartment>();
+            SubDepartmentControllerInterface subDepartmentController = ControllerFactory.CreateSubDepartmentController();
+
+            departments = subDepartmentController.getAllDepartmentList(int.Parse(Session["CompanyId"].ToString()));
+
+            ddlDepartment.DataSource = departments;
+            ddlDepartment.DataValueField = "SubDepartmentID";
+            ddlDepartment.DataTextField = "SubDepartmentName";
+            ddlDepartment.DataBind();
+            ddlDepartment.Items.Insert(0, new ListItem("-Select Department-", ""));
+
+        }
         protected void btnGrnCodeSearch_Click(object sender, EventArgs e)
         {
             string grnCode = txtGrnCode.Text;
@@ -96,17 +113,19 @@ namespace BiddingSystem
                 gvPurchaseOrder.DataSource = GrnMasterListByCompanyid;
                 gvPurchaseOrder.DataBind();
             }
-            
+
 
         }
 
-        protected void btnPoCodeSearch_Click(object sender, EventArgs e) {
+        protected void btnPoCodeSearch_Click(object sender, EventArgs e)
+        {
             string poCode = txtPOCode.Text;
 
             //string newString = Regex.Replace(txtPOCode.Text, "[^.0-9]", "");
             //int poCode = int.Parse(newString);
 
-            if (txtPOCode.Text != "") {
+            if (txtPOCode.Text != "")
+            {
                 List<GrnMaster> GrnMasterListByCompanyid = new List<GrnMaster>();
                 GrnMasterListByCompanyid = grnController.GetGRNmasterListByPOCode(CompanyId, poCode);
 
@@ -127,6 +146,45 @@ namespace BiddingSystem
             gvPurchaseOrder.DataBind();
 
         }
+
+        protected void btnSearchAll_Click(object sender, EventArgs e)
+        {
+            List<GrnMaster> GrnMasterList = new List<GrnMaster>();
+            GrnMasterList = grnController.GetAllGRNmasterList();
+
+            gvPurchaseOrder.DataSource = GrnMasterList;
+            gvPurchaseOrder.DataBind();
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            List<GrnMaster> GrnMasterList = new List<GrnMaster>();
+            GrnMasterList = grnController.GetAllGRNmasterList();
+
+
+            if (ddlStatus.SelectedValue != "")
+            {
+                GrnMasterList = GrnMasterList.Where(x => x.IsApproved == Convert.ToInt32(ddlStatus.SelectedValue)).ToList();
+
+            }
+
+            if (txtPOCode.Text != "")
+            {
+                GrnMasterList = GrnMasterList.Where(x => x.POCode == txtPOCode.Text).ToList();
+
+            }
+
+            if (txtGrnCode.Text != "")
+            {
+                GrnMasterList = GrnMasterList.Where(x => x.GrnCode == txtGrnCode.Text).ToList();
+
+            }
+
+            gvPurchaseOrder.DataSource = GrnMasterList;
+            gvPurchaseOrder.DataBind();
+
+        }
+
         //protected void btnGrnDateSearch_Click(object sender, EventArgs e)
         //{
         //    string status = ddlStatus.SelectedValue;

@@ -35,7 +35,8 @@ namespace CLibrary.Common
             PrControllerV2 controller = new PrControllerV2Impl();
             return controller;
         }
-        public static UserWarehouseController CreateUserWarehouse() {
+        public static UserWarehouseController CreateUserWarehouse()
+        {
             UserWarehouseController controller = new UserWarehouseControllerImpl();
             return controller;
         }
@@ -46,7 +47,8 @@ namespace CLibrary.Common
             return controller;
         }
 
-        public static SubCategoryStoreKeeperController CreateSubCategoryStoreKeeperController() {
+        public static SubCategoryStoreKeeperController CreateSubCategoryStoreKeeperController()
+        {
             SubCategoryStoreKeeperController controller = new SubCategoryStoreKeeperControllerImpl();
             return controller;
         }
@@ -58,7 +60,8 @@ namespace CLibrary.Common
             return controller;
         }
 
-        public static UserSubDepartmentController CreateUserSubDepartment() {
+        public static UserSubDepartmentController CreateUserSubDepartment()
+        {
             UserSubDepartmentController controller = new UserSubDepartmentControllerImpl();
             return controller;
         }
@@ -133,7 +136,7 @@ namespace CLibrary.Common
             PRexpenseController prexpenseController = new PRexpenseControllerImpl();
             return (PRexpenseController)prexpenseController;
         }
-        
+
         public static PRDStockInfoLogController CreatePRDStockInfoLogController()
         {
             PRDStockInfoLogController proStockInfoController = new PRDStockInfoLogControllerImpl();
@@ -152,7 +155,7 @@ namespace CLibrary.Common
             MRNControllerInterface mrnControllerInterface = new MRNController();
             return mrnControllerInterface;
         }
-        
+
         public static SupplierBidBondDetailsController CreateSupplierBidBondDetailsController()
         {
             SupplierBidBondDetailsController supplierBidBondDetailsController = new SupplierBidBondDetailsControllerImpl();
@@ -230,11 +233,13 @@ namespace CLibrary.Common
             AddItemController addItemController = new AddItemControllerImpl();
             return (AddItemController)addItemController;
         }
-        public static PrCapexController CreatePrCapexController() {
+        public static PrCapexController CreatePrCapexController()
+        {
             PrCapexController prCapexController = new PrCapexControllerImpl();
             return (PrCapexController)prCapexController;
         }
-        public static MRNCapexDocController CreateMRNCapexDocController() {
+        public static MRNCapexDocController CreateMRNCapexDocController()
+        {
             MRNCapexDocController mRNCapexDocController = new MRNCapexDocControllerImpl();
             return (MRNCapexDocController)mRNCapexDocController;
         }
@@ -490,7 +495,8 @@ namespace CLibrary.Common
             ItemCategoryOwnerController itemCategoryOwnerController = new ItemCategoryOwnerControllerImpl();
             return (ItemCategoryOwnerController)itemCategoryOwnerController;
         }
-        public static ItemCategoryOwners2Controller CreateItemCategoryOwners2Controller() {
+        public static ItemCategoryOwners2Controller CreateItemCategoryOwners2Controller()
+        {
             ItemCategoryOwners2Controller itemCategoryOwners2Controller = new ItemCategoryOwners2ControllerImpl();
             return (ItemCategoryOwners2Controller)itemCategoryOwners2Controller;
         }
@@ -658,7 +664,7 @@ namespace CLibrary.Common
             EmailController controller = new EmailControllerImpl();
             return controller;
         }
-        
+
         public static IMeasurementMasterController CreateMeasurementMasterController()
         {
             IMeasurementMasterController controller = new MeasurementMasterController();
@@ -724,57 +730,68 @@ namespace CLibrary.Common
         }
 
 
-        public static DefCurrencyTypeController CreateDefCurrencyTypeController() {
+        public static DefCurrencyTypeController CreateDefCurrencyTypeController()
+        {
             DefCurrencyTypeController defCurrencyTypeController = new DefCurrencyTypeControllerImpl();
             return (DefCurrencyTypeController)defCurrencyTypeController;
         }
 
-        public static DefPaymentModeController CreateDefPaymentModeController() {
+        public static DefPaymentModeController CreateDefPaymentModeController()
+        {
             DefPaymentModeController defPaymentModeController = new DefPaymentModeControllerImpl();
             return (DefPaymentModeController)defPaymentModeController;
         }
 
-        public static DefTransportModeController CreateDefTransportModeController() {
+        public static DefTransportModeController CreateDefTransportModeController()
+        {
             DefTransportModeController defTransportModeController = new DefTransportModeControllerImpl();
             return (DefTransportModeController)defTransportModeController;
         }
 
-        public static DefPriceTermsController CreateDefPriceTermsController() {
+        public static DefPriceTermsController CreateDefPriceTermsController()
+        {
             DefPriceTermsController defPriceTermsController = new DefPriceTermsControllerImpl();
             return (DefPriceTermsController)defPriceTermsController;
         }
 
-        public static DefContainerSizeController CreateDefContainerSizeController() {
+        public static DefContainerSizeController CreateDefContainerSizeController()
+        {
             DefContainerSizeController defContainerSizeController = new DefContainerSizeControllerImpl();
             return (DefContainerSizeController)defContainerSizeController;
         }
 
-        public static CurrencyRateController CreateCurrencyRateController() {
+        public static CurrencyRateController CreateCurrencyRateController()
+        {
             CurrencyRateController currencyRateController = new CurrencyRateControllerImpl();
             return (CurrencyRateController)currencyRateController;
         }
 
-        public static TRMasterController CreateTRMasterController() {
+        public static TRMasterController CreateTRMasterController()
+        {
             TRMasterController tRMasterController = new TRMasterControllerImpl();
             return (TRMasterController)tRMasterController;
         }
 
-        public static TRDetailsController CreateTRDetailsController() {
+        public static TRDetailsController CreateTRDetailsController()
+        {
             TRDetailsController tRDetailsController = new TRDetailsControllerImpl();
             return (TRDetailsController)tRDetailsController;
         }
 
-        public static TRDIssueNoteController CreateTRDIssueNoteController() {
+        public static TRDIssueNoteController CreateTRDIssueNoteController()
+        {
             TRDIssueNoteController tRDIssueNoteController = new TRDIssueNoteControllerImpl();
             return (TRDIssueNoteController)tRDIssueNoteController;
         }
 
-        public static TrdIssueNoteBatchController CreateTrdIssueNoteBatchController() {
+        public static TrdIssueNoteBatchController CreateTrdIssueNoteBatchController()
+        {
             TrdIssueNoteBatchController trdIssueNoteBatchController = new TrdIssueNoteBatchControllerImpl();
             return (TrdIssueNoteBatchController)trdIssueNoteBatchController;
         }
 
-        public static ImportsHistoryController CreateImportsHistoryController() {
+        public static ImportsHistoryController CreateImportsHistoryController()
+        {
             ImportsHistoryController importsHistoryController = new ImportsHistoryControllerImpl();
             return (ImportsHistoryController)importsHistoryController;
         }
@@ -791,79 +808,106 @@ namespace CLibrary.Common
             return controller;
         }
 
-        public static MrndIssueNoteBatchController CreateMrndIssueNoteBatchController() {
+        public static MrndIssueNoteBatchController CreateMrndIssueNoteBatchController()
+        {
             MrndIssueNoteBatchController mrndIssueNoteBatchController = new MrndIssueNoteBatchControllerImpl();
             return (MrndIssueNoteBatchController)mrndIssueNoteBatchController;
         }
 
-        public static StockOverrideBatchLogController CreateStockOverrideBatchLogController() {
+        public static StockOverrideBatchLogController CreateStockOverrideBatchLogController()
+        {
             StockOverrideBatchLogController stockOverrideBatchLogController = new StockOverrideBatchLogControllerImpl();
             return (StockOverrideBatchLogController)stockOverrideBatchLogController;
         }
 
-        public static InvoiceDetailsController CreateInvoiceDetailsController() {
+        public static InvoiceDetailsController CreateInvoiceDetailsController()
+        {
             InvoiceDetailsController invoiceDetailsController = new InvoiceDetailsControllerImpl();
             return (InvoiceDetailsController)invoiceDetailsController;
         }
 
-        public static SupplierTypeController CreateSupplierTypeController() {
+        public static SupplierTypeController CreateSupplierTypeController()
+        {
             SupplierTypeController supplierTypeController = new SupplierTypeControllerImpl();
             return (SupplierTypeController)supplierTypeController;
         }
 
-        public static CompanyTypeController CreateCompanyTypeController() {
+        public static CompanyTypeController CreateCompanyTypeController()
+        {
             CompanyTypeController companyTypeController = new CompanyTypeControllerImpl();
             return (CompanyTypeController)companyTypeController;
         }
 
-        public static GrndReturnNoteController CreateGrndReturnNoteController() {
+        public static GrndReturnNoteController CreateGrndReturnNoteController()
+        {
             GrndReturnNoteController grndReturnNoteController = new GrndReturnNoteControllerImpl();
             return (GrndReturnNoteController)grndReturnNoteController;
         }
 
-        public static FollowUpRemarksController CreateFollowUpRemarksController() {
+        public static FollowUpRemarksController CreateFollowUpRemarksController()
+        {
             FollowUpRemarksController followUpRemarksController = new FollowUpRemarksControllerImpl();
             return (FollowUpRemarksController)followUpRemarksController;
         }
 
-        public static DutyRatesController CreateDutyRatesController() {
+        public static DutyRatesController CreateDutyRatesController()
+        {
             DutyRatesController dutyRatesController = new DutyRatesControllerImpl();
             return (DutyRatesController)dutyRatesController;
         }
 
-        public static InvoiceImageController CreateInvoiceImageController() {
+        public static InvoiceImageController CreateInvoiceImageController()
+        {
             InvoiceImageController invoiceImageController = new InvoiceImageControllerImpl();
             return (InvoiceImageController)invoiceImageController;
         }
 
-        public static GrnReturnDetailsController CreateGrnReturnDetailsController() {
+        public static GrnReturnDetailsController CreateGrnReturnDetailsController()
+        {
             GrnReturnDetailsController grnReturnDetailsController = new GrnReturnDetailsControllerImpl();
             return (GrnReturnDetailsController)grnReturnDetailsController;
         }
 
-        public static GrnReturnMasterController CreateGrnReturnMasterController() {
+        public static GrnReturnMasterController CreateGrnReturnMasterController()
+        {
             GrnReturnMasterController grnReturnMasterController = new GrnReturnMasterControllerImpl();
             return (GrnReturnMasterController)grnReturnMasterController;
         }
 
-        public static DepartmentReturnController CreateDepartmentReturnController() {
+        public static DepartmentReturnController CreateDepartmentReturnController()
+        {
             DepartmentReturnController departmentReturnController = new DepartmentReturnControllerImpl();
             return (DepartmentReturnController)departmentReturnController;
         }
 
-        public static DepartmentReturnBatchController CreateDepartmentReturnBatchController() {
+        public static DepartmentReturnBatchController CreateDepartmentReturnBatchController()
+        {
             DepartmentReturnBatchController departmentReturnBatchController = new DepartmentReturnBatchControllerImpl();
             return (DepartmentReturnBatchController)departmentReturnBatchController;
         }
 
-        public static TempCoveringPrController CreateTempCoveringPrController() {
+        public static TempCoveringPrController CreateTempCoveringPrController()
+        {
             TempCoveringPrController tempCoveringPrController = new TempCoveringPrControllerImpl();
             return (TempCoveringPrController)tempCoveringPrController;
         }
 
-        public static TempQuotatioForCoveringPrController CreateTempQuotatioForCoveringPrController() {
+        public static TempQuotatioForCoveringPrController CreateTempQuotatioForCoveringPrController()
+        {
             TempQuotatioForCoveringPrController tempQuotatioForCoveringPrController = new TempQuotatioForCoveringPrControllerImpl();
             return (TempQuotatioForCoveringPrController)tempQuotatioForCoveringPrController;
+        }
+
+        public static SupplierItemReportController CreateSupplierItemReportController()
+        {
+            SupplierItemReportController supplierItemReportController = new SupplierItemReportControllerImpl();
+            return (SupplierItemReportController)supplierItemReportController;
+        }
+
+        public static AddItemPOReportsController CreateAddItemPOReportsController()
+        {
+            AddItemPOReportsController addItemPOReportsController = new AddItemPOReportsControllerImpl();
+            return (AddItemPOReportsController)addItemPOReportsController;
         }
     }
 }

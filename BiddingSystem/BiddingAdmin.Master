@@ -35,7 +35,7 @@
     *<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>--%>
 
     <script src="AdminResources/js/SweetAlert.js"></script>
-<%--    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>--%>
+    <%--    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>--%>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -183,582 +183,584 @@
 
         <header class="main-header">
 
-    <!-- Logo -->
-    <a href="AdminDashboard.aspx" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>B</b>ID</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Bidding Portal</b></span>
-    </a>
-
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-      </a>
-      <!-- Navbar Right Menu -->
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="AdminResources/images/dist/img/logo.jpg" class="user-image" alt="User Image" />
-              <span id="userName" class="hidden-xs"><%=  Session["UserNameA"].ToString() %></span>
+            <!-- Logo -->
+            <a href="AdminDashboard.aspx" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>B</b>ID</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Bidding Portal</b></span>
             </a>
-            <ul class="dropdown-menu">
-              <li class="user-header">
-                <img src="AdminResources/images/dist/img/logo.jpg" class="img-circle" alt="User Image" />
 
-                <p>
-                  <%=  Session["UserNameA"].ToString() %>
-                </p>
-              </li>
-              <li class="user-footer">
-                <div class="pull-left">
-                  <button data-toggle="modal" data-target="#mdlPassword" class="btn btn-primary btn-flat">Change Password</button>
-                </div>
-                <div class="pull-right">
-                  <a href="LoginPage.aspx" class="btn btn-danger">Sign out</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
-        </ul>
-      </div>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="AdminResources/images/dist/img/logo.jpg" class="user-image" alt="User Image" />
+                                <span id="userName" class="hidden-xs"><%=  Session["UserNameA"].ToString() %></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="user-header">
+                                    <img src="AdminResources/images/dist/img/logo.jpg" class="img-circle" alt="User Image" />
 
-    </nav>
-  </header>
+                                    <p>
+                                        <%=  Session["UserNameA"].ToString() %>
+                                    </p>
+                                </li>
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <button data-toggle="modal" data-target="#mdlPassword" class="btn btn-primary btn-flat">Change Password</button>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="LoginPage.aspx" class="btn btn-danger">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Control Sidebar Toggle Button -->
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+        </header>
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="AdminResources/images/dist/img/logo.jpg" style="height:45px;" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p><%=  Session["UserNameA"].ToString() %></p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
-      </div>
-      <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                  <i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-
-        
-      </form>
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree" id="navTabNavi">
-        <li class="header" style="font-weight:bold">MAIN NAVIGATION</li>
-
-        <li id="liadmin" runat="server" visible="true">
-          <a href="/AdminDashboard.aspx" id="homeLink">
-            <i class="fa fa-home"></i> <span>Home</span>
-            <span class="pull-right-container"></span>
-          </a>  
-        </li>
-          
-        <li class="treeview" id="liDepartment" runat="server" visible="false">
-            <a href="hrefDepartment"><i class="fa fa-building"></i> <span>Department</span>
-                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-            </a>
-            <ul class="treeview-menu" id="subTabDepartment" >
-                <li id="liManageDepartments" visible="true" runat="server"><a href="CreateSubDepartment.aspx" id="CreateSubDepartmentLink" ><i class="fa fa-circle-notch"></i>Manage Departments</a></li>
-            </ul>
-        </li>
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="AdminResources/images/dist/img/logo.jpg" style="height: 45px;" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p><%=  Session["UserNameA"].ToString() %></p>
+                        <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
+                    </div>
+                </div>
+                <!-- search form -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
 
 
-        <li class="treeview" id="liWarehouse" runat="server" visible="false">
-            <a href="hrefWarehouse"><i class="fa fa-warehouse"></i> <span>Warehouse</span>
-                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-            </a>
-            <ul class="treeview-menu" id="subTabWarehouse" >
-                <li id="liManageWarehouses" visible="false" runat="server"><a href="CreateWarehouse.aspx" id="CreateWarehouseLink" ><i class="fa fa-circle-notch"></i>Manage Warehouses</a></li>
-                <li id="liTransferInventory" visible="false" runat="server"><a href="WarehouseReleaseStock.aspx" id="warehouseReleaseStockLink" ><i class="fa fa-circle-notch"></i>Transfer Inventory</a></li>
-                <li id="liIssuedInventory" visible="false" runat="server"><a href="ViewIssuedInventory.aspx" id="viewIssuedInventoryLink" ><i class="fa fa-circle-notch"></i>View Issued Inventory</a></li>
-                <li id="liInventoryReport" runat="server" visible="false"><a href="InventoryReport.aspx" id="InventoryReportLink"><i class="fa fa-circle-notch"></i>Inventory Report</a></li>
-                <li id="liAssignStoreKeeperToMRN" runat="server" visible="false"><a href="AssignStoreKeeperToMRN.aspx" id="AssignStoreKeeperToMRNLink"><i class="fa fa-circle-notch"></i>Assign Store Keeper to MRN</a></li>
-                <li id="liAssignedMRN" runat="server" visible="false"><a href="ViewAssignedMRN.aspx" id="ViewAssignedMRNLink"><i class="fa fa-circle-notch"></i>MRN Add To PR & Issue/Add Stock</a></li>
-                <li id="liEditInventory" runat="server" visible="false"><a href="EditInventory.aspx" id="EditInventoryLink"><i class="fa fa-circle-notch"></i>Edit Inventory</a></li>
-               <li id="liApproveRejectedInventory" runat="server" visible="false"><a href="ApproveRejectedInventory.aspx" id="ApproveRejectedInventory"><i class="fa fa-circle-notch"></i>Return Stock Approval</a></li>
-                <li id="liReturnStockToWreouse" runat="server" visible="false"><a href="ReturnStockToWreouse.aspx" id="ReturnStockToWreouseLink"><i class="fa fa-circle-notch"></i>View Returned Inventory</a></li>
-          
-                </ul>
-        </li>
+                </form>
+                <!-- /.search form -->
+                <!-- sidebar menu: : style can be found in sidebar.less -->
+                <ul class="sidebar-menu" data-widget="tree" id="navTabNavi">
+                    <li class="header" style="font-weight: bold">MAIN NAVIGATION</li>
+
+                    <li id="liadmin" runat="server" visible="true">
+                        <a href="/AdminDashboard.aspx" id="homeLink">
+                            <i class="fa fa-home"></i><span>Home</span>
+                            <span class="pull-right-container"></span>
+                        </a>
+                    </li>
+
+                    <li class="treeview" id="liDepartment" runat="server" visible="false">
+                        <a href="hrefDepartment"><i class="fa fa-building"></i><span>Department</span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu" id="subTabDepartment">
+                            <li id="liManageDepartments" visible="true" runat="server"><a href="CreateSubDepartment.aspx" id="CreateSubDepartmentLink"><i class="fa fa-circle-notch"></i>Manage Departments</a></li>
+                        </ul>
+                    </li>
 
 
-        <li class="treeview" id="liMeasurement" runat="server" visible="false">
-            <a href="hrefMeasurement"><i class="fa fa-balance-scale"></i> <span>Measurement</span>
-                <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
-            </a>
-            <ul class="treeview-menu" id="subTabMeasurement" >
-                <li id="liMeasurement1" visible="false" runat="server"><a href="AddUnitMeasurement.aspx" id="AddUnitMeasurementLink" ><i class="fa fa-circle-notch"></i>Add Measurement</a></li>
-           </ul>
-        </li>
+                    <li class="treeview" id="liWarehouse" runat="server" visible="false">
+                        <a href="hrefWarehouse"><i class="fa fa-warehouse"></i><span>Warehouse</span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu" id="subTabWarehouse">
+                            <li id="liManageWarehouses" visible="false" runat="server"><a href="CreateWarehouse.aspx" id="CreateWarehouseLink"><i class="fa fa-circle-notch"></i>Manage Warehouses</a></li>
+                            <li id="liTransferInventory" visible="false" runat="server"><a href="WarehouseReleaseStock.aspx" id="warehouseReleaseStockLink"><i class="fa fa-circle-notch"></i>Transfer Inventory</a></li>
+                            <li id="liIssuedInventory" visible="false" runat="server"><a href="ViewIssuedInventory.aspx" id="viewIssuedInventoryLink"><i class="fa fa-circle-notch"></i>View Issued Inventory</a></li>
+                            <li id="liInventoryReport" runat="server" visible="false"><a href="InventoryReport.aspx" id="InventoryReportLink"><i class="fa fa-circle-notch"></i>Inventory Report</a></li>
+                            <li id="liAssignStoreKeeperToMRN" runat="server" visible="false"><a href="AssignStoreKeeperToMRN.aspx" id="AssignStoreKeeperToMRNLink"><i class="fa fa-circle-notch"></i>Assign Store Keeper to MRN</a></li>
+                            <li id="liAssignedMRN" runat="server" visible="false"><a href="ViewAssignedMRN.aspx" id="ViewAssignedMRNLink"><i class="fa fa-circle-notch"></i>MRN Add To PR & Issue/Add Stock</a></li>
+                            <li id="liEditInventory" runat="server" visible="false"><a href="EditInventory.aspx" id="EditInventoryLink"><i class="fa fa-circle-notch"></i>Edit Inventory</a></li>
+                            <li id="liApproveRejectedInventory" runat="server" visible="false"><a href="ApproveRejectedInventory.aspx" id="ApproveRejectedInventory"><i class="fa fa-circle-notch"></i>Return Stock Approval</a></li>
+                            <li id="liReturnStockToWreouse" runat="server" visible="false"><a href="ReturnStockToWreouse.aspx" id="ReturnStockToWreouseLink"><i class="fa fa-circle-notch"></i>View Returned Inventory</a></li>
 
-        <li class="treeview" id="liUserCreation" runat="server" visible="false">
-            <a href="hrefUserCreation"><i class="fa fa-users"></i> <span>User Creation</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-            </a>
-            <ul class="treeview-menu" id="subTabUserCreation" >
-                <li id="createUser" visible="false" runat="server"><a href="CompanyCreateUser.aspx" id="createUserLink" ><i class="fa fa-circle-notch"></i>Create User</a></li>
-                <li id="editUser"  visible="false" runat="server"><a href="CompanyViewUser.aspx" id="editUserlink"><i class="fa fa-circle-notch"></i>View/Edit User</a></li>
-                <li id="createRole" visible="false" runat="server"><a href="CreateRole.aspx" id="createRolelink" ><i class="fa fa-circle-notch"></i>Create User Role & Functions</a></li>
-                <li id="defineUserAccess" visible="false" runat="server"><a href="CompanyDefineUserAccess.aspx" id="defineUserAccessLink"><i class="fa fa-circle-notch"></i>Define User Access</a></li>
-            </ul>
-        </li>
-          
+                        </ul>
+                    </li>
 
-        <li class="treeview" id="liSupplier" runat="server" visible="false">
-          <a href="hrefSupplier">
-            <i class="fa fa-truck"></i> <span>Supplier</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu" id="subTabSupplier">          
-          <li id="approveSuppier" visible="false" runat="server"><a href="CompanyInitialRequest.aspx" id="approveSuppierLink" ><i class="fa fa-circle-notch"></i>Approve Supplier Requests</a></li>
-          <li id="createSupplier" visible="false" runat="server"><a href="CompanyCreateSupplier.aspx" id="createSupplierLink"><i class="fa fa-circle-notch"></i>Create Supplier</a></li>
-           <li id="editSupplier" visible="false" runat="server"><a href="CompanyUpdatingAndRatingSupplier.aspx" id="editSupplierLink"><i class="fa fa-circle-notch"></i>View/Edit Suppliers</a></li>
-           <li id="createSupplierAgent" visible="false" runat="server"><a href="CompanyCreateSupplierAgent.aspx" id="createSupplierAgentLink"><i class="fa fa-circle-notch"></i>Create Supplier Agent</a></li>
-          </ul>
-        </li>
 
-        <li class="treeview" id="itemCategory" runat="server" visible="false">
-          <a href="hrefItemCategory">
-            <i class="fa fa-box-open"></i> <span>Item</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu"  id="subTabItemCategory">
-            <li id="addMainCategory" runat="server" visible="false"><a href="CompanyAddMainCategory.aspx" id="addMainCategoryLink"><i class="fa fa-circle-notch"></i>Add Main Category</a></li>
-            <li id="addAddCommittee" style="white-space: normal;" runat="server" visible="false"><a href="CompanyAddCommittee.aspx" id="addAddCommitteeLink"><i class="fa fa-circle-notch"></i>Add Committee</a></li>
-            <li id="addMainCategoryOwners" runat="server" visible="false"><a href="CompanyAddMainCategoryOwners2.aspx" id="addMainCategoryOwnerLink"><i class="fa fa-circle-notch"></i>Add Main Category Owner</a></li>
-            <li id="addSubCategory" runat="server" visible="false"><a href="CompanyAddSubCategory.aspx" id="addSubCategoryLink"><i class="fa fa-circle-notch"></i>Add Sub Category</a></li>
-            <li id="addSubCategoryStoreKeeper" runat="server" visible="false"><a href="CompanyAddMainCategoryOwnersNew.aspx" id="addMainCategoryOwnerNewLink"><i class="fa fa-circle-notch"></i>Add Sub Category Store Keeper</a></li>
-            <li id="addItems" runat="server" visible="false"><a href="AddItems.aspx" id="addItemsLink"><i class="fa fa-circle-notch"></i>Add Items</a></li>
-          </ul>
-        </li>
+                    <li class="treeview" id="liMeasurement" runat="server" visible="false">
+                        <a href="hrefMeasurement"><i class="fa fa-balance-scale"></i><span>Measurement</span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu" id="subTabMeasurement">
+                            <li id="liMeasurement1" visible="false" runat="server"><a href="AddUnitMeasurement.aspx" id="AddUnitMeasurementLink"><i class="fa fa-circle-notch"></i>Add Measurement</a></li>
+                        </ul>
+                    </li>
 
-          <li class="treeview" id="liMRN" visible="false"  runat="server">
-          <a href="hrefMRN">
-            <i class="fa fa-file-alt"></i> <span>Material Requests</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu" id="subTabMRN">
-            <li id="liCreateMRN" runat="server" visible="false"><a href="CreateMRN_V2.aspx" id="createMRNLink"><i class="fa fa-circle-notch"></i>Create MRN</a></li> 
-            <li id="liViewMRN" runat="server" visible="false"><a href="ViewMyMRN.aspx" id="viewMRNLink"><i class="fa fa-circle-notch"></i>View My MRN</a></li>
-            <li id="liApproveMRN" runat="server" visible="false"><a href="ViewApproveMrn.aspx" id="approveMRNLink"><i class="fa fa-circle-notch"></i>Approve MRN</a></li>
-            <li id="liAvailabilityExpenseMRN" runat="server" visible="false"><a href="ViewMrnStockAvailabilityExpenseApprove.aspx" id="availabilityExpenseMRNLink"><i class="fa fa-circle-notch"></i>Stock Availability/Expense Approve</a></li>
-            <li id="liViewAllMRN" runat="server" visible="false"><a href="ViewAllMRN.aspx" id="viewAllMRNLink"><i class="fa fa-circle-notch"></i>View All MRN</a></li>
-            <%--<li id="liSubmittedMRN" runat="server" visible="false"><a href="ViewSubmittedMRN.aspx" id="submittedMRNLink"><i class="fa fa-circle-notch"></i>View Submitted MRN </a></li>--%>
-            <li id="liDeliveredMRN" runat="server" visible="false"><a href="ViewDeliveredInventory.aspx" id="viewDeliveredInventoryLink"><i class="fa fa-circle-notch"></i>View Delivered Inventory</a></li>
-            <%--<li id="liViewMyMRNRequests" runat="server" visible="false"><a href="ViewMyMRNRequests.aspx" id="viewMyMRNStatusLink"><i class="fa fa-circle-notch"></i>View My MRN Status</a></li>--%>
-            <%--<li id="mrnInquiryReport" runat="server" visible="false"><a href="MRNInquiryForm.aspx" id="MRNInquiryFormLink"><i class="fa fa-circle-notch"></i>MRN Inquiry Report</a></li>--%>
-         <li id="liConfirmReceivedInventory" runat="server" visible="false"><a href="ConfirmReceivedInventory.aspx" id="ViewConfirmReceivedInventory"><i class="fa fa-circle-notch"></i>Confirm Received Inventory</a></li>
-             <li id="liRejectedReceivedInventory" runat="server" visible="false"><a href="RejectedReceivedInventory.aspx" id="ViewRejectedReceivedInventory"><i class="fa fa-circle-notch"></i>Return Stock to Warehouse</a></li>
-          <li id="liReceivedIvetory" runat="server" visible="false"><a href="ReceivedIvetory.aspx" id="ViewReceivedIvetory"><i class="fa fa-circle-notch"></i>Return Department Stock</a></li>
-          
-          
-              </ul>
-        </li>
+                    <li class="treeview" id="liUserCreation" runat="server" visible="false">
+                        <a href="hrefUserCreation"><i class="fa fa-users"></i><span>User Creation</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" id="subTabUserCreation">
+                            <li id="createUser" visible="false" runat="server"><a href="CompanyCreateUser.aspx" id="createUserLink"><i class="fa fa-circle-notch"></i>Create User</a></li>
+                            <li id="editUser" visible="false" runat="server"><a href="CompanyViewUser.aspx" id="editUserlink"><i class="fa fa-circle-notch"></i>View/Edit User</a></li>
+                            <li id="createRole" visible="false" runat="server"><a href="CreateRole.aspx" id="createRolelink"><i class="fa fa-circle-notch"></i>Create User Role & Functions</a></li>
+                            <li id="defineUserAccess" visible="false" runat="server"><a href="CompanyDefineUserAccess.aspx" id="defineUserAccessLink"><i class="fa fa-circle-notch"></i>Define User Access</a></li>
+                        </ul>
+                    </li>
 
-          <li class="treeview" id="liTR" visible="false"  runat="server">
-          <a href="hrefTR">
-            <i class="fa fa-file-alt"></i> <span>Transfer Requests</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu" id="subTabTR">
-            
-              <li id="liCreateTR" runat="server" visible="false"><a href="CreateTR.aspx" id="CreateTRLink"><i class="fa fa-circle-notch"></i>Create TR</a></li>
-              <%--<li id="li3" runat="server" visible="false"><a href="CreateTR.aspx" id="CreateTRLink"><i class="fa fa-circle-notch"></i>Create TR</a></li>
-  --%>          <li id="liViewMyTR" runat="server" visible="false"><a href="ViewMyTR.aspx" id="ViewMyTRLink"><i class="fa fa-circle-notch"></i>View My TR</a></li>
-                <li id="liViewAllTR" runat="server" visible="false"><a href="ViewAllTR.aspx" id="ViewAllTRLink"><i class="fa fa-circle-notch"></i>View All TR</a></li>
-                <li id="liApproveTR" runat="server" visible="false"><a href="ApproveTR.aspx" id="ApproveTRLink"><i class="fa fa-circle-notch"></i>Approve TR</a></li>
-                <li id="liViewSubmittedTR" runat="server" visible="false"><a href="ViewSubmittedTR.aspx" id="ViewSubmittedTRLink"><i class="fa fa-circle-notch"></i>View Submitted TR</a></li>
 
-              <li id="liViewDeliveredTrInventory" runat="server" visible="false"><a href="ViewDeliveredTRInventory.aspx" id="ViewDeliveredTRInventoryLink"><i class="fa fa-circle-notch"></i>View Delivered Inventory</a></li>
-                 
-          </ul>
-        </li>
-       
-        <li class="treeview" id="liPurchaseRequest" visible="false"  runat="server">
-          <a href="hrefPurchaseRequest">
-            <i class="fa fa-file-invoice"></i> <span>Purchase Requests</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu" id="subTabPurchaseRequest">
-            <li id="createPR" runat="server" visible="false"><a href="CreatePR_V2.aspx" id="createPRLink"><i class="fa fa-circle-notch"></i>Create PR</a></li>         
-            <li id="liViewPR" runat="server" visible="false"><a href="ViewMyPR.aspx" id="viewPRLink"><i class="fa fa-circle-notch"></i>View My PR</a></li>   
-            <%--<li id="editPR" runat="server" visible="false"><a href="ViewAllPurchaseRequestsEdit.aspx" id="editPRLink"><i class="fa fa-circle-notch"></i>View/Edit PR</a></li>--%>
-            <li id="approvePR" runat="server" visible="false"><a href="ViewApprovePR.aspx" id="approvePRLink"><i class="fa fa-circle-notch"></i>Confirm PR</a></li>
-            <li id="liViewPRRequestsExpenseApprove" runat="server" visible="false"><a href="ViewPrStockAvailabilityExpenseApprove.aspx" id="viewPRRequestsExpenseApproveLink"><i class="fa fa-circle-notch"></i>Stock Availability/Expense Approve</a></li>            
-            <li id="liViewAllPR" runat="server" visible="false"><a href="ViewAllPR.aspx" id="viewAllPRLink"><i class="fa fa-circle-notch"></i>View All PR</a></li>
-              <%--<li id="rejectPR" runat="server" visible="false"><a href="CompanyViewRejectedPR.aspx" id="rejectPRLink"><i class="fa fa-circle-notch"></i>Clone Rejected PR</a></li>        
+                    <li class="treeview" id="liSupplier" runat="server" visible="false">
+                        <a href="hrefSupplier">
+                            <i class="fa fa-truck"></i><span>Supplier</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" id="subTabSupplier">
+                            <li id="approveSuppier" visible="false" runat="server"><a href="CompanyInitialRequest.aspx" id="approveSuppierLink"><i class="fa fa-circle-notch"></i>Approve Supplier Requests</a></li>
+                            <li id="createSupplier" visible="false" runat="server"><a href="CompanyCreateSupplier.aspx" id="createSupplierLink"><i class="fa fa-circle-notch"></i>Create Supplier</a></li>
+                            <li id="editSupplier" visible="false" runat="server"><a href="CompanyUpdatingAndRatingSupplier.aspx" id="editSupplierLink"><i class="fa fa-circle-notch"></i>View/Edit Suppliers</a></li>
+                            <li id="createSupplierAgent" visible="false" runat="server"><a href="CompanyCreateSupplierAgent.aspx" id="createSupplierAgentLink"><i class="fa fa-circle-notch"></i>Create Supplier Agent</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview" id="itemCategory" runat="server" visible="false">
+                        <a href="hrefItemCategory">
+                            <i class="fa fa-box-open"></i><span>Item</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" id="subTabItemCategory">
+                            <li id="addMainCategory" runat="server" visible="false"><a href="CompanyAddMainCategory.aspx" id="addMainCategoryLink"><i class="fa fa-circle-notch"></i>Add Main Category</a></li>
+                            <li id="addAddCommittee" style="white-space: normal;" runat="server" visible="false"><a href="CompanyAddCommittee.aspx" id="addAddCommitteeLink"><i class="fa fa-circle-notch"></i>Add Committee</a></li>
+                            <li id="addMainCategoryOwners" runat="server" visible="false"><a href="CompanyAddMainCategoryOwners2.aspx" id="addMainCategoryOwnerLink"><i class="fa fa-circle-notch"></i>Add Main Category Owner</a></li>
+                            <li id="addSubCategory" runat="server" visible="false"><a href="CompanyAddSubCategory.aspx" id="addSubCategoryLink"><i class="fa fa-circle-notch"></i>Add Sub Category</a></li>
+                            <li id="addSubCategoryStoreKeeper" runat="server" visible="false"><a href="CompanyAddMainCategoryOwnersNew.aspx" id="addMainCategoryOwnerNewLink"><i class="fa fa-circle-notch"></i>Add Sub Category Store Keeper</a></li>
+                            <li id="addItems" runat="server" visible="false"><a href="AddItems.aspx" id="addItemsLink"><i class="fa fa-circle-notch"></i>Add Items</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview" id="liMRN" visible="false" runat="server">
+                        <a href="hrefMRN">
+                            <i class="fa fa-file-alt"></i><span>Material Requests</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" id="subTabMRN">
+                            <li id="liCreateMRN" runat="server" visible="false"><a href="CreateMRN_V2.aspx" id="createMRNLink"><i class="fa fa-circle-notch"></i>Create MRN</a></li>
+                            <li id="liViewMRN" runat="server" visible="false"><a href="ViewMyMRN.aspx" id="viewMRNLink"><i class="fa fa-circle-notch"></i>View My MRN</a></li>
+                            <li id="liApproveMRN" runat="server" visible="false"><a href="ViewApproveMrn.aspx" id="approveMRNLink"><i class="fa fa-circle-notch"></i>Approve MRN</a></li>
+                            <li id="liAvailabilityExpenseMRN" runat="server" visible="false"><a href="ViewMrnStockAvailabilityExpenseApprove.aspx" id="availabilityExpenseMRNLink"><i class="fa fa-circle-notch"></i>Stock Availability/Expense Approve</a></li>
+                            <li id="liViewAllMRN" runat="server" visible="false"><a href="ViewAllMRN.aspx" id="viewAllMRNLink"><i class="fa fa-circle-notch"></i>View All MRN</a></li>
+                            <%--<li id="liSubmittedMRN" runat="server" visible="false"><a href="ViewSubmittedMRN.aspx" id="submittedMRNLink"><i class="fa fa-circle-notch"></i>View Submitted MRN </a></li>--%>
+                            <li id="liDeliveredMRN" runat="server" visible="false"><a href="ViewDeliveredInventory.aspx" id="viewDeliveredInventoryLink"><i class="fa fa-circle-notch"></i>View Delivered Inventory</a></li>
+                            <%--<li id="liViewMyMRNRequests" runat="server" visible="false"><a href="ViewMyMRNRequests.aspx" id="viewMyMRNStatusLink"><i class="fa fa-circle-notch"></i>View My MRN Status</a></li>--%>
+                            <%--<li id="mrnInquiryReport" runat="server" visible="false"><a href="MRNInquiryForm.aspx" id="MRNInquiryFormLink"><i class="fa fa-circle-notch"></i>MRN Inquiry Report</a></li>--%>
+                            <li id="liConfirmReceivedInventory" runat="server" visible="false"><a href="ConfirmReceivedInventory.aspx" id="ViewConfirmReceivedInventory"><i class="fa fa-circle-notch"></i>Confirm Received Inventory</a></li>
+                            <li id="liRejectedReceivedInventory" runat="server" visible="false"><a href="RejectedReceivedInventory.aspx" id="ViewRejectedReceivedInventory"><i class="fa fa-circle-notch"></i>Return Stock to Warehouse</a></li>
+                            <li id="liReceivedIvetory" runat="server" visible="false"><a href="ReceivedIvetory.aspx" id="ViewReceivedIvetory"><i class="fa fa-circle-notch"></i>Return Department Stock</a></li>
+
+
+                        </ul>
+                    </li>
+
+                    <li class="treeview" id="liTR" visible="false" runat="server">
+                        <a href="hrefTR">
+                            <i class="fa fa-file-alt"></i><span>Transfer Requests</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" id="subTabTR">
+
+                            <li id="liCreateTR" runat="server" visible="false"><a href="CreateTR.aspx" id="CreateTRLink"><i class="fa fa-circle-notch"></i>Create TR</a></li>
+                            <%--<li id="li3" runat="server" visible="false"><a href="CreateTR.aspx" id="CreateTRLink"><i class="fa fa-circle-notch"></i>Create TR</a></li>
+                            --%>
+                            <li id="liViewMyTR" runat="server" visible="false"><a href="ViewMyTR.aspx" id="ViewMyTRLink"><i class="fa fa-circle-notch"></i>View My TR</a></li>
+                            <li id="liViewAllTR" runat="server" visible="false"><a href="ViewAllTR.aspx" id="ViewAllTRLink"><i class="fa fa-circle-notch"></i>View All TR</a></li>
+                            <li id="liApproveTR" runat="server" visible="false"><a href="ApproveTR.aspx" id="ApproveTRLink"><i class="fa fa-circle-notch"></i>Approve TR</a></li>
+                            <li id="liViewSubmittedTR" runat="server" visible="false"><a href="ViewSubmittedTR.aspx" id="ViewSubmittedTRLink"><i class="fa fa-circle-notch"></i>View Submitted TR</a></li>
+
+                            <li id="liViewDeliveredTrInventory" runat="server" visible="false"><a href="ViewDeliveredTRInventory.aspx" id="ViewDeliveredTRInventoryLink"><i class="fa fa-circle-notch"></i>View Delivered Inventory</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="treeview" id="liPurchaseRequest" visible="false" runat="server">
+                        <a href="hrefPurchaseRequest">
+                            <i class="fa fa-file-invoice"></i><span>Purchase Requests</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" id="subTabPurchaseRequest">
+                            <li id="createPR" runat="server" visible="false"><a href="CreatePR_V2.aspx" id="createPRLink"><i class="fa fa-circle-notch"></i>Create PR</a></li>
+                            <li id="liViewPR" runat="server" visible="false"><a href="ViewMyPR.aspx" id="viewPRLink"><i class="fa fa-circle-notch"></i>View My PR</a></li>
+                            <%--<li id="editPR" runat="server" visible="false"><a href="ViewAllPurchaseRequestsEdit.aspx" id="editPRLink"><i class="fa fa-circle-notch"></i>View/Edit PR</a></li>--%>
+                            <li id="approvePR" runat="server" visible="false"><a href="ViewApprovePR.aspx" id="approvePRLink"><i class="fa fa-circle-notch"></i>Confirm PR</a></li>
+                            <li id="liViewPRRequestsExpenseApprove" runat="server" visible="false"><a href="ViewPrStockAvailabilityExpenseApprove.aspx" id="viewPRRequestsExpenseApproveLink"><i class="fa fa-circle-notch"></i>Stock Availability/Expense Approve</a></li>
+                            <li id="liViewAllPR" runat="server" visible="false"><a href="ViewAllPR.aspx" id="viewAllPRLink"><i class="fa fa-circle-notch"></i>View All PR</a></li>
+                            <%--<li id="rejectPR" runat="server" visible="false"><a href="CompanyViewRejectedPR.aspx" id="rejectPRLink"><i class="fa fa-circle-notch"></i>Clone Rejected PR</a></li>        
              <li id="viewAllPrStatus" runat="server" visible="false"><a href="ViewAllPurchaseRequests.aspx" id="viewAllPrStatusLink"><i class="fa fa-circle-notch"></i>View All PR Status</a></li>
             <li id="viewMyPrStatus" runat="server" visible="false"><a href="ViewMyPurchaseRequests.aspx" id="viewMyPrStatusLink"><i class="fa fa-circle-notch"></i>View My PR Status</a></li>
             <li id="prInquiryReport" runat="server" visible="false"><a href="PRInquiryForm.aspx" id="PRInquiryFormLink"><i class="fa fa-circle-notch"></i>PR Inquiry Report</a></li>--%>
-         <li id="prInquiryReport" runat="server" visible="false"><a href="PRInquiryReport_2.aspx" id="PRInquiryReport_2Link"><i class="fa fa-circle-notch"></i>PR Inquiry Report</a></li>
-          </ul>
-        </li>
-
-        
-        <li class="treeview" id="liPurchasing" runat="server" visible="false">
-          <a href="hrefPurchasing">
-            <i class="fa fa-shopping-cart"></i> <span>Purchasing</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu" id="subTabPurchasing">
-           <li id="submitForBidding" runat="server" visible="false"><a href="CompanySupplierDepViewPR.aspx" id="submitForBiddingLink"><i class="fa fa-circle-notch"></i>Create Bid & Procurement Plan</a></li>
-           <li id="approveforBidOpeningg" runat="server" visible="false"><a href="ViewPrForBidApproval.aspx" id="approveforBidOpeninggLink"><i class="fa fa-circle-notch"></i>Accept Bid Opening</a></li>
-           <li id="viewSubmittedforBid" runat="server" visible="false" style="white-space: pre-wrap;" ><a href="SumittedMRNPRView.aspx" id="viewSubmittedforBidLink"><i class="fa fa-circle-notch"></i>Update Procurement Plan/Email <br /> Bids to Suppliers</a></li>
-           <li id="inProgressBid" runat="server" visible="false"><a href="CompanyMonitorBids.aspx" id="inProgressBidLink"><i class="fa fa-circle-notch"></i>In-Progress Bids</a></li>
-           <li id="closedBids" runat="server" visible="false"><a href="CompanyClosedBids.aspx" id="closedBidsLink"><i class="fa fa-circle-notch"></i>Closed Bids</a></li> 
-           <li id="approveBidsBeforeComparison" runat="server" visible="false"><a href="ViewPrForTabulationsheetApprovals.aspx" id="ViewPrForTabulationSheetApprovalLink"><i class="fa fa-circle-notch"></i>Tabulation Review Approval</a></li>    
-           <li id="bidComparrision" runat="server" visible="false"><a href="ViewPrForQuotationComparison.aspx" id="bidComparrisionLink"><i class="fa fa-circle-notch"></i>Bid Comparision</a></li>      
-           <li id="createPo" runat="server" visible="false"><a href="ViewPrForPoCreation.aspx" id="createPoLink"><i class="fa fa-circle-notch"></i>View/Create PO</a></li> 
-           <%--<li id="ApprovePO" runat="server" visible="false"><a href="CustomerApprovePO.aspx" id="ApprovePOLink"><i class="fa fa-circle-notch"></i>View/Approve PO</a></li>--%>
-           <li id="ViewAllPO" runat="server" visible="false"><a href="CustomerViewAllPO.aspx" id="ViewAllPOLink"><i class="fa fa-circle-notch"></i>View All PO</a></li>
-           <li id="ViewMyPO" runat="server" visible="false"><a href="CustomerViewMyPO.aspx" id="ViewMyPOLink"><i class="fa fa-circle-notch"></i>View My PO</a></li>
-           <li id="ApprovePO" runat="server" visible="false"><a href="CustomerApprovePONew.aspx" id="CustomerApprovePONewLink"><i class="fa fa-circle-notch"></i>Approve PO</a></li>
-           <%--<li id="ApproveModifiedPO" runat="server" visible="false"><a href="CustomerApproveModifiedPO.aspx" id="CustomerApproveModifiedPOLink"><i class="fa fa-circle-notch"></i>Approve Modified PO</a></li>--%>
-              
-           <li id="ApprovedPOInvoices" runat="server" visible="false"><a href="ApprovedPOInvoices.aspx" id="ApprovedPOInvoicesLink"><i class="fa fa-circle-notch"></i>Advance Payment Invoices</a></li>
-           <li id="addImportDetail" runat="server" visible="false"><a href="ViewPoForAddImportDetails.aspx" id="createPoAddImportLink"><i class="fa fa-circle-notch"></i>View/Add Import Details</a></li>
-           <li id="addImportsRates" runat="server" visible="false"><a href="AddImportRates.aspx" id="addImportRatesLink"><i class="fa fa-circle-notch"></i>Add Import Rates</a></li>
-           <li id="addAfterPO" runat="server" visible="false"><a href="AddAfterPO.aspx" id="addAfterPOLink"><i class="fa fa-circle-notch"></i>Add After PO Details</a></li>
-           <li id="viewAfterPO" runat="server" visible="false"><a href="ViewAfterPODetails.aspx" id="ViewAfterPOLink"><i class="fa fa-circle-notch"></i>View After PO Details</a></li>
-           <li id="viewPO" runat="server" visible="false"> <a href="CusromerPOView.aspx" id="viewPOLink"><i class="fa fa-circle-notch"></i>View/Email PO to Supplier</a></li>
-           <li id="viewCancelledPO" runat="server" visible="false"><a href="CustomerViewCancelledPo.aspx" id="CustomerViewCancelledPoLink"><i class="fa fa-circle-notch"></i>View Cancelled PO</a></li>
-            <li id="CustomerApprovePOPrint" runat="server" visible="false"><a href="CustomerApprovePOPrint.aspx" id="CustomerApprovePOPrintLink"><i class="fa fa-circle-notch"></i>Print PO Details</a></li>
-            
-              <li id="generateGRN" runat="server" visible="false"><a href="CustomerViewApprovedPurchaseOrder.aspx" id="generateGRNLink"><i class="fa fa-circle-notch"></i>Generate GRN</a></li>
-           <li id="grnApproval" runat="server" visible="false"><a href="CustomerGRNView.aspx" id="grnApprovalLink"><i class="fa fa-circle-notch"></i>GRN Approval</a></li>
-            <li id="companyViewApprovedGRN" runat="server" visible="false"><a href="CompanyViewApprovedGRN.aspx" id="CompanyViewApprovedGRNLink"><i class="fa fa-circle-notch"></i>View GRN</a></li>
-            <li id="CustomerGRNReturn" runat="server" visible="false"><a href="CustomerGRNReturn.aspx" id="CustomerGRNReturnLink"><i class="fa fa-circle-notch"></i>Return GRN</a></li>
-           <li id="ViewReturnGRN" runat="server" visible="false"><a href="ViewReturnGRN.aspx" id="ViewReturnGRNLink"><i class="fa fa-circle-notch"></i>View Return GRN</a></li>
-           
-              <li id="ViewInvoices" runat="server" visible="false"><a href="ViewInvoices.aspx" id="ViewInvoicesLink"><i class="fa fa-circle-notch"></i>View Invoices</a></li>
-            <li id="AddRates" runat="server" visible="false"><a href="AddRates.aspx" id="AddRatesLink"><i class="fa fa-circle-notch"></i>Add Rates</a></li>    
-           
-              <li id="bidHistory" runat="server" visible="false"><a href="#" id="bidHistoryLink"><i class="fa fa-circle-notch"></i>Bid History</a></li>
-          </ul>
-        </li>
-
-          <li class="treeview" id="liApproval" runat="server" visible="false">
-          <a href="hrefApproval">
-            <i class="fa fa-thumbs-up"></i> <span>Committee Approval</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu" id="subTabApproval">           
-           <li id="techApproval" runat="server" visible="false"><a href="ViewPrForQuotationRecommendation.aspx" id="quotationApprovalLink"><i class="fa fa-circle-notch"></i>Recommendation(TECH)</a></li>
-           <li id="procurementApproval" runat="server" visible="false">
-               <a href="ViewPrForQuotationApprovalNew.aspx" id="quotationConfirmationLink">
-                   <i class="fa fa-circle-notch"></i>Approval(SUB,PROCU)</a>
-        <li id="ViewPrForQuotationRejectedRecommendation" runat="server" visible="false"><a href="ViewPrForQuotationRejectedRecommendation.aspx" id="ViewPrForQuotationRejectedRecommendationLink"><i class="fa fa-circle-notch"></i>Rejected Recommendation</a></li>
-           <li id="ViewPrForQuotationRejectedApprovalNew" runat="server" visible="false"><a href="ViewPrForQuotationRejectedApprovalNew.aspx" id="ViewPrForQuotationRejectedApprovalNewLink"><i class="fa fa-circle-notch"></i>Rejected Approval</a></li>
-         
-           </li>         
-          </ul>
-        </li>
+                            <li id="prInquiryReport" runat="server" visible="false"><a href="PRInquiryReport_2.aspx" id="PRInquiryReport_2Link"><i class="fa fa-circle-notch"></i>PR Inquiry Report</a></li>
+                        </ul>
+                    </li>
 
 
+                    <li class="treeview" id="liPurchasing" runat="server" visible="false">
+                        <a href="hrefPurchasing">
+                            <i class="fa fa-shopping-cart"></i><span>Purchasing</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" id="subTabPurchasing">
+                            <li id="submitForBidding" runat="server" visible="false"><a href="CompanySupplierDepViewPR.aspx" id="submitForBiddingLink"><i class="fa fa-circle-notch"></i>Create Bid & Procurement Plan</a></li>
+                            <li id="approveforBidOpeningg" runat="server" visible="false"><a href="ViewPrForBidApproval.aspx" id="approveforBidOpeninggLink"><i class="fa fa-circle-notch"></i>Accept Bid Opening</a></li>
+                            <li id="viewSubmittedforBid" runat="server" visible="false" style="white-space: pre-wrap;"><a href="SumittedMRNPRView.aspx" id="viewSubmittedforBidLink"><i class="fa fa-circle-notch"></i>Update Procurement Plan/Email
+                                <br />
+                                Bids to Suppliers</a></li>
+                            <li id="inProgressBid" runat="server" visible="false"><a href="CompanyMonitorBids.aspx" id="inProgressBidLink"><i class="fa fa-circle-notch"></i>In-Progress Bids</a></li>
+                            <li id="closedBids" runat="server" visible="false"><a href="CompanyClosedBids.aspx" id="closedBidsLink"><i class="fa fa-circle-notch"></i>Closed Bids</a></li>
+                            <li id="approveBidsBeforeComparison" runat="server" visible="false"><a href="ViewPrForTabulationsheetApprovals.aspx" id="ViewPrForTabulationSheetApprovalLink"><i class="fa fa-circle-notch"></i>Tabulation Review Approval</a></li>
+                            <li id="bidComparrision" runat="server" visible="false"><a href="ViewPrForQuotationComparison.aspx" id="bidComparrisionLink"><i class="fa fa-circle-notch"></i>Bid Comparision</a></li>
+                            <li id="createPo" runat="server" visible="false"><a href="ViewPrForPoCreation.aspx" id="createPoLink"><i class="fa fa-circle-notch"></i>View/Create PO</a></li>
+                            <%--<li id="ApprovePO" runat="server" visible="false"><a href="CustomerApprovePO.aspx" id="ApprovePOLink"><i class="fa fa-circle-notch"></i>View/Approve PO</a></li>--%>
+                            <li id="ViewAllPO" runat="server" visible="false"><a href="CustomerViewAllPO.aspx" id="ViewAllPOLink"><i class="fa fa-circle-notch"></i>View All PO</a></li>
+                            <li id="ViewMyPO" runat="server" visible="false"><a href="CustomerViewMyPO.aspx" id="ViewMyPOLink"><i class="fa fa-circle-notch"></i>View My PO</a></li>
+                            <li id="ApprovePO" runat="server" visible="false"><a href="CustomerApprovePONew.aspx" id="CustomerApprovePONewLink"><i class="fa fa-circle-notch"></i>Approve PO</a></li>
+                            <%--<li id="ApproveModifiedPO" runat="server" visible="false"><a href="CustomerApproveModifiedPO.aspx" id="CustomerApproveModifiedPOLink"><i class="fa fa-circle-notch"></i>Approve Modified PO</a></li>--%>
+
+                            <li id="ApprovedPOInvoices" runat="server" visible="false"><a href="ApprovedPOInvoices.aspx" id="ApprovedPOInvoicesLink"><i class="fa fa-circle-notch"></i>Advance Payment Invoices</a></li>
+                            <li id="addImportDetail" runat="server" visible="false"><a href="ViewPoForAddImportDetails.aspx" id="createPoAddImportLink"><i class="fa fa-circle-notch"></i>View/Add Import Details</a></li>
+                            <li id="addImportsRates" runat="server" visible="false"><a href="AddImportRates.aspx" id="addImportRatesLink"><i class="fa fa-circle-notch"></i>Add Import Rates</a></li>
+                            <li id="addAfterPO" runat="server" visible="false"><a href="AddAfterPO.aspx" id="addAfterPOLink"><i class="fa fa-circle-notch"></i>Add After PO Details</a></li>
+                            <li id="viewAfterPO" runat="server" visible="false"><a href="ViewAfterPODetails.aspx" id="ViewAfterPOLink"><i class="fa fa-circle-notch"></i>View After PO Details</a></li>
+                            <li id="viewPO" runat="server" visible="false"><a href="CusromerPOView.aspx" id="viewPOLink"><i class="fa fa-circle-notch"></i>View/Email PO to Supplier</a></li>
+                            <li id="viewCancelledPO" runat="server" visible="false"><a href="CustomerViewCancelledPo.aspx" id="CustomerViewCancelledPoLink"><i class="fa fa-circle-notch"></i>View Cancelled PO</a></li>
+                            <li id="CustomerApprovePOPrint" runat="server" visible="false"><a href="CustomerApprovePOPrint.aspx" id="CustomerApprovePOPrintLink"><i class="fa fa-circle-notch"></i>Print PO Details</a></li>
+
+                            <li id="generateGRN" runat="server" visible="false"><a href="CustomerViewApprovedPurchaseOrder.aspx" id="generateGRNLink"><i class="fa fa-circle-notch"></i>Generate GRN</a></li>
+                            <li id="grnApproval" runat="server" visible="false"><a href="CustomerGRNView.aspx" id="grnApprovalLink"><i class="fa fa-circle-notch"></i>GRN Approval</a></li>
+                            <li id="companyViewApprovedGRN" runat="server" visible="false"><a href="CompanyViewApprovedGRN.aspx" id="CompanyViewApprovedGRNLink"><i class="fa fa-circle-notch"></i>View GRN</a></li>
+                            <li id="CustomerGRNReturn" runat="server" visible="false"><a href="CustomerGRNReturn.aspx" id="CustomerGRNReturnLink"><i class="fa fa-circle-notch"></i>Return GRN</a></li>
+                            <li id="ViewReturnGRN" runat="server" visible="false"><a href="ViewReturnGRN.aspx" id="ViewReturnGRNLink"><i class="fa fa-circle-notch"></i>View Return GRN</a></li>
+
+                            <li id="ViewInvoices" runat="server" visible="false"><a href="ViewInvoices.aspx" id="ViewInvoicesLink"><i class="fa fa-circle-notch"></i>View Invoices</a></li>
+                            <li id="AddRates" runat="server" visible="false"><a href="AddRates.aspx" id="AddRatesLink"><i class="fa fa-circle-notch"></i>Add Rates</a></li>
+
+                            <li id="bidHistory" runat="server" visible="false"><a href="#" id="bidHistoryLink"><i class="fa fa-circle-notch"></i>Bid History</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview" id="liApproval" runat="server" visible="false">
+                        <a href="hrefApproval">
+                            <i class="fa fa-thumbs-up"></i><span>Committee Approval</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" id="subTabApproval">
+                            <li id="techApproval" runat="server" visible="false"><a href="ViewPrForQuotationRecommendation.aspx" id="quotationApprovalLink"><i class="fa fa-circle-notch"></i>Recommendation(TECH)</a></li>
+                            <li id="procurementApproval" runat="server" visible="false">
+                                <a href="ViewPrForQuotationApprovalNew.aspx" id="quotationConfirmationLink">
+                                    <i class="fa fa-circle-notch"></i>Approval(SUB,PROCU)</a>
+                                <li id="ViewPrForQuotationRejectedRecommendation" runat="server" visible="false"><a href="ViewPrForQuotationRejectedRecommendation.aspx" id="ViewPrForQuotationRejectedRecommendationLink"><i class="fa fa-circle-notch"></i>Rejected Recommendation</a></li>
+                                <li id="ViewPrForQuotationRejectedApprovalNew" runat="server" visible="false"><a href="ViewPrForQuotationRejectedApprovalNew.aspx" id="ViewPrForQuotationRejectedApprovalNewLink"><i class="fa fa-circle-notch"></i>Rejected Approval</a></li>
+
+                            </li>
+                        </ul>
+                    </li>
 
 
-        <li class="treeview" id="liManualBids" runat="server" visible="false">
-          <a href="hrefManualBids">
-            <i class="fa fa-gavel"></i> <span>Manual Bids</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu" id="subTabManualBids">          
-           <li  id="pendingManualBidsid" runat="server" visible="false"><a href="PendingManualBids.aspx" id="pendingManualBidsidlnk"><i class="fa fa-circle-notch"></i>In-Progress Manual Bids</a></li>
-           <li  id="closebidsManual" runat="server" visible="false"><a href="CompanyClosedManualBidsP.aspx" id="closebidsManuallnk"><i class="fa fa-circle-notch"></i>Closed Manual Bids</a></li>
-           <li id="manualSupplierBids" runat="server" visible="false"><a href="ViewPrForManualQuotationSubmission.aspx" id="ManualBidsLink"><i class="fa fa-circle-notch"></i>Submit Quotations</a></li>
-           <li id="updateSupplierBidBondDetails" runat="server" visible="false"><a href="ViewSupplierBidBondDetails.aspx" id="updateSupplierBidBondDetailsLink"><i class="fa fa-circle-notch"></i>Update Bid Bond Details</a></li>
-           <%--<li id="viewPrRejectedQuotationTabulationSheet" runat="server" visible="false"><a href="ViewRejectedTabulationsheet.aspx" id="ViewRejectedTabulationsheetLink"><i class="fa fa-circle-notch"></i>View Rejected Quotations</a></li>--%>
-          </ul>
-        </li>
 
-        <li class="treeview" id="liReports" runat="server" visible="false">
-          <a href="hrefReports">
-            <i class="fa fa-chart-area"></i> <span>Reports</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu" id="subTabReports">
-            <li id="mrReports" runat="server" visible="false"><a href="CompanyMrnReports.aspx" id="mrnReportsLink"><i class="fa fa-circle-notch"></i>MRN Reports</a></li>
-            <li id="prReports" runat="server" visible="false"><a href="CompanyPrReports.aspx" id="prReportsLink"><i class="fa fa-circle-notch"></i>PR Reports</a></li>
-            <li id="poReports" runat="server" visible="false"><a href="CompanyPoReports.aspx" id="poReportsLink"><i class="fa fa-circle-notch"></i>PO Reports</a></li>
-            <li id="grnReports" runat="server" visible="false"><a href="CompanyGrnReports.aspx" id="grnReportsLink"><i class="fa fa-circle-notch"></i>GRN Reports</a></li>
-            <%--<li id="biddingReports" runat="server" visible="false"><a href="CompanyBiddingReport.aspx" id="biddingReportsLink"><i class="fa fa-circle-notch"></i>Bidding Reports</a></li>--%>
-            <%--<li id="supplierReports" runat="server" visible="false"><a href="CompanySupplierReports.aspx" id="supplierReportsLink"><i class="fa fa-circle-notch"></i>Supplier Reports</a></li>--%>
-            <li id="InventoryReportFull" runat="server" visible="false"><a href="InventorySummaryReport.aspx" id="InventoryReportLinkFull"><i class="fa fa-circle-notch"></i>Inventory Summary Report</a></li>     
-            <li id="IssueNoteReport" runat="server" visible="false"><a href="IssueNoteReport.aspx" id="IssueNoteReportLink"><i class="fa fa-circle-notch"></i>MRN Issued Note Report</a></li>
-            <li id="ReceivedMRNReport" runat="server" visible="false"><a href="ReceivedMRNReport.aspx" id="ReceivedMRNReportLink"><i class="fa fa-circle-notch"></i>MRN Received Note Report</a></li>     
-            <li id="StockOverriddenReport" runat="server" visible="false"><a href="StockOverRideReport.aspx" id="StockOverRideReporttLink"><i class="fa fa-circle-notch"></i>Stock Overridden Report</a></li>     
-            <li id="PurchaseRequisitionReport" runat="server" visible="false"><a href="ViewPurchaseRequsition.aspx" id="ViewPurchaseRequsitionLink"><i class="fa fa-circle-notch"></i>Purchasing Requisition Report</a></li>     
-         
-          </ul>
-        </li>
 
-        <li class="treeview" id="liGeneralSetting" runat="server" visible="false">
-          <a href="hrefGeneralSetting">
-            <i class="fa fa-cog"></i> <span>General Settings</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu" id="subGeneralSetting">
-            <li id="generalSetting" runat="server" visible="false"><a href="GeneralSettings.aspx" id="generalSettingLink"><i class="fa fa-circle-notch"></i>Settings</a></li>         
-          </ul>
-        </li>
+                    <li class="treeview" id="liManualBids" runat="server" visible="false">
+                        <a href="hrefManualBids">
+                            <i class="fa fa-gavel"></i><span>Manual Bids</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" id="subTabManualBids">
+                            <li id="pendingManualBidsid" runat="server" visible="false"><a href="PendingManualBids.aspx" id="pendingManualBidsidlnk"><i class="fa fa-circle-notch"></i>In-Progress Manual Bids</a></li>
+                            <li id="closebidsManual" runat="server" visible="false"><a href="CompanyClosedManualBidsP.aspx" id="closebidsManuallnk"><i class="fa fa-circle-notch"></i>Closed Manual Bids</a></li>
+                            <li id="manualSupplierBids" runat="server" visible="false"><a href="ViewPrForManualQuotationSubmission.aspx" id="ManualBidsLink"><i class="fa fa-circle-notch"></i>Submit Quotations</a></li>
+                            <li id="updateSupplierBidBondDetails" runat="server" visible="false"><a href="ViewSupplierBidBondDetails.aspx" id="updateSupplierBidBondDetailsLink"><i class="fa fa-circle-notch"></i>Update Bid Bond Details</a></li>
+                            <%--<li id="viewPrRejectedQuotationTabulationSheet" runat="server" visible="false"><a href="ViewRejectedTabulationsheet.aspx" id="ViewRejectedTabulationsheetLink"><i class="fa fa-circle-notch"></i>View Rejected Quotations</a></li>--%>
+                        </ul>
+                    </li>
 
-        <li class="treeview" id="li1" runat="server" visible="true">
-          <a href="hrefHelp">
-            <i class="fa fa-question-circle"></i> <span>Help</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu" id="subHelp">
-            <li id="Li2" runat="server" visible="true"><a href="AdminResources/Docs/UserManual.pdf" target="_blank" id="usermanualLink"><i class="fa fa-book-open"></i>User Manual</a></li>
-           
-          </ul>
-        </li>
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-        <div class="content-wrapper" style="min-height: 100% !important">            
+                    <li class="treeview" id="liReports" runat="server" visible="false">
+                        <a href="hrefReports">
+                            <i class="fa fa-chart-area"></i><span>Reports</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" id="subTabReports">
+                            <li id="mrReports" runat="server" visible="false"><a href="CompanyMrnReports.aspx" id="mrnReportsLink"><i class="fa fa-circle-notch"></i>MRN Reports</a></li>
+                            <li id="prReports" runat="server" visible="false"><a href="CompanyPrReports.aspx" id="prReportsLink"><i class="fa fa-circle-notch"></i>PR Reports</a></li>
+                            <li id="poReports" runat="server" visible="false"><a href="CompanyPoReports.aspx" id="poReportsLink"><i class="fa fa-circle-notch"></i>PO Reports</a></li>
+                            <li id="grnReports" runat="server" visible="false"><a href="CompanyGrnReports.aspx" id="grnReportsLink"><i class="fa fa-circle-notch"></i>GRN Reports</a></li>
+                            <li id="SupplierItemReport" runat="server" visible="false"><a href="SupplierItemReport.aspx" id="SupplierItemReportLink"><i class="fa fa-circle-notch"></i>Supplier Item Report</a></li>
+                            <li id="ItemPoreport" runat="server" visible="false"><a href="ItemPoReport.aspx" id="ItemPoReportLink"><i class="fa fa-circle-notch"></i>Item PO Report</a></li>
+
+                            <%--<li id="biddingReports" runat="server" visible="false"><a href="CompanyBiddingReport.aspx" id="biddingReportsLink"><i class="fa fa-circle-notch"></i>Bidding Reports</a></li>--%>
+                            <%--<li id="supplierReports" runat="server" visible="false"><a href="CompanySupplierReports.aspx" id="supplierReportsLink"><i class="fa fa-circle-notch"></i>Supplier Reports</a></li>--%>
+                            <li id="InventoryReportFull" runat="server" visible="false"><a href="InventorySummaryReport.aspx" id="InventoryReportLinkFull"><i class="fa fa-circle-notch"></i>Inventory Summary Report</a></li>
+                            <li id="IssueNoteReport" runat="server" visible="false"><a href="IssueNoteReport.aspx" id="IssueNoteReportLink"><i class="fa fa-circle-notch"></i>MRN Issued Note Report</a></li>
+                            <li id="ReceivedMRNReport" runat="server" visible="false"><a href="ReceivedMRNReport.aspx" id="ReceivedMRNReportLink"><i class="fa fa-circle-notch"></i>MRN Received Note Report</a></li>
+                            <li id="StockOverriddenReport" runat="server" visible="false"><a href="StockOverRideReport.aspx" id="StockOverRideReporttLink"><i class="fa fa-circle-notch"></i>Stock Overridden Report</a></li>
+                            <li id="PurchaseRequisitionReport" runat="server" visible="false"><a href="ViewPurchaseRequsition.aspx" id="ViewPurchaseRequsitionLink"><i class="fa fa-circle-notch"></i>Purchasing Requisition Report</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="treeview" id="liGeneralSetting" runat="server" visible="false">
+                        <a href="hrefGeneralSetting">
+                            <i class="fa fa-cog"></i><span>General Settings</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" id="subGeneralSetting">
+                            <li id="generalSetting" runat="server" visible="false"><a href="GeneralSettings.aspx" id="generalSettingLink"><i class="fa fa-circle-notch"></i>Settings</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview" id="li1" runat="server" visible="true">
+                        <a href="hrefHelp">
+                            <i class="fa fa-question-circle"></i><span>Help</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu" id="subHelp">
+                            <li id="Li2" runat="server" visible="true"><a href="AdminResources/Docs/UserManual.pdf" target="_blank" id="usermanualLink"><i class="fa fa-book-open"></i>User Manual</a></li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <div class="content-wrapper" style="min-height: 100% !important">
             <div class="container">
             </div>
             <asp:ContentPlaceHolder ID="ContentSection" runat="server">
             </asp:ContentPlaceHolder>
         </div>
         <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Powered by Bellvantage (pvt) Ltd.</b>
-    </div>
-    <strong>Copyright &copy; 2019 <a href="http://www.bellvantage.com">Bellvantage (pvt) Ltd.</a>.</strong> All rights
+            <div class="pull-right hidden-xs">
+                <b>Powered by Bellvantage (pvt) Ltd.</b>
+            </div>
+            <strong>Copyright &copy; 2019 <a href="http://www.bellvantage.com">Bellvantage (pvt) Ltd.</a>.</strong> All rights
     reserved.
-  </footer>
+        </footer>
 
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+            <!-- Create the tabs -->
+            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+                <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Home tab content -->
+                <div class="tab-pane" id="control-sidebar-home-tab">
+                    <h3 class="control-sidebar-heading">Recent Activity</h3>
+                    <ul class="control-sidebar-menu">
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i class="menu-icon fa fa-birthday-cake bg-red"></i>
 
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
 
-                <p>Will be 23 on April 24th</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-user bg-yellow"></i>
+                                    <p>Will be 23 on April 24th</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i class="menu-icon fa fa-user bg-yellow"></i>
 
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
 
-                <p>New phone +1(800)555-1234</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+                                    <p>New phone +1(800)555-1234</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
 
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
 
-                <p>nora@example.com</p>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <i class="menu-icon fa fa-file-code-o bg-green"></i>
+                                    <p>nora@example.com</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <i class="menu-icon fa fa-file-code-o bg-green"></i>
 
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
 
-                <p>Execution time 5 seconds</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
+                                    <p>Execution time 5 seconds</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.control-sidebar-menu -->
 
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
+                    <h3 class="control-sidebar-heading">Tasks Progress</h3>
+                    <ul class="control-sidebar-menu">
+                        <li>
+                            <a href="javascript:void(0)">
+                                <h4 class="control-sidebar-subheading">Custom Template Design
                 <span class="label label-danger pull-right">70%</span>
-              </h4>
+                                </h4>
 
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Update Resume
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <h4 class="control-sidebar-subheading">Update Resume
                 <span class="label label-success pull-right">95%</span>
-              </h4>
+                                </h4>
 
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-success" style="width: 95%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Laravel Integration
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-success" style="width: 95%"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <h4 class="control-sidebar-subheading">Laravel Integration
                 <span class="label label-warning pull-right">50%</span>
-              </h4>
+                                </h4>
 
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="javascript:void(0)">
-              <h4 class="control-sidebar-subheading">
-                Back End Framework
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <h4 class="control-sidebar-subheading">Back End Framework
                 <span class="label label-primary pull-right">68%</span>
-              </h4>
+                                </h4>
 
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.control-sidebar-menu -->
 
-      </div>
-      <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-pane -->
 
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
+                <!-- Settings tab content -->
+                <div class="tab-pane" id="control-sidebar-settings-tab">
+                    <form method="post">
+                        <h3 class="control-sidebar-heading">General Settings</h3>
 
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Report panel usage
               <input type="checkbox" class="pull-right" checked>
-            </label>
+                            </label>
 
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-          <!-- /.form-group -->
+                            <p>
+                                Some information about this general settings option
+                            </p>
+                        </div>
+                        <!-- /.form-group -->
 
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Allow mail redirect
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Allow mail redirect
               <input type="checkbox" class="pull-right" checked>
-            </label>
+                            </label>
 
-            <p>
-              Other sets of options are available
-            </p>
-          </div>
-          <!-- /.form-group -->
+                            <p>
+                                Other sets of options are available
+                            </p>
+                        </div>
+                        <!-- /.form-group -->
 
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Expose author name in posts
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Expose author name in posts
               <input type="checkbox" class="pull-right" checked="checked">
-            </label>
+                            </label>
 
-            <p>
-              Allow the user to show his name in blog posts
-            </p>
-          </div>
-          <!-- /.form-group -->
+                            <p>
+                                Allow the user to show his name in blog posts
+                            </p>
+                        </div>
+                        <!-- /.form-group -->
 
-          <h3 class="control-sidebar-heading">Chat Settings</h3>
+                        <h3 class="control-sidebar-heading">Chat Settings</h3>
 
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Show me as online
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Show me as online
               <input type="checkbox" class="pull-right" checked>
-            </label>
-          </div>
-          <!-- /.form-group -->
+                            </label>
+                        </div>
+                        <!-- /.form-group -->
 
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Turn off notifications
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Turn off notifications
               <input type="checkbox" class="pull-right">
-            </label>
-          </div>
-          <!-- /.form-group -->
+                            </label>
+                        </div>
+                        <!-- /.form-group -->
 
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Delete chat history
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Delete chat history
               <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a>
-            </label>
-          </div>
-          <!-- /.form-group -->
-        </form>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
+                            </label>
+                        </div>
+                        <!-- /.form-group -->
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+        </aside>
         <!-- /.control-sidebar -->
         <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->

@@ -25,13 +25,13 @@ namespace CLibrary.Common
             MrnMasterDAOV2 DAO = new MrnMasterDAOV2Impl();
             return DAO;
         }
-        
+
         public static MrnDetailsDAOV2 CreateMrnDetailsDAOV2()
         {
             MrnDetailsDAOV2 DAO = new MrnDetailsDAOV2Impl();
             return DAO;
         }
-        
+
         public static MrnBomDAOV2 CreateMrnBomDAOV2()
         {
             MrnBomDAOV2 DAO = new MrnBomDAOV2Impl();
@@ -55,68 +55,70 @@ namespace CLibrary.Common
             MrnFileUploadDAOV2 DAO = new MrnFileUploadDAOV2Impl();
             return DAO;
         }
-        
+
         public static MrnReplacementFileUploadDAOV2 CreateMrnReplacementFileUploadDAOV2()
         {
             MrnReplacementFileUploadDAOV2 DAO = new MrnReplacementFileUploadDAOV2Impl();
             return DAO;
         }
-        
+
         public static MrnSupportiveDocumentsDAOV2 CreateMrnSupportiveDocumentsDAOV2()
         {
             MrnSupportiveDocumentsDAOV2 DAO = new MrnSupportiveDocumentsDAOV2Impl();
             return DAO;
         }
-        
+
         public static MrnCapexDocDAO CreateMrnCapexDocDAO()
         {
             MrnCapexDocDAO DAO = new MrnCapexDocDAOImpl();
             return DAO;
         }
-        
+
         public static PrMasterDAOV2 CreatePrMasterDAOV2()
         {
             PrMasterDAOV2 DAO = new PrMasterDAOV2Impl();
             return DAO;
         }
-        
+
         public static PrDetailsDAOV2 CreatePrDetailsDAOV2()
         {
             PrDetailsDAOV2 DAO = new PrDetailsDAOV2Impl();
             return DAO;
         }
-        
+
         public static PrBomDAOV2 CreatePrBomDAOV2()
         {
             PrBomDAOV2 DAO = new PrBomDAOV2Impl();
             return DAO;
         }
-        
+
         public static PrFileUploadDAOV2 CreatePrFileUploadDAOV2()
         {
             PrFileUploadDAOV2 DAO = new PrFileUploadDAOV2Impl();
             return DAO;
         }
-        
+
         public static PrReplacementFileUploadDAOV2 CreatePrReplacementFileUploadDAOV2()
         {
             PrReplacementFileUploadDAOV2 DAO = new PrReplacementFileUploadDAOV2Impl();
             return DAO;
         }
 
-        
+
         public static PrSupportiveDocumentsDAOV2 CreatePrSupportiveDocumentsDAOV2()
         {
             PrSupportiveDocumentsDAOV2 DAO = new PrSupportiveDocumentsDAOV2Impl();
             return DAO;
         }
 
-        public static PrCapexDocDAO CreatePrCapexDocDAO() {
+        public static PrCapexDocDAO CreatePrCapexDocDAO()
+        {
             PrCapexDocDAO DAO = new PrCapexDocDAOImpl();
             return DAO;
         }
 
-        public static PrUpdateLogDAO CreatePrUpdateLogDAO() {
+        public static PrUpdateLogDAO CreatePrUpdateLogDAO()
+        {
             PrUpdateLogDAO DAO = new PrUpdateLogDAOImpl();
             return DAO;
         }
@@ -144,16 +146,19 @@ namespace CLibrary.Common
             TabulationDetailDAO DAO = new TabulationDetailDAOImpl();
             return DAO;
         }
-        public static UserSubDepartmentDAO createUserSubDepartmentDAO() {
+        public static UserSubDepartmentDAO createUserSubDepartmentDAO()
+        {
             UserSubDepartmentDAO userSubDepartmentDAO = new UserSubDepartmentDAOSQLImpl();
             return userSubDepartmentDAO;
         }
-        public static UserWarehouseDAO createUserWarehouseDAO() {
+        public static UserWarehouseDAO createUserWarehouseDAO()
+        {
             UserWarehouseDAO userWarehouseDAO = new UserWarehouseDAOSQLImpl();
             return userWarehouseDAO;
         }
 
-        public static SubCategoryStoreKeeperDAO createSubCategoryStoreKeeperDAO() {
+        public static SubCategoryStoreKeeperDAO createSubCategoryStoreKeeperDAO()
+        {
             SubCategoryStoreKeeperDAO subCategoryStoreKeeperDAO = new SubCategoryStoreKeeperDAOSQLImpl();
             return subCategoryStoreKeeperDAO;
         }
@@ -229,7 +234,8 @@ namespace CLibrary.Common
             ItemCategoryOwnerDAO DAO = new ItemCategoryOwnerDAOImpl();
             return DAO;
         }
-        internal static ItemCategoryOwners2DAO CreateItemCategoryOwners2DAO() {
+        internal static ItemCategoryOwners2DAO CreateItemCategoryOwners2DAO()
+        {
             ItemCategoryOwners2DAO DAO = new ItemCategoryOwners2DAOImpl();
             return DAO;
         }
@@ -576,7 +582,7 @@ namespace CLibrary.Common
             return (UnitMeasurementDAO)unitMeasurementDAO;
         }
 
-        public  static MRNDetailsStatusLogDAO CreateMRNDetailsStatusLogDAO()
+        public static MRNDetailsStatusLogDAO CreateMRNDetailsStatusLogDAO()
         {
             MRNDetailsStatusLogDAO DAO = new MRNDetailsStatusLogDAOImpl();
             return DAO;
@@ -973,7 +979,7 @@ namespace CLibrary.Common
             return (BiddingMethodDAO)biddingMethodDAO;
         }
 
-        
+
         public static SupplierBidBondDetailsDAO CreateSupplierBidBondDetailsDAO()
         {
             SupplierBidBondDetailsDAO supplierBidBondDetailsDAO = new SupplierBidBondDetailsDAOImpl();
@@ -998,7 +1004,7 @@ namespace CLibrary.Common
 
         internal static Mrn_Replace_File_Upload_DAO CreateMrn_Replace_File_Upload_DAO()
         {
-             Mrn_Replace_File_Upload_DAO mrn_Replace_File_Upload_DAO = new Mrn_Replace_File_Upload_DAOImpl();
+            Mrn_Replace_File_Upload_DAO mrn_Replace_File_Upload_DAO = new Mrn_Replace_File_Upload_DAOImpl();
             return (Mrn_Replace_File_Upload_DAO)mrn_Replace_File_Upload_DAO;
         }
         public static EmailDAO CreateEmailDAO()
@@ -1054,62 +1060,74 @@ namespace CLibrary.Common
             return DAO;
         }
 
-        public static DefCurrencyTypeDAO CreateDefCurrencyTypeDAO() {
+        public static DefCurrencyTypeDAO CreateDefCurrencyTypeDAO()
+        {
             DefCurrencyTypeDAO defCurrencyTypeDAO = new DefCurrencyTypeDAOSQLImpl();
             return (DefCurrencyTypeDAO)defCurrencyTypeDAO;
         }
 
-        public static DefPaymentModeDAO CreateDefPaymentModeDAO() {
+        public static DefPaymentModeDAO CreateDefPaymentModeDAO()
+        {
             DefPaymentModeDAO defPaymentModeDAO = new DefPaymentModeDAOSQLImpl();
             return (DefPaymentModeDAO)defPaymentModeDAO;
         }
 
-        public static DefPriceTermsDAO CreateDefPriceTermsDAO() {
+        public static DefPriceTermsDAO CreateDefPriceTermsDAO()
+        {
             DefPriceTermsDAO defPriceTermsDAO = new DefPriceTermsDAOSQLImpl();
             return (DefPriceTermsDAO)defPriceTermsDAO;
         }
 
-        public static DefTransportModeDAO CreateDefTransportModeDAO() {
+        public static DefTransportModeDAO CreateDefTransportModeDAO()
+        {
             DefTransportModeDAO defTransportModeDAO = new DefTransportModeDAOSQLImpl();
             return (DefTransportModeDAO)defTransportModeDAO;
         }
 
-        public static DefContainerSizeDAO CreateDefContainerSizeDAO() {
+        public static DefContainerSizeDAO CreateDefContainerSizeDAO()
+        {
             DefContainerSizeDAO defContainerSizeDAO = new DefContainerSizeDAOSQLImpl();
             return (DefContainerSizeDAO)defContainerSizeDAO;
         }
 
-        public static CurrencyRateDAO CreateCurrencyRateDAO() {
+        public static CurrencyRateDAO CreateCurrencyRateDAO()
+        {
             CurrencyRateDAO currencyRateDAO = new CurrencyRateDAOSQLImpl();
             return (CurrencyRateDAO)currencyRateDAO;
         }
 
-        public static TRDetailsDAO CreateTRDetailsDAO() {
+        public static TRDetailsDAO CreateTRDetailsDAO()
+        {
             TRDetailsDAO tRDetailsDAO = new TRDetailsSQLImpl();
             return (TRDetailsDAO)tRDetailsDAO;
         }
 
-        public static TRMasterDAO CreateTRMasterDAO() {
+        public static TRMasterDAO CreateTRMasterDAO()
+        {
             TRMasterDAO tRMasterDAO = new TRMasterSQLImpl();
             return (TRMasterDAO)tRMasterDAO;
         }
 
-        public static TRDIssueNoteDAO CreateTRDIssueNoteDAO() {
+        public static TRDIssueNoteDAO CreateTRDIssueNoteDAO()
+        {
             TRDIssueNoteDAO tRDIssueNoteDAO = new TRDIssueNoteSQLImpl();
             return (TRDIssueNoteDAO)tRDIssueNoteDAO;
         }
 
-        public static TrDetailStatusLogDAO CreateTrDetailStatusLogDAO() {
+        public static TrDetailStatusLogDAO CreateTrDetailStatusLogDAO()
+        {
             TrDetailStatusLogDAO DAO = new TrDetailStatusLogDAOSQLImpl();
             return DAO;
         }
 
-        public static TrdIssueNoteBatchesDAO CreateTrdIssueNoteBatchesDAO() {
+        public static TrdIssueNoteBatchesDAO CreateTrdIssueNoteBatchesDAO()
+        {
             TrdIssueNoteBatchesDAO trdIssueNoteBatchesDAO = new TrdIssueNoteBatchesDAOSQLImpl();
             return (TrdIssueNoteBatchesDAO)trdIssueNoteBatchesDAO;
         }
 
-        public static ImportsHistoryDAO CreateImportsHistoryDAO() {
+        public static ImportsHistoryDAO CreateImportsHistoryDAO()
+        {
             ImportsHistoryDAO importsHistoryDAO = new ImportsHistoryDAOSQLImpl();
             return (ImportsHistoryDAO)importsHistoryDAO;
         }
@@ -1126,79 +1144,109 @@ namespace CLibrary.Common
             return DAO;
         }
 
-        public static MrndIssueNoteBatchesDAO CreateMrndIssueNoteBatchesDAO() {
+        public static MrndIssueNoteBatchesDAO CreateMrndIssueNoteBatchesDAO()
+        {
             MrndIssueNoteBatchesDAO mrndIssueNoteBatchesDAO = new MrndIssueNoteBatchesDAOSQLImpl();
             return (MrndIssueNoteBatchesDAO)mrndIssueNoteBatchesDAO;
         }
 
-        public static StockOverrideBatchLogDAO CreateStockOverrideBatchLogDAO() {
+        public static StockOverrideBatchLogDAO CreateStockOverrideBatchLogDAO()
+        {
             StockOverrideBatchLogDAO stockOverrideBatchLogDAO = new StockOverrideBatchLogDAOImpl();
             return (StockOverrideBatchLogDAO)stockOverrideBatchLogDAO;
         }
 
-        public static InvoiceDetailsDAO CreateInvoiceDetailsDAO() {
+        public static InvoiceDetailsDAO CreateInvoiceDetailsDAO()
+        {
             InvoiceDetailsDAO invoiceDetailsDAO = new InvoiceDetailsDAOImpl();
             return (InvoiceDetailsDAO)invoiceDetailsDAO;
         }
 
-        public static CompanyTypeDAO CreateCompanyTypeDAO() {
+        public static CompanyTypeDAO CreateCompanyTypeDAO()
+        {
             CompanyTypeDAO companyTypeDAO = new CompanyTypeDAOSQLImpl();
             return (CompanyTypeDAO)companyTypeDAO;
         }
 
-        public static SupplierTypeDAO CreateSupplierTypeDAO() {
+        public static SupplierTypeDAO CreateSupplierTypeDAO()
+        {
             SupplierTypeDAO supplierTypeDAO = new SupplierTypeDAOSQLImpl();
             return (SupplierTypeDAO)supplierTypeDAO;
         }
 
-        public static GrndReturnNoteDAO CreateGrndReturnNoteDAO() {
+        public static GrndReturnNoteDAO CreateGrndReturnNoteDAO()
+        {
             GrndReturnNoteDAO grndReturnNoteDAO = new GrndReturnNoteDAOImpl();
             return (GrndReturnNoteDAO)grndReturnNoteDAO;
         }
 
-        public static FollowUpRemarksDAO CreateFollowUpRemarksDAO() {
+        public static FollowUpRemarksDAO CreateFollowUpRemarksDAO()
+        {
             FollowUpRemarksDAO followUpRemarksDAO = new FollowUpRemarksDAOImpl();
             return (FollowUpRemarksDAO)followUpRemarksDAO;
         }
 
-        public static DutyRatesDAO CreateDutyRatesDAO() {
+        public static DutyRatesDAO CreateDutyRatesDAO()
+        {
             DutyRatesDAO dutyRatesDAO = new DutyRatesDAOImpl();
             return (DutyRatesDAO)dutyRatesDAO;
         }
 
-        public static InvoiceImagesDAO CreateInvoiceImagesDAO() {
+        public static InvoiceImagesDAO CreateInvoiceImagesDAO()
+        {
             InvoiceImagesDAO invoiceImagesDAO = new InvoiceImagesDAOSQLImpl();
             return (InvoiceImagesDAO)invoiceImagesDAO;
         }
 
-        public static GrnReturnDetailsDAO CreateGrnReturnDetailsDAO() {
+        public static GrnReturnDetailsDAO CreateGrnReturnDetailsDAO()
+        {
             GrnReturnDetailsDAO grnReturnDetailsDAO = new GrnReturnDetailsDAOImpl();
             return (GrnReturnDetailsDAO)grnReturnDetailsDAO;
         }
 
-        public static GrnReturnMasterDAO CreateGrnReturnMasterDAO() {
+        public static GrnReturnMasterDAO CreateGrnReturnMasterDAO()
+        {
             GrnReturnMasterDAO grnReturnMasterDAO = new GrnReturnMasterDAOImpl();
             return (GrnReturnMasterDAO)grnReturnMasterDAO;
         }
 
-        public static DepartmentReturnDAO CreateDepartmentReturnDAO() {
+        public static DepartmentReturnDAO CreateDepartmentReturnDAO()
+        {
             DepartmentReturnDAO departmentReturnDAO = new DepartmentReturnDAOImpl();
             return (DepartmentReturnDAO)departmentReturnDAO;
         }
 
-        public static DepartmentReturnBatchDAO CreateDepartmentReturnBatchDAO() {
+        public static DepartmentReturnBatchDAO CreateDepartmentReturnBatchDAO()
+        {
             DepartmentReturnBatchDAO departmentReturnBatchDAO = new DepartmentReturnBatchDAOSQLImpl();
             return (DepartmentReturnBatchDAO)departmentReturnBatchDAO;
         }
 
-        public static TempCoveringPrDAO CreateTempCoveringPrDAO() {
+        public static TempCoveringPrDAO CreateTempCoveringPrDAO()
+        {
             TempCoveringPrDAO tempCoveringPrDAO = new TempCoveringPrDAOSQLImpl();
             return (TempCoveringPrDAO)tempCoveringPrDAO;
         }
 
-        public static TempQuotationForCoverigPrDAO CreateTempQuotationForCoverigPrDAO() {
+        public static TempQuotationForCoverigPrDAO CreateTempQuotationForCoverigPrDAO()
+        {
             TempQuotationForCoverigPrDAO tempQuotationForCoverigPrDAO = new TempQuotationForCoverigPrDAOSQLImpl();
             return (TempQuotationForCoverigPrDAO)tempQuotationForCoverigPrDAO;
         }
+
+        public static SupplierItemReportDAO CreatesupplierItemReportDAO()
+        {
+            SupplierItemReportDAO supplierItemReportDAO = new SupplierItemReportDAOImpl();
+            return (SupplierItemReportDAO)supplierItemReportDAO;
+        }
+
+        public static AddItemPOReportsDAO CreateAddItemPOReportsDAO()
+        {
+            AddItemPOReportsDAO addItemPOReportsDAO = new AddItemPOReportsDAOSqlImpl();
+            return (AddItemPOReportsDAO)addItemPOReportsDAO;
+        }
+
+
     }
 }
+

@@ -21,6 +21,8 @@ namespace CLibrary.Controller
         int updateSupplier(int supplierId, string supplierName, string address1, string address2, string officeContactno, string mobileno, string businssRegNo, string vatregNo, int companytypeId, int businessCategory, string logoPath, int IsrequestFromSupplier, int IdCreatedBAmin, int IsApproved, int IsActive, string emailAddress, int Suppliertype, int IssupplierRegistred, string SupRegNo);
         int updateSupplierByAdmin(int supplierId, string supplierName, string address1, string address2, string email, string officeContactno, string mobileno, string businssRegNo, string vatregNo, int companytypeId, int businessCategory, string logoPath, int IsrequestFromSupplier, int IdCreatedBAmin, int IsApproved, int IsActive);
         List<Supplier> GetSupplierList();
+        //Get All Supplier List
+        List<Supplier> GetAllSupplierList();
         Supplier GetSupplierBySupplierId(int supplierId);
         bool checkExistingEmailAddress(string emailAddress);
         bool checkExistingSuppliername(string supplierName);
@@ -53,7 +55,7 @@ namespace CLibrary.Controller
         List<SupplierBidEmailContact> GetUnRegisteredSuppliersByPrId(int prId);
         void SaveSupplierAgent2(int supplierId, List<int> supplierIds);
         List<SupplierAgent2> getSupplierAgent2(int supplierId);
-        int manageSaveSupplier(Supplier supplier, SupplierLogin supplierLogin, SupplierAssignedToCompany supplierAssignedToCompany, IEnumerable<ListItem> selectedItemCategory, FileUpload fileUploadLogo, 
+        int manageSaveSupplier(Supplier supplier, SupplierLogin supplierLogin, SupplierAssignedToCompany supplierAssignedToCompany, IEnumerable<ListItem> selectedItemCategory, FileUpload fileUploadLogo,
         HttpFileCollection uploadedFile, SupplierRatings supplierRating, List<int> supplierIds, out string errormsg);
         int deleteSupplier(int supplierId);
         void UpdateSupplierAgent2(int supplierId, List<int> supplierIds);
@@ -155,13 +157,33 @@ namespace CLibrary.Controller
             }
         }
 
+        public List<Supplier> GetAllSupplierList()
+        {
+            DBConnection dbConnection = new DBConnection();
+            try
+            {
+                SupplierDAO supplierDAO = DAOFactory.createSupplierDAO();
+                return supplierDAO.GetSupplierList(dbConnection);
+            }
+            catch (Exception ex)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                    dbConnection.Commit();
+            }
+        }
+
         public int saveSupplier(string supplierName, string address1, string address2, string email, string officeContactno, string mobileno, string requestedDate, string businssRegNo, string vatregNo, int companytypeId, int businessCategory, string logoPath, int IsrequestFromSupplier, int IdCreatedBAmin, int IsApproved, int IsActive)
         {
             DBConnection dbConnection = new DBConnection();
             try
             {
                 SupplierDAO supplierDAO = DAOFactory.createSupplierDAO();
-                return supplierDAO.saveSupplier(supplierName, address1, address2, email, officeContactno, mobileno, requestedDate, businssRegNo, vatregNo, companytypeId, businessCategory, logoPath, IsrequestFromSupplier, IdCreatedBAmin, IsApproved, IsActive,0,0,"", dbConnection);
+                return supplierDAO.saveSupplier(supplierName, address1, address2, email, officeContactno, mobileno, requestedDate, businssRegNo, vatregNo, companytypeId, businessCategory, logoPath, IsrequestFromSupplier, IdCreatedBAmin, IsApproved, IsActive, 0, 0, "", dbConnection);
             }
             catch (Exception ex)
             {
@@ -278,7 +300,7 @@ namespace CLibrary.Controller
                     Directory.CreateDirectory(path);
                 }
 
-                return supplierDAO.saveSupplier(supplierName, address1, address2, email, officeContactno, mobileno, requestedDate, businssRegNo, vatregNo, companytypeId, businessCategory, logoPath, IsrequestFromSupplier, IdCreatedBAmin, IsApproved, IsActive,0,0, "", dbConnection);
+                return supplierDAO.saveSupplier(supplierName, address1, address2, email, officeContactno, mobileno, requestedDate, businssRegNo, vatregNo, companytypeId, businessCategory, logoPath, IsrequestFromSupplier, IdCreatedBAmin, IsApproved, IsActive, 0, 0, "", dbConnection);
             }
             catch (Exception ex)
             {
@@ -312,17 +334,21 @@ namespace CLibrary.Controller
             }
         }
 
-        public Supplier getSupplierByPOId(int POId) {
+        public Supplier getSupplierByPOId(int POId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 SupplierDAO supplierDAO = DAOFactory.createSupplierDAO();
                 return supplierDAO.getSupplierByPOId(POId, dbConnection);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
+            finally
+            {
                 if (dbConnection.con.State == System.Data.ConnectionState.Open)
                     dbConnection.Commit();
             }
@@ -699,13 +725,14 @@ namespace CLibrary.Controller
             }
         }
 
-        public int  manageSaveSupplier(Supplier supplier, SupplierLogin supplierLogin, SupplierAssignedToCompany supplierAssignedToCompany,
-        IEnumerable<ListItem> selectedItemCategory, FileUpload fileUploadLogo, HttpFileCollection uploadedFile, SupplierRatings supplierRating, 
+        public int manageSaveSupplier(Supplier supplier, SupplierLogin supplierLogin, SupplierAssignedToCompany supplierAssignedToCompany,
+        IEnumerable<ListItem> selectedItemCategory, FileUpload fileUploadLogo, HttpFileCollection uploadedFile, SupplierRatings supplierRating,
         List<int> supplierIds, out string errormsg)
         {
             DBConnection dbConnection = null;
             errormsg = string.Empty;
-            try {
+            try
+            {
                 dbConnection = new DBConnection();
                 SupplierLoginDAO SupplierLoginDAO = DAOFactory.createSupplierLoginDAO();
                 SupplierDAO supplierDAO = DAOFactory.createSupplierDAO();
@@ -718,8 +745,9 @@ namespace CLibrary.Controller
                 int supplierId = supplierDAO.saveSupplier(supplier.SupplierName, supplier.Address1, supplier.Address2,
                     supplier.Email, supplier.OfficeContactNo, supplier.PhoneNo, supplier.RequestedDate,
                     supplier.BusinessRegistrationNumber, supplier.VatRegistrationNumber, supplier.CompanyType,
-                    supplier.BusinessCatecory, "", supplier.IsRequestFromSupplier, supplier.IsCreatedByAdmin, 1, supplier.IsActive, supplier.SupplierType,supplier.IsRegisteredSupplier, supplier.SupplierRegistration,  dbConnection);
-                if (supplierId > 0) {
+                    supplier.BusinessCatecory, "", supplier.IsRequestFromSupplier, supplier.IsCreatedByAdmin, 1, supplier.IsActive, supplier.SupplierType, supplier.IsRegisteredSupplier, supplier.SupplierRegistration, dbConnection);
+                if (supplierId > 0)
+                {
                     // save Supplier Login into table "Company_Login"
                     SupplierLoginDAO.saveSupplierLogin(supplierId, supplierLogin.Username, supplierLogin.Password, supplierLogin.Email, 1, 1, dbConnection);
 
@@ -727,18 +755,22 @@ namespace CLibrary.Controller
                     supplierAssigneToCompanyDAO.saveAssigneSupplierWithCompanyByCompany(supplierId, supplierAssignedToCompany.CompanyId, LocalTime.Now, 1, 1, 1, dbConnection);
 
                     // Save Main item Catergory into "SUPPLIER_CATEGORY"
-                    foreach (ListItem item in selectedItemCategory) {
+                    foreach (ListItem item in selectedItemCategory)
+                    {
                         supplierCategoryDAO.saveSupplierCategory(supplierId, int.Parse(item.Value), 1, dbConnection);
                     }
 
                     // Update & Save Supplier Logo into table "SUPPLIER"
-                    if (fileUploadLogo.PostedFile != null && fileUploadLogo.PostedFile.FileName != "") {
-                        if (fileUploadLogo.PostedFile != null && fileUploadLogo.PostedFile.FileName != "") {
+                    if (fileUploadLogo.PostedFile != null && fileUploadLogo.PostedFile.FileName != "")
+                    {
+                        if (fileUploadLogo.PostedFile != null && fileUploadLogo.PostedFile.FileName != "")
+                        {
                             string nameOfUploadedFile = supplierId + "_1";
                             string UploadedFileName = nameOfUploadedFile.Replace(" ", String.Empty);
                             string FileName = Path.GetFileName(fileUploadLogo.PostedFile.FileName);
                             string filename1 = UploadedFileName + "." + FileName.Split('.').Last();
-                            if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Supplier/Logo/" + filename1))) {
+                            if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Supplier/Logo/" + filename1)))
+                            {
                                 System.IO.File.Delete(HttpContext.Current.Server.MapPath("~/Supplier/Logo/" + filename1));
                             }
                             fileUploadLogo.SaveAs(HttpContext.Current.Server.MapPath("~/Supplier/Logo/" + UploadedFileName + '.' + FileName.Split('.').Last()));
@@ -748,16 +780,19 @@ namespace CLibrary.Controller
                     }
 
                     //Save Supplier files into table "SUPPLIER_IMAGE_UPLOAD"
-                    if (uploadedFile != null) {
+                    if (uploadedFile != null)
+                    {
                         if (uploadedFile.Count <= 10)    // 10 FILES RESTRICTION.
                         {
-                            for (int i = 1; i <= uploadedFile.Count - 1; i++) {
+                            for (int i = 1; i <= uploadedFile.Count - 1; i++)
+                            {
                                 HttpPostedFile hpf = uploadedFile[i];
                                 string nameOfUploadedFile = supplierId + "_" + i.ToString();
                                 string UploadedFileName = nameOfUploadedFile.Replace(" ", String.Empty);
                                 string FileName = Path.GetFileName(hpf.FileName);
                                 string filename1 = UploadedFileName + "." + FileName.Split('.').Last();
-                                if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Supplier/Documents/" + filename1))) {
+                                if (System.IO.File.Exists(HttpContext.Current.Server.MapPath("~/Supplier/Documents/" + filename1)))
+                                {
                                     System.IO.File.Delete(HttpContext.Current.Server.MapPath("~/Supplier/Documents/" + filename1));
                                 }
 
@@ -777,16 +812,19 @@ namespace CLibrary.Controller
                     return 1;
                 }
 
-                else {
+                else
+                {
                     return -1;
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 errormsg = ex.Message;
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
+            finally
+            {
                 if (dbConnection.con.State == System.Data.ConnectionState.Open)
                     dbConnection.Commit();
             }
@@ -835,33 +873,41 @@ namespace CLibrary.Controller
             }
         }
 
-        public List<Supplier> FetchClearingAgentList() {
+        public List<Supplier> FetchClearingAgentList()
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 SupplierDAO supplierDAO = DAOFactory.createSupplierDAO();
                 return supplierDAO.FetchClearingAgentList(dbConnection);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
+            finally
+            {
                 if (dbConnection.con.State == System.Data.ConnectionState.Open)
                     dbConnection.Commit();
             }
         }
 
-        public List<Supplier> FetchSupplierAgent() {
+        public List<Supplier> FetchSupplierAgent()
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 SupplierDAO supplierDAO = DAOFactory.createSupplierDAO();
                 return supplierDAO.FetchSupplierAgent(dbConnection);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
+            finally
+            {
                 if (dbConnection.con.State == System.Data.ConnectionState.Open)
                     dbConnection.Commit();
             }

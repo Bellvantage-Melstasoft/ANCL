@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CLibrary.Domain
 {
+    [Serializable]
     public class PRDetailsStatusLog
     {
 
@@ -28,6 +29,6 @@ namespace CLibrary.Domain
         [DBField("LOG_NAME")]
         public string LogName { get; set; }
 
-        
+
     }
 }

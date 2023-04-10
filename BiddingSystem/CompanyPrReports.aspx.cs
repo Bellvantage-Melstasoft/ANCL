@@ -13,9 +13,9 @@ namespace BiddingSystem
 {
     public partial class CompanyPrReports : System.Web.UI.Page
     {
-       
-       // static string UserId = string.Empty;
-     //   int CompanyId = 0;
+
+        // static string UserId = string.Empty;
+        //   int CompanyId = 0;
         CompanyLoginController companyLoginController = ControllerFactory.CreateCompanyLoginController();
         PR_MasterController pr_MasterController = ControllerFactory.CreatePR_MasterController();
         CompanyUserAccessController companyUserAccessController = ControllerFactory.CreateCompanyUserAccessController();
@@ -29,10 +29,10 @@ namespace BiddingSystem
 
             if (Session["CompanyId"] != null && Session["UserId"].ToString() != null)
             {
-              //  CompanyId = int.Parse(Session["CompanyId"].ToString());
-              //  UserId = Session["UserId"].ToString();
+                //  CompanyId = int.Parse(Session["CompanyId"].ToString());
+                //  UserId = Session["UserId"].ToString();
                 CompanyLogin companyLogin = companyLoginController.GetUserbyuserId(int.Parse(Session["UserId"].ToString()));
-                if ((!companyUserAccessController.isAvilableAccess(int.Parse(Session["UserId"].ToString()), int.Parse(Session["CompanyId"].ToString()), 8, 1) && companyLogin.Usertype != "S") &&  companyLogin.Usertype != "GA")
+                if ((!companyUserAccessController.isAvilableAccess(int.Parse(Session["UserId"].ToString()), int.Parse(Session["CompanyId"].ToString()), 8, 1) && companyLogin.Usertype != "S") && companyLogin.Usertype != "GA")
                 {
                     Response.Redirect("AdminDashboard.aspx");
                 }
@@ -51,6 +51,10 @@ namespace BiddingSystem
                         //pr_Master = pr_MasterController.FetchApprovePRDataByDeptIdReports(int.Parse(Session["CompanyId"].ToString())).OrderByDescending(x => x.PrId).ToList();
                         //gvPurchaseRequest.DataSource = pr_Master;
                         //gvPurchaseRequest.DataBind();
+
+                        BindDataDropDown();
+
+
                     }
                     catch (Exception ex)
                     {
@@ -58,6 +62,29 @@ namespace BiddingSystem
                     }
                 }
             }
+        }
+
+        private void BindDataDropDown()
+        {
+            List<SubDepartment> departments = new List<SubDepartment>();
+            SubDepartmentControllerInterface subDepartmentController = ControllerFactory.CreateSubDepartmentController();
+
+            departments = subDepartmentController.getAllDepartmentList(int.Parse(Session["CompanyId"].ToString()));
+
+            ddlDepartment.DataSource = departments;
+            ddlDepartment.DataValueField = "SubDepartmentID";
+            ddlDepartment.DataTextField = "SubDepartmentName";
+            ddlDepartment.DataBind();
+            ddlDepartment.Items.Insert(0, new ListItem("Select Department", ""));
+
+        }
+
+        private void BindDataSource()
+        {
+            List<PrMasterV2> pr_Master = new List<PrMasterV2>();
+            pr_Master = pr_MasterController.FetchPrALl();
+            gvPurchaseRequest.DataSource = pr_Master;
+            gvPurchaseRequest.DataBind();
         }
 
         protected void btnPoCodeSearch_Click(object sender, EventArgs e)
@@ -70,11 +97,14 @@ namespace BiddingSystem
                 //string prCode = txtPoCode.Text;
                 //List<PR_Master> pr_Master = new List<PR_Master>();
                 //pr_Master = pr_MasterController.FetchApprovePRDataByDeptIdReports(int.Parse(Session["CompanyId"].ToString())).Where(x => x.PrCode.Contains(prCode)).ToList();
-                if (txtPoCode.Text != "") {
+                if (txtPoCode.Text != "")
+                {
                     //string newString = Regex.Replace(txtPoCode.Text, "[^.0-9]", "");
                     //int PrCode = int.Parse(newString);
                     string PrCode = txtPoCode.Text;
                     List<PrMasterV2> pr_Master = pr_MasterController.FetchPrByPrCode(int.Parse(Session["CompanyId"].ToString()), PrCode);
+
+                    ViewState["pr_Master"] = pr_Master;
 
                     gvPurchaseRequest.DataSource = pr_Master;
                     gvPurchaseRequest.DataBind();
@@ -107,7 +137,7 @@ namespace BiddingSystem
         {
             try
             {
-              //  ddlStatus.SelectedIndex = 0;
+                //  ddlStatus.SelectedIndex = 0;
                 txtPoCode.Text = "";
                 //  string status = ddlStatus.SelectedValue;
                 //List<PR_Master> prMasterListByDepartmentid = new List<PR_Master>();
@@ -116,13 +146,14 @@ namespace BiddingSystem
                 //gvPurchaseRequest.DataBind();
                 //ScriptManager.RegisterClientScriptBlock(Updatepanel1, this.Updatepanel1.GetType(), "none", "<script>   $(document).ready(function () {  $('#ContentSection_txtStartDate').attr('data-date', moment($('#ContentSection_txtStartDate').val(), 'YYYY-MM-DD').format($('#ContentSection_txtStartDate').attr('data-date-format')));$('#ContentSection_txtEndDate').attr('data-date', moment($('#ContentSection_txtEndDate').val(), 'YYYY-MM-DD').format($('#ContentSection_txtEndDate').attr('data-date-format'))); });   </script>", false);
 
-                if (txtStartDate.Text != "" && txtEndDate.Text != "") {
+                if (txtStartDate.Text != "" && txtEndDate.Text != "")
+                {
                     List<PrMasterV2> pr_Master = pr_MasterController.FetchPrByDate(int.Parse(Session["CompanyId"].ToString()), DateTime.Parse(txtEndDate.Text), DateTime.Parse(txtStartDate.Text));
-
+                    ViewState["pr_Master"] = pr_Master;
                     gvPurchaseRequest.DataSource = pr_Master;
                     gvPurchaseRequest.DataBind();
                 }
-                }
+            }
             catch (Exception ex)
             {
                 throw ex;
@@ -147,5 +178,126 @@ namespace BiddingSystem
             }
 
         }
+
+        protected void btnSearchAll_Click(object sender, EventArgs e)
+        {
+            BindDataSource();
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            List<PrMasterV2> pr_Master = new List<PrMasterV2>();
+            List<PrMasterV2> pr_Master2 = new List<PrMasterV2>();
+            pr_Master = pr_MasterController.FetchPrALl();
+
+            ViewState["pr_Master"] = pr_Master;
+
+            if (ddlStatus.SelectedValue != "")
+            {
+                pr_Master = pr_Master.Where(x => x.IsPrApproved == Convert.ToInt32(ddlStatus.SelectedValue)).ToList();
+
+            }
+            if (ddlPRType.SelectedValue != "")
+            {
+                pr_Master = pr_Master.Where(x => x.PrType == Convert.ToInt32(ddlPRType.SelectedValue)).ToList();
+            }
+
+            if (ddlPurchasingType.SelectedValue != "")
+            {
+                pr_Master = pr_Master.Where(x => x.PurchaseType == Convert.ToInt32(ddlPurchasingType.SelectedValue)).ToList();
+
+            }
+
+            if (txtPoCode.Text != "")
+            {
+                pr_Master = pr_Master.Where(x => x.PrCode == txtPoCode.Text).ToList();
+            }
+
+            if (txtStartDate.Text != "" && txtEndDate.Text != "")
+            {
+                pr_Master = pr_Master.Where(x => x.CreatedDate <= DateTime.Parse(txtEndDate.Text) && x.CreatedDate >= DateTime.Parse(txtStartDate.Text)).ToList();
+            }
+
+
+            gvPurchaseRequest.DataSource = pr_Master;
+            gvPurchaseRequest.DataBind();
+        }
+
+        //protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    List<PrMasterV2> pr_Master = new List<PrMasterV2>();
+        //    List<PrMasterV2> pr_Master2 = new List<PrMasterV2>();
+        //    pr_Master = (List<PrMasterV2>)ViewState["pr_Master"];
+        //    pr_Master = (List<PrMasterV2>)ViewState["pr_Master"];
+        //    pr_Master2 = (List<PrMasterV2>)ViewState["pr_Master"];
+
+        //    if (ddlStatus.SelectedValue != "")
+        //    {
+        //        pr_Master = pr_Master.Where(x => x.PrIsApproved == Convert.ToInt32(ddlStatus.SelectedValue)).ToList();
+        //        ViewState["pr_Master"] = pr_Master;
+        //        gvPurchaseRequest.DataSource = pr_Master;
+
+        //    }
+        //    else
+        //    {
+        //        gvPurchaseRequest.DataSource = pr_Master2;
+
+        //    }
+
+
+
+        //    gvPurchaseRequest.DataBind();
+        //}
+
+        //protected void ddlPRType_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    List<PrMasterV2> pr_Master = new List<PrMasterV2>();
+        //    List<PrMasterV2> pr_Master2 = new List<PrMasterV2>();
+        //    pr_Master = (List<PrMasterV2>)ViewState["pr_Master"];
+        //    pr_Master2 = (List<PrMasterV2>)ViewState["pr_Master"];
+
+        //    if (ddlPRType.SelectedValue != "")
+        //    {
+        //        pr_Master = pr_Master.Where(x => x.PrType == Convert.ToInt32(ddlPRType.SelectedValue)).ToList();
+        //        ViewState["pr_Master"] = pr_Master;
+        //        gvPurchaseRequest.DataSource = pr_Master;
+
+        //    }
+        //    else
+        //    {
+        //        gvPurchaseRequest.DataSource = pr_Master2;
+
+
+        //    }
+
+
+        //    gvPurchaseRequest.DataBind();
+        //}
+
+        //protected void ddlPurchasingType_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    List<PrMasterV2> pr_Master = new List<PrMasterV2>();
+        //    List<PrMasterV2> pr_Master2 = new List<PrMasterV2>();
+
+        //    pr_Master = (List<PrMasterV2>)ViewState["pr_Master"];
+        //    pr_Master2 = (List<PrMasterV2>)ViewState["pr_Master"];
+
+
+        //    if (ddlPurchasingType.SelectedValue != "")
+        //    {
+        //        pr_Master = pr_Master.Where(x => x.PurchaseType == Convert.ToInt32(ddlPurchasingType.SelectedValue)).ToList();
+        //        ViewState["pr_Master"] = pr_Master;
+        //        gvPurchaseRequest.DataSource = pr_Master;
+        //    }
+        //    else
+        //    {
+        //        gvPurchaseRequest.DataSource = pr_Master2;
+
+        //    }
+
+
+
+        //    gvPurchaseRequest.DataBind();
+        //}
     }
 }

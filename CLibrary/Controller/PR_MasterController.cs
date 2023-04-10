@@ -13,6 +13,11 @@ namespace CLibrary.Controller
     {
         int SavePRMaster(int DepartmentId, DateTime DateOfRequest, string QuotationFor, string OurReference, string RequestedBy, DateTime CraeatedDateTime, string CreatedBy, DateTime UpdatedDateTime, string UpdatedBy, int IsActive, int PRAppoved, string PRApprovedOrRejectedBy, DateTime PRApprovedOrRejectedDate, int PRIsApproveForBid, string PRIsApprovedOrRejectedBy, DateTime PRIsApprovedOrRejectedDate, int BasePrid, int prTypeId, string expenseType, string refNo01, string refNo02, string refNo03, string refNo04, string refNo05, string refNo06, string prProcedure, string purchaseType, DateTime requiredDate, string MRNReferenceNo, int itemCatId);
         string FetchPRCode(int DepartmentId);
+
+        //Fetch ALL
+        List<PrMasterV2> FetchPrALl();
+
+        //End Of Fetch All
         List<PR_Master> FetchApprovePRDataByDeptId(int DepartmentId);
         PR_Master FetchApprovePRDataByDeptIdAndPRId(int DepartmentId, int PrId);
         int UpdateIsApprovePR(int DepartmentId, int PrId, int Status, int PRApprovedUserId, int isActive, string RejectedReason);
@@ -101,7 +106,7 @@ namespace CLibrary.Controller
         List<PrMasterV2> GetPrListForQuotationApproval(List<int> SelectionPendingBidIds);
 
         PR_Master GetPrForQuotationComparison(int PrId, int CompanyId);
- 		List<PrMasterV2> GetPrListForQuotationComparisonOld(List<int> SelectionPendingBidIds);//Reorder function stock by Pasindu 2020/04/29
+        List<PrMasterV2> GetPrListForQuotationComparisonOld(List<int> SelectionPendingBidIds);//Reorder function stock by Pasindu 2020/04/29
         List<string> GetPrCodesByPrIds(List<int> PrIds);
         int SavePRMasterV2(int DepartmentId, DateTime DateOfRequest, string QuotationFor, string OurReference, string RequestedBy, DateTime CraeatedDateTime, string CreatedBy, DateTime UpdatedDateTime, string UpdatedBy, int IsActive, int PRAppoved, string PRApprovedOrRejectedBy, DateTime PRApprovedOrRejectedDate, int PRIsApproveForBid, string PRIsApprovedOrRejectedBy, DateTime PRIsApprovedOrRejectedDate, int BasePrid, int prTypeId, string expenseType, string refNo01, string refNo02, string refNo03, string refNo04, string refNo05, string refNo06, string terms, int SubDepartmentId, int CategoryId, int warehouseId);
         List<PrMasterV2> GetPrListForQuotationComparisonBid(List<int> SelectionPendingBidIds);
@@ -129,7 +134,7 @@ namespace CLibrary.Controller
         int ApproveBidTab(int BidId, int CompanyId, string remark, string ProceedRemark);
         PR_Master GetPrForImportTabulationReview(int PrId, int CompanyId);
         int GetParentPrforCoverinPr(int PoId);
-        int CreateCoveringPr(int PoId, int ParentPrId, int UserId, int SupplierId,int QuotationId);
+        int CreateCoveringPr(int PoId, int ParentPrId, int UserId, int SupplierId, int QuotationId);
         int GetParentPRId(int GrnId, int itemId);
         PrMasterV2 GetPrForQuotationRejected(int PrId, int CompanyId, List<int> TabulationIds, int UserId, int DesignationId);
     }
@@ -689,18 +694,23 @@ namespace CLibrary.Controller
             }
         }
 
-        public int GetParentPRId(int GrnId, int itemId) {
+        public int GetParentPRId(int GrnId, int itemId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.GetParentPRId(GrnId, itemId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -819,37 +829,47 @@ namespace CLibrary.Controller
             }
         }
 
-        public List<PrMasterV2> GetPrListForBidSubmissionByDate(int CompanyId, DateTime Date) {
+        public List<PrMasterV2> GetPrListForBidSubmissionByDate(int CompanyId, DateTime Date)
+        {
 
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.GetPrListForBidSubmissionByDate(CompanyId, Date, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public List<PrMasterV2> GetPrListForBidSubmissionByPrCode(int CompanyId, string PrCode) {
+        public List<PrMasterV2> GetPrListForBidSubmissionByPrCode(int CompanyId, string PrCode)
+        {
 
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.GetPrListForBidSubmissionByPrCode(CompanyId, PrCode, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -899,35 +919,45 @@ namespace CLibrary.Controller
             }
         }
 
-        public List<PrMasterV2> GetPrListForBidApprovalByDate(int CompanyId, int LoggedInUser, DateTime date) {
+        public List<PrMasterV2> GetPrListForBidApprovalByDate(int CompanyId, int LoggedInUser, DateTime date)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.GetPrListForBidApprovalByDate(CompanyId, LoggedInUser, date, dbConnection);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public List<PrMasterV2> GetPrListForBidApprovalByPrCode(int CompanyId, int LoggedInUser, string PrCode) {
+        public List<PrMasterV2> GetPrListForBidApprovalByPrCode(int CompanyId, int LoggedInUser, string PrCode)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.GetPrListForBidApprovalByPrCode(CompanyId, LoggedInUser, PrCode, dbConnection);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -975,18 +1005,23 @@ namespace CLibrary.Controller
                 }
             }
         }
-        public List<PrMasterV2> GetPrListForQuotationComparisonReviw(int CompanyId) {
+        public List<PrMasterV2> GetPrListForQuotationComparisonReviw(int CompanyId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.GetPrListForQuotationComparisonReviw(CompanyId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -1014,34 +1049,44 @@ namespace CLibrary.Controller
                 }
             }
         }
-        public List<PrMasterV2> GetPrListForQuotationComparisonReviwByDate(int CompanyId, DateTime Date) {
+        public List<PrMasterV2> GetPrListForQuotationComparisonReviwByDate(int CompanyId, DateTime Date)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.GetPrListForQuotationComparisonReviwByDate(CompanyId, Date, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
-        public List<PrMasterV2> GetPrListForQuotationComparisonReviwByPrCode(int CompanyId, string Code) {
+        public List<PrMasterV2> GetPrListForQuotationComparisonReviwByPrCode(int CompanyId, string Code)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.GetPrListForQuotationComparisonReviwByPrCode(CompanyId, Code, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -1111,18 +1156,23 @@ namespace CLibrary.Controller
                 }
             }
         }
-        public List<PrMasterV2> GetPrListForQuotationRejected(int CompanyId) {
+        public List<PrMasterV2> GetPrListForQuotationRejected(int CompanyId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
-                return pr_MasterDAO.GetPrListForQuotationRejected(CompanyId,  dbConnection);
+                return pr_MasterDAO.GetPrListForQuotationRejected(CompanyId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -1149,18 +1199,23 @@ namespace CLibrary.Controller
             }
         }
 
-        public PrMasterV2 GetPrForQuotationApprovalRej(int PrId, int CompanyId,  int UserId, int DesignationId) {
+        public PrMasterV2 GetPrForQuotationApprovalRej(int PrId, int CompanyId, int UserId, int DesignationId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
-                return pr_MasterDAO.GetPrForQuotationApprovalRej(PrId, CompanyId,  UserId, DesignationId, dbConnection);
+                return pr_MasterDAO.GetPrForQuotationApprovalRej(PrId, CompanyId, UserId, DesignationId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -1188,18 +1243,23 @@ namespace CLibrary.Controller
             }
         }
 
-        public List<PrMasterV2> GetPrListForQuotationAppRejected(int CompanyId) {
+        public List<PrMasterV2> GetPrListForQuotationAppRejected(int CompanyId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.GetPrListForQuotationAppRejected(CompanyId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -1226,34 +1286,44 @@ namespace CLibrary.Controller
                 }
             }
         }
-        public PrMasterV2 GetPrForQuotationRejected(int PrId, int CompanyId, List<int> TabulationIds, int UserId, int DesignationId) {
+        public PrMasterV2 GetPrForQuotationRejected(int PrId, int CompanyId, List<int> TabulationIds, int UserId, int DesignationId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.GetPrForQuotationRejected(PrId, CompanyId, TabulationIds, UserId, DesignationId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
-        public PrMasterV2 GetPrForQuotationConfirmationRej(int PrId, int CompanyId,  int UserId, int DesignationId) {
+        public PrMasterV2 GetPrForQuotationConfirmationRej(int PrId, int CompanyId, int UserId, int DesignationId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
-                return pr_MasterDAO.GetPrForQuotationConfirmationRej(PrId, CompanyId,  UserId, DesignationId, dbConnection);
+                return pr_MasterDAO.GetPrForQuotationConfirmationRej(PrId, CompanyId, UserId, DesignationId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -1304,18 +1374,23 @@ namespace CLibrary.Controller
             }
         }
 
-        public List<PrMasterV2> GetPrListForRejectedBids(int CompanyId, int UserId) {
+        public List<PrMasterV2> GetPrListForRejectedBids(int CompanyId, int UserId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.GetPrListForRejectedBids(CompanyId, UserId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -1752,37 +1827,47 @@ namespace CLibrary.Controller
             }
         }
 
-        public List<PrMasterV2> GetPrListForBidSubmitedByDate(int CompanyId, int UserId, DateTime date) {
+        public List<PrMasterV2> GetPrListForBidSubmitedByDate(int CompanyId, int UserId, DateTime date)
+        {
 
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.GetPrListForBidSubmitedByDate(CompanyId, UserId, date, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public List<PrMasterV2> GetPrListForBidSubmitedByPrCode(int CompanyId, int UserId, string PrCode) {
+        public List<PrMasterV2> GetPrListForBidSubmitedByPrCode(int CompanyId, int UserId, string PrCode)
+        {
 
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.GetPrListForBidSubmitedByPrCode(CompanyId, UserId, PrCode, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -1975,71 +2060,91 @@ namespace CLibrary.Controller
             }
         }
 
-        public int CreateCoveringPr(int PoId, int ParentPrId, int UserId, int SupplierId, int QuotationId) {
+        public int CreateCoveringPr(int PoId, int ParentPrId, int UserId, int SupplierId, int QuotationId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
-                return pr_MasterDAO.CreateCoveringPr( PoId,  ParentPrId,  UserId, SupplierId, QuotationId, dbConnection);
+                return pr_MasterDAO.CreateCoveringPr(PoId, ParentPrId, UserId, SupplierId, QuotationId, dbConnection);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
 
                 }
             }
         }
 
-        public int GetParentPrforCoverinPr(int PoId) {
+        public int GetParentPrforCoverinPr(int PoId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.GetParentPrforCoverinPr(PoId, dbConnection);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
 
                 }
             }
         }
 
-        public int ApproveBidTab(int BidId, int CompanyId, string remark, string ProceedRemark) {
+        public int ApproveBidTab(int BidId, int CompanyId, string remark, string ProceedRemark)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.ApproveBidTab(BidId, CompanyId, remark, ProceedRemark, dbConnection);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
 
                 }
             }
         }
-        public int ApproveBidTabImports(int BidId, int CompanyId, string ProceedRemark) {
+        public int ApproveBidTabImports(int BidId, int CompanyId, string ProceedRemark)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.ApproveBidTabImports(BidId, CompanyId, ProceedRemark, dbConnection);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
 
                 }
@@ -2132,18 +2237,23 @@ namespace CLibrary.Controller
                 }
             }
         }
-        public PR_Master GetPrForImportTabulationReview(int PrId, int CompanyId) {
+        public PR_Master GetPrForImportTabulationReview(int PrId, int CompanyId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.GetPrForImportTabulationReview(PrId, CompanyId, dbConnection);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
@@ -2193,69 +2303,111 @@ namespace CLibrary.Controller
             }
         }
 
-        public int UpdateTerminatedPRMaster(int prId) {
+        public int UpdateTerminatedPRMaster(int prId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.UpdateTerminatedPRMaster(prId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
-
-        public List<PrMasterV2> FetchPrByPrCode(int CompanyId, string prCode) {
+        // Fetch ALL
+        public List<PrMasterV2> FetchPrALl()
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
+                PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
+                return pr_MasterDAO.FetchPrALl(dbConnection);
+            }
+            catch (Exception)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
+                    dbConnection.Commit();
+                }
+            }
+        }
+        // End Fetch ALL
+        public List<PrMasterV2> FetchPrByPrCode(int CompanyId, string prCode)
+        {
+            DBConnection dbConnection = new DBConnection();
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.FetchPrByPrCode(CompanyId, prCode, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public List<PrMasterV2> FetchPrByDate(int companyId, DateTime ToDate, DateTime FromDate) {
+        public List<PrMasterV2> FetchPrByDate(int companyId, DateTime ToDate, DateTime FromDate)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
-                return pr_MasterDAO.FetchPrByDate(companyId, ToDate, FromDate,dbConnection);
+                return pr_MasterDAO.FetchPrByDate(companyId, ToDate, FromDate, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }
         }
 
-        public int SavePRMaster(int DepartmentId, DateTime DateOfRequest, string QuotationFor, string OurReference, string RequestedBy, DateTime CraeatedDateTime, string CreatedBy, DateTime UpdatedDateTime, string UpdatedBy, int IsActive, int PRAppoved, string PRApprovedOrRejectedBy, DateTime PRApprovedOrRejectedDate, int PRIsApproveForBid, string PRIsApprovedOrRejectedBy, DateTime PRIsApprovedOrRejectedDate, int BasePrid, int prTypeId, string expenseType, string refNo01, string refNo02, string refNo03, string refNo04, string refNo05, string refNo06, string terms, int SubDepartmentId, int CategoryId, int warehouseId) {
+        public int SavePRMaster(int DepartmentId, DateTime DateOfRequest, string QuotationFor, string OurReference, string RequestedBy, DateTime CraeatedDateTime, string CreatedBy, DateTime UpdatedDateTime, string UpdatedBy, int IsActive, int PRAppoved, string PRApprovedOrRejectedBy, DateTime PRApprovedOrRejectedDate, int PRIsApproveForBid, string PRIsApprovedOrRejectedBy, DateTime PRIsApprovedOrRejectedDate, int BasePrid, int prTypeId, string expenseType, string refNo01, string refNo02, string refNo03, string refNo04, string refNo05, string refNo06, string terms, int SubDepartmentId, int CategoryId, int warehouseId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
                 return pr_MasterDAO.SavePRMaster(DepartmentId, DateOfRequest, QuotationFor, OurReference, RequestedBy, CraeatedDateTime, CreatedBy, UpdatedDateTime, UpdatedBy, IsActive, PRAppoved, PRApprovedOrRejectedBy, PRApprovedOrRejectedDate, PRIsApproveForBid, PRIsApprovedOrRejectedBy, PRIsApprovedOrRejectedDate, BasePrid, prTypeId, expenseType, refNo01, refNo02, refNo03, refNo04, refNo05, refNo06, terms, SubDepartmentId, CategoryId, warehouseId, dbConnection);
             }
-            catch (Exception) {
+            catch (Exception)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
-                if (dbConnection.con.State == System.Data.ConnectionState.Open) {
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
                     dbConnection.Commit();
                 }
             }

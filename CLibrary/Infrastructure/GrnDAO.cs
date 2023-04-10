@@ -6,15 +6,20 @@ using System.Text;
 using CLibrary.Domain;
 using System.Data;
 using System.Data.SqlClient;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace CLibrary.Infrastructure
 {
-  public  interface GrnDAO
+    public interface GrnDAO
     {
         int SaveGrnMaster(int poId, int companyId, int supplierid, DateTime goodReceivedDate, decimal totalAmount, string createdBy, DateTime createdDate, string grnNote, string InvoiceNo, DBConnection dbConnection);
-        int SaveGrnMasterDup(int GrnId, int poId, int companyId, int supplierid, DateTime goodReceivedDate, decimal totalAmount, string createdBy, DateTime createdDate, string grnNote,int BasedGrn, string InvoiceNo, DBConnection dbConnection);
-        int UpdateRejectedGrn(int grnid,int poId, DateTime goodReceivedDate, string grnNote, DBConnection dbConnection);
+        int SaveGrnMasterDup(int GrnId, int poId, int companyId, int supplierid, DateTime goodReceivedDate, decimal totalAmount, string createdBy, DateTime createdDate, string grnNote, int BasedGrn, string InvoiceNo, DBConnection dbConnection);
+        int UpdateRejectedGrn(int grnid, int poId, DateTime goodReceivedDate, string grnNote, DBConnection dbConnection);
         GrnMaster GetGrnMasterByPoId(int PoId, DBConnection dbConnection);
+
+
+        //Get All 
+        List<GrnMaster> GetAllGRNmasterList(DBConnection dbConnection);
         GrnMaster GetGrnMasterByGrnID(int grnId, int poID, DBConnection dbConnection);
         List<GrnMaster> GetGRNmasterListByDepartmentId(int departmentid, DBConnection dbConnection);
         int grnMasterApproval(int grnId, int isApprove, string approvedby, int departmentId, string GrnCode, DBConnection dbConnection);
@@ -24,7 +29,7 @@ namespace CLibrary.Infrastructure
         List<GrnMaster> GetAllDetailsGrn(int departmentid, DBConnection dbConnection);
         GrnMaster CheckGrnExistMasterByGrnID(int grnId, int poID, DBConnection dbConnection);
         int GetMaxGrnCode(int departmentId, DBConnection dbConnection);
-        int GetMaxGrnCodeDup( DBConnection dbConnection);
+        int GetMaxGrnCodeDup(DBConnection dbConnection);
         List<GrnMaster> GetAllDetailsGrnIsApproved(int departmentid, DBConnection dbConnection);
 
         List<GrnMaster> FetchApprovedGRNForConfirmation(int Department, DBConnection dbConnection);
@@ -54,7 +59,7 @@ namespace CLibrary.Infrastructure
         List<GrnMaster> GetGrnForReturn(int departmentid, DBConnection dbConnection);
         int UpdateGrnCoverigPR(int grnId, int CompayId, DBConnection dbConnection);
     }
-    
+
     public class GrnDAOImpl : GrnDAO
     {
         public GrnMaster GetGrnMasterByGrnID(int grnId, int poID, DBConnection dbConnection)
@@ -77,6 +82,23 @@ namespace CLibrary.Infrastructure
         public GrnMaster GetGrnMasterByPoId(int PoId, DBConnection dbConnection)
         {
             throw new NotImplementedException();
+        }
+
+        //Get All
+        public List<GrnMaster> GetAllGRNmasterList(DBConnection dbConnection)
+        {
+
+            List<GrnMaster> GetGrnMasterList = new List<GrnMaster>();
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "SELECT * FROM GRN_MASTER ";
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
+                DataAccessObject dataAccessObject = new DataAccessObject();
+                return dataAccessObject.ReadCollection<GrnMaster>(dbConnection.dr);
+            }
+
+
         }
 
         public List<GrnMaster> GetgrnMasterListByByDateRange(int departmentid, DateTime startdate, DateTime enddate, DBConnection dbConnection)
@@ -359,19 +381,23 @@ namespace CLibrary.Infrastructure
             throw new NotImplementedException();
         }
 
-        public List<GrnMaster> GetGRNmasterListBygrnCode(int departmentid, string GrnCode, DBConnection dbConnection) {
+        public List<GrnMaster> GetGRNmasterListBygrnCode(int departmentid, string GrnCode, DBConnection dbConnection)
+        {
             throw new NotImplementedException();
         }
 
-        public List<GrnMaster> GetGRNmasterListByPOCode(int departmentid, string PoCode, DBConnection dbConnection) {
+        public List<GrnMaster> GetGRNmasterListByPOCode(int departmentid, string PoCode, DBConnection dbConnection)
+        {
             throw new NotImplementedException();
         }
 
-        public List<GrnMaster> GetGrnForReturn(int departmentid, DBConnection dbConnection) {
+        public List<GrnMaster> GetGrnForReturn(int departmentid, DBConnection dbConnection)
+        {
             throw new NotImplementedException();
         }
 
-        public int UpdateGrnCoverigPR(int grnId, int CompayId, DBConnection dbConnection) {
+        public int UpdateGrnCoverigPR(int grnId, int CompayId, DBConnection dbConnection)
+        {
             throw new NotImplementedException();
         }
     }
@@ -400,6 +426,23 @@ namespace CLibrary.Infrastructure
         public GrnMaster GetGrnMasterByPoId(int PoId, DBConnection dbConnection)
         {
             throw new NotImplementedException();
+        }
+
+        //Get All
+        public List<GrnMaster> GetAllGRNmasterList(DBConnection dbConnection)
+        {
+
+            List<GrnMaster> GetGrnMasterList = new List<GrnMaster>();
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "SELECT * FROM GRN_MASTER";
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
+                DataAccessObject dataAccessObject = new DataAccessObject();
+                return dataAccessObject.ReadCollection<GrnMaster>(dbConnection.dr);
+            }
+
+
         }
 
         public List<GrnMaster> GetgrnMasterListByByDateRange(int departmentid, DateTime startdate, DateTime enddate, DBConnection dbConnection)
@@ -458,8 +501,8 @@ namespace CLibrary.Infrastructure
             PR_MasterDAO pr_MasterDAO = DAOFactory.CreatePR_MasterDAO();
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "SELECT * FROM " + dbLibrary + ".GRN_MASTER AS GM  " +
-                "LEFT JOIN PO_GRN AS PG ON PG.GRN_ID = GM.GRN_ID "+
-                "LEFT JOIN (SELECT PO_CODE, PO_ID FROM PO_MASTER) AS PM ON PM.PO_ID = PG.PO_ID "+
+                "LEFT JOIN PO_GRN AS PG ON PG.GRN_ID = GM.GRN_ID " +
+                "LEFT JOIN (SELECT PO_CODE, PO_ID FROM PO_MASTER) AS PM ON PM.PO_ID = PG.PO_ID " +
                 "LEFT JOIN (SELECT SUPPLIER_NAME, SUPPLIER_ID FROM SUPPLIER) AS SUP ON SUP.SUPPLIER_ID = GM.SUPPLIER_ID " +
                 "WHERE GM.TOTAL_AMOUNT > 0 AND DEPARTMENT_ID =" + departmentid;
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
@@ -478,7 +521,8 @@ namespace CLibrary.Infrastructure
             return GetGrnMasterList;
         }
 
-        public List<GrnMaster> GetGRNmasterListByPOCode(int departmentid, string PoCode,  DBConnection dbConnection) {
+        public List<GrnMaster> GetGRNmasterListByPOCode(int departmentid, string PoCode, DBConnection dbConnection)
+        {
             List<GrnMaster> GetGrnMasterList = new List<GrnMaster>();
             GRNDetailsDAO gRNDetailsDAO = DAOFactory.createGRNDetailsDAO();
             SupplierDAO supplierDAO = DAOFactory.createSupplierDAO();
@@ -489,17 +533,19 @@ namespace CLibrary.Infrastructure
                 "LEFT JOIN PO_GRN AS PG ON PG.PO_ID = PO.PO_ID " +
                 "LEFT JOIN GRN_MASTER AS GRN ON GRN.GRN_ID = PG.GRN_ID " +
                 "LEFT JOIN (SELECT SUPPLIER_NAME, SUPPLIER_ID FROM SUPPLIER) AS SUP ON SUP.SUPPLIER_ID = GRN.SUPPLIER_ID " +
-                "WHERE GRN.TOTAL_AMOUNT > 0 AND GRN.DEPARTMENT_ID = " + departmentid+" AND PO.PO_CODE = '"+ PoCode + "' ";
+                "WHERE GRN.TOTAL_AMOUNT > 0 AND GRN.DEPARTMENT_ID = " + departmentid + " AND PO.PO_CODE = '" + PoCode + "' ";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 GetGrnMasterList = dataAccessObject.ReadCollection<GrnMaster>(dbConnection.dr);
             }
-            
+
             return GetGrnMasterList;
         }
 
-        public List<GrnMaster> GetGRNmasterListBygrnCode(int departmentid, string GrnCode, DBConnection dbConnection) {
+        public List<GrnMaster> GetGRNmasterListBygrnCode(int departmentid, string GrnCode, DBConnection dbConnection)
+        {
             List<GrnMaster> GetGrnMasterList = new List<GrnMaster>();
             GRNDetailsDAO gRNDetailsDAO = DAOFactory.createGRNDetailsDAO();
             SupplierDAO supplierDAO = DAOFactory.createSupplierDAO();
@@ -510,9 +556,10 @@ namespace CLibrary.Infrastructure
                 "LEFT JOIN PO_GRN AS PG ON PG.GRN_ID = GM.GRN_ID " +
                 "LEFT JOIN (SELECT PO_CODE, PO_ID FROM PO_MASTER) AS PM ON PM.PO_ID = PG.PO_ID " +
                 "LEFT JOIN (SELECT SUPPLIER_NAME, SUPPLIER_ID FROM SUPPLIER) AS SUP ON SUP.SUPPLIER_ID = GM.SUPPLIER_ID " +
-                "WHERE GM.TOTAL_AMOUNT > 0 AND DEPARTMENT_ID =" + departmentid+" AND GRN_CODE = '"+ GrnCode + "' ";
+                "WHERE GM.TOTAL_AMOUNT > 0 AND DEPARTMENT_ID =" + departmentid + " AND GRN_CODE = '" + GrnCode + "' ";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 GetGrnMasterList = dataAccessObject.ReadCollection<GrnMaster>(dbConnection.dr);
             }
@@ -556,7 +603,7 @@ namespace CLibrary.Infrastructure
             dbConnection.cmd.Parameters.Clear();
 
             dbConnection.cmd.CommandText = "INSERT INTO " + dbLibrary + ".GRN_MASTER (GRN_ID, PO_ID,DEPARTMENT_ID, SUPPLIER_ID, TOTAL_AMOUNT, CREATED_BY, CREATED_DATE, GRN_NOTE, GOOD_RECEIVED_DATE, IS_APPROVED, APPROVED_BY, APPROVED_DATE,BASED_GRN_ID ,INVOICE_NO) VALUES" +
-                                                                   " ( " + GrnId + ", " + poId + "," + companyId + "," + supplierid + ", " + totalAmount + ", '" + createdBy + "', '" + createdDate + "', '" + grnNote + "', '" + goodReceivedDate + "', " + 0 + ",'Admin' ,'" + LocalTime.Now + "'," + BasedGrn + ",'" +InvoiceNo + "');";
+                                                                   " ( " + GrnId + ", " + poId + "," + companyId + "," + supplierid + ", " + totalAmount + ", '" + createdBy + "', '" + createdDate + "', '" + grnNote + "', '" + goodReceivedDate + "', " + 0 + ",'Admin' ,'" + LocalTime.Now + "'," + BasedGrn + ",'" + InvoiceNo + "');";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             return dbConnection.cmd.ExecuteNonQuery();
         }
@@ -579,7 +626,7 @@ namespace CLibrary.Infrastructure
                                             "INNER JOIN " + dbLibrary + ".PR_MASTER AS PR ON PR.PR_ID = POM.BASED_PR " +
                                              "LEFT JOIN (SELECT SUB_DEPARTMENT_ID, MRN_ID FROM MRN_MASTER ) AS MRM ON PR.MRNREFERENCE_NO = (SELECT CONVERT(varchar(10), MRM.MRN_ID))\n" +
                                            "LEFT JOIN (SELECT SUB_DEPARTMENT_ID, DEPARTMENT_NAME FROM SUB_DEPARTMENT ) AS SD ON MRM.SUB_DEPARTMENT_ID = SD.SUB_DEPARTMENT_ID\n" +
-                                            "WHERE GM.DEPARTMENT_ID = " + departmentid + " AND GD.IS_GRN_RAISED = 1  AND GM.IS_APPROVED = 0 "+
+                                            "WHERE GM.DEPARTMENT_ID = " + departmentid + " AND GD.IS_GRN_RAISED = 1  AND GM.IS_APPROVED = 0 " +
                                             "GROUP BY  GM.GRN_ID,GM.GRN_CODE,POM.PO_ID,POM.PO_CODE,POM.BASED_PR,PR.PR_CODE,SU.SUPPLIER_NAME,GM.CREATED_DATE,GM.IS_APPROVED,GD.IS_GRN_RAISED,SD.DEPARTMENT_NAME,PR.REQUIRED_FOR";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
@@ -664,16 +711,17 @@ namespace CLibrary.Infrastructure
             }
         }
 
-        public int ConfirmOrDenyGrnApproval(int grnId,int confirm, DBConnection dbConnection)
+        public int ConfirmOrDenyGrnApproval(int grnId, int confirm, DBConnection dbConnection)
         {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE " + dbLibrary + ".GRN_MASTER SET GRN_IS_CONFIRMED_APPROVAL = " + confirm + " WHERE GRN_ID = " + grnId;
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
-        public int UpdateGrnCoverigPR(int grnId, int CompayId, DBConnection dbConnection) {
+        public int UpdateGrnCoverigPR(int grnId, int CompayId, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "UPDATE " + dbLibrary + ".GRN_MASTER SET CLONED_COVERING_PR = (SELECT MAX(PR_ID) FROM PR_MASTER) WHERE GRN_ID = " + grnId +" AND DEPARTMENT_ID = "+ CompayId + " ";
+            dbConnection.cmd.CommandText = "UPDATE " + dbLibrary + ".GRN_MASTER SET CLONED_COVERING_PR = (SELECT MAX(PR_ID) FROM PR_MASTER) WHERE GRN_ID = " + grnId + " AND DEPARTMENT_ID = " + CompayId + " ";
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
@@ -755,7 +803,8 @@ namespace CLibrary.Infrastructure
 
 
 
-        public List<GrnMaster> GetGrnForReturn(int departmentid, DBConnection dbConnection) {
+        public List<GrnMaster> GetGrnForReturn(int departmentid, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
 
             dbConnection.cmd.CommandText = "SELECT  * FROM GRN_MASTER AS GM " +
@@ -765,9 +814,10 @@ namespace CLibrary.Infrastructure
                                             "LEFT JOIN ( SELECT WAREHOUSE_ID, LOCATION AS WAREHOUSE_NAME FROM WAREHOUSE) AS W ON W.WAREHOUSE_ID = GM.WAREHOUSE_ID " +
                                             "WHERE IS_APPROVED != 2 AND GM.DEPARTMENT_ID = " + departmentid + " AND GRN_ID IN (SELECT GRN_ID FROM GRN_DETAILS WHERE QUANTITY > 0) ";
 
-           dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<GrnMaster>(dbConnection.dr);
             }

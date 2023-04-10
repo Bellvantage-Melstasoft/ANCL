@@ -8,9 +8,7 @@ using CLibrary.Controller;
 using CLibrary.Common;
 using CLibrary.Domain;
 using System.IO;
-using iTextSharp.text;
-using iTextSharp.text.html.simpleparser;
-using iTextSharp.text.pdf;
+
 using System.Data;
 
 namespace BiddingSystem
@@ -28,21 +26,21 @@ namespace BiddingSystem
         CompanyLoginController companyLoginController = ControllerFactory.CreateCompanyLoginController();
         QuotationImageController quotationImageController = ControllerFactory.CreateQuotationImageController();
         SupplierBiddingFileUploadController supplierBiddingFileUploadController = ControllerFactory.CreateSupplierBiddingFileUploadController();
-      
 
-       // static string UserId = string.Empty;
-       // private string PRId = string.Empty;
 
-       // private string UserDept = string.Empty;
-      //  private string OurRef = string.Empty;
-       // private string PrCode = string.Empty;
-       // private string RequestedDate = string.Empty;
-      //  private string UserRef = string.Empty;
-       // private string RequesterName = string.Empty;
-       // private int basePr = 0;
+        // static string UserId = string.Empty;
+        // private string PRId = string.Empty;
+
+        // private string UserDept = string.Empty;
+        //  private string OurRef = string.Empty;
+        // private string PrCode = string.Empty;
+        // private string RequestedDate = string.Empty;
+        //  private string UserRef = string.Empty;
+        // private string RequesterName = string.Empty;
+        // private int basePr = 0;
         //int CompanyId = 0;
-       // int PoId = 0;
-      //  static int quationid = 0;
+        // int PoId = 0;
+        //  static int quationid = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["CompanyId"] != null && Session["UserId"].ToString() != null)
@@ -52,8 +50,8 @@ namespace BiddingSystem
                 //((BiddingAdmin)Page.Master).subTabValue = "CustomerApprovePO.aspx";
                 ((BiddingAdmin)Page.Master).subTabId = "ApprovePOLink";
 
-               // CompanyId = int.Parse(Session["CompanyId"].ToString());
-               // UserId = Session["UserId"].ToString();
+                // CompanyId = int.Parse(Session["CompanyId"].ToString());
+                // UserId = Session["UserId"].ToString();
                 CompanyLogin companyLogin = companyLoginController.GetUserbyuserId(int.Parse(Session["UserId"].ToString()));
 
                 if ((!companyUserAccessController.isAvilableAccess(int.Parse(Session["UserId"].ToString()), int.Parse(Session["CompanyId"].ToString()), 6, 7) && companyLogin.Usertype != "S") && companyLogin.Usertype != "GA")
@@ -61,7 +59,8 @@ namespace BiddingSystem
                     Response.Redirect("AdminDashboard.aspx");
                 }
 
-                if (Session["PoId"] != null) {
+                if (Session["PoId"] != null)
+                {
                     ViewState["PoId"] = int.Parse(Session["PoId"].ToString());
                 }
                 else
@@ -79,7 +78,7 @@ namespace BiddingSystem
                 try
                 {
                     POMaster pOMaster = pOMasterController.GetPoMasterObjByPoIdRaised(int.Parse(ViewState["PoId"].ToString()), int.Parse(Session["CompanyId"].ToString()));
-                   ViewState["quationid"] = pOMaster.QuotationId;
+                    ViewState["quationid"] = pOMaster.QuotationId;
                     ViewState["basePr"] = pOMaster.BasePr;
                     Session["BasePRID"] = pOMaster.BasePr;
                     lblBasedPr.Text = pr_MasterController.FetchApprovePRDataByPRId(int.Parse(ViewState["basePr"].ToString())).PrCode;
@@ -90,7 +89,7 @@ namespace BiddingSystem
                     foreach (PODetails item in pOMaster._PODetails)
                     {
                         item.supplierQuotationItem = supplierQuotationController.GetQuotationItemsByQuotationItemId(item.QuotationItemId);
-                    }                    
+                    }
                     gvPurchaseOrderItems.DataSource = pOMaster._PODetails;
                     gvPurchaseOrderItems.DataBind();
                     //
@@ -98,8 +97,8 @@ namespace BiddingSystem
                     lblVatNo.Text = pOMaster._companyDepartment.VatNo;
                     lblPhoneNo.Text = pOMaster._companyDepartment.PhoneNO;
                     lblFaxNo.Text = pOMaster._companyDepartment.FaxNO;
-                   // lblRefNo.Text = pr_MasterController.FetchApprovePRDataByPRId(basePr).Ref01;
-                  
+                    // lblRefNo.Text = pr_MasterController.FetchApprovePRDataByPRId(basePr).Ref01;
+
                 }
                 catch (Exception ex)
                 {
@@ -299,7 +298,7 @@ namespace BiddingSystem
         protected void btnViewAttachments_Click(object sender, EventArgs e)
         {
 
-           
+
             var qutaion = supplierQuotationController.GetSupplierQuotationbyQutationId(int.Parse(ViewState["quationid"].ToString()));
 
             gvDocs.DataSource = supplierBiddingFileUploadController.GetFilesByQuotationId(int.Parse(ViewState["quationid"].ToString()));
