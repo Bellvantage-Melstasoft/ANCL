@@ -11,7 +11,7 @@ namespace BiddingSystem
 {
 
 
-    public partial class CompanyPoReports
+    public partial class ItemPoReport
     {
 
         /// <summary>
@@ -96,13 +96,13 @@ namespace BiddingSystem
         protected global::System.Web.UI.WebControls.Label lblAddress;
 
         /// <summary>
-        /// gvPurchaseOrderItems control.
+        /// gvItemPoReportsss control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPurchaseOrderItems;
+        protected global::System.Web.UI.WebControls.GridView gvItemPoReportsss;
 
         /// <summary>
         /// lblSubtotal control.
@@ -150,40 +150,22 @@ namespace BiddingSystem
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl panelPurchaseRequset;
 
         /// <summary>
-        /// RequiredFieldValidator5 control.
+        /// ddlCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
 
         /// <summary>
-        /// txtPoCode control.
+        /// ddlSubCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPoCode;
-
-        /// <summary>
-        /// RequiredFieldValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-
-        /// <summary>
-        /// ddlStatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubCategory;
 
         /// <summary>
         /// txtStartDate control.
@@ -204,31 +186,31 @@ namespace BiddingSystem
         protected global::System.Web.UI.WebControls.TextBox txtEndDate;
 
         /// <summary>
-        /// ddlPRType control.
+        /// ddlStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPRType;
+        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
 
         /// <summary>
-        /// ddlPurchasingType control.
+        /// ddlSupplier control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPurchasingType;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSupplier;
 
         /// <summary>
-        /// ddlDepartment control.
+        /// ddlItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDepartment;
+        protected global::System.Web.UI.WebControls.DropDownList ddlItem;
 
         /// <summary>
         /// btnSearch control.
@@ -258,13 +240,13 @@ namespace BiddingSystem
         protected global::System.Web.UI.UpdatePanel Updatepanel1;
 
         /// <summary>
-        /// gvPurchaseOrder control.
+        /// gvItemPoReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPurchaseOrder;
+        protected global::System.Web.UI.WebControls.GridView gvItemPoReport;
 
         /// <summary>
         /// gvPurchaseOrderItems1 control.

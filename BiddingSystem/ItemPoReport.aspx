@@ -1,7 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BiddingAdmin.Master" AutoEventWireup="true" CodeBehind="CompanyPoReports.aspx.cs" Inherits="BiddingSystem.CompanyPoReports" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BiddingAdmin.Master" AutoEventWireup="true" CodeBehind="ItemPoReport.aspx.cs" Inherits="BiddingSystem.ItemPoReport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentSection" runat="server">
-
     <html>
     <head>
 
@@ -68,7 +67,7 @@
 
 
         <section class="content-header">
-            <h1>PO Reports 
+            <h1>Item PO Reports 
         <small></small>
             </h1>
             <ol class="breadcrumb">
@@ -197,29 +196,32 @@
                                     <div class="panel-body">
                                         <div class="co-md-12">
                                             <div class="table-responsive">
-                                                <asp:GridView ID="gvPurchaseOrderItems" runat="server" CssClass="table table-responsive"
+                                                <asp:GridView ID="gvItemPoReportsss" runat="server" CssClass="table table-responsive"
                                                     AutoGenerateColumns="false" HeaderStyle-BackColor="LightGray">
                                                     <Columns>
-                                                        <asp:BoundField DataField="PoId" HeaderText="Po Id" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-                                                        <asp:BoundField DataField="QuotationId" HeaderText="Quotation Id" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-                                                        <asp:BoundField DataField="POCode" HeaderText="PO Code" />
-                                                        <%--<asp:BoundField DataField="PrCode"  HeaderText="PR Code"  />--%>
-                                                        <asp:TemplateField HeaderText="PR Code">
+                                                        <asp:BoundField DataField="SupplierId" HeaderText="Supplier Id" />
+                                                        <asp:BoundField DataField="TotalAMount" HeaderText="Total Amount" />
+                                                        <asp:BoundField DataField="CreatedDate" HeaderText="Date" DataFormatString="{0:d}" />
+                                                        <asp:TemplateField HeaderText="Approval Status">
                                                             <ItemTemplate>
-                                                                <asp:Label runat="server" Text='<%# "PR-"+Eval("PrCode").ToString() %>'></asp:Label>
+                                                                <asp:Label
+                                                                    runat="server"
+                                                                    Visible='<%# Eval("IsApproved").ToString() == "0" ? true : false %>'
+                                                                    Text="Pending" CssClass="label label-warning" />
+                                                                <asp:Label
+                                                                    runat="server"
+                                                                    Visible='<%# Eval("IsApproved").ToString() == "1" ? true : false %>'
+                                                                    Text="APPROVED" CssClass="label label-success" />
+                                                                <asp:Label
+                                                                    runat="server"
+                                                                    Visible='<%# Eval("IsApproved").ToString() == "2" ? true : false %>'
+                                                                    Text="Rejected" CssClass="label label-danger" />
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:TemplateField HeaderText="Department Name">
-                                                            <ItemTemplate>
-                                                                <asp:Label runat="server" ID="lbldepartmentName" Text='<%# Eval("subdepartment") ==null?"Stores":Eval("subdepartment") %>'></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:BoundField DataField="Description" HeaderText="Description" />
+                                                        <%--<asp:BoundField DataField="Description" HeaderText="Description" />
                                                         <asp:BoundField DataField="SupplierName" HeaderText="Supplier Name" />
                                                         <asp:BoundField DataField="CreatedDate" HeaderText="PO Created Date" DataFormatString='<%$ appSettings:dateTimePattern %>' />
-                                                        <asp:BoundField DataField="CreatedBy" HeaderText="PO Created By" />
-
-
+                                                        <asp:BoundField DataField="CreatedBy" HeaderText="PO Created By" />--%>
                                                     </Columns>
                                                 </asp:GridView>
                                             </div>
@@ -283,27 +285,21 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="col-sm-4">
-                                    <label>PO Code</label>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPoCode" ValidationGroup="btnPoCodeSearch" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                    <label>Category</label>
                                     <div class="input-group margin">
-                                        <asp:TextBox ID="txtPoCode" runat="server" CssClass="form-control"></asp:TextBox>
-                                        <%--   <span class="input-group-btn">
-                                            <asp:Button runat="server" ID="btnPoCodeSearch" ValidationGroup="btnPoCodeSearch" OnClick="btnPoCodeSearch_Click" CssClass="btn btn-info" Text="Search" />
-
+                                        <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control">
+                                        </asp:DropDownList>
+                                        <%--  <span class="input-group-btn">
+                                            <asp:Button runat="server" ID="btnPoStatusSearch" OnClick="btnPoStatusSearch_Click" ValidationGroup="btnPoStatusSearch" CssClass="btn btn-info" Text="Search" />
                                         </span>--%>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label>Status</label>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" InitialValue="" ControlToValidate="ddlStatus" ValidationGroup="btnPoStatusSearch" ForeColor="Red">*</asp:RequiredFieldValidator>
+                                    <label>Sub Category</label>
 
                                     <div class="input-group margin">
-                                        <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control">
-                                            <asp:ListItem Value="">-Please Select-</asp:ListItem>
-                                            <asp:ListItem Value="0">Pending</asp:ListItem>
-                                            <asp:ListItem Value="1">Approved</asp:ListItem>
-                                            <asp:ListItem Value="2">Rejected</asp:ListItem>
+                                        <asp:DropDownList ID="ddlSubCategory" runat="server" CssClass="form-control">
                                         </asp:DropDownList>
                                         <%--  <span class="input-group-btn">
                                             <asp:Button runat="server" ID="btnPoStatusSearch" OnClick="btnPoStatusSearch_Click" ValidationGroup="btnPoStatusSearch" CssClass="btn btn-info" Text="Search" />
@@ -330,34 +326,32 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="col-sm-4">
-                                    <label>PR Type</label>
+                                    <label>Status</label>
                                     <div class="input-group margin">
-                                        <asp:DropDownList ID="ddlPRType" runat="server" class="form-control select2">
+                                        <asp:DropDownList ID="ddlStatus" runat="server" class="form-control select2">
                                             <asp:ListItem Value="">-Please Select-</asp:ListItem>
-                                            <asp:ListItem Value="1">Stock</asp:ListItem>
-                                            <asp:ListItem Value="2">Non-Stock</asp:ListItem>
+                                            <asp:ListItem Value="0">Pending</asp:ListItem>
+                                            <asp:ListItem Value="1">Approved</asp:ListItem>
+                                            <asp:ListItem Value="2">Rejected</asp:ListItem>
 
                                         </asp:DropDownList>
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label>Purchase Type</label>
+                                    <label>Supplier</label>
 
                                     <div class="input-group margin">
-                                        <asp:DropDownList ID="ddlPurchasingType" runat="server" class="form-control select2">
-                                            <asp:ListItem Value="">-Please Select-</asp:ListItem>
-                                            <asp:ListItem Value="1">Local</asp:ListItem>
-                                            <asp:ListItem Value="2">Import</asp:ListItem>
+                                        <asp:DropDownList ID="ddlSupplier" runat="server" class="form-control select2">
                                         </asp:DropDownList>
 
                                     </div>
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label>Department Type</label>
+                                    <label>Item</label>
                                     <div class="input-group margin">
-                                        <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control">
+                                        <asp:DropDownList ID="ddlItem" runat="server" CssClass="form-control">
                                         </asp:DropDownList>
                                     </div>
                                 </div>
@@ -369,7 +363,7 @@
                             <div class="col-sm-12">
                                 <div class="col-sm-4">
                                     <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-info" Text="Search" OnClick="btnSearch_Click" />
-                                    <asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" OnClick="btnSearchAll_Click" Text="Get All" />
+                                    <asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" Text="Get All" OnClick="btnSearchAll_Click" />
 
 
                                 </div>
@@ -390,21 +384,14 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="table-responsive">
-                                            <asp:GridView runat="server" ID="gvPurchaseOrder" EmptyDataText="No Records Found" GridLines="None" CssClass="table table-responsive"
+                                            <asp:GridView runat="server" ID="gvItemPoReport" EmptyDataText="No Records Found" GridLines="None" CssClass="table table-responsive"
                                                 AutoGenerateColumns="false" HeaderStyle-BackColor="#3C8DBC" HeaderStyle-ForeColor="White">
                                                 <Columns>
-                                                    <asp:BoundField DataField="PoID" HeaderText="PoID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-                                                    <asp:BoundField DataField="POCode" HeaderText="PO Code" />
-                                                    <asp:BoundField DataField="PrCode" HeaderText="PR Code" />
-                                                    <asp:TemplateField HeaderText="Department Name">
-                                                        <ItemTemplate>
-                                                            <asp:Label runat="server" ID="lbldepartmentName" Text='<%# Eval("subdepartment") ==null?"Stores":Eval("subdepartment") %>'></asp:Label>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:BoundField DataField="Description" HeaderText="Description" />
+                                                    <asp:BoundField DataField="SupplierId" HeaderText="Supplier Id" />
                                                     <asp:BoundField DataField="SupplierName" HeaderText="Supplier Name" />
-                                                    <asp:BoundField DataField="CreatedDate" HeaderText="PO Created Date" DataFormatString='<%$ appSettings:dateTimePattern %>' />
-                                                    <asp:BoundField DataField="CreatedBy" HeaderText="PO Created By" />
+                                                    <asp:BoundField DataField="ItemName" HeaderText="Item Name" />
+                                                    <asp:BoundField DataField="TotalAMount" HeaderText="Total Amount" />
+                                                    <asp:BoundField DataField="CreatedDate" HeaderText="Date" DataFormatString="{0:d}" />
                                                     <asp:TemplateField HeaderText="Approval Status">
                                                         <ItemTemplate>
                                                             <asp:Label
@@ -421,11 +408,10 @@
                                                                 Text="Rejected" CssClass="label label-danger" />
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField>
-                                                        <ItemTemplate>
-                                                            <asp:LinkButton runat="server" ID="lbtnView" Text="View" OnClick="btnView_Click"></asp:LinkButton>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
+                                                    <%--<asp:BoundField DataField="Description" HeaderText="Description" />
+                                                        <asp:BoundField DataField="SupplierName" HeaderText="Supplier Name" />
+                                                        <asp:BoundField DataField="CreatedDate" HeaderText="PO Created Date" DataFormatString='<%$ appSettings:dateTimePattern %>' />
+                                                        <asp:BoundField DataField="CreatedBy" HeaderText="PO Created By" />--%>
                                                 </Columns>
                                             </asp:GridView>
                                         </div>

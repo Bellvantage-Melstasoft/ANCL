@@ -6,10 +6,12 @@ using System.Text;
 
 namespace CLibrary.Domain
 {
+    [Serializable]
+
     public class SubDepartment
     {
-        private int subDepartmentID, isActive, companyID,headOfDepartmentID;
-        private string subDepartmentName, phoneNo,headOfDepartmentName;
+        private int subDepartmentID, isActive, companyID, headOfDepartmentID;
+        private string subDepartmentName, phoneNo, headOfDepartmentName;
 
         [DBField("IS_ACTIVE")]
         public int IsActive

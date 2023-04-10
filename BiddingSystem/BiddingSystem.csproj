@@ -48,12 +48,14 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="EPPlus, Version=5.1.2.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.5.1.2\lib\net45\EPPlus.dll</HintPath>
     </Reference>
-    <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\itextsharp.dll</HintPath>
+    <Reference Include="itextsharp, Version=5.5.13.3, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp.xmlworker, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -263,6 +265,7 @@
     <Content Include="EditInventory.aspx" />
     <Content Include="GenerateGRNNewImport.aspx" />
     <Content Include="DepartmentReturnApproval.aspx" />
+    <Content Include="ItemPoReport.aspx" />
     <Content Include="RecommendQuotationsItemWiseImportSparePart.aspx" />
     <Content Include="RecommendQuotationsItemWiseImport.aspx" />
     <Content Include="RecommendQuotationsItemWiseRejectedImportsSparePart.aspx" />
@@ -274,6 +277,7 @@
     <Content Include="ReturnStockToWreouse.aspx" />
     <Content Include="RejectedReceivedInventory.aspx" />
     <Content Include="CustomerApprovePOPrint.aspx" />
+    <Content Include="SupplierItemReport.aspx" />
     <Content Include="ViewQuotationTRApprovalNewImportsSparePart.aspx" />
     <Content Include="ViewReturnedGRNDetails.aspx" />
     <Content Include="ViewReturnGRN.aspx" />
@@ -718,6 +722,13 @@
     <Compile Include="DepartmentReturnApproval.aspx.designer.cs">
       <DependentUpon>DepartmentReturnApproval.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ItemPoReport.aspx.cs">
+      <DependentUpon>ItemPoReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ItemPoReport.aspx.designer.cs">
+      <DependentUpon>ItemPoReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="RecommendQuotationsItemWiseImportSparePart.aspx.cs">
       <DependentUpon>RecommendQuotationsItemWiseImportSparePart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -794,6 +805,13 @@
     </Compile>
     <Compile Include="CustomerApprovePOPrint.aspx.designer.cs">
       <DependentUpon>CustomerApprovePOPrint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SupplierItemReport.aspx.cs">
+      <DependentUpon>SupplierItemReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SupplierItemReport.aspx.designer.cs">
+      <DependentUpon>SupplierItemReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewQuotationTRApprovalNewImportsSparePart.aspx.cs">
       <DependentUpon>ViewQuotationTRApprovalNewImportsSparePart.aspx</DependentUpon>

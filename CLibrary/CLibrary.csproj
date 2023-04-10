@@ -34,11 +34,14 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
     <Reference Include="EPPlus, Version=5.1.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
       <HintPath>..\packages\EPPlus.5.1.1\lib\net40\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="itextsharp, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
-      <HintPath>..\packages\iTextSharp.5.5.13\lib\itextsharp.dll</HintPath>
+      <HintPath>..\packages\iTextSharp.5.5.13.3\lib\itextsharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="itextsharp.xmlworker, Version=5.5.13.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
@@ -75,6 +78,7 @@
     <Compile Include="Controller\AddItemBOMController.cs" />
     <Compile Include="Controller\AddItemController.cs" />
     <Compile Include="Controller\AddItemMasterController.cs" />
+    <Compile Include="Controller\AddItemPOReportsController.cs" />
     <Compile Include="Controller\AfterPOController.cs" />
     <Compile Include="Controller\BiddingController.cs" />
     <Compile Include="Controller\BiddingItemController.cs" />
@@ -172,6 +176,7 @@
     <Compile Include="Controller\StockOverrideBatchLogController.cs" />
     <Compile Include="Controller\StockOverrideLogController.cs" />
     <Compile Include="Controller\SubCategoryStoreKeeperController.cs" />
+    <Compile Include="Controller\SupplierItemReportController.cs" />
     <Compile Include="Controller\SupplierQuotationItemController.cs" />
     <Compile Include="Controller\SupplierTypeController.cs" />
     <Compile Include="Controller\TabulationDetailController.cs" />
@@ -223,6 +228,7 @@
     <Compile Include="Domain\AddItem.cs" />
     <Compile Include="Domain\AddItemBOM.cs" />
     <Compile Include="Domain\AddItemMaster.cs" />
+    <Compile Include="Domain\AddItemPOReports.cs" />
     <Compile Include="Domain\AfterPO.cs" />
     <Compile Include="Domain\Bidding.cs" />
     <Compile Include="Domain\BiddingItem.cs" />
@@ -287,6 +293,7 @@
     <Compile Include="Domain\StockOverrideBatchLog.cs" />
     <Compile Include="Domain\StockOverrideLog.cs" />
     <Compile Include="Domain\SupplierAgent2.cs" />
+    <Compile Include="Domain\SupplierAddItemReport.cs" />
     <Compile Include="Domain\SupplierRating.cs" />
     <Compile Include="Domain\SupplierType.cs" />
     <Compile Include="Domain\TempCoverigPr.cs" />
@@ -412,6 +419,7 @@
     <Compile Include="Infrastructure\AddItemBOMDAO.cs" />
     <Compile Include="Infrastructure\AddItemDAO.cs" />
     <Compile Include="Infrastructure\AddItemMasterDAO.cs" />
+    <Compile Include="Infrastructure\AddItemPOReportsDAO.cs" />
     <Compile Include="Infrastructure\AfterPO_DAO.cs" />
     <Compile Include="Infrastructure\ArraySpec.cs" />
     <Compile Include="Infrastructure\BiddingDAO.cs" />
@@ -522,6 +530,7 @@
     <Compile Include="Infrastructure\StockOverrideBatchLogDAO.cs" />
     <Compile Include="Infrastructure\StockOverrideLogDAO.cs" />
     <Compile Include="Infrastructure\SubCategoryStoreKeeperDAO.cs" />
+    <Compile Include="Infrastructure\SupplierItemReportDAO.cs" />
     <Compile Include="Infrastructure\SupplierTypeDAO.cs" />
     <Compile Include="Infrastructure\TabulationApprovalDAO.cs" />
     <Compile Include="Infrastructure\QuotationApprovalDAO.cs" />

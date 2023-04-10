@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using CLibrary.Common;
 
-namespace CLibrary.Domain {
-    public class MrnMasterV2 {
+namespace CLibrary.Domain
+{
+    [Serializable]
+    public class MrnMasterV2
+    {
         [DBField("MRN_ID")]
         public int MrnId { get; set; }
         [DBField("MRN_CODE")]
@@ -103,7 +106,7 @@ namespace CLibrary.Domain {
 
         [DBField("APPROVED_SIGNATURE")]
         public string ApprovedSignature { get; set; }
-        
+
         [DBField("CREATED_SIGNATURE")]
         public string CreatedSignature { get; set; }
 

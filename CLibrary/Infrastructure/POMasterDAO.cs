@@ -4,10 +4,13 @@ using CLibrary.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
-namespace CLibrary.Infrastructure {
-    public interface POMasterDAO {
+namespace CLibrary.Infrastructure
+{
+    public interface POMasterDAO
+    {
         int SavePOMaster(int departmentid, int prId, int supplierId, DateTime createdDate, string createdBy, decimal vatAmount, decimal nbtAmount, string vatRegNo, string sVatRegNo, decimal totalAmount, int isApproved, string approvedBy, int isReceived, DateTime receivedDate, int BasePr, decimal totalCustomizedAmount, decimal totalCustomizedVat, decimal totalCustomizedNbt, string paymentmethod, DBConnection dbConnection);
         int SavePOMasterPO(int poId, string pocode, int departmentid, int supplierId, DateTime createdDate, string createdBy, decimal vatAmount, decimal nbtAmount, string vatRegNo, string sVatRegNo, decimal totalAmount, int isApproved, string approvedBy, int isReceived, DateTime receivedDate, int BasePr, decimal totalCustomizedAmount, decimal totalCustomizedVat, decimal totalCustomizedNbt, DBConnection dbConnection);
         int updatePODetails(int PoId, decimal vatAmount, decimal nbtAmount, decimal totalAmount, decimal customizedTotalAmount, decimal customizedVatAmount, decimal customizedNbtAmount, DBConnection dbConnection);
@@ -29,7 +32,7 @@ namespace CLibrary.Infrastructure {
         List<POMaster> GetPoMasterListByWarehouseIdTogrn(List<int> WarehouseIds, DBConnection dbConnection);
         POMaster GetPoMasterToGenerateGRN(int PoId, int CompanyId, DBConnection dbConnection);
         int GenerateCoveringPO(POMaster poMaster, DBConnection dbConnection);
-       // POMaster GetPoMasterToViewPO(int PoId, int CompanyId, DBConnection dbConnection);
+        // POMaster GetPoMasterToViewPO(int PoId, int CompanyId, DBConnection dbConnection);
 
 
         int rejectPOMaster(int poId, DBConnection dbConnection);
@@ -49,7 +52,7 @@ namespace CLibrary.Infrastructure {
         List<POMaster> GetPoMastersForPrInquiryByQuotationId(int QuotationId, DBConnection dbConnection);
 
 
-        List<int> GetPoCountForDashboard(int CompanyId, int yearsearch,int purchaseType, DBConnection dbConnection);
+        List<int> GetPoCountForDashboard(int CompanyId, int yearsearch, int purchaseType, DBConnection dbConnection);
         List<POMaster> GetPoMasterListWithImport(int departmentid, DBConnection dbConnection);
         List<ItemPurchaseHistory> GetItemPurchaseHistories(int ItemId, DBConnection dbConnection);
         List<int> SavePONew(List<POMaster> PoMasters, int UserId, DBConnection dbConnection);
@@ -67,6 +70,9 @@ namespace CLibrary.Infrastructure {
         int ParentRejectPO(int PoId, string Remarks, int PaymentMethod, int PoType, int UserId, int IsParentApproved, int RejectionAction, int ParentPOId, DBConnection dbConnection);
         int UpdatePrintCount(int PoId, DBConnection dbConnection);
         List<POMaster> GetAllPosByPrId(int PrId, DBConnection dbConnection);
+
+        //Get All PO MASTER LIST
+        List<POMaster> GetAllPOMAster(DBConnection dbConnection);
         POMaster GetPoMasterObjByPoIdNew(int GrnId, DBConnection dbConnection);
         int CancelPo(int Poid, DBConnection dbConnection);
         List<POMaster> ViewCancelledPOS(int CompanyId, DateTime date, string prcode, string pocode, List<int> caregoryIds, List<int> warehouseIds, int poType, DBConnection dbConnection);
@@ -81,10 +87,12 @@ namespace CLibrary.Infrastructure {
         int ApprovedCoveringPOCount(int PrId, DBConnection dbConnection);
     }
 
-    public class POMasterDAOSQLImpl : POMasterDAO {
+    public class POMasterDAOSQLImpl : POMasterDAO
+    {
         string dbLibrary = System.Configuration.ConfigurationSettings.AppSettings["dbLibrary"];
 
-        public List<POMaster> GetPoMasterListByByDaterange(int departmentid, DateTime startdate, DateTime enddate, DBConnection dbConnection) {
+        public List<POMaster> GetPoMasterListByByDaterange(int departmentid, DateTime startdate, DateTime enddate, DBConnection dbConnection)
+        {
             List<POMaster> GetPoMasterList = new List<POMaster>();
             PODetailsDAO pODetailsDAO = DAOFactory.createPODetailsDAO();
             dbConnection.cmd.Parameters.Clear();
@@ -100,17 +108,36 @@ namespace CLibrary.Infrastructure {
                                            " AND POD.IS_PO_RAISED =1" +
                                            " GROUP BY POM.PO_ID,POM.PO_CODE,POM.CREATED_DATE,CL.CREATED_BY ,PM.PR_CODE,POM.BASED_PR,SU.SUPPLIER_NAME ,POM.IS_APPROVED,PM.REQUIRED_FOR";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 GetPoMasterList = dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
-            foreach (var item in GetPoMasterList) {
+            foreach (var item in GetPoMasterList)
+            {
                 item._PODetails = pODetailsDAO.GetPoDetailsByPoId(item.PoID, dbConnection);
             }
             return GetPoMasterList;
         }
 
-        public List<POMaster> GetPoMasterListByDepartmentId(int departmentid, DBConnection dbConnection) {
+        //Get All PO MASTER LIST
+        public List<POMaster> GetAllPOMAster(DBConnection dbConnection)
+        {
+            POMaster GetPoMasterObj = new POMaster();
+            PODetailsDAO pODetailsDAO = DAOFactory.createPODetailsDAO();
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "SELECT * FROM " + dbLibrary + ".PO_MASTER ";
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
+                DataAccessObject dataAccessObject = new DataAccessObject();
+                return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
+
+            }
+
+        }
+        public List<POMaster> GetPoMasterListByDepartmentId(int departmentid, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = " SELECT POM.PO_ID,POM.PO_CODE,POM.CREATED_DATE,CL.CREATED_BY ,PM.PR_CODE,POM.BASED_PR,SU.SUPPLIER_NAME,COUNT(POD.ITEM_ID) AS ITEMCOUNT, POM.IS_APPROVED,SD.DEPARTMENT_NAME,PM.REQUIRED_FOR " +
                                            " FROM " + dbLibrary + ".PO_MASTER  AS POM " +
@@ -124,12 +151,14 @@ namespace CLibrary.Infrastructure {
                                            " AND POD.IS_PO_RAISED =1" +
                                            " GROUP BY POM.PO_ID,POM.PO_CODE,POM.CREATED_DATE,CL.CREATED_BY ,PM.PR_CODE,POM.BASED_PR,SU.SUPPLIER_NAME ,POM.IS_APPROVED,SD.DEPARTMENT_NAME,PM.REQUIRED_FOR";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
-        public POMaster GetPoMasterObjByPoIdNew(int GrnId, DBConnection dbConnection) {
+        public POMaster GetPoMasterObjByPoIdNew(int GrnId, DBConnection dbConnection)
+        {
             POMaster GetPoMasterObj = new POMaster();
             PODetailsDAO pODetailsDAO = DAOFactory.createPODetailsDAO();
             dbConnection.cmd.Parameters.Clear();
@@ -139,7 +168,8 @@ namespace CLibrary.Infrastructure {
                 "LEFT JOIN (SELECT USER_ID, FIRST_NAME AS STORE_KEEPER FROM COMPANY_LOGIN) AS SK ON SK.USER_ID = PM.CREATED_BY\n" +
                 " WHERE GRN_ID =" + GrnId;
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 GetPoMasterObj = dataAccessObject.GetSingleOject<POMaster>(dbConnection.dr);
 
@@ -149,13 +179,15 @@ namespace CLibrary.Infrastructure {
         }
 
 
-        public POMaster GetPoMasterObjByPoId(int PoId, DBConnection dbConnection) {
+        public POMaster GetPoMasterObjByPoId(int PoId, DBConnection dbConnection)
+        {
             POMaster GetPoMasterObj = new POMaster();
             PODetailsDAO pODetailsDAO = DAOFactory.createPODetailsDAO();
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "SELECT * FROM " + dbLibrary + ".PO_MASTER  WHERE PO_ID =" + PoId;
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 GetPoMasterObj = dataAccessObject.GetSingleOject<POMaster>(dbConnection.dr);
 
@@ -164,8 +196,10 @@ namespace CLibrary.Infrastructure {
             return GetPoMasterObj;
         }
 
-        public POMaster GetPoMasterObjByPoIdRaised(int PoId, int CompanyId, DBConnection dbConnection) {
-            try {
+        public POMaster GetPoMasterObjByPoIdRaised(int PoId, int CompanyId, DBConnection dbConnection)
+        {
+            try
+            {
                 POMaster GetPoMasterObj = new POMaster();
                 PODetailsDAO pODetailsDAO = DAOFactory.createPODetailsDAO();
                 dbConnection.cmd.Parameters.Clear();
@@ -184,26 +218,30 @@ namespace CLibrary.Infrastructure {
                                                "LEFT JOIN PO_MASTER AS POMD ON POM.IS_DERIVED_FROM_PO = POMD.PO_ID \n" +
                                                 "WHERE POM.PO_ID =" + PoId;
                 dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-                using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+                using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+                {
                     DataAccessObject dataAccessObject = new DataAccessObject();
                     GetPoMasterObj = dataAccessObject.GetSingleOject<POMaster>(dbConnection.dr);
 
                 }
                 GetPoMasterObj._PODetails = pODetailsDAO.GetPODetailsToViewPo(PoId, CompanyId, dbConnection);
                 GetPoMasterObj.DerivedPOs = GetDerrivedPOs(PoId, dbConnection);
-                if (GetPoMasterObj.IsDerived == 1) {
+                if (GetPoMasterObj.IsDerived == 1)
+                {
                     GetPoMasterObj.DerivedFromPOs = GetDerrivedFromPOs(GetPoMasterObj.IsDerivedFromPo, dbConnection);
                 }
                 GetPoMasterObj.GeneratedGRNs = DAOFactory.createGrnDAO().GetGeneratedGRNsForPo(PoId, dbConnection);
                 return GetPoMasterObj;
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 throw ex;
 
             }
         }
 
-        public POMaster GetPoMasterObjByPoIdView(int PoId, DBConnection dbConnection) {
+        public POMaster GetPoMasterObjByPoIdView(int PoId, DBConnection dbConnection)
+        {
             POMaster GetPoMasterObj = new POMaster();
             PODetailsDAO pODetailsDAO = DAOFactory.createPODetailsDAO();
             dbConnection.cmd.Parameters.Clear();
@@ -213,7 +251,8 @@ namespace CLibrary.Infrastructure {
                                             "LEFT JOIN (SELECT SUB_DEPARTMENT_ID, USER_ID,FIRST_NAME AS STORE_KEEPER_NAME FROM " + dbLibrary + ".COMPANY_LOGIN ) AS SK ON PRM.STORE_KEEPER_ID = SK.USER_ID\n" +
                                             "WHERE PM.PO_ID =" + PoId;
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 GetPoMasterObj = dataAccessObject.GetSingleOject<POMaster>(dbConnection.dr);
 
@@ -222,7 +261,8 @@ namespace CLibrary.Infrastructure {
             return GetPoMasterObj;
         }
 
-        public int PoMasterApproval(int poId, int isApprove, int departmentid, DBConnection dbConnection) {
+        public int PoMasterApproval(int poId, int isApprove, int departmentid, DBConnection dbConnection)
+        {
             string POCode = string.Empty;
             POCode = "PO" + poId;
 
@@ -232,24 +272,28 @@ namespace CLibrary.Infrastructure {
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
-        public int UpdatePoEmailStatus(int poId, DBConnection dbConnection) {
-            
+        public int UpdatePoEmailStatus(int poId, DBConnection dbConnection)
+        {
+
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE " + dbLibrary + ".PO_MASTER SET PO_EMAIL_STATUS = 1 WHERE PO_ID = " + poId + "";
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
-        public int SavePOMaster(int departmentid, int prId, int supplierId, DateTime createdDate, string createdBy, decimal vatAmount, decimal nbtAmount, string vatRegNo, string sVatRegNo, decimal totalAmount, int isApproved, string approvedBy, int isReceived, DateTime receivedDate, int BasePr, decimal totalCustomizedAmount, decimal totalCustomizedVat, decimal totalCustomizedNbt, string paymentmethod, DBConnection dbConnection) {
+        public int SavePOMaster(int departmentid, int prId, int supplierId, DateTime createdDate, string createdBy, decimal vatAmount, decimal nbtAmount, string vatRegNo, string sVatRegNo, decimal totalAmount, int isApproved, string approvedBy, int isReceived, DateTime receivedDate, int BasePr, decimal totalCustomizedAmount, decimal totalCustomizedVat, decimal totalCustomizedNbt, string paymentmethod, DBConnection dbConnection)
+        {
             int POId = 0;
             string POCode = string.Empty;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "SELECT COUNT(*) AS cnt FROM " + dbLibrary + ".PO_MASTER";
 
             var count = int.Parse(dbConnection.cmd.ExecuteScalar().ToString());
-            if (count == 0) {
+            if (count == 0)
+            {
                 POId = 1;
             }
-            else {
+            else
+            {
                 dbConnection.cmd.CommandText = "SELECT MAX (PO_ID) + 1 AS MAXid FROM " + dbLibrary + ".PO_MASTER";
                 POId = int.Parse(dbConnection.cmd.ExecuteScalar().ToString());
             }
@@ -261,7 +305,8 @@ namespace CLibrary.Infrastructure {
             return POId;
         }
 
-        public int SavePOMasterPO(int poId, string pocode, int departmentid, int supplierId, DateTime createdDate, string createdBy, decimal vatAmount, decimal nbtAmount, string vatRegNo, string sVatRegNo, decimal totalAmount, int isApproved, string approvedBy, int isReceived, DateTime receivedDate, int BasePr, decimal totalCustomizedAmount, decimal totalCustomizedVat, decimal totalCustomizedNbt, DBConnection dbConnection) {
+        public int SavePOMasterPO(int poId, string pocode, int departmentid, int supplierId, DateTime createdDate, string createdBy, decimal vatAmount, decimal nbtAmount, string vatRegNo, string sVatRegNo, decimal totalAmount, int isApproved, string approvedBy, int isReceived, DateTime receivedDate, int BasePr, decimal totalCustomizedAmount, decimal totalCustomizedVat, decimal totalCustomizedNbt, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "INSERT INTO " + dbLibrary + ".PO_MASTER (PO_CODE, DEPARTMENT_ID, SUPPLIER_ID, CREATED_DATE, CREATED_BY,  VAT_AMOUNT, NBT_AMOUNT, VAT_REG_NO, SVAT_REG_NO, TOTAL_AMOUNT, IS_APPROVED, APPROVED_BY, IS_RECEIVED,IS_RECEIVED_DATE,BASED_PR, TOTAL_CUSTOMIZED_AMOUNT, TOTAL_CUSTOMIZED_VAT, TOTAL_CUSTOMIZED_NBT) VALUES ('" + pocode + "" + "' , " + departmentid + "," + supplierId + ", '" + createdDate + "', '" + createdBy + "', " + vatAmount + ", " + nbtAmount + ", '" + vatRegNo + "', '" + sVatRegNo + "', " + totalAmount + ", " + isApproved + ", '" + approvedBy + "', " + isReceived + ", '" + receivedDate + "'," + BasePr + "," + totalCustomizedAmount + " ," + totalCustomizedVat + ", " + totalCustomizedNbt + " );";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
@@ -276,13 +321,15 @@ namespace CLibrary.Infrastructure {
         //    return Id;
         //}
 
-        public int GetPoId(int PrId, DBConnection dbConnection) {
+        public int GetPoId(int PrId, DBConnection dbConnection)
+        {
             int id = 0;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "SELECT COUNT(*) FROM PO_MASTER WHERE BASED_PR = " + PrId + " ";
             int count = int.Parse(dbConnection.cmd.ExecuteScalar().ToString());
 
-            if (count > 0) {
+            if (count > 0)
+            {
                 dbConnection.cmd.CommandText = "SELECT PO_ID FROM PO_MASTER WHERE BASED_PR = " + PrId + " ";
                 dbConnection.cmd.CommandType = System.Data.CommandType.Text;
                 id = int.Parse(dbConnection.cmd.ExecuteScalar().ToString());
@@ -291,7 +338,8 @@ namespace CLibrary.Infrastructure {
         }
 
 
-        public int ApprovedCoveringPOCount(int PrId, DBConnection dbConnection) {
+        public int ApprovedCoveringPOCount(int PrId, DBConnection dbConnection)
+        {
             int count = 0;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "SELECT COUNT(*) FROM PO_MASTER WHERE BASED_PR = " + PrId + " AND IS_APPROVED = 0 ";
@@ -300,30 +348,35 @@ namespace CLibrary.Infrastructure {
             return count;
         }
 
-        public int CancelPo(int Poid, DBConnection dbConnection) {
+        public int CancelPo(int Poid, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "UPDATE PO_MASTER SET IS_CANCELLED = 1 WHERE PO_ID = "+ Poid + " ";
+            dbConnection.cmd.CommandText = "UPDATE PO_MASTER SET IS_CANCELLED = 1 WHERE PO_ID = " + Poid + " ";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
-        public int updatePODetails(int PoId, decimal vatAmount, decimal nbtAmount, decimal totalAmount, decimal customizedTotalAmount, decimal customizedVatAmount, decimal customizedNbtAmount, DBConnection dbConnection) {
+        public int updatePODetails(int PoId, decimal vatAmount, decimal nbtAmount, decimal totalAmount, decimal customizedTotalAmount, decimal customizedVatAmount, decimal customizedNbtAmount, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE " + dbLibrary + ".PO_MASTER SET VAT_AMOUNT = " + vatAmount + " , NBT_AMOUNT  = " + nbtAmount + " , TOTAL_AMOUNT  = " + totalAmount + ", TOTAL_CUSTOMIZED_AMOUNT = " + customizedTotalAmount + ", TOTAL_CUSTOMIZED_VAT = " + customizedVatAmount + ",TOTAL_CUSTOMIZED_NBT=" + customizedNbtAmount + "  WHERE PO_ID = " + PoId + "";
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
-        public int GetMaxPoNumebr(DBConnection dbConnection) {
+        public int GetMaxPoNumebr(DBConnection dbConnection)
+        {
             int POId = 0;
             string POCode = string.Empty;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "SELECT COUNT(*) AS cnt FROM " + dbLibrary + ".PO_MASTER";
 
             var count = int.Parse(dbConnection.cmd.ExecuteScalar().ToString());
-            if (count == 0) {
+            if (count == 0)
+            {
                 POId = 1;
             }
-            else {
+            else
+            {
                 dbConnection.cmd.CommandText = "SELECT MAX (PO_ID)+1 AS MAXid FROM " + dbLibrary + ".PO_MASTER";
                 POId = int.Parse(dbConnection.cmd.ExecuteScalar().ToString());
             }
@@ -331,13 +384,15 @@ namespace CLibrary.Infrastructure {
             return POId;
         }
 
-        public int UpdateTotalAmounts(int PoId, decimal vatAmount, decimal nbtAmount, decimal totalAmount, decimal customizedVatAmount, decimal customizedNbtAmount, decimal customizedTotalAmount, DBConnection dBConnection) {
+        public int UpdateTotalAmounts(int PoId, decimal vatAmount, decimal nbtAmount, decimal totalAmount, decimal customizedVatAmount, decimal customizedNbtAmount, decimal customizedTotalAmount, DBConnection dBConnection)
+        {
             dBConnection.cmd.Parameters.Clear();
             dBConnection.cmd.CommandText = "UPDATE " + dbLibrary + ".PO_MASTER SET VAT_AMOUNT = " + vatAmount + ",NBT_AMOUNT = " + nbtAmount + ",TOTAL_AMOUNT=" + totalAmount + ",TOTAL_CUSTOMIZED_VAT=" + customizedVatAmount + ", TOTAL_CUSTOMIZED_NBT=" + customizedNbtAmount + ", TOTAL_CUSTOMIZED_AMOUNT=" + customizedTotalAmount + "   WHERE PO_ID = " + PoId + " ";
             return dBConnection.cmd.ExecuteNonQuery();
         }
 
-        public List<POMaster> GetPoMasterListByDepartmentIdViewPO(int departmentid, DBConnection dbConnection) {
+        public List<POMaster> GetPoMasterListByDepartmentIdViewPO(int departmentid, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = " SELECT POM.PO_ID,POM.PO_CODE,POM.CREATED_DATE,CL.CREATED_BY,PM.PR_CODE,PM.PURCHASE_TYPE,POM.BASED_PR,SU.SUPPLIER_NAME,COUNT(POD.ITEM_ID) AS ITEMCOUNT, POM.PO_EMAIL_STATUS, " +
                                            " POM.VAT_AMOUNT,POM.NBT_AMOUNT,POM.TOTAL_AMOUNT,POM.TOTAL_CUSTOMIZED_VAT,POM.TOTAL_CUSTOMIZED_VAT,POM.TOTAL_CUSTOMIZED_NBT ,SD.DEPARTMENT_NAME,PM.REQUIRED_FOR" +
@@ -352,12 +407,14 @@ namespace CLibrary.Infrastructure {
                                            " AND POD.IS_PO_RAISED =1 AND POM.IS_APPROVED =1 " +
                                            " GROUP BY POM.PO_ID,POM.PO_CODE,PM.PURCHASE_TYPE,POM.CREATED_DATE,CL.CREATED_BY,PM.PR_CODE,POM.BASED_PR,SU.SUPPLIER_NAME,POM.PO_EMAIL_STATUS, POM.VAT_AMOUNT,POM.NBT_AMOUNT,POM.TOTAL_AMOUNT,POM.TOTAL_CUSTOMIZED_VAT,POM.TOTAL_CUSTOMIZED_VAT,POM.TOTAL_CUSTOMIZED_NBT,SD.DEPARTMENT_NAME,PM.REQUIRED_FOR ";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
-        public List<POMaster> GetPoMasterRejectedListByDepartmentIdViewPO(int departmentid, DBConnection dbConnection) {
+        public List<POMaster> GetPoMasterRejectedListByDepartmentIdViewPO(int departmentid, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = " SELECT POM.PO_ID,POM.PO_CODE,PM.PR_CODE,POM.BASED_PR,SU.SUPPLIER_NAME,COUNT(POD.ITEM_ID) AS ITEMCOUNT, " +
                                            " POM.VAT_AMOUNT,POM.NBT_AMOUNT,POM.TOTAL_AMOUNT,POM.TOTAL_CUSTOMIZED_VAT,POM.TOTAL_CUSTOMIZED_VAT,POM.TOTAL_CUSTOMIZED_NBT " +
@@ -369,13 +426,15 @@ namespace CLibrary.Infrastructure {
                                            " AND POD.IS_PO_RAISED =0 AND POD.IS_PO_APPROVED =2 " +
                                            " GROUP BY POM.PO_ID,POM.PO_CODE,PM.PR_CODE,POM.BASED_PR,SU.SUPPLIER_NAME,POM.VAT_AMOUNT,POM.NBT_AMOUNT,POM.TOTAL_AMOUNT,POM.TOTAL_CUSTOMIZED_VAT,POM.TOTAL_CUSTOMIZED_VAT,POM.TOTAL_CUSTOMIZED_NBT ";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
 
-        public List<POMaster> GetPoMasterListByDepartmentIdToGRN(int departmentid, DBConnection dbConnection) {
+        public List<POMaster> GetPoMasterListByDepartmentIdToGRN(int departmentid, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = " SELECT POD.QUANTITY,POM.PO_CODE,POM.PO_ID,POM.PO_CODE,PM.PR_CODE,POM.BASED_PR,SU.SUPPLIER_NAME,COUNT(POD.ITEM_ID) AS ITEMCOUNT, SU.SUPPLIER_NAME,SD.DEPARTMENT_NAME,PM.REQUIRED_FOR " +
                                            " FROM " + dbLibrary + ".PO_MASTER AS POM " +
@@ -388,19 +447,22 @@ namespace CLibrary.Infrastructure {
                                            " AND POD.IS_PO_RAISED =1 AND POD.IS_PO_APPROVED =1 " +
                                            " GROUP BY POM.PO_ID,POM.PO_CODE,PM.PR_CODE,POM.BASED_PR,SU.SUPPLIER_NAME,POD.QUANTITY,SD.DEPARTMENT_NAME,PM.REQUIRED_FOR ";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
 
-        public int rejectPOMaster(int poId, DBConnection dbConnection) {
+        public int rejectPOMaster(int poId, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE " + dbLibrary + ".PO_MASTER SET  IS_APPROVED = 2   WHERE PO_ID = " + poId + "";
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
-        public int ApprovePOMaster(int poId, int UserId, DBConnection dbConnection) {
+        public int ApprovePOMaster(int poId, int UserId, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
 
             string sql = "UPDATE " + dbLibrary + ".PO_MASTER SET  IS_APPROVED = 1, APPROVED_BY=" + UserId + ", APPROVED_DATE = '" + LocalTime.Now + "' WHERE PO_ID = " + poId + "; ";
@@ -419,13 +481,15 @@ namespace CLibrary.Infrastructure {
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
-        public int updatePaymentMethodByPoId(int PoId, int departmentid, string paymentMethod, DBConnection dbConnection) {
+        public int updatePaymentMethodByPoId(int PoId, int departmentid, string paymentMethod, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE " + dbLibrary + ".PO_MASTER SET  PAYMENT_METHOD ='" + paymentMethod + "' WHERE PO_ID = " + PoId + " AND DEPARTMENT_ID =" + departmentid + "";
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
-        public List<POMaster> GetPoMasterListByDepartmentIdEditMode(int departmentid, DBConnection dbConnection) {
+        public List<POMaster> GetPoMasterListByDepartmentIdEditMode(int departmentid, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = " SELECT POM.PO_ID,POM.PO_CODE,PM.PR_CODE,POM.BASED_PR,SU.SUPPLIER_NAME,COUNT(POD.ITEM_ID) AS ITEMCOUNT " +
                                            " FROM " + dbLibrary + ".PO_MASTER AS POM " +
@@ -436,13 +500,15 @@ namespace CLibrary.Infrastructure {
                                            " AND POD.IS_PO_RAISED =0  AND POD.IS_PO_EDIT_MODE=1 " +
                                            " GROUP BY POM.PO_ID,POM.PO_CODE,PM.PR_CODE,POM.BASED_PR,SU.SUPPLIER_NAME ";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
 
-        public List<POMaster> FetchApprovedPOForConfirmation(int Department, DBConnection dbConnection) {
+        public List<POMaster> FetchApprovedPOForConfirmation(int Department, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = " SELECT POM.PO_ID,POM.PO_CODE,PM.PR_CODE,POM.BASED_PR,SU.SUPPLIER_NAME,COUNT(POD.ITEM_ID) AS ITEMCOUNT, POM.IS_APPROVED,POM.PO_IS_CONFIRMED_APPROVAL" +
                                            " FROM " + dbLibrary + ".PO_MASTER  AS POM " +
@@ -455,13 +521,15 @@ namespace CLibrary.Infrastructure {
                                            " GROUP BY POM.PO_ID,POM.PO_CODE,PM.PR_CODE,POM.BASED_PR,SU.SUPPLIER_NAME ,POM.IS_APPROVED,POM.PO_IS_CONFIRMED_APPROVAL";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
 
-        public int ConfirmOrDenyPOApproval(int poId, int confirm, DBConnection dbConnection) {
+        public int ConfirmOrDenyPOApproval(int poId, int confirm, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "UPDATE " + dbLibrary + ".PO_MASTER SET PO_IS_CONFIRMED_APPROVAL=" + confirm + " WHERE PO_ID=" + poId + " ";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
@@ -469,17 +537,20 @@ namespace CLibrary.Infrastructure {
         }
 
 
-        public int SavePO(List<POMaster> PoMasters, int UserId, DBConnection dbConnection) {
+        public int SavePO(List<POMaster> PoMasters, int UserId, DBConnection dbConnection)
+        {
             StringBuilder sql = new StringBuilder();
             sql.AppendLine("DECLARE @PoIdTable TABLE (POID INT)");
-            for (int i = 0; i < PoMasters.Count; i++) {
+            for (int i = 0; i < PoMasters.Count; i++)
+            {
 
 
                 sql.AppendLine("INSERT INTO PO_MASTER ([PO_CODE],[DEPARTMENT_ID],[SUPPLIER_ID],[CREATED_DATE],[CREATED_BY],[VAT_AMOUNT],[NBT_AMOUNT],[TOTAL_AMOUNT],[BASED_PR],[QUOTATION_ID],[QUOTATION_APPROVED_BY],[QUOTATION_CONFIRMED_BY])");
                 sql.AppendLine("OUTPUT INSERTED.PO_ID INTO @PoIdTable(POID)");
                 sql.AppendLine("VALUES ((SELECT 'PO'+CONVERT(VARCHAR,COUNT (PO_ID) + 1) FROM PO_MASTER WHERE DEPARTMENT_ID= " + PoMasters[i].DepartmentId + ")," + PoMasters[i].DepartmentId + "," + PoMasters[i].SupplierId + ",'" + LocalTime.Now + "','" + PoMasters[i].CreatedBy + "'," + PoMasters[i].VatAmount + "," + PoMasters[i].NBTAmount + "," + PoMasters[i].TotalAmount + "," + PoMasters[i].BasePr + "," + PoMasters[i].QuotationId + "," + PoMasters[i].QuotationApprovedBy + "," + PoMasters[i].QuotationConfirmedBy + ");");
 
-                for (int j = 0; j < PoMasters[i].PoDetails.Count; j++) {
+                for (int j = 0; j < PoMasters[i].PoDetails.Count; j++)
+                {
                     sql.AppendLine("INSERT INTO PO_DETAILS ([PO_ID],[QUOTATION_ITEM_ID],[ITEM_PRICE],[QUANTITY],[TOTAL_AMOUNT],[VAT_AMOUNT],[NBT_AMOUNT],[ITEM_ID],[BASED_PO],[IS_PO_EDIT_MODE],[TABULATION_ID],[TABULATION_DETAIL_ID])");
                     sql.AppendLine("VALUES ((SELECT MAX(POID) FROM @PoIdTable)," + PoMasters[i].PoDetails[j].QuotationItemId + "," + PoMasters[i].PoDetails[j].ItemPrice + "," + PoMasters[i].PoDetails[j].Quantity + "," + PoMasters[i].PoDetails[j].TotalAmount + "," + PoMasters[i].PoDetails[j].VatAmount + "," + PoMasters[i].PoDetails[j].NbtAmount + "," + PoMasters[i].PoDetails[j].ItemId + ",(SELECT MAX(POID) FROM @PoIdTable),1," + PoMasters[i].PoDetails[j].TabulationId + "," + PoMasters[i].PoDetails[j].TabulationDetailId + ");");
 
@@ -505,7 +576,8 @@ namespace CLibrary.Infrastructure {
 
         }
 
-        public List<POMaster> GetPoMastersForPrInquiryByQuotationId(int QuotationId, DBConnection dbConnection) {
+        public List<POMaster> GetPoMastersForPrInquiryByQuotationId(int QuotationId, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = " SELECT * FROM PO_MASTER AS POM " +
                 "INNER JOIN (SELECT SUPPLIER_ID, SUPPLIER_NAME FROM SUPPLIER) AS S ON POM.SUPPLIER_ID= S.SUPPLIER_ID\n" +
@@ -513,13 +585,15 @@ namespace CLibrary.Infrastructure {
                 "WHERE POM.QUOTATION_ID=" + QuotationId;
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
 
-        public List<int> GetPoCountForDashboard(int CompanyId, int yearsearch, int purchaseType, DBConnection dbConnection) {
+        public List<int> GetPoCountForDashboard(int CompanyId, int yearsearch, int purchaseType, DBConnection dbConnection)
+        {
             List<int> count = new List<int>();
 
             dbConnection.cmd.Parameters.Clear();
@@ -546,7 +620,8 @@ namespace CLibrary.Infrastructure {
             return count;
         }
 
-        public List<POMaster> GetPoMasterListWithImport(int departmentid, DBConnection dbConnection) {
+        public List<POMaster> GetPoMasterListWithImport(int departmentid, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = " SELECT POM.PO_ID,POM.PO_CODE,POM.CREATED_DATE,CL.CREATED_BY ,PM.PR_CODE,POM.BASED_PR,SU.SUPPLIER_NAME,COUNT(POD.ITEM_ID) AS ITEMCOUNT, POM.IS_APPROVED,SD.DEPARTMENT_NAME,PM.REQUIRED_FOR " +
                                            " FROM " + dbLibrary + ".PO_MASTER  AS POM " +
@@ -560,13 +635,15 @@ namespace CLibrary.Infrastructure {
                                            " AND POD.IS_PO_RAISED =1 AND  PM.PURCHASE_TYPE = '2'" +
                                            " GROUP BY POM.PO_ID,POM.PO_CODE,POM.CREATED_DATE,CL.CREATED_BY ,PM.PR_CODE,POM.BASED_PR,SU.SUPPLIER_NAME ,POM.IS_APPROVED,SD.DEPARTMENT_NAME,PM.REQUIRED_FOR";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
 
-        public List<ItemPurchaseHistory> GetItemPurchaseHistories(int ItemId, DBConnection dbConnection) {
+        public List<ItemPurchaseHistory> GetItemPurchaseHistories(int ItemId, DBConnection dbConnection)
+        {
             StringBuilder sql = new StringBuilder();
 
             sql.Append("SELECT TOP 30 POM.PO_ID,POM.PO_CODE, POM.CREATED_DATE,POD.ITEM_PRICE,POD.QUANTITY, MED.SHORT_CODE FROM PO_MASTER AS POM \n");
@@ -578,25 +655,29 @@ namespace CLibrary.Infrastructure {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = sql.ToString();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<ItemPurchaseHistory>(dbConnection.dr);
             }
         }
 
-        public List<int> SavePONew(List<POMaster> PoMasters, int UserId, DBConnection dbConnection) {
+        public List<int> SavePONew(List<POMaster> PoMasters, int UserId, DBConnection dbConnection)
+        {
             StringBuilder sql = new StringBuilder();
             sql.AppendLine("DECLARE @PoIdTable TABLE (POID INT)");
             sql.AppendLine("DECLARE @PoCodeTable TABLE (POCode INT)");
-            for (int i = 0; i < PoMasters.Count; i++) {
+            for (int i = 0; i < PoMasters.Count; i++)
+            {
                 sql.AppendLine("INSERT INTO @PoCodeTable");
                 sql.AppendLine("SELECT COUNT(PO_ID)+1 FROM PO_MASTER WHERE DEPARTMENT_ID= " + PoMasters[i].DepartmentId + ";");
 
                 sql.AppendLine("INSERT INTO PO_MASTER ([PO_CODE],[DEPARTMENT_ID],[SUPPLIER_ID],[CREATED_DATE],[CREATED_BY],[VAT_AMOUNT],[NBT_AMOUNT],[TOTAL_AMOUNT],[BASED_PR],[DELIVER_TO_WAREHOUSE],[IS_CURRENT],[QUOTATION_ID],[QUOTATION_APPROVED_BY],[QUOTATION_CONFIRMED_BY], [PRINT_COUNT], [REMARKS])");
                 sql.AppendLine("OUTPUT INSERTED.PO_ID INTO @PoIdTable(POID)");
-                sql.AppendLine("VALUES ((SELECT 'PO'+CONVERT(VARCHAR,MAX (POCode)) FROM @PoCodeTable)," + PoMasters[i].DepartmentId + "," + PoMasters[i].SupplierId + ",'" + LocalTime.Now + "','" + PoMasters[i].CreatedBy + "'," + PoMasters[i].VatAmount + "," + PoMasters[i].NBTAmount + "," + PoMasters[i].TotalAmount + "," + PoMasters[i].BasePr + "," + PoMasters[i].DeliverToWarehouse + ", 1, " + PoMasters[i].QuotationId + "," + PoMasters[i].QuotationApprovedBy + "," + PoMasters[i].QuotationConfirmedBy + ",0, '"+ PoMasters[i].Remarks + "');");
+                sql.AppendLine("VALUES ((SELECT 'PO'+CONVERT(VARCHAR,MAX (POCode)) FROM @PoCodeTable)," + PoMasters[i].DepartmentId + "," + PoMasters[i].SupplierId + ",'" + LocalTime.Now + "','" + PoMasters[i].CreatedBy + "'," + PoMasters[i].VatAmount + "," + PoMasters[i].NBTAmount + "," + PoMasters[i].TotalAmount + "," + PoMasters[i].BasePr + "," + PoMasters[i].DeliverToWarehouse + ", 1, " + PoMasters[i].QuotationId + "," + PoMasters[i].QuotationApprovedBy + "," + PoMasters[i].QuotationConfirmedBy + ",0, '" + PoMasters[i].Remarks + "');");
 
-                for (int j = 0; j < PoMasters[i].PoDetails.Count; j++) {
+                for (int j = 0; j < PoMasters[i].PoDetails.Count; j++)
+                {
                     sql.AppendLine("INSERT INTO PO_DETAILS ([PO_ID],[QUOTATION_ITEM_ID],[ITEM_PRICE],[QUANTITY],[TOTAL_AMOUNT],[VAT_AMOUNT],[NBT_AMOUNT],[ITEM_ID],[BASED_PO],[IS_PO_EDIT_MODE],[HAS_NBT],[NBT_CALCULATION_TYPE],[HAS_VAT],[TABULATION_ID],[TABULATION_DETAIL_ID], [MEASUREMENT_ID],[RECEIVED_QTY], [STATUS], [SUPPLIER_MENTIONED_ITEM_NAME], [PO_PURCHASE_TYPE])");
                     sql.AppendLine("VALUES ((SELECT MAX(POID) FROM @PoIdTable)," + PoMasters[i].PoDetails[j].QuotationItemId + "," + PoMasters[i].PoDetails[j].ItemPrice + "," + PoMasters[i].PoDetails[j].Quantity + "," + PoMasters[i].PoDetails[j].TotalAmount + "," + PoMasters[i].PoDetails[j].VatAmount + "," + PoMasters[i].PoDetails[j].NbtAmount + "," + PoMasters[i].PoDetails[j].ItemId + ",(SELECT MAX(POID) FROM @PoIdTable),1," + PoMasters[i].PoDetails[j].HasNbt + "," + PoMasters[i].PoDetails[j].NbtCalculationType + "," + PoMasters[i].PoDetails[j].HasVat + "," + PoMasters[i].PoDetails[j].TabulationId + "," + PoMasters[i].PoDetails[j].TabulationDetailId + ", " + PoMasters[i].PoDetails[j].MeasurementId + ", 0, 0, '" + PoMasters[i].PoDetails[j].SupplierMentionedItemName + "', " + PoMasters[i].PoDetails[j].PoPurchaseType + ");");
 
@@ -619,12 +700,15 @@ namespace CLibrary.Infrastructure {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = sql.ToString();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 List<int> PoCodes = new List<int>();
 
-                if (dbConnection.dr.HasRows) {
-                    while (dbConnection.dr.Read()) {
+                if (dbConnection.dr.HasRows)
+                {
+                    while (dbConnection.dr.Read())
+                    {
                         PoCodes.Add(int.Parse(dbConnection.dr[0].ToString()));
                     }
                 }
@@ -632,7 +716,8 @@ namespace CLibrary.Infrastructure {
                 return PoCodes;
             }
         }
-        public List<POMaster> ViewAllPOS(int CompanyId, DateTime date, string prcode, string pocode, List<int> caregoryIds, List<int> warehouseIds, int poType, DBConnection dbConnection, List<int> supplierIds = null) {
+        public List<POMaster> ViewAllPOS(int CompanyId, DateTime date, string prcode, string pocode, List<int> caregoryIds, List<int> warehouseIds, int poType, DBConnection dbConnection, List<int> supplierIds = null)
+        {
 
             StringBuilder sql = new StringBuilder();
             sql.Append("SELECT POM.*,CLC.FIRST_NAME AS CREATED_USER_NAME,CLA.FIRST_NAME AS APPROVED_USER_NAME,W.LOCATION AS WAREHOUSE_NAME,S.SUPPLIER_NAME,PRM.PR_CODE, PRM.REQUIRED_FOR,PRM.PURCHASE_TYPE,PRM.PURCHASE_PROCEDURE, POMD.PO_CODE AS PARENT_PO_CODE FROM PO_MASTER AS POM \n");
@@ -645,54 +730,67 @@ namespace CLibrary.Infrastructure {
             sql.Append("LEFT JOIN(SELECT CATEGORY_ID, CATEGORY_NAME  FROM ITEM_CATEGORY_MASTER) AS ICM ON PRM.PR_CATEGORY_ID = ICM.CATEGORY_ID \n");
             sql.Append("WHERE POM.DEPARTMENT_ID=" + CompanyId + " \n");
 
-            if (prcode != "") {
+            if (prcode != "")
+            {
                 sql.Append(" AND PRM.PR_CODE =  '" + prcode + "'");
             }
 
-            if (pocode != "") {
+            if (pocode != "")
+            {
                 sql.Append(" AND POM.PO_CODE =  '" + pocode + "'");
             }
 
-            if (date != DateTime.MinValue) {
+            if (date != DateTime.MinValue)
+            {
                 sql.Append(" AND MONTH(POM.CREATED_DATE)= " + date.Month.ToString() + " AND YEAR(POM.CREATED_DATE)= " + date.Year.ToString() + " ");
             }
 
-            if (caregoryIds.Count > 0) {
+            if (caregoryIds.Count > 0)
+            {
                 sql.Append(" AND ICM.CATEGORY_ID IN (" + string.Join(",", caregoryIds) + ")");
             }
 
 
-            if (warehouseIds.Count > 0) {
-                if (warehouseIds.Any(wi => wi == 0)) {
-                    if (warehouseIds.Count == 1) {
+            if (warehouseIds.Count > 0)
+            {
+                if (warehouseIds.Any(wi => wi == 0))
+                {
+                    if (warehouseIds.Count == 1)
+                    {
                         sql.Append(" AND W.WAREHOUSE_ID IS NULL ");
                     }
-                    else {
+                    else
+                    {
                         sql.Append(" AND (W.WAREHOUSE_ID IN  (" + string.Join(",", warehouseIds.Where(wi => wi != 0)) + ") OR W.WAREHOUSE_ID IS NULL) ");
                     }
                 }
-                else {
+                else
+                {
                     sql.Append(" AND W.WAREHOUSE_ID IN  (" + string.Join(",", warehouseIds) + ") ");
                 }
             }
 
-            if (poType != 0) {
-                if (poType == 1) {
+            if (poType != 0)
+            {
+                if (poType == 1)
+                {
                     //sql.Append(" AND POM.IS_DERIVED = 0 ");
                     sql.Append(" AND PRM.PURCHASE_PROCEDURE = 1 ");
                 }
 
-                if (poType == 2) {
+                if (poType == 2)
+                {
                     //sql.Append(" AND POM.IS_DERIVED = 1 AND POM.IS_DERIVED_TYPE = 1 ");
                     sql.Append(" AND PRM.PURCHASE_PROCEDURE = 2 ");
                 }
 
-                if (poType == 3) {
+                if (poType == 3)
+                {
                     sql.Append(" AND POM.IS_DERIVED = 1 AND POM.IS_DERIVED_TYPE = 2 ");
                 }
             }
 
-            if(supplierIds != null)
+            if (supplierIds != null)
             {
                 if (supplierIds.Count > 0)
                 {
@@ -713,7 +811,7 @@ namespace CLibrary.Infrastructure {
                     }
                 }
             }
-            
+
 
             sql.Append("ORDER BY POM.CREATED_DATE ASC");
 
@@ -721,13 +819,15 @@ namespace CLibrary.Infrastructure {
             dbConnection.cmd.CommandText = sql.ToString();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
 
-        public List<POMaster> ViewCancelledPOS(int CompanyId, DateTime date, string prcode, string pocode, List<int> caregoryIds, List<int> warehouseIds, int poType, DBConnection dbConnection) {
+        public List<POMaster> ViewCancelledPOS(int CompanyId, DateTime date, string prcode, string pocode, List<int> caregoryIds, List<int> warehouseIds, int poType, DBConnection dbConnection)
+        {
 
             StringBuilder sql = new StringBuilder();
             sql.Append("SELECT POM.*,PRM.PURCHASE_PROCEDURE, CLC.FIRST_NAME AS CREATED_USER_NAME,CLA.FIRST_NAME AS APPROVED_USER_NAME,W.LOCATION AS WAREHOUSE_NAME,S.SUPPLIER_NAME,PRM.PR_CODE, PRM.REQUIRED_FOR, POMD.PO_CODE AS PARENT_PO_CODE FROM PO_MASTER AS POM \n");
@@ -740,49 +840,62 @@ namespace CLibrary.Infrastructure {
             sql.Append("LEFT JOIN(SELECT CATEGORY_ID, CATEGORY_NAME  FROM ITEM_CATEGORY_MASTER) AS ICM ON PRM.PR_CATEGORY_ID = ICM.CATEGORY_ID \n");
             sql.Append("WHERE POM.DEPARTMENT_ID=" + CompanyId + " AND POM.IS_CANCELLED = 1 \n");
 
-            if (prcode != "") {
+            if (prcode != "")
+            {
                 sql.Append(" AND PRM.PR_CODE =  '" + prcode + "'");
             }
 
-            if (pocode != "") {
+            if (pocode != "")
+            {
                 sql.Append(" AND POM.PO_CODE =  '" + pocode + "'");
             }
 
-            if (date != DateTime.MinValue) {
+            if (date != DateTime.MinValue)
+            {
                 sql.Append(" AND MONTH(POM.CREATED_DATE)= " + date.Month.ToString() + " AND YEAR(POM.CREATED_DATE)= " + date.Year.ToString() + " ");
             }
 
-            if (caregoryIds.Count > 0) {
+            if (caregoryIds.Count > 0)
+            {
                 sql.Append(" AND ICM.CATEGORY_ID IN (" + string.Join(",", caregoryIds) + ")");
             }
 
 
-            if (warehouseIds.Count > 0) {
-                if (warehouseIds.Any(wi => wi == 0)) {
-                    if (warehouseIds.Count == 1) {
+            if (warehouseIds.Count > 0)
+            {
+                if (warehouseIds.Any(wi => wi == 0))
+                {
+                    if (warehouseIds.Count == 1)
+                    {
                         sql.Append(" AND W.WAREHOUSE_ID IS NULL ");
                     }
-                    else {
+                    else
+                    {
                         sql.Append(" AND (W.WAREHOUSE_ID IN  (" + string.Join(",", warehouseIds.Where(wi => wi != 0)) + ") OR W.WAREHOUSE_ID IS NULL) ");
                     }
                 }
-                else {
+                else
+                {
                     sql.Append(" AND W.WAREHOUSE_ID IN  (" + string.Join(",", warehouseIds) + ") ");
                 }
             }
 
-            if (poType != 0) {
-                if (poType == 1) {
+            if (poType != 0)
+            {
+                if (poType == 1)
+                {
                     //sql.Append(" AND POM.IS_DERIVED = 0 ");
                     sql.Append(" AND PRM.PURCHASE_PROCEDURE = 1 ");
                 }
 
-                if (poType == 2) {
+                if (poType == 2)
+                {
                     // sql.Append(" AND POM.IS_DERIVED = 1 AND POM.IS_DERIVED_TYPE = 1 ");
                     sql.Append(" AND PRM.PURCHASE_PROCEDURE = 2 ");
                 }
 
-                if (poType == 3) {
+                if (poType == 3)
+                {
                     sql.Append(" AND POM.IS_DERIVED = 1 AND POM.IS_DERIVED_TYPE = 2 ");
                 }
 
@@ -795,13 +908,15 @@ namespace CLibrary.Infrastructure {
             dbConnection.cmd.CommandText = sql.ToString();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
 
-        public List<POMaster> ViewMyPOS(int UserId, int CompanyId, DateTime date, string prcode, string pocode, List<int> caregoryIds, List<int> warehouseIds, int poType, DBConnection dbConnection) {
+        public List<POMaster> ViewMyPOS(int UserId, int CompanyId, DateTime date, string prcode, string pocode, List<int> caregoryIds, List<int> warehouseIds, int poType, DBConnection dbConnection)
+        {
 
             StringBuilder sql = new StringBuilder();
             sql.Append("SELECT POM.*,CLC.FIRST_NAME AS CREATED_USER_NAME,PRM.PURCHASE_PROCEDURE,PRM.PURCHASE_TYPE,CLA.FIRST_NAME AS APPROVED_USER_NAME,W.LOCATION AS WAREHOUSE_NAME,S.SUPPLIER_NAME,PRM.PR_CODE, PRM.REQUIRED_FOR, POMD.PO_CODE AS PARENT_PO_CODE FROM PO_MASTER AS POM \n");
@@ -814,49 +929,62 @@ namespace CLibrary.Infrastructure {
             sql.Append("LEFT JOIN(SELECT CATEGORY_ID, CATEGORY_NAME  FROM ITEM_CATEGORY_MASTER) AS ICM ON PRM.PR_CATEGORY_ID = ICM.CATEGORY_ID \n");
             sql.Append("WHERE POM.DEPARTMENT_ID=" + CompanyId + " AND POM.CREATED_BY=" + UserId + " \n");
 
-            if (prcode != "") {
+            if (prcode != "")
+            {
                 sql.Append(" AND PRM.PR_CODE =  '" + prcode + "'");
             }
 
-            if (pocode != "") {
+            if (pocode != "")
+            {
                 sql.Append(" AND POM.PO_CODE =  '" + pocode + "'");
             }
 
-            if (date != DateTime.MinValue) {
+            if (date != DateTime.MinValue)
+            {
                 sql.Append(" AND MONTH(POM.CREATED_DATE)= " + date.Month.ToString() + " AND YEAR(POM.CREATED_DATE)= " + date.Year.ToString() + " ");
             }
 
-            if (caregoryIds.Count > 0) {
+            if (caregoryIds.Count > 0)
+            {
                 sql.Append(" AND ICM.CATEGORY_ID IN (" + string.Join(",", caregoryIds) + ")");
             }
 
 
-            if (warehouseIds.Count > 0) {
-                if (warehouseIds.Any(wi => wi == 0)) {
-                    if (warehouseIds.Count == 1) {
+            if (warehouseIds.Count > 0)
+            {
+                if (warehouseIds.Any(wi => wi == 0))
+                {
+                    if (warehouseIds.Count == 1)
+                    {
                         sql.Append(" AND W.WAREHOUSE_ID IS NULL ");
                     }
-                    else {
+                    else
+                    {
                         sql.Append(" AND (W.WAREHOUSE_ID IN  (" + string.Join(",", warehouseIds.Where(wi => wi != 0)) + ") OR W.WAREHOUSE_ID IS NULL) ");
                     }
                 }
-                else {
+                else
+                {
                     sql.Append(" AND W.WAREHOUSE_ID IN  (" + string.Join(",", warehouseIds) + ") ");
                 }
             }
 
-            if (poType != 0) {
-                if (poType == 1) {
+            if (poType != 0)
+            {
+                if (poType == 1)
+                {
                     //sql.Append(" AND POM.IS_DERIVED = 0 ");
                     sql.Append(" AND PRM.PURCHASE_PROCEDURE = 1 ");
                 }
 
-                if (poType == 2) {
-                   // sql.Append(" AND POM.IS_DERIVED = 1 AND POM.IS_DERIVED_TYPE = 1 ");
+                if (poType == 2)
+                {
+                    // sql.Append(" AND POM.IS_DERIVED = 1 AND POM.IS_DERIVED_TYPE = 1 ");
                     sql.Append(" AND PRM.PURCHASE_PROCEDURE = 2 ");
                 }
 
-                if (poType == 3) {
+                if (poType == 3)
+                {
                     sql.Append(" AND POM.IS_DERIVED = 1 AND POM.IS_DERIVED_TYPE = 2 ");
                 }
 
@@ -869,13 +997,15 @@ namespace CLibrary.Infrastructure {
             dbConnection.cmd.CommandText = sql.ToString();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
 
-        public List<POMaster> GetDerrivedFromPOs(int DerrivedPO, DBConnection dbConnection) {
+        public List<POMaster> GetDerrivedFromPOs(int DerrivedPO, DBConnection dbConnection)
+        {
 
             StringBuilder sql = new StringBuilder();
             sql.Append("SELECT POM.*,CLC.FIRST_NAME AS CREATED_USER_NAME,CLA.FIRST_NAME AS APPROVED_USER_NAME,W.LOCATION AS WAREHOUSE_NAME,S.SUPPLIER_NAME,PRM.PR_CODE FROM PO_MASTER AS POM \n");
@@ -890,13 +1020,15 @@ namespace CLibrary.Infrastructure {
             dbConnection.cmd.CommandText = sql.ToString();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
 
-        public List<POMaster> GetDerrivedPOs(int DerrivedPO, DBConnection dbConnection) {
+        public List<POMaster> GetDerrivedPOs(int DerrivedPO, DBConnection dbConnection)
+        {
 
             StringBuilder sql = new StringBuilder();
             sql.Append("SELECT POM.*,CLC.FIRST_NAME AS CREATED_USER_NAME,CLA.FIRST_NAME AS APPROVED_USER_NAME,W.LOCATION AS WAREHOUSE_NAME,S.SUPPLIER_NAME,PRM.PR_CODE FROM PO_MASTER AS POM \n");
@@ -911,13 +1043,15 @@ namespace CLibrary.Infrastructure {
             dbConnection.cmd.CommandText = sql.ToString();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
 
-        public List<string> getPoDetailsByGrnId(int GrnId, DBConnection dbConnection) {
+        public List<string> getPoDetailsByGrnId(int GrnId, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "SELECT B.PO_CODE, C.PR_CODE FROM PO_GRN AS A " +
                                             "INNER JOIN(SELECT PO_ID, PO_CODE, BASED_PR FROM  PO_MASTER) AS B " +
@@ -930,9 +1064,12 @@ namespace CLibrary.Infrastructure {
             List<string> poCodes = new List<string>();
             string PrCode = String.Empty;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
-                if (dbConnection.dr.HasRows) {
-                    while (dbConnection.dr.Read()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
+                if (dbConnection.dr.HasRows)
+                {
+                    while (dbConnection.dr.Read())
+                    {
                         poCodes.Add(dbConnection.dr[0].ToString());
                         PrCode = dbConnection.dr[1].ToString();
                     }
@@ -947,7 +1084,8 @@ namespace CLibrary.Infrastructure {
 
         }
 
-        public POMaster GetPoMasterToEditPO(int PoId, int CompanyId, DBConnection dbConnection) {
+        public POMaster GetPoMasterToEditPO(int PoId, int CompanyId, DBConnection dbConnection)
+        {
             POMaster po;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "SELECT POM.*,PRM.PR_CODE,cl.*,cll.* FROM PO_MASTER AS POM \n" +
@@ -956,12 +1094,14 @@ namespace CLibrary.Infrastructure {
                                              "LEFT JOIN (SELECT USER_ID, FIRST_NAME AS CREATED_USER_NAME, DIGITAL_SIGNATURE AS CREATED_SIGNATURE FROM COMPANY_LOGIN) AS CLL ON POM.CREATED_BY = CLL.USER_ID\n" +
                                             "WHERE PO_ID = " + PoId;
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 po = dataAccessObject.GetSingleOject<POMaster>(dbConnection.dr);
             }
 
-            if (po != null) {
+            if (po != null)
+            {
                 po.QuotationFor = DAOFactory.CreatePR_MasterDAO().GetQuotationForbyPrCode(po.DepartmentId, po.PrCode, dbConnection);
 
                 po._Supplier = DAOFactory.createSupplierDAO().GetSupplierBySupplierId(po.SupplierId, dbConnection);
@@ -972,7 +1112,8 @@ namespace CLibrary.Infrastructure {
             return po;
         }
 
-        public List<int> UpdatePO(POMaster poMaster, int UserId, DBConnection dbConnection) {
+        public List<int> UpdatePO(POMaster poMaster, int UserId, DBConnection dbConnection)
+        {
             StringBuilder sql = new StringBuilder();
             sql.AppendLine("DECLARE @PoIdTable TABLE (POID INT)");
             sql.AppendLine("DECLARE @PoCodeTable TABLE (POCode INT)");
@@ -983,7 +1124,8 @@ namespace CLibrary.Infrastructure {
             sql.AppendLine("OUTPUT INSERTED.PO_ID INTO @PoIdTable(POID)");
             sql.AppendLine("VALUES ((SELECT 'PO'+CONVERT(VARCHAR,MAX (POCode)) FROM @PoCodeTable)," + poMaster.DepartmentId + "," + poMaster.SupplierId + ",'" + LocalTime.Now + "','" + poMaster.CreatedBy + "'," + poMaster.VatAmount + "," + poMaster.NBTAmount + "," + poMaster.TotalAmount + "," + poMaster.BasePr + "," + poMaster.DeliverToWarehouse + ",1,1," + poMaster.IsDerivedFromPo + ",'" + poMaster.DerivingReason + "'," + (poMaster.ParentApprovedUser == 0 ? "NULL" : poMaster.ParentApprovedUser.ToString()) + "," + (poMaster.ParentApprovedUser == 0 ? "1" : "0") + ", 1, " + poMaster.QuotationId + "," + poMaster.QuotationApprovedBy + "," + poMaster.QuotationConfirmedBy + ", 0, '" + poMaster.Remarks + "');");
 
-            for (int j = 0; j < poMaster.PoDetails.Count; j++) {
+            for (int j = 0; j < poMaster.PoDetails.Count; j++)
+            {
                 sql.AppendLine("INSERT INTO PO_DETAILS ([PO_ID],[QUOTATION_ITEM_ID],[ITEM_PRICE],[QUANTITY],[TOTAL_AMOUNT],[VAT_AMOUNT],[NBT_AMOUNT],[ITEM_ID],[BASED_PO],[IS_PO_EDIT_MODE],[HAS_NBT],[NBT_CALCULATION_TYPE],[HAS_VAT],[TABULATION_ID],[TABULATION_DETAIL_ID],[MEASUREMENT_ID],[RECEIVED_QTY], [STATUS], [SUPPLIER_MENTIONED_ITEM_NAME])");
                 sql.AppendLine("VALUES ((SELECT MAX(POID) FROM @PoIdTable)," + poMaster.PoDetails[j].QuotationItemId + "," + poMaster.PoDetails[j].ItemPrice + "," + poMaster.PoDetails[j].Quantity + "," + poMaster.PoDetails[j].TotalAmount + "," + poMaster.PoDetails[j].VatAmount + "," + poMaster.PoDetails[j].NbtAmount + "," + poMaster.PoDetails[j].ItemId + ",(SELECT MAX(POID) FROM @PoIdTable),1," + poMaster.PoDetails[j].HasNbt + "," + poMaster.PoDetails[j].NbtCalculationType + "," + poMaster.PoDetails[j].HasVat + "," + poMaster.PoDetails[j].TabulationId + "," + poMaster.PoDetails[j].TabulationDetailId + ", " + poMaster.PoDetails[j].MeasurementId + ", 0, 0, '" + poMaster.PoDetails[j].SupplierMentionedItemName + "');");
 
@@ -1012,12 +1154,15 @@ namespace CLibrary.Infrastructure {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = sql.ToString();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 List<int> PoIdAndCode = new List<int>();
 
-                if (dbConnection.dr.HasRows) {
-                    while (dbConnection.dr.Read()) {
+                if (dbConnection.dr.HasRows)
+                {
+                    while (dbConnection.dr.Read())
+                    {
                         PoIdAndCode.Add(int.Parse(dbConnection.dr[0].ToString()));
                     }
                 }
@@ -1026,7 +1171,8 @@ namespace CLibrary.Infrastructure {
             }
         }
 
-        public List<POMaster> GetPosForApproval(int CompanyId, int UserId, DBConnection dbConnection) {
+        public List<POMaster> GetPosForApproval(int CompanyId, int UserId, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
 
             dbConnection.cmd.CommandText = "SELECT POM.PO_ID,POM.PO_CODE,PM.PR_CODE,PM.PURCHASE_TYPE,PM.REQUIRED_FOR,POM.BASED_PR,SU.SUPPLIER_NAME,COUNT(POD.ITEM_ID) AS ITEMCOUNT,PM.PURCHASE_PROCEDURE, POM.IS_APPROVED,POM.IS_DERIVED,POM.IS_DERIVED_TYPE, POM.CREATED_DATE " +
@@ -1035,18 +1181,20 @@ namespace CLibrary.Infrastructure {
                                             "INNER JOIN PO_DETAILS AS POD ON POD.PO_ID =POM.PO_ID " +
                                             "INNER JOIN SUPPLIER AS SU ON SU.SUPPLIER_ID =POM.SUPPLIER_ID " +
                                             "WHERE POM.DEPARTMENT_ID = " + CompanyId + " " +
-                                            "AND (ISNULL(POM.IS_APPROVED,0)=0 AND ISNULL(POM.WAS_DERIVED,0) =0 AND POM.IS_DERIVED=0) OR (ISNULL(POM.IS_APPROVED,0)=0 AND ISNULL(POM.WAS_DERIVED,0) =1 AND ISNULL(POM.IS_CURRENT,0)=1) OR (ISNULL(POM.WAS_DERIVED,0) =0 AND POM.IS_DERIVED=1 AND POM.IS_DERIVED_TYPE=2 AND ISNULL(POM.IS_APPROVED_BY_PARENT_APPROVED_USER,0)=1 AND ISNULL(POM.IS_APPROVED,0)=0) OR (ISNULL(POM.WAS_DERIVED,0) =0 AND POM.IS_DERIVED=1 AND ISNULL(POM.IS_APPROVED_BY_PARENT_APPROVED_USER,0)=0 AND ISNULL(POM.PARENT_APPROVED_USER,0)="+UserId+") " +
+                                            "AND (ISNULL(POM.IS_APPROVED,0)=0 AND ISNULL(POM.WAS_DERIVED,0) =0 AND POM.IS_DERIVED=0) OR (ISNULL(POM.IS_APPROVED,0)=0 AND ISNULL(POM.WAS_DERIVED,0) =1 AND ISNULL(POM.IS_CURRENT,0)=1) OR (ISNULL(POM.WAS_DERIVED,0) =0 AND POM.IS_DERIVED=1 AND POM.IS_DERIVED_TYPE=2 AND ISNULL(POM.IS_APPROVED_BY_PARENT_APPROVED_USER,0)=1 AND ISNULL(POM.IS_APPROVED,0)=0) OR (ISNULL(POM.WAS_DERIVED,0) =0 AND POM.IS_DERIVED=1 AND ISNULL(POM.IS_APPROVED_BY_PARENT_APPROVED_USER,0)=0 AND ISNULL(POM.PARENT_APPROVED_USER,0)=" + UserId + ") " +
                                             "GROUP BY PM.PURCHASE_PROCEDURE,POM.PO_ID,POM.PO_CODE,PM.PR_CODE,PM.PURCHASE_TYPE,PM.REQUIRED_FOR,POM.BASED_PR,SU.SUPPLIER_NAME ,POM.IS_APPROVED,POM.IS_DERIVED,POM.IS_DERIVED_TYPE, POM.CREATED_DATE ORDER BY POM.CREATED_DATE ASC ";
-            
+
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
 
-        public List<POMaster> GetPosForInvoice(int CompanyId, int UserId, DBConnection dbConnection) {
+        public List<POMaster> GetPosForInvoice(int CompanyId, int UserId, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
 
             dbConnection.cmd.CommandText = "SELECT PM.PURCHASE_PROCEDURE,POM.PO_ID,POM.PO_CODE,PM.PR_CODE,PM.REQUIRED_FOR,PM.PURCHASE_TYPE,POM.BASED_PR,SU.SUPPLIER_NAME,COUNT(POD.ITEM_ID) AS ITEMCOUNT, POM.IS_APPROVED,POM.IS_DERIVED,POM.IS_DERIVED_TYPE, POM.CREATED_DATE " +
@@ -1060,12 +1208,14 @@ namespace CLibrary.Infrastructure {
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
-        public List<POMaster> GetPosForPrint(int CompanyId, int UserId, DBConnection dbConnection) {
+        public List<POMaster> GetPosForPrint(int CompanyId, int UserId, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
 
             dbConnection.cmd.CommandText = "SELECT POM.PO_ID,POM.PO_CODE,PM.PR_CODE,PM.PURCHASE_TYPE,PM.REQUIRED_FOR,POM.BASED_PR,SU.SUPPLIER_NAME,COUNT(POD.ITEM_ID) AS ITEMCOUNT, POM.IS_APPROVED,POM.IS_DERIVED,POM.IS_DERIVED_TYPE, POM.CREATED_DATE " +
@@ -1079,12 +1229,14 @@ namespace CLibrary.Infrastructure {
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
-        public POMaster GetPoMasterToViewPO(int PoId, int CompanyId, DBConnection dbConnection) {
+        public POMaster GetPoMasterToViewPO(int PoId, int CompanyId, DBConnection dbConnection)
+        {
             POMaster po;
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "SELECT POM.*,AD.APPROVED_DESIGNATION_NAME,PRM.IMPORT_ITEM_TYPE, APD.CREATED_DESIGNATION_NAME, PD.PARENT_APPROVED_DESIGNATION_NAME, SUB.DEPARTMENT_NAME,PRM.PR_CODE,PRM.PURCHASE_TYPE,PRM.REQUIRED_FOR,CLA.*,CLC.* ,SK.STORE_KEEPER, PRM.PURCHASE_TYPE,PRM.PURCHASE_PROCEDURE, PRM.CLONED_FROM_PR, CLPA.*,POMD.PO_CODE AS PARENT_PO_CODE FROM PO_MASTER AS POM \n" +
@@ -1102,17 +1254,20 @@ namespace CLibrary.Infrastructure {
                                             "LEFT JOIN (SELECT USER_ID, FIRST_NAME AS STORE_KEEPER FROM COMPANY_LOGIN) AS SK ON SK.USER_ID = PRM.CREATED_BY\n" +
                                             "WHERE POM.PO_ID = " + PoId;
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 po = dataAccessObject.GetSingleOject<POMaster>(dbConnection.dr);
             }
 
-            if (po != null) {
+            if (po != null)
+            {
                 po._Supplier = DAOFactory.createSupplierDAO().GetSupplierBySupplierId(po.SupplierId, dbConnection);
                 po._Warehouse = DAOFactory.CreateWarehouseDAO().getWarehouseByID(po.DeliverToWarehouse, dbConnection);
                 po.PoDetails = DAOFactory.createPODetailsDAO().GetPODetailsToViewPo(po.PoID, CompanyId, dbConnection);
                 po.DerivedPOs = GetDerrivedPOs(po.PoID, dbConnection);
-                if (po.IsDerived == 1) {
+                if (po.IsDerived == 1)
+                {
                     po.DerivedFromPOs = GetDerrivedFromPOs(po.IsDerivedFromPo, dbConnection);
                 }
                 po.GeneratedGRNs = DAOFactory.createGrnDAO().GetGeneratedGRNsForPo(po.PoID, dbConnection);
@@ -1122,7 +1277,8 @@ namespace CLibrary.Infrastructure {
             return po;
         }
 
-        public List<POMaster> GetModifiedPosForApproval(int CompanyId, int UserId, DBConnection dbConnection) {
+        public List<POMaster> GetModifiedPosForApproval(int CompanyId, int UserId, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
 
 
@@ -1131,13 +1287,14 @@ namespace CLibrary.Infrastructure {
                                             "LEFT JOIN PR_MASTER AS PM ON PM.PR_ID =POM.BASED_PR   " +
                                             "LEFT JOIN PO_DETAILS AS POD ON POD.PO_ID =POM.PO_ID   " +
                                             "LEFT JOIN SUPPLIER AS SU ON SU.SUPPLIER_ID =POM.SUPPLIER_ID   " +
-                                            "WHERE POM.DEPARTMENT_ID = "+ CompanyId + " AND " +
+                                            "WHERE POM.DEPARTMENT_ID = " + CompanyId + " AND " +
                                             "(ISNULL(POM.IS_CURRENT,0) =1 AND POM.IS_DERIVED=1 AND  ISNULL(POM.IS_DERIVED_TYPE,0)=1 AND ISNULL(POM.IS_APPROVED_BY_PARENT_APPROVED_USER,0)=1 AND ISNULL(POM.IS_APPROVED,0)=0) " +
                                             "GROUP BY POM.PO_ID,POM.PO_CODE,PM.PR_CODE,PM.REQUIRED_FOR,POM.BASED_PR,SU.SUPPLIER_NAME ,POM.IS_APPROVED,POM.IS_DERIVED,POM.IS_DERIVED_TYPE, POM.CREATED_DATE ORDER BY POM.CREATED_DATE ASC";
 
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
@@ -1178,15 +1335,17 @@ namespace CLibrary.Infrastructure {
 
         //}
 
-        public int ParentApprovePO(int PoId, string Remarks, int PaymentMethod, int PoType, int UserId, int IsParentApproved, string PoRemark, DBConnection dbConnection) {
+        public int ParentApprovePO(int PoId, string Remarks, int PaymentMethod, int PoType, int UserId, int IsParentApproved, string PoRemark, DBConnection dbConnection)
+        {
 
             StringBuilder sql = new StringBuilder();
 
-            if (PoType == 2) { //covering  po
+            if (PoType == 2)
+            { //covering  po
 
                 sql.Append("UPDATE " + dbLibrary + ".PO_MASTER SET [IS_APPROVED_BY_PARENT_APPROVED_USER] =1,[PARENT_APPROVED_USER_APPROVAL_DATE]='" + LocalTime.Now + "',[PARENT_APPROVED_USER_APPROVAL_REMARKS]='" + Remarks + "',PAYMENT_METHOD='" + PaymentMethod + "' WHERE PO_ID = " + PoId + "; \n");
                 sql.Append(" \n");
-                sql.Append("UPDATE PO_MASTER SET IS_APPROVED= 1, REMARKS = '"+ PoRemark + "', APPROVED_BY=" + UserId + ",APPROVED_DATE='" + LocalTime.Now + "', APPROVAL_REMARKS ='" + Remarks + "'  WHERE PO_ID = " + PoId + "; \n");
+                sql.Append("UPDATE PO_MASTER SET IS_APPROVED= 1, REMARKS = '" + PoRemark + "', APPROVED_BY=" + UserId + ",APPROVED_DATE='" + LocalTime.Now + "', APPROVAL_REMARKS ='" + Remarks + "'  WHERE PO_ID = " + PoId + "; \n");
                 sql.Append(" \n");
 
                 sql.Append(" INSERT INTO PR_DETAIL_STATUS_LOG \n");
@@ -1201,12 +1360,15 @@ namespace CLibrary.Infrastructure {
 
 
             }
-            else {
-                if (IsParentApproved == 0) { // modified PO without parent approval
+            else
+            {
+                if (IsParentApproved == 0)
+                { // modified PO without parent approval
                     sql.Append("UPDATE " + dbLibrary + ".PO_MASTER SET [IS_APPROVED_BY_PARENT_APPROVED_USER] =1,[PARENT_APPROVED_USER_APPROVAL_DATE]='" + LocalTime.Now + "',[PARENT_APPROVED_USER_APPROVAL_REMARKS]='" + Remarks + "',PAYMENT_METHOD='" + PaymentMethod + "' WHERE PO_ID = " + PoId + "; \n");
 
                 }
-                else if (IsParentApproved == 1) { // modified PO with parent approval
+                else if (IsParentApproved == 1)
+                { // modified PO with parent approval
                     sql.Append("UPDATE PO_MASTER SET PAYMENT_METHOD='" + PaymentMethod + "', IS_APPROVED= 1, APPROVAL_REMARKS ='" + Remarks + "',  APPROVED_BY=" + UserId + ",APPROVED_DATE='" + LocalTime.Now + "'  WHERE PO_ID = " + PoId + " \n");
                     sql.Append(" \n");
 
@@ -1231,11 +1393,12 @@ namespace CLibrary.Infrastructure {
 
 
 
-        public int ApproveGeneralPO(int PoId, int UserId, string Remarks, int PaymentMethod, string PoRemark, DBConnection dbConnection) {
+        public int ApproveGeneralPO(int PoId, int UserId, string Remarks, int PaymentMethod, string PoRemark, DBConnection dbConnection)
+        {
             // Approval for general POs
             StringBuilder sql = new StringBuilder();
 
-            sql.Append("UPDATE PO_MASTER SET PAYMENT_METHOD='" + PaymentMethod + "', REMARKS = '"+PoRemark+"', IS_APPROVED= 1, APPROVED_BY=" + UserId + ", APPROVAL_REMARKS ='" + Remarks + "',APPROVED_DATE='" + LocalTime.Now + "'  WHERE PO_ID = " + PoId + " \n");
+            sql.Append("UPDATE PO_MASTER SET PAYMENT_METHOD='" + PaymentMethod + "', REMARKS = '" + PoRemark + "', IS_APPROVED= 1, APPROVED_BY=" + UserId + ", APPROVAL_REMARKS ='" + Remarks + "',APPROVED_DATE='" + LocalTime.Now + "'  WHERE PO_ID = " + PoId + " \n");
             sql.Append(" \n");
 
             sql.Append(" INSERT INTO PR_DETAIL_STATUS_LOG \n");
@@ -1264,10 +1427,11 @@ namespace CLibrary.Infrastructure {
 
         //}
 
-        public int RejectGeneralPO(int PoId, int UserId, string Remarks, int PaymentMethod, DBConnection dbConnection) {
+        public int RejectGeneralPO(int PoId, int UserId, string Remarks, int PaymentMethod, DBConnection dbConnection)
+        {
             StringBuilder sql = new StringBuilder();
             // Reject General PO
-            sql.Append("UPDATE PO_MASTER SET PAYMENT_METHOD='" + PaymentMethod + "', IS_APPROVED= 2,APPROVAL_REMARKS='"+ Remarks + "', APPROVED_BY=" + UserId + ",APPROVED_DATE='" + LocalTime.Now + "'  WHERE PO_ID = " + PoId + "; \n");
+            sql.Append("UPDATE PO_MASTER SET PAYMENT_METHOD='" + PaymentMethod + "', IS_APPROVED= 2,APPROVAL_REMARKS='" + Remarks + "', APPROVED_BY=" + UserId + ",APPROVED_DATE='" + LocalTime.Now + "'  WHERE PO_ID = " + PoId + "; \n");
             sql.Append(" \n");
 
             sql.Append("INSERT INTO PR_DETAIL_STATUS_LOG \n");
@@ -1280,7 +1444,7 @@ namespace CLibrary.Infrastructure {
             sql.Append("WHERE PR_ID = (SELECT BASED_PR FROM PO_MASTER WHERE PO_ID = " + PoId + ") AND \n");
             sql.Append("ITEM_ID IN(SELECT ITEM_ID FROM PO_DETAILS WHERE PO_ID = " + PoId + ");  \n");
             sql.Append(" \n");
-           
+
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = sql.ToString();
             return dbConnection.cmd.ExecuteNonQuery();
@@ -1313,11 +1477,13 @@ namespace CLibrary.Infrastructure {
 
         //}
 
-        public int ParentRejectPO(int PoId, string Remarks, int PaymentMethod, int PoType, int UserId, int IsParentApproved, int RejectionAction, int ParentPoId, DBConnection dbConnection) {
+        public int ParentRejectPO(int PoId, string Remarks, int PaymentMethod, int PoType, int UserId, int IsParentApproved, int RejectionAction, int ParentPoId, DBConnection dbConnection)
+        {
 
             StringBuilder sql = new StringBuilder();
 
-            if (PoType == 2) { // Covering PO
+            if (PoType == 2)
+            { // Covering PO
                 sql.Append("UPDATE " + dbLibrary + ".PO_MASTER SET [IS_APPROVED_BY_PARENT_APPROVED_USER] =2,[PARENT_APPROVED_USER_APPROVAL_DATE]='" + LocalTime.Now + "',[PARENT_APPROVED_USER_APPROVAL_REMARKS]='" + Remarks + "',PAYMENT_METHOD='" + PaymentMethod + "' WHERE PO_ID = " + PoId + "; \n");
                 sql.Append(" \n");
                 sql.Append("UPDATE PO_MASTER SET IS_APPROVED= 2, APPROVED_BY=" + UserId + ",APPROVAL_REMARKS='" + Remarks + "', APPROVED_DATE='" + LocalTime.Now + "'  WHERE PO_ID = " + PoId + "; \n");
@@ -1378,7 +1544,8 @@ namespace CLibrary.Infrastructure {
                 sql.Append(" \n");
                 sql.Append("END \n");
             }
-            else { // Modified PO
+            else
+            { // Modified PO
 
                 sql.Append("INSERT INTO PR_DETAIL_STATUS_LOG \n");
                 sql.Append("SELECT PRD_ID,(SELECT PR_DETAILS_LOG_ID FROM DEF_PR_DETAILS_LOG WHERE LOG_CODE='RJCTED_PO'),'" + LocalTime.Now + "'," + UserId + " FROM PR_DETAIL \n");
@@ -1386,18 +1553,21 @@ namespace CLibrary.Infrastructure {
                 sql.Append("ITEM_ID IN(SELECT ITEM_ID FROM PO_DETAILS WHERE PO_ID = " + PoId + ");  \n");
                 sql.Append(" \n");
 
-                if (IsParentApproved == 0) {
+                if (IsParentApproved == 0)
+                {
 
                     sql.Append("UPDATE " + dbLibrary + ".PO_MASTER SET [IS_APPROVED_BY_PARENT_APPROVED_USER] =2,[PARENT_APPROVED_USER_APPROVAL_DATE]='" + LocalTime.Now + "',[PARENT_APPROVED_USER_APPROVAL_REMARKS]='" + Remarks + "' WHERE PO_ID = " + PoId + "; \n");
                     sql.Append("UPDATE PO_MASTER SET PAYMENT_METHOD='" + PaymentMethod + "', IS_APPROVED= 2, APPROVAL_REMARKS = 'Rejected By Parent PO Approved User with the remarks: " + Remarks + "', APPROVED_BY=" + UserId + ",APPROVED_DATE='" + LocalTime.Now + "'  WHERE PO_ID = " + PoId + "; \n");
 
-                    if (RejectionAction == 1) {
+                    if (RejectionAction == 1)
+                    {
                         sql.Append("UPDATE PR_DETAIL SET CURRENT_STATUS=(SELECT PR_DETAILS_STATUS_ID FROM DEF_PR_DETAILS_STATUS WHERE STATUS_CODE='PROC_ENDED') \n");
                         sql.Append("WHERE PR_ID = (SELECT BASED_PR FROM PO_MASTER WHERE PO_ID = " + PoId + ") AND \n");
                         sql.Append("ITEM_ID IN(SELECT ITEM_ID FROM PO_DETAILS WHERE PO_ID = " + PoId + ");  \n");
                         sql.Append(" \n");
                     }
-                    else {
+                    else
+                    {
                         //reverse to previous
                         sql.Append("UPDATE PO_MASTER SET IS_CURRENT=0 WHERE PO_ID=" + PoId + " \n");
                         sql.Append("UPDATE PO_MASTER SET IS_CURRENT=1 WHERE PO_ID=" + ParentPoId + " \n");
@@ -1427,19 +1597,22 @@ namespace CLibrary.Infrastructure {
                         sql.Append("	ITEM_ID IN(SELECT ITEM_ID FROM PO_DETAILS WHERE PO_ID =" + ParentPoId + "); \n");
                         sql.Append("END");
                     }
-                
+
                 }
-                if (IsParentApproved == 1) {
+                if (IsParentApproved == 1)
+                {
                     sql.Append("UPDATE PO_MASTER SET PAYMENT_METHOD='" + PaymentMethod + "', IS_APPROVED= 2,APPROVAL_REMARKS='" + Remarks + "', APPROVED_BY=" + UserId + ",APPROVED_DATE='" + LocalTime.Now + "'  WHERE PO_ID = " + PoId + "; \n");
 
-                    if (RejectionAction == 1) {
+                    if (RejectionAction == 1)
+                    {
 
                         sql.Append("UPDATE PR_DETAIL SET CURRENT_STATUS=(SELECT PR_DETAILS_STATUS_ID FROM DEF_PR_DETAILS_STATUS WHERE STATUS_CODE='PROC_ENDED') \n");
                         sql.Append("WHERE PR_ID = (SELECT BASED_PR FROM PO_MASTER WHERE PO_ID = " + PoId + ") AND \n");
                         sql.Append("ITEM_ID IN(SELECT ITEM_ID FROM PO_DETAILS WHERE PO_ID = " + PoId + ");  \n");
                         sql.Append(" \n");
                     }
-                    else {
+                    else
+                    {
                         //reverse to previous
                         sql.Append("UPDATE PO_MASTER SET IS_CURRENT=0 WHERE PO_ID=" + PoId + " \n");
                         sql.Append("UPDATE PO_MASTER SET IS_CURRENT=1 WHERE PO_ID=" + ParentPoId + " \n");
@@ -1562,7 +1735,8 @@ namespace CLibrary.Infrastructure {
 
             return po;
         }
-        public List<POMaster> GetAllPosByPrId(int PrId, DBConnection dbConnection) {
+        public List<POMaster> GetAllPosByPrId(int PrId, DBConnection dbConnection)
+        {
             StringBuilder sql = new StringBuilder();
             sql.Append("SELECT POM.*,CLC.FIRST_NAME AS CREATED_USER_NAME,CLA.FIRST_NAME AS APPROVED_USER_NAME,W.LOCATION AS WAREHOUSE_NAME,S.SUPPLIER_NAME,PRM.PR_CODE,POMD.PO_CODE AS PARENT_PO_CODE FROM PO_MASTER AS POM \n");
             sql.Append("LEFT JOIN COMPANY_LOGIN AS CLC ON POM.CREATED_BY = CLC.USER_ID \n");
@@ -1577,13 +1751,15 @@ namespace CLibrary.Infrastructure {
             dbConnection.cmd.CommandText = sql.ToString();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
 
-        public List<POMaster> GetAPPROVEDPosByPrId(int PrId, DBConnection dbConnection) {
+        public List<POMaster> GetAPPROVEDPosByPrId(int PrId, DBConnection dbConnection)
+        {
             StringBuilder sql = new StringBuilder();
             sql.Append("SELECT * FROM PO_MASTER AS POM \n");
             sql.Append("WHERE POM.IS_APPROVED = 1 AND POM.BASED_PR =" + PrId);
@@ -1592,12 +1768,14 @@ namespace CLibrary.Infrastructure {
             dbConnection.cmd.CommandText = sql.ToString();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
-        public List<POMaster> GetAllPosByPrIdFor(List<int> PrId, DBConnection dbConnection) {
+        public List<POMaster> GetAllPosByPrIdFor(List<int> PrId, DBConnection dbConnection)
+        {
             StringBuilder sql = new StringBuilder();
             sql.Append("SELECT POM.*,CLC.FIRST_NAME AS CREATED_USER_NAME,CLA.FIRST_NAME AS APPROVED_USER_NAME,W.LOCATION AS WAREHOUSE_NAME,S.SUPPLIER_NAME,PRM.PR_CODE,POMD.PO_CODE AS PARENT_PO_CODE FROM PO_MASTER AS POM \n");
             sql.Append("LEFT JOIN COMPANY_LOGIN AS CLC ON POM.CREATED_BY = CLC.USER_ID \n");
@@ -1606,20 +1784,22 @@ namespace CLibrary.Infrastructure {
             sql.Append("LEFT JOIN PO_MASTER AS POMD ON POM.IS_DERIVED_FROM_PO = POMD.PO_ID \n");
             sql.Append("INNER JOIN SUPPLIER AS S ON POM.SUPPLIER_ID = S.SUPPLIER_ID \n");
             sql.Append("INNER JOIN PR_MASTER AS PRM ON POM.BASED_PR = PRM.PR_ID \n");
-            sql.Append("WHERE POM.BASED_PR IN ("+string.Join(",", PrId) +") ");
+            sql.Append("WHERE POM.BASED_PR IN (" + string.Join(",", PrId) + ") ");
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = sql.ToString();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<POMaster>(dbConnection.dr);
             }
         }
 
 
-        public int CreateCoveringPR(int PoId, int PrId, int grnId, int UserId, DBConnection dBConnection) {
+        public int CreateCoveringPR(int PoId, int PrId, int grnId, int UserId, DBConnection dBConnection)
+        {
             dBConnection.cmd.Parameters.Clear();
 
             dBConnection.cmd.CommandText = "[CLONE_FOR_COVERING_PR]";
@@ -1704,14 +1884,16 @@ namespace CLibrary.Infrastructure {
             dbConnection.cmd.CommandText = sql.ToString();
             return int.Parse(dbConnection.cmd.ExecuteScalar().ToString());
         }
-        public int UpdatePrintCount(int PoId, DBConnection dbConnection) {
+        public int UpdatePrintCount(int PoId, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "UPDATE PO_MASTER SET PRINT_COUNT += 1 WHERE PO_ID=" + PoId;
             return dbConnection.cmd.ExecuteNonQuery();
         }
 
-        public int CheckPoGrns(int PoId, DBConnection dbConnection) {
+        public int CheckPoGrns(int PoId, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             dbConnection.cmd.CommandText = "DECLARE @X INT " +

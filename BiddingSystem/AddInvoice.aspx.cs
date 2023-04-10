@@ -7,16 +7,14 @@ using System.Web.UI.WebControls;
 using CLibrary.Controller;
 using CLibrary.Common;
 using CLibrary.Domain;
-using System.IO;
-using iTextSharp.text;
-using iTextSharp.text.html.simpleparser;
-using iTextSharp.text.pdf;
 using System.Data;
 using System.Web.Script.Serialization;
 using System.Globalization;
 
-namespace BiddingSystem {
-    public partial class AddInvoice : System.Web.UI.Page {
+namespace BiddingSystem
+{
+    public partial class AddInvoice : System.Web.UI.Page
+    {
         POMasterController pOMasterController = ControllerFactory.CreatePOMasterController();
         PODetailsController pODetailsController = ControllerFactory.CreatePODetailsController();
         CompanyDepartmentController companyDepartmentController = ControllerFactory.CreateCompanyDepartmentController();
@@ -43,8 +41,10 @@ namespace BiddingSystem {
         //int CompanyId = 0;
         // int PoId = 0;
         //  static int quationid = 0;
-        protected void Page_Load(object sender, EventArgs e) {
-            if (Session["CompanyId"] != null && Session["UserId"].ToString() != null) {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["CompanyId"] != null && Session["UserId"].ToString() != null)
+            {
                 ((BiddingAdmin)Page.Master).mainTabValue = "hrefPurchasing";
                 ((BiddingAdmin)Page.Master).subTabTitle = "subTabPurchasing";
                 ((BiddingAdmin)Page.Master).subTabValue = "AddInvoice.aspx";
@@ -54,7 +54,8 @@ namespace BiddingSystem {
                 // UserId = Session["UserId"].ToString();
                 CompanyLogin companyLogin = companyLoginController.GetUserbyuserId(int.Parse(Session["UserId"].ToString()));
 
-                if ((!companyUserAccessController.isAvilableAccess(int.Parse(Session["UserId"].ToString()), int.Parse(Session["CompanyId"].ToString()), 6, 31) && companyLogin.Usertype != "S") && companyLogin.Usertype != "GA") {
+                if ((!companyUserAccessController.isAvilableAccess(int.Parse(Session["UserId"].ToString()), int.Parse(Session["CompanyId"].ToString()), 6, 31) && companyLogin.Usertype != "S") && companyLogin.Usertype != "GA")
+                {
                     Response.Redirect("AdminDashboard.aspx");
                 }
 
@@ -66,11 +67,13 @@ namespace BiddingSystem {
                 //    Response.Redirect("CusromerPOView.aspx");
                 //}
             }
-            else {
+            else
+            {
                 Response.Redirect("LoginPage.aspx");
             }
 
-            if (!IsPostBack) {
+            if (!IsPostBack)
+            {
                 POMaster poMaster = pOMasterController.GetPoMasterToViewPO(int.Parse(Request.QueryString.Get("PoId")), int.Parse(Session["CompanyId"].ToString()));
                 SupplierQuotation ImportDetails = supplierQuotationController.GetImportDetails(int.Parse(Request.QueryString.Get("PoId")), int.Parse(Session["CompanyId"].ToString()));
                 ViewState["PurchaseType"] = poMaster.PurchaseType;
@@ -91,19 +94,23 @@ namespace BiddingSystem {
                 //lblQuotationFor.Text = poMaster.QuotationFor;
                 lblPurchaseType.Text = poMaster.PurchaseType == 1 ? "Local" : "Import";
 
-                if (poMaster.PurchaseType == 2) {
-                    if (poMaster.ImportItemType == 2) {
+                if (poMaster.PurchaseType == 2)
+                {
+                    if (poMaster.ImportItemType == 2)
+                    {
                         gvPoItems.Columns[16].Visible = false;
                     }
                 }
-                if (poMaster.PurchaseType == 1) {
+                if (poMaster.PurchaseType == 1)
+                {
                     gvPoItems.Columns[15].Visible = false;
                     gvPoItems.Columns[16].Visible = false;
                 }
 
                 //gvPoItems.DataSource = poMaster.PoDetails;
                 //gvPoItems.DataBind();
-                if (poMaster.PurchaseType == 2) {
+                if (poMaster.PurchaseType == 2)
+                {
                     PanenImports.Visible = true;
                     pnlLogo.Visible = true;
                     lblCurrency.Text = ImportDetails.CurrencyShortname;
@@ -112,10 +119,12 @@ namespace BiddingSystem {
                 }
                 int VarPoPurchaseType = 0;
                 string VarSupplierAgentName = "";
-                for (int i = 0; i < poMaster.PoDetails.Count; i++) {
+                for (int i = 0; i < poMaster.PoDetails.Count; i++)
+                {
                     VarPoPurchaseType = poMaster.PoDetails[i].PoPurchaseType;
                     VarSupplierAgentName = poMaster.PoDetails[i].SupplierAgentName;
-                    if (poMaster.PurchaseType == 2 && poMaster.PoDetails[i].PoPurchaseType == 1) {
+                    if (poMaster.PurchaseType == 2 && poMaster.PoDetails[i].PoPurchaseType == 1)
+                    {
                         PanenImports.Visible = false;
                         pnlLogo.Visible = false;
                     }
@@ -127,37 +136,44 @@ namespace BiddingSystem {
                 //tdVat.InnerHtml = poMaster.VatAmount.ToString("N2");
                 //tdNetTotal.InnerHtml = poMaster.TotalAmount.ToString("N2");
 
-                if (poMaster.PurchaseType == 2) {
+                if (poMaster.PurchaseType == 2)
+                {
                     gvPoItems.Columns[12].Visible = false;
                 }
 
-                
-               
-                if (poMaster.IsDerived == 0) {
+
+
+                if (poMaster.IsDerived == 0)
+                {
                     lblGeneral.Visible = true;
                     ViewState["PoType"] = "0";  //General
                     hdnPoType.Value = "0";
                     //pnlSelectPaymentMethod.Visible = true;
                 }
-                else if (poMaster.IsDerived == 1 && poMaster.IsDerivedType == 1) {
+                else if (poMaster.IsDerived == 1 && poMaster.IsDerivedType == 1)
+                {
                     lblModified.Visible = true;
                     ViewState["PoType"] = "1";  //Modified
                     hdnPoType.Value = "1";
-                   // pnlSelectPaymentMethod.Visible = true;
+                    // pnlSelectPaymentMethod.Visible = true;
                 }
-                else {
+                else
+                {
                     lblCovering.Visible = true;
                     ViewState["PoType"] = "2";  //Covering
                     hdnPoType.Value = "2";
                 }
 
-                if (poMaster.IsApproved == 0) {
+                if (poMaster.IsApproved == 0)
+                {
                     lblPending.Visible = true;
                 }
-                else if (poMaster.IsApproved == 1) {
+                else if (poMaster.IsApproved == 1)
+                {
                     lblApproved.Visible = true;
                 }
-                else {
+                else
+                {
                     lblRejected.Visible = true;
                 }
 
@@ -200,10 +216,12 @@ namespace BiddingSystem {
                 //    ddlPaymentMethod.SelectedValue = poMaster.PaymentMethod;
                 //}
 
-                if (poMaster.IsDerived == 1 && poMaster.IsApprovedByParentApprovedUser == 0) {
+                if (poMaster.IsDerived == 1 && poMaster.IsApprovedByParentApprovedUser == 0)
+                {
                     ViewState["ApproverType"] = "1";    //ParentApprover
                 }
-                else {
+                else
+                {
                     ViewState["ApproverType"] = "2";    //LimitApprover
                 }
 
@@ -226,14 +244,18 @@ namespace BiddingSystem {
                 //    lblParentApprovalText.InnerHtml = "Parent Approved User: REJECTED";
                 //}
                 decimal Total = 0;
-                for (int i = 0; i < poMaster.PoDetails.Count; i++) {
-                    if (poMaster.PurchaseType == 2) {
-                        if (poMaster.PoDetails[i].PoPurchaseType == 1) {
+                for (int i = 0; i < poMaster.PoDetails.Count; i++)
+                {
+                    if (poMaster.PurchaseType == 2)
+                    {
+                        if (poMaster.PoDetails[i].PoPurchaseType == 1)
+                        {
                             PanenImports.Visible = false;
                             pnlLogo.Visible = false;
                         }
 
-                        if (poMaster.PoDetails[i].PoPurchaseType == 2) {
+                        if (poMaster.PoDetails[i].PoPurchaseType == 2)
+                        {
 
                             poMaster.PoDetails[i].SubTotal = poMaster.PoDetails[i].UnitPriceForeign * poMaster.PoDetails[i].Quantity;
                             poMaster.PoDetails[i].VatAmount = 0;
@@ -256,22 +278,28 @@ namespace BiddingSystem {
                 ViewState["PoMaster"] = new JavaScriptSerializer().Serialize(poMaster);
             }
         }
-        protected void gvPOItems_RowDataBound(object sender, GridViewRowEventArgs e) {
-            if (e.Row.RowType == DataControlRowType.Header) {
-                if (ViewState["PurchaseType"].ToString() != "2") {
+        protected void gvPOItems_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Header)
+            {
+                if (ViewState["PurchaseType"].ToString() != "2")
+                {
 
                     e.Row.Cells[4].CssClass = "hidden";
                 }
             }
 
-            if (e.Row.RowType == DataControlRowType.DataRow) {
-                if (ViewState["PurchaseType"].ToString() != "2") {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (ViewState["PurchaseType"].ToString() != "2")
+                {
 
                     e.Row.Cells[4].CssClass = "hidden";
                 }
             }
         }
-        protected void lbtnViewPO_Click(object sender, EventArgs e) {
+        protected void lbtnViewPO_Click(object sender, EventArgs e)
+        {
             int PoId = int.Parse(((sender as LinkButton).NamingContainer as GridViewRow).Cells[0].Text);
 
             Response.Redirect("ViewPO.aspx?PoId=" + PoId);
@@ -335,21 +363,25 @@ namespace BiddingSystem {
         //    }
         //}
 
-        protected void btnInvoice_Click(object sender, EventArgs e) {
+        protected void btnInvoice_Click(object sender, EventArgs e)
+        {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { $('#mdlInvDetails').modal('show'); });   </script>", false);
 
         }
 
-        protected void btnAdd_Click(object sender, EventArgs e) {
-            try {
+        protected void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
                 Random r = new Random();
-                if (ViewState["InvoiceDetails"] == null) {
+                if (ViewState["InvoiceDetails"] == null)
+                {
                     List<InvoiceDetails> invoiceDetails = new List<InvoiceDetails>();
-                    
+
                     InvoiceDetails newDetail = new InvoiceDetails();
                     newDetail.num = r.Next();
                     newDetail.InvoiceNo = txtInvNo.Text;
-                    newDetail.InvoiceDate = txtDate.Text == "" ?DateTime.MinValue: DateTime.Parse(txtDate.Text);
+                    newDetail.InvoiceDate = txtDate.Text == "" ? DateTime.MinValue : DateTime.Parse(txtDate.Text);
                     newDetail.InvoiceAmount = decimal.Parse(txtAmount.Text);
                     newDetail.IsPaymentSettled = ChkPayment.Checked == true ? 1 : 0;
                     newDetail.VatNo = txtVatNo.Text;
@@ -359,7 +391,8 @@ namespace BiddingSystem {
                     invoiceDetails.Add(newDetail);
                     ViewState["InvoiceDetails"] = new JavaScriptSerializer().Serialize(invoiceDetails);
                 }
-                else {
+                else
+                {
                     List<InvoiceDetails> invoiceDetails = new JavaScriptSerializer().Deserialize<List<InvoiceDetails>>(ViewState["InvoiceDetails"].ToString());
                     InvoiceDetails newDetail = new InvoiceDetails();
 
@@ -380,10 +413,12 @@ namespace BiddingSystem {
                 btnDone.Visible = true;
 
                 List<InvoiceDetails> invoiceDetailsList = new JavaScriptSerializer().Deserialize<List<InvoiceDetails>>(ViewState["InvoiceDetails"].ToString());
-                for (int i = 0; i < invoiceDetailsList.Count; i++) {
+                for (int i = 0; i < invoiceDetailsList.Count; i++)
+                {
                     invoiceDetailsList[i].RemarkOn = invoiceDetailsList[i].RemarkOn.AddMinutes(330);
 
-                    if (invoiceDetailsList[i].InvoiceDate != DateTime.MinValue) {
+                    if (invoiceDetailsList[i].InvoiceDate != DateTime.MinValue)
+                    {
                         invoiceDetailsList[i].InvoiceDate = invoiceDetailsList[i].InvoiceDate.AddMinutes(330);
                     }
                 }
@@ -400,25 +435,29 @@ namespace BiddingSystem {
                 txtremark.Text = "";
                 txtNewDate.Text = "";
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
 
             }
 
-            }
-        protected void btnDelete_Click(object sender, EventArgs e) {
+        }
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
             List<InvoiceDetails> invoiceDetails = new JavaScriptSerializer().Deserialize<List<InvoiceDetails>>(ViewState["InvoiceDetails"].ToString());
             int Rnum = int.Parse(((sender as Button).NamingContainer as GridViewRow).Cells[0].Text);
 
-            for (int i = 0; i < invoiceDetails.Count; i++) {
+            for (int i = 0; i < invoiceDetails.Count; i++)
+            {
                 InvoiceDetails DInvoiceDetails = invoiceDetails[i];
-                if (invoiceDetails[i].num == Rnum) {
+                if (invoiceDetails[i].num == Rnum)
+                {
                     invoiceDetails[i].status = 2;
                     invoiceDetails.Remove(DInvoiceDetails);
                 }
-                
+
             }
 
-            
+
             gvAddedInvDetails.DataSource = invoiceDetails.Where(x => x.status != 2);
             gvAddedInvDetails.DataBind();
             ViewState["InvoiceDetails"] = new JavaScriptSerializer().Serialize(invoiceDetails);
@@ -426,35 +465,45 @@ namespace BiddingSystem {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () {$('div').removeClass('modal-backdrop'); $('#mdlInvDetails').modal('show'); });   </script>", false);
 
         }
-        protected void btnPrevInv_Click(object sender, EventArgs e) {
-            try {
+        protected void btnPrevInv_Click(object sender, EventArgs e)
+        {
+            try
+            {
                 gvPrevInvoices.DataSource = invoiceDetailsController.GetPreviousInvoices(int.Parse(Request.QueryString.Get("PoId")));
                 gvPrevInvoices.DataBind();
 
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>   $('div').removeClass('modal-backdrop'); $(document).ready(function () { $('#mdlPrevInvoices').modal('show'); });   </script>", false);
             }
-            catch (Exception EX) {
+            catch (Exception EX)
+            {
 
             }
         }
 
-        protected void btnEdit_Click(object sender, EventArgs e) {
-            try {
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
                 Response.Redirect("ViewInvoices.aspx");
             }
-            catch (Exception EX) {
+            catch (Exception EX)
+            {
 
             }
         }
-        protected void btnDone_Click(object sender, EventArgs e) {
-            
+        protected void btnDone_Click(object sender, EventArgs e)
+        {
+
             IList<HttpPostedFile> images = fileImages.PostedFiles;
             List<InvoiceImages> invoiceImages = new List<InvoiceImages>();
-            for (int i = 0; i < images.Count; i++) {
-                if (images[i].ContentLength > 0) {
+            for (int i = 0; i < images.Count; i++)
+            {
+                if (images[i].ContentLength > 0)
+                {
                     string filePath = "/InvoiceImages/" + i + "_" + LocalTime.Now.Ticks + "_" + images[i].FileName;
                     images[i].SaveAs(HttpContext.Current.Server.MapPath(filePath));
-                    InvoiceImages image = new InvoiceImages() {
+                    InvoiceImages image = new InvoiceImages()
+                    {
                         ImagePath = "~" + filePath
                     };
                     invoiceImages.Add(image);
@@ -463,9 +512,11 @@ namespace BiddingSystem {
 
 
             List<InvoiceDetails> invoiceDetails = new JavaScriptSerializer().Deserialize<List<InvoiceDetails>>(ViewState["InvoiceDetails"].ToString());
-            for (int i = 0; i < invoiceDetails.Count; i++) {
+            for (int i = 0; i < invoiceDetails.Count; i++)
+            {
                 invoiceDetails[i].RemarkOn = invoiceDetails[i].RemarkOn.AddMinutes(330);
-                if (invoiceDetails[i].InvoiceDate != DateTime.MinValue) {
+                if (invoiceDetails[i].InvoiceDate != DateTime.MinValue)
+                {
                     invoiceDetails[i].InvoiceDate = invoiceDetails[i].InvoiceDate.AddMinutes(330);
                 }
             }
@@ -474,14 +525,16 @@ namespace BiddingSystem {
             int PoId = int.Parse(Request.QueryString.Get("PoId"));
 
             int Result = 0;
-            for (int i = 0; i < invoiceDetails.Count; i++) {
-                
-                Result = invoiceDetailsController.SaveInvoiceDetailsInPO(PoId, 0, paymentType, invoiceDetails[i].InvoiceNo, invoiceDetails[i].InvoiceDate, invoiceDetails[i].InvoiceAmount, invoiceDetails[i].VatNo, invoiceDetails[i].IsPaymentSettled, invoiceDetails[i].Remark, invoiceDetails[i].RemarkOn, invoiceImages); 
+            for (int i = 0; i < invoiceDetails.Count; i++)
+            {
+
+                Result = invoiceDetailsController.SaveInvoiceDetailsInPO(PoId, 0, paymentType, invoiceDetails[i].InvoiceNo, invoiceDetails[i].InvoiceDate, invoiceDetails[i].InvoiceAmount, invoiceDetails[i].VatNo, invoiceDetails[i].IsPaymentSettled, invoiceDetails[i].Remark, invoiceDetails[i].RemarkOn, invoiceImages);
             }
 
-            if (Result > 0) {
+            if (Result > 0)
+            {
                 ScriptManager.RegisterClientScriptBlock(Updatepanel1, this.Updatepanel1.GetType(), "none", "<script>   $('div').removeClass('modal-backdrop'); $(document).ready(function () { swal({ type: 'success',title: 'Your work has been saved'}) });   </script>", false);
-               // ddlPaymentMethod.SelectedValue = paymentType.ToString();
+                // ddlPaymentMethod.SelectedValue = paymentType.ToString();
                 gvAddedInvDetails.DataSource = null;
                 gvAddedInvDetails.DataBind();
 
@@ -492,15 +545,18 @@ namespace BiddingSystem {
 
         }
 
-        
-        protected void btnBack_Click(object sender, EventArgs e) {
-            try {
+
+        protected void btnBack_Click(object sender, EventArgs e)
+        {
+            try
+            {
 
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "none", "<script>    $(document).ready(function () { $('div').removeClass('modal-backdrop'); $('#mdlPrevInvoices').modal('hide'); $('#mdlInvDetails').modal('show'); });   </script>", false);
                 gvPrevInvoices.DataSource = null;
                 gvPrevInvoices.DataBind();
             }
-            catch (Exception EX) {
+            catch (Exception EX)
+            {
 
             }
         }
