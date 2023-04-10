@@ -90,6 +90,7 @@
     <Compile Include="Controller\CompanyLoginController.cs" />
     <Compile Include="Controller\CompanyTypeController.cs" />
     <Compile Include="Controller\CompanyUserAccessController.cs" />
+    <Compile Include="Controller\ComparisionToLastYearPOReportController.cs" />
     <Compile Include="Controller\CurrencyRateController.cs" />
     <Compile Include="Controller\DashboardController.cs" />
     <Compile Include="Controller\DefContainerSizeController.cs" />
@@ -238,6 +239,7 @@
     <Compile Include="Domain\Bid_Bond_Details.cs" />
     <Compile Include="Domain\CommonReference.cs" />
     <Compile Include="Domain\CompanyType.cs" />
+    <Compile Include="Domain\ComparisionToLastYearPOReport.cs" />
     <Compile Include="Domain\Conversion.cs" />
     <Compile Include="Domain\ConversionTableMaster.cs" />
     <Compile Include="Domain\CurrencyRate.cs" />
@@ -432,6 +434,7 @@
     <Compile Include="Infrastructure\CompanyLoginDAO.cs" />
     <Compile Include="Infrastructure\CompanyTypeDAO.cs" />
     <Compile Include="Infrastructure\CompanyUserAccessDAO.cs" />
+    <Compile Include="Infrastructure\ComparisionToLastYearPOReportDAO.cs" />
     <Compile Include="Infrastructure\CurrencyrateDAO.cs" />
     <Compile Include="Infrastructure\DashboardDAO.cs" />
     <Compile Include="Infrastructure\DefContainerSizeDAO.cs" />
