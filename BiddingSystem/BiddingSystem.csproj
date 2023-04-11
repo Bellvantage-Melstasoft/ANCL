@@ -261,6 +261,7 @@
     <Content Include="ApproveQuotationsItemWiseRejectedImport.aspx" />
     <Content Include="CompareQuotationsNewImportsNewSparePart.aspx" />
     <Content Include="CompareQuotationsNewImportsNew.aspx" />
+    <Content Include="comparisionToLastYear.aspx" />
     <Content Include="CreatePONewImports.aspx" />
     <Content Include="EditInventory.aspx" />
     <Content Include="GenerateGRNNewImport.aspx" />
@@ -693,6 +694,13 @@
     </Compile>
     <Compile Include="CompareQuotationsNewImportsNew.aspx.designer.cs">
       <DependentUpon>CompareQuotationsNewImportsNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="comparisionToLastYear.aspx.cs">
+      <DependentUpon>comparisionToLastYear.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="comparisionToLastYear.aspx.designer.cs">
+      <DependentUpon>comparisionToLastYear.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreatePONewImports.aspx.cs">
       <DependentUpon>CreatePONewImports.aspx</DependentUpon>

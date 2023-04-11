@@ -524,6 +524,7 @@
                             <li id="grnReports" runat="server" visible="false"><a href="CompanyGrnReports.aspx" id="grnReportsLink"><i class="fa fa-circle-notch"></i>GRN Reports</a></li>
                             <li id="SupplierItemReport" runat="server" visible="false"><a href="SupplierItemReport.aspx" id="SupplierItemReportLink"><i class="fa fa-circle-notch"></i>Supplier Item Report</a></li>
                             <li id="ItemPoreport" runat="server" visible="false"><a href="ItemPoReport.aspx" id="ItemPoReportLink"><i class="fa fa-circle-notch"></i>Item PO Report</a></li>
+                            <li id="comparisionToLastYear" runat="server" visible="false"><a href="comparisionToLastYear.aspx" id="comparisionToLastYearLink"><i class="fa fa-circle-notch"></i>Comparision To Last Year Report</a></li>
 
                             <%--<li id="biddingReports" runat="server" visible="false"><a href="CompanyBiddingReport.aspx" id="biddingReportsLink"><i class="fa fa-circle-notch"></i>Bidding Reports</a></li>--%>
                             <%--<li id="supplierReports" runat="server" visible="false"><a href="CompanySupplierReports.aspx" id="supplierReportsLink"><i class="fa fa-circle-notch"></i>Supplier Reports</a></li>--%>

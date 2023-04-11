@@ -909,5 +909,11 @@ namespace CLibrary.Common
             AddItemPOReportsController addItemPOReportsController = new AddItemPOReportsControllerImpl();
             return (AddItemPOReportsController)addItemPOReportsController;
         }
+
+        public static ComparisionToLastYearPOReportController CreateComparisionToLastYearPOReportController()
+        {
+            ComparisionToLastYearPOReportController comparisionToLastYearPOReportController = new ComparisionToLastYearPOReportControllerImpl();
+            return (ComparisionToLastYearPOReportController)comparisionToLastYearPOReportController;
+        }
     }
 }
