@@ -3,6 +3,7 @@ using CLibrary.Domain;
 using CLibrary.Infrastructure;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ namespace CLibrary.Controller
     public interface ComparisionToLastYearPOReportController
     {
         List<ComparisionToLastYearPOReport> GetComparisionToLastYearPOReports();
+
+        DataTable GetComparisionToLastYearSupplierReports();
     }
     public class ComparisionToLastYearPOReportControllerImpl : ComparisionToLastYearPOReportController
     {
@@ -22,6 +25,28 @@ namespace CLibrary.Controller
             {
                 ComparisionToLastYearPOReportDAO comparisionToLastYearPOReportDAO = DAOFactory.CreateComparisionToLastYearPOReportDAO();
                 return comparisionToLastYearPOReportDAO.GetComparisionToLastYearPOReports(dbConnection);
+            }
+            catch (Exception)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
+                    dbConnection.Commit();
+                }
+            }
+        }
+
+        public DataTable GetComparisionToLastYearSupplierReports()
+        {
+            DBConnection dbConnection = new DBConnection();
+            try
+            {
+                ComparisionToLastYearPOReportDAO comparisionToLastYearPOReportDAO = DAOFactory.CreateComparisionToLastYearPOReportDAO();
+                return comparisionToLastYearPOReportDAO.GetComparisionToLastYearSupplierReports(dbConnection);
             }
             catch (Exception)
             {

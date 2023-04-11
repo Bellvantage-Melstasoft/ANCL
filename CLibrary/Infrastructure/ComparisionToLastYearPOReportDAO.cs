@@ -2,6 +2,8 @@
 using CLibrary.Domain;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +13,8 @@ namespace CLibrary.Infrastructure
     public interface ComparisionToLastYearPOReportDAO
     {
         List<ComparisionToLastYearPOReport> GetComparisionToLastYearPOReports(DBConnection dbConnection);
+
+        DataTable GetComparisionToLastYearSupplierReports(DBConnection dbConnection);
     }
     public class ComparisionToLastYearPOReportDAOSqlImpl : ComparisionToLastYearPOReportDAO
     {
@@ -31,5 +35,25 @@ namespace CLibrary.Infrastructure
             }
 
         }
+        public DataTable GetComparisionToLastYearSupplierReports(DBConnection dbConnection)
+        {
+            DataTable dtSupplierReports = new DataTable();
+
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "Select YEAR(po.CREATED_DATE) AS PURCHASED_YEAR, " +
+                "s.SUPPLIER_NAME,po.DEPARTMENT_ID,po.BASED_PR, pr.EXPENSE_TYPE, pd.PO_PURCHASE_TYPE, " +
+                "SUM(pd.QUANTITY) AS QUANTITY, SUM(po.TOTAL_AMOUNT) AS AMOUNT " +
+                "from SUPPLIER s INNER JOIN PO_MASTER po ON s.SUPPLIER_ID = po.SUPPLIER_ID " +
+                "INNER JOIN PO_DETAILS pd ON pd.PO_ID = po.PO_ID INNER JOIN PR_MASTER pr on po.BASED_PR = pr.PR_ID " +
+                "GROUP BY YEAR(po.CREATED_DATE), s.SUPPLIER_NAME,po.DEPARTMENT_ID,po.BASED_PR, pd.PO_PURCHASE_TYPE," +
+                "pr.EXPENSE_TYPE;";
+
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(dbConnection.cmd);
+            dataAdapter.Fill(dtSupplierReports);
+
+            return dtSupplierReports;
+        }
     }
+
+
 }
