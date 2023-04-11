@@ -135,6 +135,8 @@
                             <div class="box-body with-border">
                                 <div class="row">
                                     <div class="col-md-12" style="color: black; overflow-x: scroll;">
+                                        <asp:Table ID="tblTaSummary" runat="server" CssClass="table table-bordered"></asp:Table>
+
                                         <asp:GridView runat="server" ID="gvSupplierItemReport" EmptyDataText="No Data To Show!"
                                             CssClass="table table-responsive tablegv" AutoGenerateColumns="false"
                                             GridLines="None" HeaderStyle-BackColor="#3C8DBC" HeaderStyle-ForeColor="White">
@@ -168,6 +170,8 @@
                                 </div>
 
                             </div>
+
+
                         </div>
                     </section>
                 </ContentTemplate>

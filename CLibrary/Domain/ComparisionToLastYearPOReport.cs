@@ -12,6 +12,9 @@ namespace CLibrary.Domain
         [DBField("SUPPLIER_ID")]
         public int SuppilerId { get; set; }
 
+        [DBField("PO_CODE")]
+        public string POCode { get; set; }
+
         [DBField("ITEM_ID")]
         public int ItemId { get; set; }
         [DBField("ITEM_PRICE")]
