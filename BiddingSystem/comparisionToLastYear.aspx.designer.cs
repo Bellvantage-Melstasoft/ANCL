@@ -69,12 +69,12 @@ namespace BiddingSystem
         protected global::System.Web.UI.WebControls.Table tblTaSummary;
 
         /// <summary>
-        /// gvSupplierItemReport control.
+        /// tblSupplierReport control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvSupplierItemReport;
+        protected global::System.Web.UI.WebControls.Table tblSupplierReport;
     }
 }
