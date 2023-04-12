@@ -330,7 +330,11 @@ namespace BiddingSystem
                 comparisionToLastYearPOReport = comparisionToLastYearPOReport.Where(x => x.PRCategoryId == Convert.ToInt32(ddlCategory.SelectedValue)).ToList();
 
             }
+            if (ddlDepartment.SelectedValue != "")
+            {
+                comparisionToLastYearPOReport = comparisionToLastYearPOReport.Where(x => x.SubDepartmentId == Convert.ToInt32(ddlDepartment.SelectedValue)).ToList();
 
+            }
 
 
             BindDataPOTable(comparisionToLastYearPOReport);
