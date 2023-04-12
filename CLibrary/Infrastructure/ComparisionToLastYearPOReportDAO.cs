@@ -26,7 +26,8 @@ namespace CLibrary.Infrastructure
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "SELECT * FROM " + dbLibrary + " .PO_MASTER a " +
                 "INNER JOIN PR_MASTER b ON a.BASED_PR=b.PR_ID " +
-                "INNER JOIN PO_DETAILS c ON c.PO_ID=a.PO_ID ";
+                "INNER JOIN PO_DETAILS c ON c.PO_ID=a.PO_ID " +
+                "INNER JOIN MRN_MASTER d ON d.MRN_ID=b.MRN_ID ";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
             {
