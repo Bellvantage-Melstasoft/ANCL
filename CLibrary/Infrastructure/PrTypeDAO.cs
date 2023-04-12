@@ -14,7 +14,7 @@ namespace CLibrary.Infrastructure
 
         int SavePRTypes(int CompanyId, string PrTypeName, int IsActive, DBConnection dbConnection);
         int UpdatePRTypes(int PrTypeId, int CompanyId, string PrTypeName, int IsActive, DBConnection dbConnection);
-        int DeletePRTypes(int PrTypeId,int CompanyId, DBConnection dbConnection);
+        int DeletePRTypes(int PrTypeId, int CompanyId, DBConnection dbConnection);
     }
 
     public class PrTypeDAOImpl : PrTypeDAO
@@ -37,7 +37,9 @@ namespace CLibrary.Infrastructure
         {
             dbConnection.cmd.Parameters.Clear();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM public.\"PR_TYPE\" INNER JOIN public.\"COMPANY_DEPARTMENT\" ON public.\"PR_TYPE\".\"COMPANY_ID\" = public.\"COMPANY_DEPARTMENT\".\"DEPARTMENT_ID\" ";
+            dbConnection.cmd.CommandText = "SELECT * FROM public.\"PR_TYPE\"  ";
+            //dbConnection.cmd.CommandText = "SELECT * FROM public.\"PR_TYPE\" INNER JOIN public.\"COMPANY_DEPARTMENT\" ON public.\"PR_TYPE\".\"COMPANY_ID\" = public.\"COMPANY_DEPARTMENT\".\"DEPARTMENT_ID\" ";
+
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
             using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
