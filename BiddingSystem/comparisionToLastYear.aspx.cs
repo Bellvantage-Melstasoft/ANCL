@@ -43,6 +43,8 @@ namespace BiddingSystem
                 {
 
                     BindDataTable();
+                    BindDataToDropDown();
+
                 }
             }
             catch (Exception ex)
@@ -50,6 +52,20 @@ namespace BiddingSystem
 
                 throw;
             }
+        }
+
+        private void BindDataToDropDown()
+        {
+            ItemCategoryController itemCategoryController = ControllerFactory.CreateItemCategoryController();
+            ddlCategory.DataSource = itemCategoryController.FetchItemCategoryList(6);
+            ddlCategory.DataTextField = "CategoryName";
+            ddlCategory.DataValueField = "CategoryId";
+            ddlCategory.DataBind();
+            ddlCategory.Items.Insert(0, new ListItem("-Select-", ""));
+
+
+            PrTypeController prTypeController = ControllerFactory.CreatePrTypeController();
+            ddlPRType.DataSource = prTypeController.FetchAllPRTypes();
         }
 
         private void BindDataTable()

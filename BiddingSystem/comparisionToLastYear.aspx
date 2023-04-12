@@ -100,7 +100,7 @@
                                             <label>Sub Category</label>
 
                                             <div class="input-group margin">
-                                                <asp:DropDownList ID="ddlSubCategory" runat="server" class="form-control">
+                                                <asp:DropDownList ID="ddlPRType" runat="server" class="form-control">
                                                 </asp:DropDownList>
 
                                             </div>
@@ -109,12 +109,7 @@
                                         <div class="col-sm-4">
                                             <label>Status</label>
                                             <div class="input-group margin">
-                                                <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control">
-                                                    <asp:ListItem Value="">-Please Select-</asp:ListItem>
-                                                    <asp:ListItem Value="0">Pending</asp:ListItem>
-                                                    <asp:ListItem Value="1">Approved</asp:ListItem>
-                                                    <asp:ListItem Value="2">Rejected</asp:ListItem>
-
+                                                <asp:DropDownList ID="ddlPurchaseType" runat="server" CssClass="form-control">
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
