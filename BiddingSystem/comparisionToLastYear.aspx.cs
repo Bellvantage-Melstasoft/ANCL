@@ -44,8 +44,10 @@ namespace BiddingSystem
                 if (!IsPostBack)
                 {
 
-                    BindDataTable();
-                    BindDataTable1();
+                    // BindDataPOTable(List<compar>);
+                    //  BindDataTable1();
+                    BindDataToDropDownToPOTable();
+
                 }
             }
             catch (Exception ex)
@@ -55,9 +57,43 @@ namespace BiddingSystem
             }
         }
 
-        private void BindDataTable()
+        private void BindDataToDropDownToPOTable()
         {
-            List<ComparisionToLastYearPOReport> comparisionToLastYearPOReport = new List<ComparisionToLastYearPOReport>();
+            ItemCategoryController itemCategoryController = ControllerFactory.CreateItemCategoryController();
+            ddlCategory.DataSource = itemCategoryController.FetchItemCategoryList(6);
+            ddlCategory.DataTextField = "CategoryName";
+            ddlCategory.DataValueField = "CategoryId";
+            ddlCategory.DataBind();
+            ddlCategory.Items.Insert(0, new ListItem("-Select-", ""));
+
+            CompanyDepartmentController companyDepartmentController = ControllerFactory.CreateCompanyDepartmentController();
+            List<CompanyDepartment> companyDepartmentslist = companyDepartmentController.GetDepartmentList();
+            ddlDepartment.DataSource = companyDepartmentslist;
+            ddlDepartment.DataTextField = "departmentName";
+            ddlDepartment.DataValueField = "departmentID";
+            ddlDepartment.DataBind();
+            ddlCategory.Items.Insert(0, new ListItem("-Select-", ""));
+
+
+            SubDepartmentControllerInterface subDepartmentController = ControllerFactory.CreateSubDepartmentController();
+            List<SubDepartment> subDepartmentsList = subDepartmentController.getDepartmentList(6);
+            ddlDepartment.DataSource = subDepartmentsList;
+            ddlDepartment.DataTextField = "SubDepartmentName";
+            ddlDepartment.DataValueField = "SubDepartmentID";
+            ddlDepartment.DataBind();
+            ddlCategory.Items.Insert(0, new ListItem("-Select-", ""));
+
+
+
+        }
+
+        private void BindDataPOTable(List<ComparisionToLastYearPOReport> comparisionToLastYearPOReport)
+        {
+            if (comparisionToLastYearPOReport.Count == 0)
+            {
+                comparisionToLastYearPOReport = comparisionToLastYearPOReportController.GetComparisionToLastYearPOReports();
+            }
+
             comparisionToLastYearPOReport = comparisionToLastYearPOReportController.GetComparisionToLastYearPOReports();
             var ListPOCode = comparisionToLastYearPOReport.Select(x => x.POCode).Distinct();
             var ListYear = comparisionToLastYearPOReport.Select(x => x.ApprovedDate.Year).Distinct();
@@ -104,8 +140,9 @@ namespace BiddingSystem
             }
 
 
-            tblTaSummary.Rows.Add(thr1);
-            tblTaSummary.Rows.Add(thr2);
+            tblPOReport.Rows.Add(thr1);
+            tblPOReport.Rows.Add(thr2);
+
 
 
             int flag2 = 0;
@@ -160,7 +197,7 @@ namespace BiddingSystem
 
 
                 }
-                tblTaSummary.Rows.Add(tr);
+                tblPOReport.Rows.Add(tr);
             }
         }
 
@@ -271,6 +308,36 @@ namespace BiddingSystem
                 }
                 tblSupplierReport.Rows.Add(tr);
             }
+        }
+
+        protected void btnSearchPoTable_Click(object sender, EventArgs e)
+        {
+            List<ComparisionToLastYearPOReport> comparisionToLastYearPOReport = new List<ComparisionToLastYearPOReport>();
+            comparisionToLastYearPOReport = comparisionToLastYearPOReportController.GetComparisionToLastYearPOReports();
+
+            if (ddlPRType.SelectedValue != "")
+            {
+                comparisionToLastYearPOReport = comparisionToLastYearPOReport.Where(x => x.PRType == Convert.ToInt32(ddlPRType.SelectedValue)).ToList();
+            }
+
+            if (ddlPurchasingType.SelectedValue != "")
+            {
+                comparisionToLastYearPOReport = comparisionToLastYearPOReport.Where(x => x.PurchaseType == Convert.ToInt32(ddlPurchasingType.SelectedValue)).ToList();
+
+            }
+            if (ddlCategory.SelectedValue != "")
+            {
+                comparisionToLastYearPOReport = comparisionToLastYearPOReport.Where(x => x.PRCategoryId == Convert.ToInt32(ddlCategory.SelectedValue)).ToList();
+
+            }
+            if (ddlDepartment.SelectedValue != "")
+            {
+                comparisionToLastYearPOReport = comparisionToLastYearPOReport.Where(x => x.SubDepartmentId == Convert.ToInt32(ddlDepartment.SelectedValue)).ToList();
+
+            }
+
+
+            BindDataPOTable(comparisionToLastYearPOReport);
         }
     }
 }

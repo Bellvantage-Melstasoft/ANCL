@@ -40,5 +40,7 @@ namespace CLibrary.Domain
         public int ExpenseType { get; set; }
         [DBField("PR_CATEGORY_ID")]
         public int PRCategoryId { get; set; }
+        [DBField("SUB_DEPARTMENT_ID")]
+        public int SubDepartmentId { get; set; }
     }
 }
