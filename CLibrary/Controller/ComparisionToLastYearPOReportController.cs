@@ -15,6 +15,8 @@ namespace CLibrary.Controller
         List<ComparisionToLastYearPOReport> GetComparisionToLastYearPOReports();
 
         DataTable GetComparisionToLastYearSupplierReports();
+
+        DataTable GetComparisionToLastYearItemReports();
     }
     public class ComparisionToLastYearPOReportControllerImpl : ComparisionToLastYearPOReportController
     {
@@ -47,6 +49,28 @@ namespace CLibrary.Controller
             {
                 ComparisionToLastYearPOReportDAO comparisionToLastYearPOReportDAO = DAOFactory.CreateComparisionToLastYearPOReportDAO();
                 return comparisionToLastYearPOReportDAO.GetComparisionToLastYearSupplierReports(dbConnection);
+            }
+            catch (Exception)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                {
+                    dbConnection.Commit();
+                }
+            }
+        }
+
+        public DataTable GetComparisionToLastYearItemReports()
+        {
+            DBConnection dbConnection = new DBConnection();
+            try
+            {
+                ComparisionToLastYearPOReportDAO comparisionToLastYearPOReportDAO = DAOFactory.CreateComparisionToLastYearPOReportDAO();
+                return comparisionToLastYearPOReportDAO.GetComparisionToLastYearItemReports(dbConnection);
             }
             catch (Exception)
             {
