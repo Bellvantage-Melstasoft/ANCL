@@ -155,6 +155,20 @@
                             </div>
 
                             <%---------------------------------End Table Comparison to supplier--------------------------------%>
+
+                            <%---------------------------------Table Comparison to Item--------------------------------%>
+
+                            <div class="box-body with-border mt-5">
+                                <div class="row">
+                                    <div class="col-md-12" style="color: black; overflow-x: scroll;">
+                                        <asp:Table ID="tblItemReport" runat="server" CssClass="table table-bordered"></asp:Table>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <%---------------------------------End Table Comparison to Item--------------------------------%>
                         </div>
                     </section>
                 </ContentTemplate>
