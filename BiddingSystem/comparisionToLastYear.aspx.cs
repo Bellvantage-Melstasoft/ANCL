@@ -47,6 +47,7 @@ namespace BiddingSystem
                     // BindDataPOTable(List<compar>);
                     //  BindDataTable1();
                     BindDataToDropDownToPOTable();
+                    BindDatatoItemReport();
 
                 }
             }
@@ -307,6 +308,115 @@ namespace BiddingSystem
 
                 }
                 tblSupplierReport.Rows.Add(tr);
+            }
+        }
+
+        public void BindDatatoItemReport()
+        {
+            DataTable dtItemReport = comparisionToLastYearPOReportController.GetComparisionToLastYearItemReports();
+            var Years = dtItemReport.AsEnumerable().Select(row => row["PURCHASED_YEAR"]).Distinct().ToList();
+            var Items = dtItemReport.AsEnumerable().Select(row => row["ITEM_ID"]).Distinct().ToList();
+
+            List<string> headers = new List<string>() { "SUPPLIER_NAME", "Expense_Type", "Purchase_Type", "Quantity", "Amount" };
+
+            TableHeaderRow thr1 = new TableHeaderRow();
+            TableHeaderCell thc1 = new TableHeaderCell();
+
+            TableHeaderRow thr2 = new TableHeaderRow();
+            TableHeaderCell thc2 = new TableHeaderCell();
+
+            thc1.Text = "";
+            thr1.Cells.Add(thc1);
+
+            thc2.Text = "ITEM_ID";
+            thr2.Cells.Add(thc2);
+            thr2.Font.Size = 12;
+            thr2.Font.Bold = true;
+
+            foreach (var item in Years)
+            {
+                TableHeaderCell thc1i = new TableHeaderCell();
+                thc1i.Text = item.ToString();
+                thr1.Cells.Add(thc1i);
+
+                int count = 0;
+
+                foreach (var headerName in headers)
+                {
+                    count++;
+                    TableHeaderCell thc2i = new TableHeaderCell();
+                    thc2i.Text = headerName;
+                    thr2.Cells.Add(thc2i);
+                }
+
+                thr1.HorizontalAlign = HorizontalAlign.Center;
+                thr1.Font.Size = 12;
+                thr1.Font.Bold = true;
+                thc1i.ColumnSpan = count;
+            }
+
+
+            tblItemReport.Rows.Add(thr1);
+            tblItemReport.Rows.Add(thr2);
+
+            int flag2 = 0;
+            //? Wise the "POCODE" wise
+            foreach (var item in Items)
+            {
+                TableRow tr = new TableRow();
+                TableCell tc1 = new TableCell();
+                tc1.Text = item.ToString();
+                tr.Cells.Add(tc1);
+
+                foreach (var item1 in Years)
+                {
+                    TableCell tc21 = new TableCell();
+                    TableCell tc22 = new TableCell();
+                    TableCell tc23 = new TableCell();
+                    TableCell tc24 = new TableCell();
+                    TableCell tc25 = new TableCell();
+                    //TableCell tc26 = new TableCell();
+                    flag2 = 0;
+
+                    foreach (DataRow row in dtItemReport.Rows)
+                    {
+                        if (row["PURCHASED_YEAR"].ToString() == item1.ToString() && row["ITEM_ID"].ToString() == item.ToString())
+                        {
+                            // data set 
+                            flag2 = 1;
+                            tc21.Text = row["SUPPLIER_NAME"].ToString().ToString();
+                            tr.Cells.Add(tc21);
+                            tc22.Text = row["EXPENSE_TYPE"].ToString().ToString();
+                            tr.Cells.Add(tc22);
+                            tc23.Text = row["PO_PURCHASE_TYPE"].ToString().ToString();
+                            tr.Cells.Add(tc23);
+                            tc24.Text = row["QUANTITY"].ToString().ToString();
+                            tr.Cells.Add(tc24);
+                            tc25.Text = row["AMOUNT"].ToString().ToString();
+                            tr.Cells.Add(tc25);
+                            //tc26.Text = row["AMOUNT"].ToString().ToString();
+                            //tr.Cells.Add(tc26);
+                        }
+                    }
+                    if (flag2 == 0)
+                    {
+                        tc21.Text = "N/A";
+                        tr.Cells.Add(tc21);
+                        tc22.Text = "N/A";
+                        tr.Cells.Add(tc22);
+                        tc23.Text = "N/A";
+                        tr.Cells.Add(tc23);
+                        tc24.Text = "N/A";
+                        tr.Cells.Add(tc24);
+                        tc25.Text = "N/A";
+                        tr.Cells.Add(tc25);
+                        //tc26.Text = "N/A";
+                        //tr.Cells.Add(tc26);
+                    }
+
+
+                }
+                tblItemReport.Rows.Add(tr);
             }
         }
 
