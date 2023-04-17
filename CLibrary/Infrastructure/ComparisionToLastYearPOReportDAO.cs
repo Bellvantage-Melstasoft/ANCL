@@ -47,11 +47,11 @@ namespace CLibrary.Infrastructure
 
             dbConnection.cmd.Parameters.Clear();
             dbConnection.cmd.CommandText = "Select YEAR(po.CREATED_DATE) AS PURCHASED_YEAR, " +
-                "s.SUPPLIER_NAME,po.DEPARTMENT_ID,po.BASED_PR, pr.EXPENSE_TYPE, pd.PO_PURCHASE_TYPE, " +
+                "s.SUPPLIER_NAME,po.DEPARTMENT_ID,pr.PR_TYPE, pr.EXPENSE_TYPE, pd.PO_PURCHASE_TYPE, " +
                 "SUM(pd.QUANTITY) AS QUANTITY, SUM(po.TOTAL_AMOUNT) AS AMOUNT " +
                 "from SUPPLIER s INNER JOIN PO_MASTER po ON s.SUPPLIER_ID = po.SUPPLIER_ID " +
                 "INNER JOIN PO_DETAILS pd ON pd.PO_ID = po.PO_ID INNER JOIN PR_MASTER pr on po.BASED_PR = pr.PR_ID " +
-                "GROUP BY YEAR(po.CREATED_DATE), s.SUPPLIER_NAME,po.DEPARTMENT_ID,po.BASED_PR, pd.PO_PURCHASE_TYPE," +
+                "GROUP BY YEAR(po.CREATED_DATE), s.SUPPLIER_NAME,po.DEPARTMENT_ID,pr.PR_TYPE, pd.PO_PURCHASE_TYPE," +
                 "pr.EXPENSE_TYPE;";
 
             SqlDataAdapter dataAdapter = new SqlDataAdapter(dbConnection.cmd);
