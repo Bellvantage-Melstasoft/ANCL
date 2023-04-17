@@ -178,6 +178,90 @@
 
                             <%---------------------------------Table Comparison to supplier--------------------------------%>
 
+                            <div class="box-header with-border">
+
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label>
+                                                Supplier
+                                            <div class="input-group margin">
+                                                <asp:DropDownList ID="ddlSupplier" runat="server" class="form-control">
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <label>Expense Type</label>
+
+                                            <div class="input-group margin">
+                                                <asp:DropDownList ID="ddlExpense" runat="server" class="form-control">
+                                                </asp:DropDownList>
+
+                                            </div>
+                                        </div>
+
+                                        <%-- <div class="col-sm-4">
+                                            <label>Status</label>
+                                            <div class="input-group margin">
+                                                <asp:DropDownList ID="ddlPurchaseType" runat="server" CssClass="form-control">
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>--%>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label>
+                                                Purchase Type
+                                            <div class="input-group margin">
+                                                <asp:DropDownList ID="ddlpurchase" runat="server" class="form-control select2">
+                                                    <asp:ListItem Value="">-Please Select-</asp:ListItem>
+                                                    <asp:ListItem Value="1">Local</asp:ListItem>
+                                                    <asp:ListItem Value="2">Import</asp:ListItem>
+
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <label>PR Type</label>
+
+                                            <div class="input-group margin">
+                                                <asp:DropDownList ID="ddlPR" runat="server" class="form-control">
+                                                    <asp:ListItem Value="">-Please Select-</asp:ListItem>
+                                                    <asp:ListItem Value="1">Stock</asp:ListItem>
+                                                    <asp:ListItem Value="2">Non-Stock</asp:ListItem>
+                                                </asp:DropDownList>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <label>Department Type</label>
+                                            <div class="input-group margin">
+                                                <asp:DropDownList ID="ddlDepartmentType" runat="server" CssClass="form-control">
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <%--Button search--%>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <asp:Button runat="server" ID="btnSupplierSearch" CssClass="btn btn-info" Text="Search" OnClick="btnSupplierSearch_Click" />
+                                            <%--<asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" Text="Get All" OnClick="btnSearchAll_Click" />--%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="box-body with-border mt-5">
                                 <div class="row">
                                     <div class="col-md-12" style="color: black; overflow-x: scroll;">
@@ -191,6 +275,90 @@
                             <%---------------------------------End Table Comparison to supplier--------------------------------%>
 
                             <%---------------------------------Table Comparison to Item--------------------------------%>
+                            <div class="box-header with-border">
+
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label>
+                                                Supplier
+                                            <div class="input-group margin">
+                                                <asp:DropDownList ID="ddlSupplier2" runat="server" class="form-control">
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <label>Expense Type</label>
+
+                                            <div class="input-group margin">
+                                                <asp:DropDownList ID="ddlExpenseType2" runat="server" class="form-control">
+                                                </asp:DropDownList>
+
+                                            </div>
+                                        </div>
+
+                                        <%-- <div class="col-sm-4">
+                                            <label>Status</label>
+                                            <div class="input-group margin">
+                                                <asp:DropDownList ID="ddlPurchaseType" runat="server" CssClass="form-control">
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>--%>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label>
+                                                Purchase Type
+                                            <div class="input-group margin">
+                                                <asp:DropDownList ID="ddlPurchaseType2" runat="server" class="form-control select2">
+                                                    <asp:ListItem Value="">-Please Select-</asp:ListItem>
+                                                    <asp:ListItem Value="1">Local</asp:ListItem>
+                                                    <asp:ListItem Value="2">Import</asp:ListItem>
+
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>
+
+                                        <%--<div class="col-sm-4">
+                                            <label>PR Type</label>
+
+                                            <div class="input-group margin">
+                                                <asp:DropDownList ID="DropDownList5" runat="server" class="form-control">
+                                                    <asp:ListItem Value="">-Please Select-</asp:ListItem>
+                                                    <asp:ListItem Value="1">Stock</asp:ListItem>
+                                                    <asp:ListItem Value="2">Non-Stock</asp:ListItem>
+                                                </asp:DropDownList>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <label>Department Type</label>
+                                            <div class="input-group margin">
+                                                <asp:DropDownList ID="DropDownList6" runat="server" CssClass="form-control">
+                                                </asp:DropDownList>
+                                            </div>
+                                        </div>--%>
+                                    </div>
+                                </div>
+
+
+
+                                <%--Button search--%>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <asp:Button runat="server" ID="btnSearchItem" CssClass="btn btn-info" Text="Search" OnClick="btnSearchItem_Click" />
+                                            <%--<asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" Text="Get All" OnClick="btnSearchAll_Click" />--%>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="box-body with-border mt-5">
                                 <div class="row">

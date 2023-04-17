@@ -16,6 +16,7 @@ namespace BiddingSystem
         CompanyUserAccessController companyUserAccessController = ControllerFactory.CreateCompanyUserAccessController();
         CompanyLoginController companyLoginController = ControllerFactory.CreateCompanyLoginController();
         ComparisionToLastYearPOReportController comparisionToLastYearPOReportController = ControllerFactory.CreateComparisionToLastYearPOReportController();
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -43,12 +44,14 @@ namespace BiddingSystem
 
                 if (!IsPostBack)
                 {
-
+                    DataTable dtSupplierReport = comparisionToLastYearPOReportController.GetComparisionToLastYearSupplierReports();
+                    DataTable dtItemReport = comparisionToLastYearPOReportController.GetComparisionToLastYearItemReports();
                     // BindDataPOTable(List<compar>);
-                    //  BindDataTable1();
+                    BindDataTable1(dtSupplierReport);
                     BindDataToDropDownToPOTable();
-                    BindDatatoItemReport();
-
+                    BindDatatoItemReport(dtItemReport);
+                    BindDataToDropDownToSupplierTable();
+                    BindDataToDropDownToItemTable();
                 }
             }
             catch (Exception ex)
@@ -67,13 +70,13 @@ namespace BiddingSystem
             ddlCategory.DataBind();
             ddlCategory.Items.Insert(0, new ListItem("-Select-", ""));
 
-            CompanyDepartmentController companyDepartmentController = ControllerFactory.CreateCompanyDepartmentController();
-            List<CompanyDepartment> companyDepartmentslist = companyDepartmentController.GetDepartmentList();
-            ddlDepartment.DataSource = companyDepartmentslist;
-            ddlDepartment.DataTextField = "departmentName";
-            ddlDepartment.DataValueField = "departmentID";
-            ddlDepartment.DataBind();
-            ddlCategory.Items.Insert(0, new ListItem("-Select-", ""));
+            //CompanyDepartmentController companyDepartmentController = ControllerFactory.CreateCompanyDepartmentController();
+            //List<CompanyDepartment> companyDepartmentslist = companyDepartmentController.GetDepartmentList();
+            //ddlDepartment.DataSource = companyDepartmentslist;
+            //ddlDepartment.DataTextField = "departmentName";
+            //ddlDepartment.DataValueField = "departmentID";
+            //ddlDepartment.DataBind();
+            //ddlCategory.Items.Insert(0, new ListItem("-Select-", ""));
 
 
             SubDepartmentControllerInterface subDepartmentController = ControllerFactory.CreateSubDepartmentController();
@@ -86,6 +89,39 @@ namespace BiddingSystem
 
 
 
+        }
+
+        public void BindDataToDropDownToSupplierTable()
+        {
+            CompanyDepartmentController companyDepartmentController = ControllerFactory.CreateCompanyDepartmentController();
+            List<CompanyDepartment> companyDepartmentslist = companyDepartmentController.GetDepartmentList();
+            ddlDepartmentType.DataSource = companyDepartmentslist;
+            ddlDepartmentType.DataTextField = "departmentName";
+            ddlDepartmentType.DataValueField = "departmentID";
+            ddlDepartmentType.DataBind();
+            ddlDepartmentType.Items.Insert(0, new ListItem("-Select-", ""));
+
+            SupplierController supplierController = ControllerFactory.CreateSupplierController();
+            List<Supplier> suppliersList = supplierController.GetSupplierList();
+
+            ddlSupplier.DataSource = suppliersList;
+            ddlSupplier.DataTextField = "SupplierName";
+            ddlSupplier.DataValueField = "SupplierId";
+            ddlSupplier.DataBind();
+            ddlSupplier.Items.Insert(0, new ListItem("-Select-", ""));
+
+        }
+
+        public void BindDataToDropDownToItemTable()
+        {
+            SupplierController supplierController = ControllerFactory.CreateSupplierController();
+            List<Supplier> suppliersList = supplierController.GetSupplierList();
+
+            ddlSupplier2.DataSource = suppliersList;
+            ddlSupplier2.DataTextField = "SupplierName";
+            ddlSupplier2.DataValueField = "SupplierId";
+            ddlSupplier2.DataBind();
+            ddlSupplier2.Items.Insert(0, new ListItem("-Select-", ""));
         }
 
         private void BindDataPOTable(List<ComparisionToLastYearPOReport> comparisionToLastYearPOReport)
@@ -202,13 +238,13 @@ namespace BiddingSystem
             }
         }
 
-        public void BindDataTable1()
+        public void BindDataTable1(DataTable dtSupplierReport)
         {
-            DataTable dtSupplierReport = comparisionToLastYearPOReportController.GetComparisionToLastYearSupplierReports();
+            //DataTable dtSupplierReport = comparisionToLastYearPOReportController.GetComparisionToLastYearSupplierReports();
             var Years = dtSupplierReport.AsEnumerable().Select(row => row["PURCHASED_YEAR"]).Distinct().ToList();
             var Suppliers = dtSupplierReport.AsEnumerable().Select(row => row["SUPPLIER_NAME"]).Distinct().ToList();
 
-            List<string> headers = new List<string>() { "Department_ID", "Based_PR", "Expense_Type", "Purchase_Type", "Quantity", "Amount" };
+            List<string> headers = new List<string>() { "Department_ID", "PR_TYPE", "Expense_Type", "Purchase_Type", "Quantity", "Amount" };
 
             TableHeaderRow thr1 = new TableHeaderRow();
             TableHeaderCell thc1 = new TableHeaderCell();
@@ -277,7 +313,7 @@ namespace BiddingSystem
                             flag2 = 1;
                             tc21.Text = row["DEPARTMENT_ID"].ToString().ToString();
                             tr.Cells.Add(tc21);
-                            tc22.Text = row["BASED_PR"].ToString().ToString();
+                            tc22.Text = row["PR_TYPE"].ToString().ToString();
                             tr.Cells.Add(tc22);
                             tc23.Text = row["EXPENSE_TYPE"].ToString().ToString();
                             tr.Cells.Add(tc23);
@@ -311,9 +347,9 @@ namespace BiddingSystem
             }
         }
 
-        public void BindDatatoItemReport()
+        public void BindDatatoItemReport(DataTable dtItemReport)
         {
-            DataTable dtItemReport = comparisionToLastYearPOReportController.GetComparisionToLastYearItemReports();
+            //DataTable dtItemReport = comparisionToLastYearPOReportController.GetComparisionToLastYearItemReports();
             var Years = dtItemReport.AsEnumerable().Select(row => row["PURCHASED_YEAR"]).Distinct().ToList();
             var Items = dtItemReport.AsEnumerable().Select(row => row["ITEM_ID"]).Distinct().ToList();
 
@@ -448,6 +484,69 @@ namespace BiddingSystem
 
 
             BindDataPOTable(comparisionToLastYearPOReport);
+        }
+
+        protected void btnSupplierSearch_Click(object sender, EventArgs e)
+        {
+            DataTable dtSupplierReport = comparisionToLastYearPOReportController.GetComparisionToLastYearSupplierReports();
+            IEnumerable<DataRow> filteredRows = dtSupplierReport.AsEnumerable();
+
+            if (ddlPR.SelectedValue != "")
+            {
+                filteredRows = filteredRows.Where(row => row.Field<int>("PR_TYPE") == Convert.ToInt32(ddlPR.SelectedValue));
+            }
+
+            if (ddlpurchase.SelectedValue != "")
+            {
+                filteredRows = filteredRows.Where(row => row.Field<int>("PO_PURCHASE_TYPE") == Convert.ToInt32(ddlpurchase.SelectedValue));
+            }
+
+            if (ddlSupplier.SelectedValue != "")
+            {
+                filteredRows = filteredRows.Where(row => row.Field<string>("SUPPLIER_NAME") == ddlSupplier.SelectedItem.Text);
+            }
+
+            if (ddlDepartmentType.SelectedValue != "")
+            {
+                filteredRows = filteredRows.Where(row => row.Field<int>("DEPARTMENT_ID") == Convert.ToInt32(ddlDepartmentType.SelectedValue));
+            }
+
+            if (filteredRows.Any())
+            {
+                DataTable filteredDt = filteredRows.CopyToDataTable();
+                BindDataTable1(filteredDt);
+            }
+            else
+            {
+                BindDataTable1(dtSupplierReport);
+            }
+
+        }
+
+        protected void btnSearchItem_Click(object sender, EventArgs e)
+        {
+            DataTable dtItemReport = comparisionToLastYearPOReportController.GetComparisionToLastYearItemReports();
+            IEnumerable<DataRow> filteredRows = dtItemReport.AsEnumerable();
+
+            if (ddlPurchaseType2.SelectedValue != "")
+            {
+                filteredRows = filteredRows.Where(row => row.Field<int>("PO_PURCHASE_TYPE") == Convert.ToInt32(ddlPurchaseType2.SelectedValue));
+            }
+
+            if (ddlSupplier2.SelectedValue != "")
+            {
+                filteredRows = filteredRows.Where(row => row.Field<string>("SUPPLIER_NAME") == ddlSupplier2.SelectedItem.Text);
+            }
+
+            if (filteredRows.Any())
+            {
+                DataTable filteredDt = filteredRows.CopyToDataTable();
+                BindDatatoItemReport(filteredDt);
+            }
+            else
+            {
+                BindDatatoItemReport(dtItemReport);
+            }
         }
     }
 }
