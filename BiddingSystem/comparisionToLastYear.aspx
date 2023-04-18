@@ -75,13 +75,29 @@
             </ol>
         </section>
 
+
         <%-- Next Filter Row --%>
         <form runat="server">
             <asp:ScriptManager runat="server"></asp:ScriptManager>
             <asp:UpdatePanel ID="Updatepanel1" runat="server">
                 <ContentTemplate>
                     <section class="content">
+                        <div class="mb-4">
+                            <asp:DropDownList runat="server" ID="ddlReportType" AutoPostBack="true" CssClass="form-control select2">
+                                <asp:ListItem Value="">-- Please Select Report Type to Comapare --</asp:ListItem>
+                                <asp:ListItem Value="1">PO Report</asp:ListItem>
+                                <asp:ListItem Value="2">Supplier Report</asp:ListItem>
+                                <asp:ListItem Value="3">Supplier Item Report</asp:ListItem>
+
+                            </asp:DropDownList>
+                        </div>
+                        <br />
+
                         <div class="box box-info" id="panelPurchaseRequset" runat="server">
+
+                            <%if (ddlReportType.SelectedItem.Value == "1")
+                                {%>
+
                             <div class="box-header with-border">
 
 
@@ -175,9 +191,12 @@
                                 </div>
 
                             </div>
+                            <%} %>
 
                             <%---------------------------------Table Comparison to supplier--------------------------------%>
 
+                            <%if (ddlReportType.SelectedValue == "2")
+                                {%>
                             <div class="box-header with-border">
 
 
@@ -272,9 +291,13 @@
 
                             </div>
 
+                            <%} %>
                             <%---------------------------------End Table Comparison to supplier--------------------------------%>
 
                             <%---------------------------------Table Comparison to Item--------------------------------%>
+                            <%if (ddlReportType.SelectedValue == "3")
+                                {%>
+
                             <div class="box-header with-border">
 
 
@@ -369,6 +392,8 @@
                                 </div>
 
                             </div>
+
+                            <%} %>
 
                             <%---------------------------------End Table Comparison to Item--------------------------------%>
                         </div>
