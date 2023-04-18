@@ -95,8 +95,9 @@
             background: #3C8DBC;
             color: white;
         }
-        .marginBtm{
-            margin-bottom:5px;
+
+        .marginBtm {
+            margin-bottom: 5px;
         }
     </style>
     <%--<script src="AdminResources/js/jquery-1.10.2.min.js"></script>
@@ -114,14 +115,13 @@
     <script src="AdminResources/googleapis/googleapis-jquery-ui.js"></script>
 
     <section class="content-header">
-      <h1>
-      View Invoices
+        <h1>View Invoices
         <small></small>
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="AdminDashboard.aspx"><i class="fa fa-home"></i> Home</a></li>
-        <li class="active"> View Invoices </li>
-      </ol>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="AdminDashboard.aspx"><i class="fa fa-home"></i>Home</a></li>
+            <li class="active">View Invoices </li>
+        </ol>
     </section>
     <br />
     <form id="Form1" runat="server">
@@ -129,7 +129,7 @@
         <asp:UpdatePanel ID="Updatepanel1" runat="server">
             <ContentTemplate>
 
-                       <div id="mdlImages" class="modal modal-primary fade" tabindex="-1" style="z-index: 3001" role="dialog" aria-hidden="true">
+                <div id="mdlImages" class="modal modal-primary fade" tabindex="-1" style="z-index: 3001" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content" style="background-color: #a2bdcc;">
                             <div class="modal-header" style="background-color: #7bd47dfa;">
@@ -148,7 +148,7 @@
                                                     <Columns>
                                                         <asp:BoundField DataField="InvoiceId" HeaderStyle-CssClass="hidden"
                                                             ItemStyle-CssClass="hidden" />
-                                                        
+
                                                         <asp:BoundField DataField="ImagePath" HeaderStyle-CssClass="hidden"
                                                             ItemStyle-CssClass="hidden" />
                                                         <asp:TemplateField HeaderText="Image" ItemStyle-HorizontalAlign="Center">
@@ -168,7 +168,7 @@
                     </div>
                 </div>
 
-                  <div id="mdlInvUpdate" class="modal modal-primary fade" tabindex="-1" role="dialog" aria-hidden="true">
+                <div id="mdlInvUpdate" class="modal modal-primary fade" tabindex="-1" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">
                         <!-- Modal content-->
                         <div class="modal-content" style="background-color: #a2bdcc;">
@@ -245,7 +245,7 @@
                                                                     <asp:Label ID="lblRemark" runat="server" Text="Remark" Style="color: black"></asp:Label>
                                                                     <asp:RequiredFieldValidator runat="server" ControlToValidate="txtremark" InitialValue="" ValidationGroup="btnUpdate" ID="RequiredFieldValidator5" ForeColor="Red">*</asp:RequiredFieldValidator>
 
-                                                                    <asp:TextBox ID="txtremark" runat="server" TextMode="MultiLine" Rows="3" Style="color: black" CssClass="form-control" ></asp:TextBox>
+                                                                    <asp:TextBox ID="txtremark" runat="server" TextMode="MultiLine" Rows="3" Style="color: black" CssClass="form-control"></asp:TextBox>
 
                                                                 </div>
 
@@ -254,14 +254,14 @@
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-primary pull-right margin" Text="Update" OnClick="btnUpdate_Click" ValidationGroup="btnUpdate"/>
+                                                                    <asp:Button ID="btnUpdate" runat="server" CssClass="btn btn-primary pull-right margin" Text="Update" OnClick="btnUpdate_Click" ValidationGroup="btnUpdate" />
                                                                 </div>
                                                             </div>
                                                         </div>
-                                   
+
 
                                                     </div>
-                                                   
+
                                                 </div>
 
                                             </div>
@@ -278,151 +278,157 @@
                 <section class="content" style="padding-top: 0px">
 
                     <div class="panel panel-default" id="panelPRBasicSearch" runat="server">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Basic Search
-                            <a class="arrowdown"  data-target="#basicSearch" data-toggle="collapse"  aria-expanded="false">
-                            <span class="expand_caret caret" ></span>
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Basic Search
+                            <a class="arrowdown" data-target="#basicSearch" data-toggle="collapse" aria-expanded="false">
+                                <span class="expand_caret caret"></span>
                             </a>
-                        </h3>
-                    </div>
-                    <div class="panel-body collapse" id="basicSearch">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <asp:RadioButton ID="rdbPO" runat="server" Checked="true" GroupName="basicSearch"></asp:RadioButton>
-                                <b>Search by PO Code</b><label class="lblerror hidden" style="color:red;" >*Fill this field</label>
-                                <br>
-                                <asp:TextBox ID="txtPO" runat="server" CssClass="txtFDt form-control" PlaceHolder="Ex: PO01"></asp:TextBox>         
+                            </h3>
+                        </div>
+                        <div class="panel-body collapse" id="basicSearch">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:RadioButton ID="rdbPO" runat="server" Checked="true" GroupName="basicSearch"></asp:RadioButton>
+                                    <b>Search by PO Code</b><label class="lblerror hidden" style="color: red;">*Fill this field</label>
+                                    <br>
+                                    <asp:TextBox ID="txtPO" runat="server" CssClass="txtFDt form-control" PlaceHolder="Ex: PO01"></asp:TextBox>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:RadioButton ID="rdbGRN" runat="server" GroupName="basicSearch"></asp:RadioButton>
+                                    <b>Search by GRN Code</b><label class="lblerror hidden" style="color: red;">*Fill this field</label>
+                                    <asp:TextBox ID="txtGRN" runat="server" CssClass="form-control" PlaceHolder="Ex: GRN01"></asp:TextBox>
+                                </div>
                             </div>
-                           <div class="col-md-6">
-                            <asp:RadioButton ID="rdbGRN" runat="server" GroupName="basicSearch"></asp:RadioButton>
-                              <b> Search by GRN Code</b><label class="lblerror hidden" style="color:red;" >*Fill this field</label>
-                               <asp:TextBox ID="txtGRN" runat="server" CssClass="form-control" PlaceHolder="Ex: GRN01" ></asp:TextBox>
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <asp:Image runat="server" ID="loadingImage1" class="loadingImage pull-right hidden" src="AdminResources/images/Spinner-0.6s-200px.gif" Style="margin-top: 5px; max-height: 40px;" />
+                                </div>
+                                <div class="col-md-1">
+                                    <asp:Button ID="btnBasicSearch" ValidationGroup="btnBasicSearch" OnClientClick="return BSFieldValidate()" OnClick="btnBasicSearch_Click" runat="server" Text="Search" Style="margin-top: 10px;" CssClass="btn btn-info pull-right"></asp:Button>
+                                </div>
                             </div>
                         </div>
-                         <div class="row">
-                            <div class="col-md-11">
-                                <asp:Image  runat="server" ID="loadingImage1" class="loadingImage pull-right hidden"   src="AdminResources/images/Spinner-0.6s-200px.gif" style="margin-top:5px;max-height: 40px;" />                                
-                            </div>
-                            <div class="col-md-1">
-                                <asp:Button ID="btnBasicSearch" ValidationGroup="btnBasicSearch" OnClientClick="return BSFieldValidate()" OnClick="btnBasicSearch_Click" runat="server" Text="Search" style="margin-top: 10px;" CssClass ="btn btn-info pull-right" ></asp:Button>
-                            </div>
-                          </div>
                     </div>
-                </div>
 
-      <!-- SELECT2 EXAMPLE -->
-      <div class="box box-info" id="panelInvoices" runat="server">
-        <div class="box-header with-border">
-          <h3 class="box-title" >Invoices</h3>
+                    <!-- SELECT2 EXAMPLE -->
+                    <div class="box box-info" id="panelInvoices" runat="server">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Invoices</h3>
 
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-          </div>
-        </div>
-        <!-- /.box-header -->
-              <div class="box-body">
-          <div class="row">
-            <div class="col-md-12">
-            <div class="table-responsive">
-                <asp:GridView runat="server" ID="gvInvoices" GridLines="None"
-                     CssClass="table table-responsive" HeaderStyle-BackColor="#3C8DBC" HeaderStyle-ForeColor="White" 
-                    AutoGenerateColumns="false" EmptyDataText="No Invoices Found" ShowHeader="true" ShowHeaderWhenEmpty="true">
-                    <Columns>
-                        <asp:BoundField DataField="InvoiceId"  HeaderText="InvoiceId" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"/>
-                        
-                        <asp:BoundField DataField="PoId"  HeaderText="PoId" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"/>
-                        <asp:BoundField DataField="GrnId"  HeaderText="GrnId" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"/>
-                        
-                        <asp:TemplateField HeaderText="PO Code">
-							<ItemTemplate>
-								<asp:Label runat="server" Text='<%#Eval("POCode").ToString() %>'></asp:Label>
-							</ItemTemplate>
-						</asp:TemplateField>
-                        <asp:TemplateField HeaderText="GRN Code">
-							<ItemTemplate>
-								<asp:Label runat="server" Text='<%#Eval("GRNCode") == null? "-": Eval("GRNCode").ToString() %>'></asp:Label>
-							</ItemTemplate>
-						</asp:TemplateField>
-                        <asp:BoundField DataField="InvoiceNo"  HeaderText="Invoice No"/>
-                        <%--<asp:BoundField DataField="InvoiceDate"  HeaderText="Invoice Date" Dataformatstring="{0: dd MMMM yyyy}"/>--%>
-                        <asp:TemplateField HeaderText="Invoice Date" >
-                                                        <ItemTemplate>
-                                                            <%--<asp:Label runat="server" ID="lblExpDate" CssClass="lblExpDate" Text='<%# Eval("ExpiryDate", "{0:dd/MM/yyyy}").ToString() %>'></asp:Label>--%>
-                                                            <asp:Label runat="server"  Text='<%# (DateTime)Eval("InvoiceDate") == DateTime.MinValue ? "Not Found" : Eval("InvoiceDate", "{0:dd MMM yyyy}") %>'></asp:Label>
-                                                              
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                        <asp:BoundField DataField="InvoiceAmount"  HeaderText="Invoice Amount" Dataformatstring="{0:N2}"/>
-                        <asp:BoundField DataField="VatNo"  HeaderText="VAT No"/>
-                        
-                         <asp:TemplateField HeaderText="Payment Type">
-                                                                                <ItemTemplate>
-                                                                                    <asp:Label
-                                                                                        runat="server"
-                                                                                        Text='<%# Eval("PaymentType").ToString() == "1" ? "Cash" : Eval("PaymentType").ToString() == "2" ? "Cheque" :Eval("PaymentType").ToString() == "3" ? "Credit" :Eval("PaymentType").ToString() == "4" ? "Advanced Payment" :Eval("PaymentType").ToString() == "5" ? "None" : "Not Found" %>'/>
-                                                                                
-                                                                                     </ItemTemplate>
-                             </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Is Payment Settled">
-                                                                                <ItemTemplate>
-                                                                                    <asp:Label
-                                                                                        runat="server"
-                                                                                        Text='<%# Eval("IsPaymentSettled").ToString() == "0" ? "No" : "Yes" %>'/>
-                                                                                
-                                                                                     </ItemTemplate>
-                                                                   </asp:TemplateField>
-                        <asp:TemplateField HeaderText="PO Cancel Status">
-                                                                    <ItemTemplate>
-                                                                       <asp:Label
-                                    runat="server"
-                                    Visible='<%# Eval("IsCancelled").ToString() == "0" ? true : false %>'
-                                    Text="No" CssClass="label label-success"/>
-                                <asp:Label
-                                    runat="server"
-                                    Visible='<%# Eval("IsCancelled").ToString() == "1" ? true : false %>'
-                                    Text="Yes" CssClass="label label-danger"/>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <asp:GridView runat="server" ID="gvInvoices" GridLines="None"
+                                            CssClass="table table-responsive" HeaderStyle-BackColor="#3C8DBC" HeaderStyle-ForeColor="White"
+                                            AutoGenerateColumns="false" EmptyDataText="No Invoices Found" ShowHeader="true" ShowHeaderWhenEmpty="true">
+                                            <Columns>
+                                                <asp:BoundField DataField="InvoiceId" HeaderText="InvoiceId" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
 
-                                                                    </ItemTemplate>
-                                                                     </asp:TemplateField>
-                        <asp:BoundField DataField="Remark" HeaderText="Remark" NullDisplayText="-" />
-                                                     <asp:TemplateField HeaderText="Remark On">
-                                                        <ItemTemplate>
-                                                            <%--<asp:Label runat="server" ID="lblExpDate" CssClass="lblExpDate" Text='<%# Eval("ExpiryDate", "{0:dd/MM/yyyy}").ToString() %>'></asp:Label>--%>
-                                                            <asp:Label runat="server"  Text='<%# (DateTime)Eval("RemarkOn") == DateTime.MinValue ? "Not Found" : Eval("RemarkOn", "{0:dd MMM yyyy}") %>'></asp:Label>
-                                                              
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Invoice Images">
-                                                            <ItemTemplate>
-                                                                <asp:Button CssClass="btn btn-primary btn-sm" ID="btnViewImages"
-                                                                    runat="server" OnClick="btnViewImages_Click"
-                                                                    Text="View" />
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
+                                                <asp:BoundField DataField="PoId" HeaderText="PoId" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                                                <asp:BoundField DataField="GrnId" HeaderText="GrnId" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
 
-                         <asp:TemplateField HeaderText="Action">
-                                             <ItemTemplate>
-                                             <asp:Button runat="server" CssClass="btn btn-warning btn-xs btnCancel marginBtm" Text="Terminate" id="btnDelete" Visible='<%# int.Parse(Eval("IsActive").ToString()) == 1 ? true:false %>' OnClientClick='<%#"DeleteInvoice(event,"+Eval("InvoiceId").ToString()+")" %>' /> <br>
-                                             <asp:Label runat="server" Visible='<%#int.Parse(Eval("IsActive").ToString()) == 1 ? false:true %>' Text="Terminated" CssClass="label label-danger"/>
-                                             <asp:Button runat="server" CssClass="btn btn-primary btn-xs btnUpdate" Text="Update" id="btnUpdate" Visible='<%# int.Parse(Eval("IsActive").ToString()) == 1 ? true:false %>' OnClick="btnView_Click"  onClientClick="RemoveBackdrop()" />
-                                             
-                                             </ItemTemplate>
-                                             </asp:TemplateField>
-                                  
-                                
-                       
-                    </Columns>
-                </asp:GridView>
-                </div>
-            </div>         
-          </div>
-         
-        </div>
-        <!-- /.box-body -->
-      </div>
-      <!-- /.box -->
-    </section>
+                                                <%--<asp:TemplateField HeaderText="PO Code">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" Text='<%#Eval("POCode").ToString() %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>--%>
+                                                <asp:TemplateField HeaderText="PO Code">
+                                                    <ItemTemplate>
+                                                        <a href='<%# "ViewPO.aspx?PoId=" + Eval("PoID") %>'><%# Eval("POCode") %></a>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="GRN Code">
+                                                    <ItemTemplate>
+                                                        <asp:Label runat="server" Text='<%#Eval("GRNCode") == null? "-": Eval("GRNCode").ToString() %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="InvoiceNo" HeaderText="Invoice No" />
+                                                <%--<asp:BoundField DataField="InvoiceDate"  HeaderText="Invoice Date" Dataformatstring="{0: dd MMMM yyyy}"/>--%>
+                                                <asp:TemplateField HeaderText="Invoice Date">
+                                                    <ItemTemplate>
+                                                        <%--<asp:Label runat="server" ID="lblExpDate" CssClass="lblExpDate" Text='<%# Eval("ExpiryDate", "{0:dd/MM/yyyy}").ToString() %>'></asp:Label>--%>
+                                                        <asp:Label runat="server" Text='<%# (DateTime)Eval("InvoiceDate") == DateTime.MinValue ? "Not Found" : Eval("InvoiceDate", "{0:dd MMM yyyy}") %>'></asp:Label>
+
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="InvoiceAmount" HeaderText="Invoice Amount" DataFormatString="{0:N2}" />
+                                                <asp:BoundField DataField="VatNo" HeaderText="VAT No" />
+
+                                                <asp:TemplateField HeaderText="Payment Type">
+                                                    <ItemTemplate>
+                                                        <asp:Label
+                                                            runat="server"
+                                                            Text='<%# Eval("PaymentType").ToString() == "1" ? "Cash" : Eval("PaymentType").ToString() == "2" ? "Cheque" :Eval("PaymentType").ToString() == "3" ? "Credit" :Eval("PaymentType").ToString() == "4" ? "Advanced Payment" :Eval("PaymentType").ToString() == "5" ? "None" : "Not Found" %>' />
+
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Is Payment Settled">
+                                                    <ItemTemplate>
+                                                        <asp:Label
+                                                            runat="server"
+                                                            Text='<%# Eval("IsPaymentSettled").ToString() == "0" ? "No" : "Yes" %>' />
+
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="PO Cancel Status">
+                                                    <ItemTemplate>
+                                                        <asp:Label
+                                                            runat="server"
+                                                            Visible='<%# Eval("IsCancelled").ToString() == "0" ? true : false %>'
+                                                            Text="No" CssClass="label label-success" />
+                                                        <asp:Label
+                                                            runat="server"
+                                                            Visible='<%# Eval("IsCancelled").ToString() == "1" ? true : false %>'
+                                                            Text="Yes" CssClass="label label-danger" />
+
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="Remark" HeaderText="Remark" NullDisplayText="-" />
+                                                <asp:TemplateField HeaderText="Remark On">
+                                                    <ItemTemplate>
+                                                        <%--<asp:Label runat="server" ID="lblExpDate" CssClass="lblExpDate" Text='<%# Eval("ExpiryDate", "{0:dd/MM/yyyy}").ToString() %>'></asp:Label>--%>
+                                                        <asp:Label runat="server" Text='<%# (DateTime)Eval("RemarkOn") == DateTime.MinValue ? "Not Found" : Eval("RemarkOn", "{0:dd MMM yyyy}") %>'></asp:Label>
+
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Invoice Images">
+                                                    <ItemTemplate>
+                                                        <asp:Button CssClass="btn btn-primary btn-sm" ID="btnViewImages"
+                                                            runat="server" OnClick="btnViewImages_Click"
+                                                            Text="View" />
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                                <asp:TemplateField HeaderText="Action">
+                                                    <ItemTemplate>
+                                                        <asp:Button runat="server" CssClass="btn btn-warning btn-xs btnCancel marginBtm" Text="Terminate" ID="btnDelete" Visible='<%# int.Parse(Eval("IsActive").ToString()) == 1 ? true:false %>' OnClientClick='<%#"DeleteInvoice(event,"+Eval("InvoiceId").ToString()+")" %>' />
+                                                        <br>
+                                                        <asp:Label runat="server" Visible='<%#int.Parse(Eval("IsActive").ToString()) == 1 ? false:true %>' Text="Terminated" CssClass="label label-danger" />
+                                                        <asp:Button runat="server" CssClass="btn btn-primary btn-xs btnUpdate" Text="Update" ID="btnUpdate" Visible='<%# int.Parse(Eval("IsActive").ToString()) == 1 ? true:false %>' OnClick="btnView_Click" OnClientClick="RemoveBackdrop()" />
+
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+
+
+                                            </Columns>
+                                        </asp:GridView>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </section>
                 <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" CssClass="hidden" />
                 <asp:HiddenField runat="server" ID="hdnInvId" />
             </ContentTemplate>
@@ -504,7 +510,7 @@
         }
 
         function RemoveBackdrop() {
-            
+
             $('#myModalAddDesignation').hide();
             $('.modal-backdrop').remove();
             $('body').css("overflow", "auto");
