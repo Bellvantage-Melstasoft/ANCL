@@ -915,5 +915,11 @@ namespace CLibrary.Common
             ComparisionToLastYearPOReportController comparisionToLastYearPOReportController = new ComparisionToLastYearPOReportControllerImpl();
             return (ComparisionToLastYearPOReportController)comparisionToLastYearPOReportController;
         }
+
+        public static AgeAnalysisController CreateAgeAnalysisController()
+        {
+            AgeAnalysisController ageAnalysisController = new AgeAnalysisControllerImpl();
+            return (AgeAnalysisController)ageAnalysisController;
+        }
     }
 }

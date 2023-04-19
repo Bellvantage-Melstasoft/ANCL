@@ -1253,6 +1253,12 @@ namespace CLibrary.Common
 
         }
 
+        public static AgeAnalysisDAO CreateAgeAnalysisDAO()
+        {
+            AgeAnalysisDAO ageAnalysisDAO = new AgeAnalysisDAOImpl();
+            return (AgeAnalysisDAO)ageAnalysisDAO;
+        }
+
 
     }
 }
