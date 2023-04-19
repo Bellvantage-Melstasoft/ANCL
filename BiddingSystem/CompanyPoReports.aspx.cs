@@ -153,20 +153,20 @@ namespace BiddingSystem
                 pOMasterList = pOMasterList.Where(x => x.IsApproved == Convert.ToInt32(ddlStatus.SelectedValue)).ToList();
 
             }
-            //if (ddlPRType.SelectedValue != "")
-            //{
-            //    pOMasterList = pOMasterList.Where(x => x. == Convert.ToInt32(ddlPRType.SelectedValue)).ToList();
-            //}
+            if (ddlPRType.SelectedValue != "")
+            {
+                pOMasterList = pOMasterList.Where(x => x.PRType == Convert.ToInt32(ddlPRType.SelectedValue)).ToList();
+            }
 
-            //if (ddlPurchasingType.SelectedValue != "")
-            //{
-            //    pOMasterList = pOMasterList.Where(x => x.PurchaseType == Convert.ToInt32(ddlPurchasingType.SelectedValue)).ToList();
+            if (ddlPurchasingType.SelectedValue != "")
+            {
+                pOMasterList = pOMasterList.Where(x => x.PurchaseType == Convert.ToInt32(ddlPurchasingType.SelectedValue)).ToList();
 
-            //}
+            }
 
             if (txtPoCode.Text != "")
             {
-                pOMasterList = pOMasterList.Where(x => x.PrCode == txtPoCode.Text).ToList();
+                pOMasterList = pOMasterList.Where(x => x.PrCode.ToLower() == txtPoCode.Text.ToLower()).ToList();
             }
 
             if (ddlDepartment.SelectedValue != "")

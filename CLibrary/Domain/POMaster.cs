@@ -317,6 +317,9 @@ namespace CLibrary.Domain
         [DBField("PURCHASE_TYPE")]
         public int PurchaseType { get; set; }
 
+        [DBField("PR_TYPE")]
+        public int PRType { get; set; }
+
         public List<POMaster> DerivedFromPOs { get; set; }
         public List<POMaster> DerivedPOs { get; set; }
         public List<GrnMaster> GeneratedGRNs { get; set; }

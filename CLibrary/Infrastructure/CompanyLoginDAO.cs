@@ -7,21 +7,25 @@ using CLibrary.Domain;
 
 namespace CLibrary.Infrastructure
 {
-   public interface CompanyLoginDAO
+    public interface CompanyLoginDAO
     {
-        int SaveCompanyLogin(int departmentid, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime createdDate, string createdBy, DateTime updatedDate, string updatedby, int isActive,  int designationId, List<UserSubDepartment> usersubdepartment, List<UserWarehouse> warehouse, string contactNo, DBConnection dbConnection);
-        int SaveCompanyLogin(int departmentid, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime createdDate, string createdBy, DateTime updatedDate, string updatedby, int isActive, int designationId,DBConnection dbConnection);
+        int SaveCompanyLogin(int departmentid, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime createdDate, string createdBy, DateTime updatedDate, string updatedby, int isActive, int designationId, List<UserSubDepartment> usersubdepartment, List<UserWarehouse> warehouse, string contactNo, DBConnection dbConnection);
+        int SaveCompanyLogin(int departmentid, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime createdDate, string createdBy, DateTime updatedDate, string updatedby, int isActive, int designationId, DBConnection dbConnection);
 
-        int UpdateCompanyLogin(int userID, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime updatedDate, string updatedby, int isActive, int designationId, List<UserSubDepartment> usersubdepartment, List<UserWarehouse> warehouse, string contactNo,DBConnection dbConnection);
+        int UpdateCompanyLogin(int userID, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime updatedDate, string updatedby, int isActive, int designationId, List<UserSubDepartment> usersubdepartment, List<UserWarehouse> warehouse, string contactNo, DBConnection dbConnection);
         int UpdateCompanyLogin(int userID, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime updatedDate, string updatedby, int isActive, int designationId, DBConnection dbConnection);
         CompanyLogin GetCompanyLogin(string username, string password, DBConnection dbConnection);
         CompanyLogin GetUserbyuserId(int userId, DBConnection dbConnection);
         List<CompanyLogin> GetUserListByDepartmentid(int Departmentid, DBConnection dbConnection);
-        List<CompanyLogin> GetAllUserList( DBConnection dbConnection);
+        List<CompanyLogin> GetAllUserList(DBConnection dbConnection);
+
+        //Get User By Designation
+        List<CompanyLogin> GetAllUserListByDesignation(int Designation, DBConnection dbConnection);
+
         int UpdateInactiveUsers(int userID, int isActive, DBConnection dbConnection);
         int ChangePassword(string UserName, string OldPassword, string NewPassword, DBConnection dbConnection);
-        List<CompanyLogin> GetStorekeepers(int warehouseId,DBConnection dbConnection);
-        CompanyLogin GetUserDetailsbyCatergoryId(int categoryId,string type, DBConnection dbConnection);
+        List<CompanyLogin> GetStorekeepers(int warehouseId, DBConnection dbConnection);
+        CompanyLogin GetUserDetailsbyCatergoryId(int categoryId, string type, DBConnection dbConnection);
 
         //Modified for GRN new
         List<string> GetUserEmailsForApprovalbyWarehouseId(int FunctionId, int CategoryId, decimal Sum, int CompanyId, int SysDivisionId, int SysActionId, int warehouseId, DBConnection dbConnection);
@@ -38,6 +42,22 @@ namespace CLibrary.Infrastructure
             dbConnection.cmd.Parameters.Clear();
 
             dbConnection.cmd.CommandText = "SELECT * FROM public.\"COMPANY_LOGIN\" ORDER BY \"FIRST_NAME\"";
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
+                DataAccessObject dataAccessObject = new DataAccessObject();
+                return dataAccessObject.ReadCollection<CompanyLogin>(dbConnection.dr);
+            }
+        }
+
+        //Get by designation
+        public List<CompanyLogin> GetAllUserListByDesignation(int Designation, DBConnection dbConnection)
+        {
+            dbConnection.cmd.Parameters.Clear();
+
+            dbConnection.cmd.CommandText = "SELECT * FROM public.\"COMPANY_LOGIN\" WHERE DESIGNATION_ID = " + Designation + " ";
+
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
             using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
@@ -170,7 +190,7 @@ namespace CLibrary.Infrastructure
             }
         }
 
-        public int SaveCompanyLogin(int departmentid, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime createdDate, string createdBy, DateTime updatedDate, string updatedby, int isActive, int designationId,DBConnection dbConnection)
+        public int SaveCompanyLogin(int departmentid, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime createdDate, string createdBy, DateTime updatedDate, string updatedby, int isActive, int designationId, DBConnection dbConnection)
         {
             dbConnection.cmd.Parameters.Clear();
 
@@ -237,7 +257,7 @@ namespace CLibrary.Infrastructure
             }
         }
 
-        public int UpdateCompanyLogin(int userID, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime updatedDate, string updatedby, int isActive,int designationId, DBConnection dbConnection)
+        public int UpdateCompanyLogin(int userID, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime updatedDate, string updatedby, int isActive, int designationId, DBConnection dbConnection)
         {
             dbConnection.cmd.Parameters.Clear();
 
@@ -292,11 +312,13 @@ namespace CLibrary.Infrastructure
             throw new NotImplementedException();
         }
 
-        public CompanyLogin GetUserbyPOId(int PoId, DBConnection dbConnection) {
+        public CompanyLogin GetUserbyPOId(int PoId, DBConnection dbConnection)
+        {
             throw new NotImplementedException();
         }
 
-        public List<CompanyLogin> GetUserListByName(int Departmentid, string text, DBConnection dbConnection) {
+        public List<CompanyLogin> GetUserListByName(int Departmentid, string text, DBConnection dbConnection)
+        {
             throw new NotImplementedException();
         }
     }
@@ -340,6 +362,20 @@ namespace CLibrary.Infrastructure
             }
         }
 
+        //Get by designation
+        public List<CompanyLogin> GetAllUserListByDesignation(int Designation, DBConnection dbConnection)
+        {
+            dbConnection.cmd.Parameters.Clear();
+
+            dbConnection.cmd.CommandText = "  SELECT * FROM  " + dbLibrary + ".COMPANY_LOGIN WHERE DESIGNATION_ID = " + Designation + "";
+            dbConnection.cmd.CommandType = System.Data.CommandType.Text;
+
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
+                DataAccessObject dataAccessObject = new DataAccessObject();
+                return dataAccessObject.ReadCollection<CompanyLogin>(dbConnection.dr);
+            }
+        }
         public CompanyLogin GetCompanyLogin(string username, string password, DBConnection dbConnection)
         {
             CompanyLogin GetCompanyLogin = new CompanyLogin();
@@ -402,26 +438,28 @@ namespace CLibrary.Infrastructure
             }
         }
 
-        public CompanyLogin GetUserbyPOId(int PoId, DBConnection dbConnection) {
+        public CompanyLogin GetUserbyPOId(int PoId, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
 
-            dbConnection.cmd.CommandText = "SELECT * FROM COMPANY_LOGIN WHERE USER_ID = (SELECT CREATED_BY FROM PO_MASTER WHERE PO_ID = "+ PoId + " )";
+            dbConnection.cmd.CommandText = "SELECT * FROM COMPANY_LOGIN WHERE USER_ID = (SELECT CREATED_BY FROM PO_MASTER WHERE PO_ID = " + PoId + " )";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.GetSingleOject<CompanyLogin>(dbConnection.dr);
             }
         }
 
-        
+
 
         public List<CompanyLogin> GetUserListByDepartmentid(int Departmentid, DBConnection dbConnection)
         {
             dbConnection.cmd.Parameters.Clear();
             List<CompanyLogin> users;
-            dbConnection.cmd.CommandText = "SELECT * FROM " + dbLibrary + ".COMPANY_LOGIN AS A "+
-                "WHERE A.DEPARTMENT_ID = " + Departmentid + " "+
+            dbConnection.cmd.CommandText = "SELECT * FROM " + dbLibrary + ".COMPANY_LOGIN AS A " +
+                "WHERE A.DEPARTMENT_ID = " + Departmentid + " " +
                 "ORDER BY A.FIRST_NAME";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
@@ -430,7 +468,8 @@ namespace CLibrary.Infrastructure
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 users = dataAccessObject.ReadCollection<CompanyLogin>(dbConnection.dr);
             }
-            for (int i = 0; i < users.Count; i++) {
+            for (int i = 0; i < users.Count; i++)
+            {
 
                 dbConnection.cmd.Parameters.Clear();
                 dbConnection.cmd.CommandText = "SELECT * FROM " + dbLibrary + ".USER_SUB_DEPARTMENT AS USD " +
@@ -438,7 +477,8 @@ namespace CLibrary.Infrastructure
                                                " WHERE USER_ID = " + users[i].UserId + " ";
                 dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-                using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+                using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+                {
                     DataAccessObject dataAccessObject = new DataAccessObject();
                     users[i].DepartmentList = dataAccessObject.ReadCollection<UserSubDepartment>(dbConnection.dr);
 
@@ -455,7 +495,8 @@ namespace CLibrary.Infrastructure
                                                " WHERE USER_ID = " + users[i].UserId + " ";
                 dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-                using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+                using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+                {
                     DataAccessObject dataAccessObject = new DataAccessObject();
                     users[i].WarehouseList = dataAccessObject.ReadCollection<UserWarehouse>(dbConnection.dr);
 
@@ -468,19 +509,22 @@ namespace CLibrary.Infrastructure
             return users;
         }
 
-        public List<CompanyLogin> GetUserListByName(int Departmentid, string text, DBConnection dbConnection) {
+        public List<CompanyLogin> GetUserListByName(int Departmentid, string text, DBConnection dbConnection)
+        {
             dbConnection.cmd.Parameters.Clear();
             List<CompanyLogin> users;
             dbConnection.cmd.CommandText = "SELECT * FROM " + dbLibrary + ".COMPANY_LOGIN AS A " +
-                "WHERE A.DEPARTMENT_ID = " + Departmentid + " AND FIRST_NAME LIKE '%"+text+"%' " +
+                "WHERE A.DEPARTMENT_ID = " + Departmentid + " AND FIRST_NAME LIKE '%" + text + "%' " +
                 "ORDER BY A.FIRST_NAME";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-            using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+            {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 users = dataAccessObject.ReadCollection<CompanyLogin>(dbConnection.dr);
             }
-            for (int i = 0; i < users.Count; i++) {
+            for (int i = 0; i < users.Count; i++)
+            {
 
                 dbConnection.cmd.Parameters.Clear();
                 dbConnection.cmd.CommandText = "SELECT * FROM " + dbLibrary + ".USER_SUB_DEPARTMENT AS USD " +
@@ -488,7 +532,8 @@ namespace CLibrary.Infrastructure
                                                " WHERE USER_ID = " + users[i].UserId + " ";
                 dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-                using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+                using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+                {
                     DataAccessObject dataAccessObject = new DataAccessObject();
                     users[i].DepartmentList = dataAccessObject.ReadCollection<UserSubDepartment>(dbConnection.dr);
 
@@ -505,7 +550,8 @@ namespace CLibrary.Infrastructure
                                                " WHERE USER_ID = " + users[i].UserId + " ";
                 dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-                using (dbConnection.dr = dbConnection.cmd.ExecuteReader()) {
+                using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
+                {
                     DataAccessObject dataAccessObject = new DataAccessObject();
                     users[i].WarehouseList = dataAccessObject.ReadCollection<UserWarehouse>(dbConnection.dr);
 
@@ -549,11 +595,13 @@ namespace CLibrary.Infrastructure
                 dbConnection.cmd.Parameters.Clear();
                 dbConnection.cmd.CommandText = "INSERT INTO " + dbLibrary + ".COMPANY_LOGIN (DEPARTMENT_ID , USER_ID , USER_NAME ,EMPLOYEE_NO, PASSWORD  , USER_TYPE  , FIRST_NAME , EMAIL_ADDRESS ,CREATED_DATE  , CREATED_BY , UPDATED_DATE  ,UPDATED_BY  ,IS_ACTIVE, DESIGNATION_ID, CONTACT_NO) VALUES (" + departmentid + "," + userid + ",'" + username + "','" + empNo + "','" + password + "','" + userType + "','" + firstname + "','" + emailAddress + "','" + createdDate + "','" + createdBy + "','" + updatedDate + "','" + updatedby + "'," + isActive + "," + designationId + ",'" + contactNo + "') ";
 
-                for (int i = 0; i < usersubdepartment.Count; i++) {
+                for (int i = 0; i < usersubdepartment.Count; i++)
+                {
                     dbConnection.cmd.CommandText += "INSERT INTO " + dbLibrary + ".USER_SUB_DEPARTMENT (USER_ID , SUB_DEPARTMENT_ID ,IS_HEAD) VALUES (" + userid + "," + usersubdepartment[i].DepartmentId + "," + usersubdepartment[i].IsHead + "); \n";
                 }
 
-                for (int i = 0; i < warehouse.Count; i++) {
+                for (int i = 0; i < warehouse.Count; i++)
+                {
                     dbConnection.cmd.CommandText += "INSERT INTO " + dbLibrary + ".USER_WAREHOUSE (USER_ID , WAREHOUSE_ID ,IS_HEAD, USER_TYPE) VALUES (" + userid + "," + warehouse[i].WrehouseId + "," + warehouse[i].IsHead + "," + warehouse[i].UserType + "); \n";
                 }
 
@@ -573,7 +621,7 @@ namespace CLibrary.Infrastructure
             }
         }
 
-        public int SaveCompanyLogin(int departmentid, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime createdDate, string createdBy, DateTime updatedDate, string updatedby, int isActive,int designationId, DBConnection dbConnection)
+        public int SaveCompanyLogin(int departmentid, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime createdDate, string createdBy, DateTime updatedDate, string updatedby, int isActive, int designationId, DBConnection dbConnection)
         {
             dbConnection.cmd.Parameters.Clear();
 
@@ -602,8 +650,8 @@ namespace CLibrary.Infrastructure
 
 
                 dbConnection.cmd.Parameters.Clear();
-                
-                dbConnection.cmd.CommandText = "INSERT INTO " + dbLibrary + ".COMPANY_LOGIN (DEPARTMENT_ID , USER_ID , USER_NAME ,EMPLOYEE_NO, PASSWORD  , USER_TYPE  , FIRST_NAME , EMAIL_ADDRESS ,CREATED_DATE  , CREATED_BY , UPDATED_DATE  ,UPDATED_BY  ,IS_ACTIVE,DESIGNATION_ID ) VALUES (" + departmentid + "," + userid + ",'" + username + "','" + empNo + "','" + password + "','" + userType + "','" + firstname + "','" + emailAddress + "','" + createdDate + "','" + createdBy + "','" + updatedDate + "','" + updatedby + "'," + isActive + ","+designationId+ ")";
+
+                dbConnection.cmd.CommandText = "INSERT INTO " + dbLibrary + ".COMPANY_LOGIN (DEPARTMENT_ID , USER_ID , USER_NAME ,EMPLOYEE_NO, PASSWORD  , USER_TYPE  , FIRST_NAME , EMAIL_ADDRESS ,CREATED_DATE  , CREATED_BY , UPDATED_DATE  ,UPDATED_BY  ,IS_ACTIVE,DESIGNATION_ID ) VALUES (" + departmentid + "," + userid + ",'" + username + "','" + empNo + "','" + password + "','" + userType + "','" + firstname + "','" + emailAddress + "','" + createdDate + "','" + createdBy + "','" + updatedDate + "','" + updatedby + "'," + isActive + "," + designationId + ")";
 
                 int status = dbConnection.cmd.ExecuteNonQuery();
                 if (status > 0)
@@ -621,7 +669,7 @@ namespace CLibrary.Infrastructure
             }
         }
 
-        public int UpdateCompanyLogin(int userID, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime updatedDate, string updatedby, int isActive,  int designationId, List<UserSubDepartment> usersubdepartment, List<UserWarehouse> warehouse, string contactNo, DBConnection dbConnection)
+        public int UpdateCompanyLogin(int userID, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime updatedDate, string updatedby, int isActive, int designationId, List<UserSubDepartment> usersubdepartment, List<UserWarehouse> warehouse, string contactNo, DBConnection dbConnection)
         {
             dbConnection.cmd.Parameters.Clear();
 
@@ -631,15 +679,17 @@ namespace CLibrary.Infrastructure
             if (existCount == 0)
             {
                 dbConnection.cmd.Parameters.Clear();
-                dbConnection.cmd.CommandText = "UPDATE  " + dbLibrary + ".COMPANY_LOGIN SET USER_NAME = '" + username + "', EMPLOYEE_NO  = '" + empNo + "' , PASSWORD  = '" + password + "' , USER_TYPE  = '" + userType + "' , FIRST_NAME = '" + firstname + "' ,  EMAIL_ADDRESS  = '" + emailAddress + "' ,UPDATED_DATE  = '" + updatedDate + "' ,UPDATED_BY  = '" + updatedby + "' ,IS_ACTIVE = " + isActive + ", DESIGNATION_ID=" + designationId + ", CONTACT_NO = '"+contactNo+"'  WHERE USER_ID = " + userID + "";
+                dbConnection.cmd.CommandText = "UPDATE  " + dbLibrary + ".COMPANY_LOGIN SET USER_NAME = '" + username + "', EMPLOYEE_NO  = '" + empNo + "' , PASSWORD  = '" + password + "' , USER_TYPE  = '" + userType + "' , FIRST_NAME = '" + firstname + "' ,  EMAIL_ADDRESS  = '" + emailAddress + "' ,UPDATED_DATE  = '" + updatedDate + "' ,UPDATED_BY  = '" + updatedby + "' ,IS_ACTIVE = " + isActive + ", DESIGNATION_ID=" + designationId + ", CONTACT_NO = '" + contactNo + "'  WHERE USER_ID = " + userID + "";
 
                 dbConnection.cmd.CommandText += "DELETE FROM USER_SUB_DEPARTMENT WHERE USER_ID = " + userID + " \n";
-                for (int i = 0; i < usersubdepartment.Count; i++) {
+                for (int i = 0; i < usersubdepartment.Count; i++)
+                {
                     dbConnection.cmd.CommandText += "INSERT INTO " + dbLibrary + ".USER_SUB_DEPARTMENT (USER_ID , SUB_DEPARTMENT_ID ,IS_HEAD) VALUES (" + userID + "," + usersubdepartment[i].DepartmentId + "," + usersubdepartment[i].IsHead + "); \n";
                 }
 
                 dbConnection.cmd.CommandText += "DELETE FROM USER_WAREHOUSE WHERE USER_ID = " + userID + "\n ";
-                for (int i = 0; i < warehouse.Count; i++) {
+                for (int i = 0; i < warehouse.Count; i++)
+                {
                     dbConnection.cmd.CommandText += "INSERT INTO " + dbLibrary + ".USER_WAREHOUSE (USER_ID , WAREHOUSE_ID ,IS_HEAD, USER_TYPE) VALUES (" + userID + "," + warehouse[i].WrehouseId + "," + warehouse[i].IsHead + ", " + warehouse[i].UserType + "); \n";
                 }
                 return dbConnection.cmd.ExecuteNonQuery();
@@ -650,7 +700,7 @@ namespace CLibrary.Infrastructure
             }
         }
 
-        public int UpdateCompanyLogin(int userID, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime updatedDate, string updatedby, int isActive,int designationId, DBConnection dbConnection)
+        public int UpdateCompanyLogin(int userID, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime updatedDate, string updatedby, int isActive, int designationId, DBConnection dbConnection)
         {
             dbConnection.cmd.Parameters.Clear();
 
@@ -696,11 +746,11 @@ namespace CLibrary.Infrastructure
             }
         }
 
-        public List<CompanyLogin> GetStorekeepers(int warehouseId,DBConnection dbConnection)
+        public List<CompanyLogin> GetStorekeepers(int warehouseId, DBConnection dbConnection)
         {
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "Select * From " + dbLibrary + ".COMPANY_LOGIN  WHERE DESIGNATION_ID=18 AND WAREHOUSE_ID="+warehouseId+" ";
-            using (dbConnection.dr=dbConnection.cmd.ExecuteReader())
+            dbConnection.cmd.CommandText = "Select * From " + dbLibrary + ".COMPANY_LOGIN  WHERE DESIGNATION_ID=18 AND WAREHOUSE_ID=" + warehouseId + " ";
+            using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
             {
                 DataAccessObject dataAccessObject = new DataAccessObject();
                 return dataAccessObject.ReadCollection<CompanyLogin>(dbConnection.dr);
@@ -713,8 +763,8 @@ namespace CLibrary.Infrastructure
 
             dbConnection.cmd.CommandText = "SELECT  *  FROM " + dbLibrary + ".[COMPANY_LOGIN] " +
                                            " where USER_ID = (Select Top 1 USER_ID FROM " + dbLibrary + ".[ITEM_CATEGORY_OWNERS] " +
-                                           " WHERE CATEGORY_ID = "+categoryId+" " +
-                                           " AND OWNER_TYPE = '"+ type + "' AND EFFECTIVE_DATE <= '" +  LocalTime.Now + "' ORDER BY EFFECTIVE_DATE DESC)";
+                                           " WHERE CATEGORY_ID = " + categoryId + " " +
+                                           " AND OWNER_TYPE = '" + type + "' AND EFFECTIVE_DATE <= '" + LocalTime.Now + "' ORDER BY EFFECTIVE_DATE DESC)";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
             using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
@@ -745,7 +795,7 @@ namespace CLibrary.Infrastructure
             sql = sql + "SELECT USER_ID FROM COMPANY_LOGIN WHERE USER_ID NOT IN ( " + "\n";
             //sql = sql + "SELECT USER_ID FROM APPROVAL_LIMIT_USERS WHERE LIMIT_ID IN( " + "\n";
             //sql = sql + "SELECT LIMIT_ID FROM APPROVAL_LIMIT WHERE FUNCTION_ID = " + FunctionId + " AND COMPANY_ID=" + CompanyId + ")) AND DEPARTMENT_ID=" + CompanyId + ") " + "\n";
-           // sql = sql + "UNION ALL " + "\n";
+            // sql = sql + "UNION ALL " + "\n";
             sql = sql + "SELECT USER_ID FROM COMPANY_LOGIN WHERE USER_TYPE='S' AND DEPARTMENT_ID=" + CompanyId + " " + "\n";
             sql = sql + "END";
 

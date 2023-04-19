@@ -126,7 +126,8 @@ namespace CLibrary.Infrastructure
             POMaster GetPoMasterObj = new POMaster();
             PODetailsDAO pODetailsDAO = DAOFactory.createPODetailsDAO();
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "SELECT * FROM " + dbLibrary + ".PO_MASTER ";
+            dbConnection.cmd.CommandText = "SELECT *,b.PR_TYPE,b.PURCHASE_TYPE FROM PO_MASTER a " +
+                "INNER JOIN PR_MASTER b ON a.BASED_PR=b.PR_ID";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
             {
