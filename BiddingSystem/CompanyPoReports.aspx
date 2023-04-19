@@ -286,7 +286,7 @@
                                     <label>PO Code</label>
                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPoCode" ValidationGroup="btnPoCodeSearch" ForeColor="Red">*</asp:RequiredFieldValidator>
                                     <div class="input-group margin">
-                                        <asp:TextBox ID="txtPoCode" runat="server" CssClass="form-control"></asp:TextBox>
+                                        <asp:TextBox ID="txtPoCode" runat="server" CssClass="form-control" PlaceHolder="PO1"></asp:TextBox>
                                         <%--   <span class="input-group-btn">
                                             <asp:Button runat="server" ID="btnPoCodeSearch" ValidationGroup="btnPoCodeSearch" OnClick="btnPoCodeSearch_Click" CssClass="btn btn-info" Text="Search" />
 
@@ -355,7 +355,7 @@
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label>Department Type</label>
+                                    <label>Sub Department Type</label>
                                     <div class="input-group margin">
                                         <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control">
                                         </asp:DropDownList>
@@ -402,7 +402,7 @@
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
                                                     <asp:BoundField DataField="Description" HeaderText="Description" />
-                                                    <asp:BoundField DataField="SupplierName" HeaderText="Supplier Name" />
+                                                    <%--                                                    <asp:BoundField DataField="SupplierName" HeaderText="Supplier Name" />--%>
                                                     <asp:BoundField DataField="CreatedDate" HeaderText="PO Created Date" DataFormatString='<%$ appSettings:dateTimePattern %>' />
                                                     <asp:BoundField DataField="CreatedBy" HeaderText="PO Created By" />
                                                     <asp:TemplateField HeaderText="Approval Status">
@@ -421,11 +421,11 @@
                                                                 Text="Rejected" CssClass="label label-danger" />
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField>
+                                                    <%--<asp:TemplateField>
                                                         <ItemTemplate>
                                                             <asp:LinkButton runat="server" ID="lbtnView" Text="View" OnClick="btnView_Click"></asp:LinkButton>
                                                         </ItemTemplate>
-                                                    </asp:TemplateField>
+                                                    </asp:TemplateField>--%>
                                                 </Columns>
                                             </asp:GridView>
                                         </div>

@@ -21,6 +21,10 @@ namespace CLibrary.Domain
         public int WarehouseId { get; set; }
         [DBField("WAREHOUSE_NAME")]
         public string WarehouseName { get; set; }
+
+        [DBField("LOCATION")]
+        public string WareHouseLocation { get; set; }
+
         [DBField("PR_TYPE")]
         public int PrType { get; set; }
         [DBField("PURCHASE_TYPE")]

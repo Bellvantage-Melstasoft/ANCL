@@ -1,7 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BiddingAdmin.Master" AutoEventWireup="true" CodeBehind="SupplierItemReport.aspx.cs" Inherits="BiddingSystem.SupplierItemReport" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BiddingAdmin.Master" AutoEventWireup="true" CodeBehind="AgeAnalysisReport.aspx.cs" Inherits="BiddingSystem.AgeAnalysisReport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentSection" runat="server">
-
     <html>
     <head>
 
@@ -67,12 +66,12 @@
     <body>
 
         <section class="content-header">
-            <h1>Supplier Item Report 
+            <h1>Age Analysis Report 
         <small></small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="AdminDashboard.aspx"><i class="fa fa-home"></i>Home</a></li>
-                <li class="active">Supplier Item Report </li>
+                <li class="active">Age Analysis Report</li>
             </ol>
         </section>
 
@@ -85,37 +84,60 @@
                         <div class="box box-info" id="panelPurchaseRequset" runat="server">
                             <div class="box-header with-border">
 
+                                <%--first Filter Row--%>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-4">
+                                            <label>PO Code</label>
+                                            <div class="input-group margin">
+                                                <asp:TextBox ID="txtPoCode" runat="server" CssClass="form-control" PlaceHolder="PO1"></asp:TextBox>
+                                                <%--   <span class="input-group-btn">
+                                            <asp:Button runat="server" ID="btnPoCodeSearch" ValidationGroup="btnPoCodeSearch" OnClick="btnPoCodeSearch_Click" CssClass="btn btn-info" Text="Search" />
+
+                                        </span>--%>
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-sm-4">
+                                            <label>Date</label>
+                                            <div class="input-group margin">
+                                                <asp:TextBox ID="txtStartDate" type="date" Width="50%" Text="Start Date" runat="server" data-date="" data-date-format="DD MMMM YYYY" CssClass="form-control" placeholder="from"></asp:TextBox>
+
+                                                <asp:TextBox ID="txtEndDate" type="date" Width="50%" Text="End Date" runat="server" data-date="" data-date-format="DD MMMM YYYY" CssClass="form-control" placeholder="to"></asp:TextBox>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <%--2nd Filter row--%>
 
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="col-sm-4">
                                             <label>
-                                                Category
+                                                Sub Department
                                             <div class="input-group margin">
-                                                <asp:DropDownList ID="ddlCategory" runat="server" class="form-control">
+                                                <asp:DropDownList ID="ddlSubdep" runat="server" class="form-control">
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4">
-                                            <label>Sub Category</label>
+                                            <label>Supplier</label>
 
                                             <div class="input-group margin">
-                                                <asp:DropDownList ID="ddlSubCategory" runat="server" class="form-control">
+                                                <asp:DropDownList ID="ddlsupplier" runat="server" class="form-control">
                                                 </asp:DropDownList>
 
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4">
-                                            <label>Status</label>
+                                            <label>Purchasing Officer</label>
                                             <div class="input-group margin">
-                                                <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control">
-                                                    <asp:ListItem Value="">-Please Select-</asp:ListItem>
-                                                    <asp:ListItem Value="0">Pending</asp:ListItem>
-                                                    <asp:ListItem Value="1">Approved</asp:ListItem>
-                                                    <asp:ListItem Value="2">Rejected</asp:ListItem>
-
+                                                <asp:DropDownList ID="ddlPurchasingOfficer" runat="server" CssClass="form-control">
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
@@ -135,33 +157,21 @@
                             <div class="box-body with-border">
                                 <div class="row">
                                     <div class="col-md-12" style="color: black; overflow-x: scroll;">
-                                        <asp:GridView runat="server" ID="gvSupplierItemReport" EmptyDataText="No Data To Show!"
+                                        <asp:GridView runat="server" ID="gvAgeAnalysis" EmptyDataText="No Data To Show!"
                                             CssClass="table table-responsive tablegv" AutoGenerateColumns="false"
-                                            GridLines="None" HeaderStyle-BackColor="#3C8DBC" HeaderStyle-ForeColor="White">
+                                            GridLines="None" HeaderStyle-BackColor="#3C8DBC" HeaderStyle-ForeColor="White" OnRowDataBound="gvAgeAnalysis_RowDataBound">
                                             <Columns>
-                                                <asp:BoundField DataField="SupplierId" HeaderText="SUPPLIER ID" />
-                                                <asp:BoundField DataField="SupplierName" HeaderText="SUPPLIER NAME " />
-                                                <asp:BoundField DataField="ItemName" HeaderText="ITEM NAME" />
-                                                <asp:BoundField DataField="CreatedDate" HeaderText="CREATED DATE " DataFormatString="{0:d}" />
-                                                <asp:BoundField DataField="CategoryId" HeaderText="CATEGORY ID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-                                                <asp:BoundField DataField="SubCategoryId" HeaderText="SUB CATEGORY ID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-                                                <asp:BoundField DataField="GrnCode" HeaderText="GRN CODE " />
-                                                <asp:TemplateField HeaderText="Approval Status">
-                                                    <ItemTemplate>
-                                                        <asp:Label
-                                                            runat="server"
-                                                            Visible='<%# Eval("IsApproved").ToString() == "0" ? true : false %>'
-                                                            Text="Pending" CssClass="label label-warning" />
-                                                        <asp:Label
-                                                            runat="server"
-                                                            Visible='<%# Eval("IsApproved").ToString() == "1" ? true : false %>'
-                                                            Text="APPROVED" CssClass="label label-success" />
-                                                        <asp:Label
-                                                            runat="server"
-                                                            Visible='<%# Eval("IsApproved").ToString() == "2" ? true : false %>'
-                                                            Text="Rejected" CssClass="label label-danger" />
-                                                    </ItemTemplate>
-                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="POCode" HeaderText="PO Code" />
+                                                <asp:BoundField DataField="CreatedDate" HeaderText="Created Date" />
+                                                <asp:BoundField DataField="SupplierName" HeaderText="Supplier Name" />
+                                                <asp:BoundField DataField="ItemName" HeaderText="Item Name  " DataFormatString="{0:d}" />
+                                                <asp:BoundField DataField="ItemPrice" HeaderText="Item Price" />
+                                                <asp:BoundField DataField="Quantity" HeaderText="Quantity" />
+                                                <asp:BoundField DataField="ReceivedQuantity" HeaderText="Received Quantity" />
+                                                <asp:BoundField DataField="WaitingQuantity" HeaderText="Waiting Quantity" />
+                                                <asp:BoundField HeaderText="Waiting Days" />
+                                                <asp:BoundField DataField="TotalAmount" HeaderText="Total Amount" />
+                                                <asp:BoundField DataField="PurchasingOfficerId" HeaderText="Purchasing Officer" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                                             </Columns>
                                         </asp:GridView>
                                     </div>

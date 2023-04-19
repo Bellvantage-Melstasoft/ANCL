@@ -11,8 +11,17 @@ namespace BiddingSystem
 {
 
 
-    public partial class CompanyPrReports
+    public partial class AgeAnalysisReport
     {
+
+        /// <summary>
+        /// Updatepanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel Updatepanel1;
 
         /// <summary>
         /// panelPurchaseRequset control.
@@ -51,40 +60,31 @@ namespace BiddingSystem
         protected global::System.Web.UI.WebControls.TextBox txtEndDate;
 
         /// <summary>
-        /// ddlStatus control.
+        /// ddlSubdep control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSubdep;
 
         /// <summary>
-        /// ddlDepartment control.
+        /// ddlsupplier control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDepartment;
+        protected global::System.Web.UI.WebControls.DropDownList ddlsupplier;
 
         /// <summary>
-        /// ddlPRType control.
+        /// ddlPurchasingOfficer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPRType;
-
-        /// <summary>
-        /// ddlPurchasingType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPurchasingType;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPurchasingOfficer;
 
         /// <summary>
         /// btnSearch control.
@@ -105,21 +105,12 @@ namespace BiddingSystem
         protected global::System.Web.UI.WebControls.Button btnSearchAll;
 
         /// <summary>
-        /// Updatepanel1 control.
+        /// gvAgeAnalysis control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel Updatepanel1;
-
-        /// <summary>
-        /// gvPurchaseRequest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPurchaseRequest;
+        protected global::System.Web.UI.WebControls.GridView gvAgeAnalysis;
     }
 }

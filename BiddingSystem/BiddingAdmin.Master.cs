@@ -175,6 +175,8 @@ namespace BiddingSystem
                     grnReports.Visible = true;
                     SupplierItemReport.Visible = true;
                     ItemPoreport.Visible = true;
+                    comparisionToLastYear.Visible = true;
+                    AgeAnalysis.Visible = true;
                     //biddingReports.Visible = true;
                     //supplierReports.Visible = true;
                     IssueNoteReport.Visible = true;

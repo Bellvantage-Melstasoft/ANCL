@@ -107,113 +107,87 @@
 
 
                         <div class="row">
-                            <div class="col-sm-12">
-                                <div class="col-sm-4">
-                                    <label>PR Code</label>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="txtPoCode" ValidationGroup="btnPoCodeSearch" ForeColor="Red">*</asp:RequiredFieldValidator>
-                                    <asp:TextBox ID="txtPoCode" runat="server" CssClass="form-control" PlaceHolder="LCL1 / IMP1"></asp:TextBox>
-                                    <%--   <span class="input-group-btn">
-                                        <asp:Button runat="server" ID="btnPoCodeSearch" ValidationGroup="btnPoCodeSearch" OnClick="btnPoCodeSearch_Click" CssClass="btn btn-info" Text="Search" />
+                            <div class="col-md-6">
 
-                                    </span>--%>
+                                <label>PR Code</label>
+                                <asp:TextBox ID="txtPoCode" runat="server" CssClass="form-control" PlaceHolder="LCL1 / IMP1"></asp:TextBox>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label>Date</label>
+                                <div class="input-group">
+                                    <asp:TextBox ID="txtStartDate" type="date" runat="server" Width="50%" data-date="" data-date-format="DD MMMM YYYY" CssClass="form-control " placeholder="from"></asp:TextBox>
+
+                                    <asp:TextBox ID="txtEndDate" type="date" runat="server" Width="50%" data-date="" data-date-format="DD MMMM YYYY" CssClass="form-control" placeholder="to"></asp:TextBox>
+
                                 </div>
 
-                                <%--<div class="col-sm-4">
-                         <label>Status</label> <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" InitialValue="" ControlToValidate="ddlStatus"   ValidationGroup="btnPoStatusSearch" ForeColor="Red">*</asp:RequiredFieldValidator>
-
-                         <div class="input-group margin">
-                              <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control" >
-                            <asp:ListItem Value="">-Please Select-</asp:ListItem>
-                           <asp:ListItem Value="0">Pending</asp:ListItem>
-                            <asp:ListItem Value="1">Approved</asp:ListItem>
-                            <asp:ListItem Value="2">Rejected</asp:ListItem>
-                       </asp:DropDownList>
-                    <span class="input-group-btn">
-                         <asp:Button runat="server" ID="btnPoStatusSearch" OnClick="btnPoStatusSearch_Click"  ValidationGroup="btnPoStatusSearch" CssClass="btn btn-info"  Text="Search" />
-                    </span>
-              </div>
-                    </div>--%>
-
-                                <div class="col-sm-4">
-                                    <label>Date</label>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtStartDate" ValidationGroup="btnPoDateSearch" ForeColor="Red">*</asp:RequiredFieldValidator>
-                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txtEndDate" ValidationGroup="btnPoDateSearch" ForeColor="Red">*</asp:RequiredFieldValidator>
-                                    <div class="input-group margin">
-                                        <asp:TextBox ID="txtStartDate" type="date" runat="server" Width="50%" data-date="" data-date-format="DD MMMM YYYY" CssClass="form-control " placeholder="from"></asp:TextBox>
-
-                                        <asp:TextBox ID="txtEndDate" type="date" runat="server" Width="50%" data-date="" data-date-format="DD MMMM YYYY" CssClass="form-control" placeholder="to"></asp:TextBox>
-
-                                        <%--  <span class="input-group-btn">
+                                <%--  <span class="input-group-btn">
                                             <asp:Button runat="server" ID="btnPoDateSearch" ValidationGroup="btnPoDateSearch" OnClick="btnPoDateSearch_Click" CssClass="btn btn-info" Text="Search" />
                                         </span>--%>
-                                    </div>
-                                </div>
                             </div>
                         </div>
+                        <br />
+
 
                         <%--Status And Department Filter --%>
-                        <div class="row">
+                        <div class="row ">
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Status</label>
-                                    <div class="input-group margin">
-                                        <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control">
-                                            <asp:ListItem Value="">-Please Select-</asp:ListItem>
-                                            <asp:ListItem Value="0">Pending</asp:ListItem>
-                                            <asp:ListItem Value="1">Approved</asp:ListItem>
-                                            <asp:ListItem Value="2">Rejected</asp:ListItem>
-                                        </asp:DropDownList>
-                                        <%--   <span class="input-group-btn">
-                                            <asp:Button runat="server" ID="btnPoStatusSearch" OnClick="btnPoStatusSearch_Click" ValidationGroup="btnPoStatusSearch" CssClass="btn btn-info" Text="Search" />
-                                        </span>--%>
-                                    </div>
-                                </div>
+
+                                <label>Status</label>
+
+                                <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control">
+                                    <asp:ListItem Value="">-Please Select-</asp:ListItem>
+                                    <asp:ListItem Value="0">Pending</asp:ListItem>
+                                    <asp:ListItem Value="1">Approved</asp:ListItem>
+                                    <asp:ListItem Value="2">Rejected</asp:ListItem>
+                                </asp:DropDownList>
                             </div>
 
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Department</label>
-                                    <div class="input-group margin">
-                                        <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control">
-                                        </asp:DropDownList>
-                                        <%--   <span class="input-group-btn">
-                                            <asp:Button runat="server" ID="btnPoStatusSearch" OnClick="btnPoStatusSearch_Click" ValidationGroup="btnPoStatusSearch" CssClass="btn btn-info" Text="Search" />
-                                        </span>--%>
-                                    </div>
-                                </div>
+
+                                <label>Department</label>
+
+                                <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control">
+                                </asp:DropDownList>
+
+
                             </div>
                         </div>
+                        <br />
 
                         <%--PR Type And PurchaseType Filter --%>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>PR TYPE</label><span class="required basicRequired">
-                                    </span>
-                                    <%--<select id="ddlPRType" class="form-control select2" onchange="loadItem();">--%>
-                                    <asp:DropDownList ID="ddlPRType" runat="server" class="form-control select2">
-                                        <asp:ListItem Value="">-Please Select-</asp:ListItem>
-                                        <asp:ListItem Value="1">Stock</asp:ListItem>
-                                        <asp:ListItem Value="2">Non-Stock</asp:ListItem>
 
-                                    </asp:DropDownList>
-                                </div>
+                                <label>PR TYPE</label><span class="required basicRequired">
+                                </span>
+                                <%--<select id="ddlPRType" class="form-control select2" onchange="loadItem();">--%>
+                                <asp:DropDownList ID="ddlPRType" runat="server" class="form-control select2">
+                                    <asp:ListItem Value="">-Please Select-</asp:ListItem>
+                                    <asp:ListItem Value="1">Stock</asp:ListItem>
+                                    <asp:ListItem Value="2">Non-Stock</asp:ListItem>
+
+                                </asp:DropDownList>
+
                             </div>
 
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>PURCHASING TYPE</label><span
-                                        class="required basicRequired"></span>
-                                    <asp:DropDownList ID="ddlPurchasingType" runat="server" class="form-control select2">
-                                        <asp:ListItem Value="">-Please Select-</asp:ListItem>
-                                        <asp:ListItem Value="1">Local</asp:ListItem>
-                                        <asp:ListItem Value="2">Import</asp:ListItem>
 
-                                    </asp:DropDownList>
+                                <label>PURCHASING TYPE</label><span
+                                    class="required basicRequired"></span>
+                                <asp:DropDownList ID="ddlPurchasingType" runat="server" class="form-control select2">
+                                    <asp:ListItem Value="">-Please Select-</asp:ListItem>
+                                    <asp:ListItem Value="1">Local</asp:ListItem>
+                                    <asp:ListItem Value="2">Import</asp:ListItem>
 
-                                </div>
+                                </asp:DropDownList>
+
+
                             </div>
                         </div>
+
+                        <br />
 
                         <%--Button search--%>
                         <div class="row">
@@ -223,6 +197,7 @@
 
                             </div>
                         </div>
+
 
 
                         <div class="box-tools pull-right">
@@ -250,7 +225,7 @@
                                                             <asp:Label runat="server" ID="lblPRCode" Text='<%#Eval("PrCode") == null? "" : "PR-" + Eval("PrCode").ToString()%>'></asp:Label>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:BoundField DataField="WarehouseName" HeaderText="Warehouse" />
+                                                    <asp:BoundField DataField="WareHouseLocation" HeaderText="Warehouse" />
                                                     <%--<asp:BoundField DataField="DepartmentId"  HeaderText="DepartmentId" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"/>--%>
                                                     <asp:BoundField DataField="ExpectedDate" HeaderText="Date Of Request" DataFormatString='<%$ appSettings:dateTimePattern %>' />
                                                     <asp:BoundField DataField="RequiredFor" HeaderText="Quotation For" />
@@ -295,11 +270,11 @@
                                                             </itemtemplate>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Action">
+                                                    <%--<asp:TemplateField HeaderText="Action">
                                                         <ItemTemplate>
                                                             <asp:LinkButton runat="server" ID="lbtnView" Text="View" OnClick="btnView_Click"></asp:LinkButton>
                                                         </ItemTemplate>
-                                                    </asp:TemplateField>
+                                                    </asp:TemplateField>--%>
                                                 </Columns>
                                                 <EmptyDataTemplate>
                                                     No Data To Show

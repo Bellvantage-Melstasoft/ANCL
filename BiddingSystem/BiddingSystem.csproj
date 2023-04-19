@@ -251,6 +251,7 @@
     <Content Include="AdminResources\Login\vendor\select2\select2.min.js" />
     <Content Include="AdminViewSupplierDetails.aspx" />
     <Content Include="AddImportDetails.aspx" />
+    <Content Include="AgeAnalysisReport.aspx" />
     <Content Include="ApproveExpensePR.aspx" />
     <Content Include="ApproveForBidOpeningView.aspx" />
     <Content Include="ApprovedPOInvoices.aspx" />
@@ -261,6 +262,7 @@
     <Content Include="ApproveQuotationsItemWiseRejectedImport.aspx" />
     <Content Include="CompareQuotationsNewImportsNewSparePart.aspx" />
     <Content Include="CompareQuotationsNewImportsNew.aspx" />
+    <Content Include="comparisionToLastYear.aspx" />
     <Content Include="CreatePONewImports.aspx" />
     <Content Include="EditInventory.aspx" />
     <Content Include="GenerateGRNNewImport.aspx" />
@@ -624,6 +626,13 @@
     <Compile Include="AddImportDetails.aspx.designer.cs">
       <DependentUpon>AddImportDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AgeAnalysisReport.aspx.cs">
+      <DependentUpon>AgeAnalysisReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgeAnalysisReport.aspx.designer.cs">
+      <DependentUpon>AgeAnalysisReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ApproveExpensePR.aspx.cs">
       <DependentUpon>ApproveExpensePR.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -693,6 +702,13 @@
     </Compile>
     <Compile Include="CompareQuotationsNewImportsNew.aspx.designer.cs">
       <DependentUpon>CompareQuotationsNewImportsNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="comparisionToLastYear.aspx.cs">
+      <DependentUpon>comparisionToLastYear.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="comparisionToLastYear.aspx.designer.cs">
+      <DependentUpon>comparisionToLastYear.aspx</DependentUpon>
     </Compile>
     <Compile Include="CreatePONewImports.aspx.cs">
       <DependentUpon>CreatePONewImports.aspx</DependentUpon>

@@ -80,6 +80,7 @@
     <Compile Include="Controller\AddItemMasterController.cs" />
     <Compile Include="Controller\AddItemPOReportsController.cs" />
     <Compile Include="Controller\AfterPOController.cs" />
+    <Compile Include="Controller\AgeAnalysisController.cs" />
     <Compile Include="Controller\BiddingController.cs" />
     <Compile Include="Controller\BiddingItemController.cs" />
     <Compile Include="Controller\BiddingMethodController.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Controller\CompanyLoginController.cs" />
     <Compile Include="Controller\CompanyTypeController.cs" />
     <Compile Include="Controller\CompanyUserAccessController.cs" />
+    <Compile Include="Controller\ComparisionToLastYearPOReportController.cs" />
     <Compile Include="Controller\CurrencyRateController.cs" />
     <Compile Include="Controller\DashboardController.cs" />
     <Compile Include="Controller\DefContainerSizeController.cs" />
@@ -230,6 +232,7 @@
     <Compile Include="Domain\AddItemMaster.cs" />
     <Compile Include="Domain\AddItemPOReports.cs" />
     <Compile Include="Domain\AfterPO.cs" />
+    <Compile Include="Domain\AgeAnalysis.cs" />
     <Compile Include="Domain\Bidding.cs" />
     <Compile Include="Domain\BiddingItem.cs" />
     <Compile Include="Domain\BiddingMethod.cs" />
@@ -238,6 +241,7 @@
     <Compile Include="Domain\Bid_Bond_Details.cs" />
     <Compile Include="Domain\CommonReference.cs" />
     <Compile Include="Domain\CompanyType.cs" />
+    <Compile Include="Domain\ComparisionToLastYearPOReport.cs" />
     <Compile Include="Domain\Conversion.cs" />
     <Compile Include="Domain\ConversionTableMaster.cs" />
     <Compile Include="Domain\CurrencyRate.cs" />
@@ -421,6 +425,7 @@
     <Compile Include="Infrastructure\AddItemMasterDAO.cs" />
     <Compile Include="Infrastructure\AddItemPOReportsDAO.cs" />
     <Compile Include="Infrastructure\AfterPO_DAO.cs" />
+    <Compile Include="Infrastructure\AgeAnalysisDAO.cs" />
     <Compile Include="Infrastructure\ArraySpec.cs" />
     <Compile Include="Infrastructure\BiddingDAO.cs" />
     <Compile Include="Infrastructure\BiddingItemDAO.cs" />
@@ -432,6 +437,7 @@
     <Compile Include="Infrastructure\CompanyLoginDAO.cs" />
     <Compile Include="Infrastructure\CompanyTypeDAO.cs" />
     <Compile Include="Infrastructure\CompanyUserAccessDAO.cs" />
+    <Compile Include="Infrastructure\ComparisionToLastYearPOReportDAO.cs" />
     <Compile Include="Infrastructure\CurrencyrateDAO.cs" />
     <Compile Include="Infrastructure\DashboardDAO.cs" />
     <Compile Include="Infrastructure\DefContainerSizeDAO.cs" />

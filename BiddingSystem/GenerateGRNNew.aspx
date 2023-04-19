@@ -296,14 +296,14 @@
                                 </div>
                                 <div class="col-md-4">
                                     <asp:Panel ID="pnlwarehouse" runat="server">
-                                    <strong>DELIVERING WAREHOUSE: </strong>
-                                    <br>
-                                    <asp:Label runat="server" ID="lblWarehouseName"></asp:Label><br>
-                                    <asp:Label runat="server" ID="lblWarehouseAddress"></asp:Label><br>
-                                    <asp:Label runat="server" ID="lblWarehouseContact"></asp:Label>
+                                        <strong>DELIVERING WAREHOUSE: </strong>
+                                        <br>
+                                        <asp:Label runat="server" ID="lblWarehouseName"></asp:Label><br>
+                                        <asp:Label runat="server" ID="lblWarehouseAddress"></asp:Label><br>
+                                        <asp:Label runat="server" ID="lblWarehouseContact"></asp:Label>
 
-                                    <br>
-                                     </asp:Panel>
+                                        <br>
+                                    </asp:Panel>
                                     <strong>STORE KEEPER: </strong>
                                     <asp:Label runat="server" ID="lblStoreKeeper"></asp:Label><br>
                                     <br>
@@ -313,7 +313,7 @@
                                     <asp:Label runat="server" ID="lblPOCode"></asp:Label><br>
                                     <strong>BASED PR: </strong>
                                     <asp:Label runat="server" ID="lblPrCode"></asp:Label><br>
-                                   <%-- <strong>QUOTATION FOR: </strong>
+                                    <%-- <strong>QUOTATION FOR: </strong>
                                     <asp:Label runat="server" ID="lblQuotationFor"></asp:Label><br>--%>
                                     <strong>DATE: </strong>
                                     <asp:Label runat="server" ID="lblDate"></asp:Label><br>
@@ -339,13 +339,13 @@
                                                         <asp:CheckBox ID="CheckBox2" runat="server" onclick="CheckBoxChecked(this);" />
                                                     </HeaderTemplate>
                                                 </asp:TemplateField>--%>
-                                                 <asp:TemplateField HeaderText="PO Purchase Type">
+                                                <asp:TemplateField HeaderText="PO Purchase Type">
                                                     <ItemTemplate>
-                                                         <asp:Label runat="server"  Text='<%# Eval("PoPurchaseType").ToString() == "1" ? "Local":"Import" %>'></asp:Label>
+                                                        <asp:Label runat="server" Text='<%# Eval("PoPurchaseType").ToString() == "1" ? "Local":"Import" %>'></asp:Label>
                                                     </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                <asp:BoundField DataField="PodId" HeaderText="POD ID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-                                                <asp:BoundField DataField="ItemId" HeaderText="Item Id" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="PodId" HeaderText="POD ID" />
+                                                <asp:BoundField DataField="ItemId" HeaderText="Item Id" />
                                                 <asp:BoundField DataField="ItemName" HeaderText="Item Name" />
                                                 <asp:BoundField DataField="SupplierMentionedItemName" HeaderText="Supplier Mentioned Item Name" NullDisplayText="Not Found" />
                                                 <asp:BoundField DataField="MeasurementShortName" HeaderText="Measurement" NullDisplayText="Not Found" />
@@ -406,7 +406,7 @@
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                                 <asp:BoundField DataField="MeasurementId" HeaderText="MeasurementId" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
-                                               
+
 
                                                 <%-- <asp:TemplateField HeaderText="Free QTY">
                                                     <ItemTemplate>

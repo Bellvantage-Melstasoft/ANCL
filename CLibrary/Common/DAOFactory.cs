@@ -1246,6 +1246,19 @@ namespace CLibrary.Common
             return (AddItemPOReportsDAO)addItemPOReportsDAO;
         }
 
+        public static ComparisionToLastYearPOReportDAO CreateComparisionToLastYearPOReportDAO()
+        {
+            ComparisionToLastYearPOReportDAO comparisionToLastYearPOReportDAO = new ComparisionToLastYearPOReportDAOSqlImpl();
+            return (ComparisionToLastYearPOReportDAO)comparisionToLastYearPOReportDAO;
+
+        }
+
+        public static AgeAnalysisDAO CreateAgeAnalysisDAO()
+        {
+            AgeAnalysisDAO ageAnalysisDAO = new AgeAnalysisDAOImpl();
+            return (AgeAnalysisDAO)ageAnalysisDAO;
+        }
+
 
     }
 }
