@@ -14,6 +14,9 @@ namespace BiddingSystem
     {
         CompanyUserAccessController companyUserAccessController = ControllerFactory.CreateCompanyUserAccessController();
         CompanyLoginController companyLoginController = ControllerFactory.CreateCompanyLoginController();
+        AgeAnalysisController ageAnalysisController = ControllerFactory.CreateAgeAnalysisController();
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -40,7 +43,7 @@ namespace BiddingSystem
 
                 if (!IsPostBack)
                 {
-
+                    BindDataSource();
 
                 }
             }
@@ -48,6 +51,34 @@ namespace BiddingSystem
             {
 
                 throw;
+            }
+        }
+
+        private void BindDataSource()
+        {
+            List<AgeAnalysis> ageAnalysis = new List<AgeAnalysis>();
+            ageAnalysis = ageAnalysisController.GetAgeAnalysis();
+            gvAgeAnalysis.DataSource = ageAnalysis;
+            gvAgeAnalysis.DataBind();
+        }
+
+        protected void gvAgeAnalysis_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (Convert.ToInt32(e.Row.Cells[7].Text) > 0)
+                {
+                    DateTime date = DateTime.Parse(e.Row.Cells[1].Text);
+
+                    // Calculate the difference in days
+                    TimeSpan diff = DateTime.Now.Date - date;
+                    int days = diff.Days;
+                    e.Row.Cells[8].Text = days.ToString() + " Days";
+                }
+                else
+                {
+                    e.Row.Cells[8].Text = "No waiting";
+                }
             }
         }
     }

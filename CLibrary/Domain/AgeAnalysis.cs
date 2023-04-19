@@ -43,6 +43,8 @@ namespace CLibrary.Domain
 
         [DBField("SUB_DEPARTMENT_ID")]
         public int SubDepartmentId { get; set; }
+
+
     }
 
 }
