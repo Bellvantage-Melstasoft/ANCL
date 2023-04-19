@@ -289,6 +289,7 @@ namespace BiddingSystem
                         pnlPaymentMethod.Visible = true;
                     }
 
+                    //gvPoItems.DataSource = pOMaster._PODetails;
                     gvPoItems.DataSource = pOMaster._PODetails;
                     gvPoItems.DataBind();
 
@@ -315,6 +316,8 @@ namespace BiddingSystem
                 {
 
                     e.Row.Cells[5].CssClass = "hidden";
+                    e.Row.Cells[8].CssClass = "hidden";
+                    e.Row.Cells[9].CssClass = "hidden";
                 }
             }
 
@@ -324,8 +327,11 @@ namespace BiddingSystem
                 {
 
                     e.Row.Cells[5].CssClass = "hidden";
+                    e.Row.Cells[8].CssClass = "hidden";
+                    e.Row.Cells[9].CssClass = "hidden";
                 }
             }
+
         }
 
 
