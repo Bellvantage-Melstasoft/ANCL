@@ -9,7 +9,7 @@ namespace CLibrary.Infrastructure
 {
     public interface AddItemMasterDAO
     {
-        int SaveItems(int CategoryId,int SubCategoryId, string ItemName,int IsActive, DateTime CreatedDateTime, string CreatedBy, DateTime UpdatedDateTime, string UpdatedBy,string ReferenceNo,string HsId, string Model , string PartId,int measurementId, int ItemType, int stockMaintainingType, DBConnection dbConnection);
+        int SaveItems(int CategoryId, int SubCategoryId, string ItemName, int IsActive, DateTime CreatedDateTime, string CreatedBy, DateTime UpdatedDateTime, string UpdatedBy, string ReferenceNo, string HsId, string Model, string PartId, int measurementId, int ItemType, int stockMaintainingType, DBConnection dbConnection);
         //int UpdateItems(int ItemId, int CategoryId, int SubCategoryId, string ItemName, DateTime CreatedDateTime, string CreatedBy, DateTime UpdatedDateTime, string UpdatedBy, string ReferenceNo, int measurementid, DBConnection dbConnection);
         int UpdateItems(int ItemId, int CategoryId, int SubCategoryId, string ItemName, DateTime CreatedDateTime, string CreatedBy, DateTime UpdatedDateTime, string UpdatedBy, string ReferenceNo, int CompnayId, int measurementid, DBConnection dbConnection);
         int DeleteItems(int ItemId, DBConnection dbConnection);
@@ -19,18 +19,18 @@ namespace CLibrary.Infrastructure
         List<AddItemMaster> FetchItemListDetailed(DBConnection dbConnection);
         int DeleteInActiveItems(int ItemId, int CategoryId, int SubCategoryId, DBConnection dbConnection);
         List<AddItemMaster> SearchedItemName(int MainCategoryId, int SubCategoryId, string ItemName, int companyid, DBConnection dbConnection);
-        int GetIdByItemName( string ItemName, DBConnection dbConnection);
+        int GetIdByItemName(string ItemName, DBConnection dbConnection);
         List<AddItemMaster> FetchItemsByCategories(int MainCategoryId, int SubCategoryId, DBConnection dbConnection);
         AddItemMaster FetchItemObj(int ItemId, DBConnection dbConnection);
     }
 
-   
+
 
     public class AddItemMasterDAOSQLImpl : AddItemMasterDAO
     {
         string dbLibrary = System.Configuration.ConfigurationSettings.AppSettings["dbLibrary"];
 
-        public int SaveItems(int CategoryId, int SubCategoryId, string ItemName, int IsActive, DateTime CreatedDateTime, string CreatedBy, DateTime UpdatedDateTime, string UpdatedBy, string ReferenceNo,string HsId, string Model , string PartId, int measurementId, int ItemType,int stockMaintainingType, DBConnection dbConnection)
+        public int SaveItems(int CategoryId, int SubCategoryId, string ItemName, int IsActive, DateTime CreatedDateTime, string CreatedBy, DateTime UpdatedDateTime, string UpdatedBy, string ReferenceNo, string HsId, string Model, string PartId, int measurementId, int ItemType, int stockMaintainingType, DBConnection dbConnection)
         {
             int ItemId = 0;
 
@@ -43,7 +43,7 @@ namespace CLibrary.Infrastructure
             //{
 
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "SELECT COUNT(*) AS cnt FROM " + dbLibrary + ".ADD_ITEMS_MASTER WHERE CATEGORY_ID = " + CategoryId + " AND  SUB_CATEGORY_ID = " + SubCategoryId + " AND  ITEM_NAME = '" + ItemName + "' ";
+            dbConnection.cmd.CommandText = "SELECT COUNT(*) AS cnt FROM " + dbLibrary + ".ADD_ITEMS_MASTER WHERE CATEGORY_ID = " + CategoryId + " AND  SUB_CATEGORY_ID = " + SubCategoryId + " AND TRIM(UPPER(ITEM_NAME)) = '" + ItemName.ToUpper().Trim() + "' ";
             var countExist = int.Parse(dbConnection.cmd.ExecuteScalar().ToString());
 
             if (countExist == 0)
@@ -61,7 +61,7 @@ namespace CLibrary.Infrastructure
                     dbConnection.cmd.CommandText = "SELECT MAX (ITEM_ID)+1 AS MAXid FROM " + dbLibrary + ".ADD_ITEMS_MASTER";
                     ItemId = int.Parse(dbConnection.cmd.ExecuteScalar().ToString());
                 }
-                dbConnection.cmd.CommandText = "INSERT INTO " + dbLibrary + ".ADD_ITEMS_MASTER (ITEM_ID, CATEGORY_ID, SUB_CATEGORY_ID, ITEM_NAME, IS_ACTIVE, CREATED_DATETIME, CREATED_BY, UPDATED_DATETIME, UPDATED_BY,REFERENCE_NO,HS_ID,MODEL,PART_ID, MEASUREMENT_ID, ITEM_TYPE,STOCK_MAINTAINING_TYPE) VALUES ( " + ItemId + ", " + CategoryId + " , " + SubCategoryId + ", '" + ItemName + "', " + IsActive + ", '" + CreatedDateTime + "', '" + CreatedBy + "', '" + UpdatedDateTime + "', '" + UpdatedBy + "','" + ReferenceNo + "','" + HsId + "','" + Model + "','" + PartId + "', " + measurementId + ", " + ItemType + ", "+ stockMaintainingType + ");";
+                dbConnection.cmd.CommandText = "INSERT INTO " + dbLibrary + ".ADD_ITEMS_MASTER (ITEM_ID, CATEGORY_ID, SUB_CATEGORY_ID, ITEM_NAME, IS_ACTIVE, CREATED_DATETIME, CREATED_BY, UPDATED_DATETIME, UPDATED_BY,REFERENCE_NO,HS_ID,MODEL,PART_ID, MEASUREMENT_ID, ITEM_TYPE,STOCK_MAINTAINING_TYPE) VALUES ( " + ItemId + ", " + CategoryId + " , " + SubCategoryId + ", '" + ItemName + "', " + IsActive + ", '" + CreatedDateTime + "', '" + CreatedBy + "', '" + UpdatedDateTime + "', '" + UpdatedBy + "','" + ReferenceNo + "','" + HsId + "','" + Model + "','" + PartId + "', " + measurementId + ", " + ItemType + ", " + stockMaintainingType + ");";
                 dbConnection.cmd.CommandType = System.Data.CommandType.Text;
                 dbConnection.cmd.ExecuteNonQuery();
 
@@ -211,14 +211,14 @@ namespace CLibrary.Infrastructure
             }
         }
 
-        public List<AddItemMaster> SearchedItemName(int MainCategoryId, int SubCategoryId, string ItemName,int companyid, DBConnection dbConnection)
+        public List<AddItemMaster> SearchedItemName(int MainCategoryId, int SubCategoryId, string ItemName, int companyid, DBConnection dbConnection)
         {
             dbConnection.cmd.Parameters.Clear();
 
 
             //dbConnection.cmd.CommandText = "SELECT *  FROM " + dbLibrary + ".ADD_ITEMS_MASTER  WHERE LOWER( ITEM_NAME ) LIKE '" + "%" + ItemName.ToLower() + "%" + "' AND ITEM_ID NOT IN (SELECT ITEM_ID FROM ADD_ITEMS WHERE COMPANY_ID = " + companyid + ") AND CATEGORY_ID = "+MainCategoryId+" AND SUB_CATEGORY_ID = "+SubCategoryId+" ORDER BY ITEM_NAME ";
 
-           dbConnection.cmd.CommandText = "SELECT * FROM " + dbLibrary + ".ADD_ITEMS_MASTER AS IM LEFT JOIN " + dbLibrary + ".ADD_ITEMS AS AI ON ( IM.ITEM_ID = AI.ITEM_ID) WHERE LOWER ( IM.ITEM_NAME  ) LIKE '" + "%" + ItemName.ToLower() + "%" + "' AND IM.CATEGORY_ID = " + MainCategoryId + " AND IM.SUB_CATEGORY_ID = " + SubCategoryId + " ORDER BY IM.ITEM_NAME;";
+            dbConnection.cmd.CommandText = "SELECT * FROM " + dbLibrary + ".ADD_ITEMS_MASTER AS IM LEFT JOIN " + dbLibrary + ".ADD_ITEMS AS AI ON ( IM.ITEM_ID = AI.ITEM_ID) WHERE LOWER ( IM.ITEM_NAME  ) LIKE '" + "%" + ItemName.ToLower() + "%" + "' AND IM.CATEGORY_ID = " + MainCategoryId + " AND IM.SUB_CATEGORY_ID = " + SubCategoryId + " ORDER BY IM.ITEM_NAME;";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
             using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
@@ -256,28 +256,31 @@ namespace CLibrary.Infrastructure
             }
         }
 
-        
-        public int UpdateItems(int ItemId, int CategoryId, int SubCategoryId, string ItemName, DateTime CreatedDateTime, string CreatedBy, DateTime UpdatedDateTime, string UpdatedBy, string ReferenceNo, int CompnayId, int measurementid, DBConnection dbConnection) {
+
+        public int UpdateItems(int ItemId, int CategoryId, int SubCategoryId, string ItemName, DateTime CreatedDateTime, string CreatedBy, DateTime UpdatedDateTime, string UpdatedBy, string ReferenceNo, int CompnayId, int measurementid, DBConnection dbConnection)
+        {
             //dbConnection.cmd.Parameters.Clear();
             //dbConnection.cmd.CommandText = "SELECT COUNT(*) AS cnt FROM " + dbLibrary + ".ADD_ITEMS WHERE  COMPANY_ID = " + CompnayId + " AND REFERENCE_NO = '" + ReferenceNo + "' AND ITEM_ID != " + ItemId + " ";
             //var Refnumber = int.Parse(dbConnection.cmd.ExecuteScalar().ToString());
 
             //if (Refnumber == 0) {
 
+            dbConnection.cmd.Parameters.Clear();
+            dbConnection.cmd.CommandText = "SELECT COUNT(*) AS cnt FROM " + dbLibrary + ".ADD_ITEMS WHERE CATEGORY_ID = " + CategoryId + " AND  SUB_CATEGORY_ID = " + SubCategoryId + " AND  ITEM_ID != " + ItemId + " AND ITEM_NAME = '" + ItemName + "' AND COMPANY_ID=" + CompnayId + "";
+            var countExist = int.Parse(dbConnection.cmd.ExecuteScalar().ToString());
+
+            if (countExist == 0)
+            {
                 dbConnection.cmd.Parameters.Clear();
-                dbConnection.cmd.CommandText = "SELECT COUNT(*) AS cnt FROM " + dbLibrary + ".ADD_ITEMS WHERE CATEGORY_ID = " + CategoryId + " AND  SUB_CATEGORY_ID = " + SubCategoryId + " AND  ITEM_ID != " + ItemId + " AND ITEM_NAME = '" + ItemName + "' AND COMPANY_ID=" + CompnayId + "";
-                var countExist = int.Parse(dbConnection.cmd.ExecuteScalar().ToString());
+                dbConnection.cmd.CommandText = "UPDATE " + dbLibrary + ".ADD_ITEMS_MASTER  SET CATEGORY_ID = " + CategoryId + ", SUB_CATEGORY_ID = " + SubCategoryId + " , ITEM_NAME = '" + ItemName + "', CREATED_DATETIME = '" + CreatedDateTime + "', CREATED_BY = '" + CreatedBy + "', UPDATED_DATETIME = '" + UpdatedDateTime + "', UPDATED_BY = '" + UpdatedBy + "', REFERENCE_NO = '" + ReferenceNo + "' , MEASUREMENT_ID = " + measurementid + " WHERE ITEM_ID = " + ItemId + ";";
+                dbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
-                if (countExist == 0) {
-                    dbConnection.cmd.Parameters.Clear();
-                    dbConnection.cmd.CommandText = "UPDATE " + dbLibrary + ".ADD_ITEMS_MASTER  SET CATEGORY_ID = " + CategoryId + ", SUB_CATEGORY_ID = " + SubCategoryId + " , ITEM_NAME = '" + ItemName + "', CREATED_DATETIME = '" + CreatedDateTime + "', CREATED_BY = '" + CreatedBy + "', UPDATED_DATETIME = '" + UpdatedDateTime + "', UPDATED_BY = '" + UpdatedBy + "', REFERENCE_NO = '" + ReferenceNo + "' , MEASUREMENT_ID = " + measurementid + " WHERE ITEM_ID = " + ItemId + ";";
-                    dbConnection.cmd.CommandType = System.Data.CommandType.Text;
-
-                    return dbConnection.cmd.ExecuteNonQuery();
-                }
-                else {
-                    return -1;  // item name exist
-                }
+                return dbConnection.cmd.ExecuteNonQuery();
+            }
+            else
+            {
+                return -1;  // item name exist
+            }
             //}
             //else {
             //    return -2; // reference no exist
