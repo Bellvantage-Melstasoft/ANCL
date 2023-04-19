@@ -12,17 +12,19 @@ namespace CLibrary.Controller
     public interface CompanyLoginController
     {
         int SaveCompanyLogin(int departmentid, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime createdDate, string createdBy, DateTime updatedDate, string updatedby, int isActive, int subDepartmentID, List<UserSubDepartment> usersubdepartment, List<UserWarehouse> warehouse, string contactNo);
-        int UpdateCompanyLogin(int userID, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime updatedDate, string updatedby, int isActive, int designationId,  List<UserSubDepartment> usersubdepartment, List<UserWarehouse> warehouse, String contactNo);
+        int UpdateCompanyLogin(int userID, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime updatedDate, string updatedby, int isActive, int designationId, List<UserSubDepartment> usersubdepartment, List<UserWarehouse> warehouse, String contactNo);
         int SaveCompanyLogin(int departmentid, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime createdDate, string createdBy, DateTime updatedDate, string updatedby, int isActive, int designationId);
         int UpdateCompanyLogin(int userID, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime updatedDate, string updatedby, int isActive, int designationId);
         CompanyLogin GetCompanyLogin(string username, string password);
         List<CompanyLogin> GetUserListByDepartmentid(int Departmentid);
         CompanyLogin GetUserbyuserId(int userId);
         List<CompanyLogin> GetAllUserList();
+
+        List<CompanyLogin> GetAllUserListByDesignation(int Desgination);
         int UpdateInactiveUsers(int userID, int isActive);
         int ChangePassword(string UserName, string OldPassword, string NewPassword);
         List<CompanyLogin> GetStorekeepers(int warehouseId);
-        CompanyLogin GetUserDetailsbyCatergoryId(int categoryId , string type);
+        CompanyLogin GetUserDetailsbyCatergoryId(int categoryId, string type);
 
         //Modified for GRN New
         List<string> GetUserEmailsForApprovalbyWarehouseId(int FunctionId, int CategoryId, decimal Sum, int CompanyId, int SysDivisionId, int SysActionId, int warehouseId);
@@ -31,8 +33,8 @@ namespace CLibrary.Controller
         CompanyLogin GetUserbyPOId(int PoId);
         List<CompanyLogin> GetUserListByName(int Departmentid, string text);
 
-        }
-        public class CompanyLoginControllerImpl : CompanyLoginController
+    }
+    public class CompanyLoginControllerImpl : CompanyLoginController
     {
         public List<string> GetWarehouseHeadsEmails(int WarehouseId)
         {
@@ -72,6 +74,26 @@ namespace CLibrary.Controller
                     dbConnection.Commit();
             }
         }
+        //Get User List By Designation
+        public List<CompanyLogin> GetAllUserListByDesignation(int Desgination)
+        {
+            DBConnection dbConnection = new DBConnection();
+            try
+            {
+                CompanyLoginDAO companyLoginDAO = DAOFactory.createCompanyLoginDAO();
+                return companyLoginDAO.GetAllUserListByDesignation(Desgination, dbConnection);
+            }
+            catch (Exception ex)
+            {
+                dbConnection.RollBack();
+                throw;
+            }
+            finally
+            {
+                if (dbConnection.con.State == System.Data.ConnectionState.Open)
+                    dbConnection.Commit();
+            }
+        }
 
         public CompanyLogin GetCompanyLogin(string username, string password)
         {
@@ -93,17 +115,21 @@ namespace CLibrary.Controller
             }
         }
 
-        public CompanyLogin GetUserbyPOId(int PoId) {
+        public CompanyLogin GetUserbyPOId(int PoId)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 CompanyLoginDAO companyLoginDAO = DAOFactory.createCompanyLoginDAO();
                 return companyLoginDAO.GetUserbyPOId(PoId, dbConnection);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
+            finally
+            {
                 if (dbConnection.con.State == System.Data.ConnectionState.Open)
                     dbConnection.Commit();
             }
@@ -152,17 +178,21 @@ namespace CLibrary.Controller
                     dbConnection.Commit();
             }
         }
-        public List<CompanyLogin> GetUserListByName(int Departmentid, string text) {
+        public List<CompanyLogin> GetUserListByName(int Departmentid, string text)
+        {
             DBConnection dbConnection = new DBConnection();
-            try {
+            try
+            {
                 CompanyLoginDAO companyLoginDAO = DAOFactory.createCompanyLoginDAO();
                 return companyLoginDAO.GetUserListByName(Departmentid, text, dbConnection);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 dbConnection.RollBack();
                 throw;
             }
-            finally {
+            finally
+            {
                 if (dbConnection.con.State == System.Data.ConnectionState.Open)
                     dbConnection.Commit();
             }
@@ -188,7 +218,7 @@ namespace CLibrary.Controller
             }
         }
 
-        public int UpdateCompanyLogin(int userID, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime updatedDate, string updatedby, int isActive, int designationId,  List<UserSubDepartment> usersubdepartment, List<UserWarehouse> warehouse, string contactNo)
+        public int UpdateCompanyLogin(int userID, string username, string empNo, string password, string userType, string firstname, string emailAddress, DateTime updatedDate, string updatedby, int isActive, int designationId, List<UserSubDepartment> usersubdepartment, List<UserWarehouse> warehouse, string contactNo)
         {
             DBConnection dbConnection = new DBConnection();
             try

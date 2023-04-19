@@ -160,7 +160,8 @@ namespace CLibrary.Infrastructure
         public List<PrMasterV2> FetchPrALl(DBConnection DbConnection)
         {
             DbConnection.cmd.Parameters.Clear();
-            DbConnection.cmd.CommandText = "SELECT * FROM " + dbLibrary + ".PR_MASTER ";
+            DbConnection.cmd.CommandText = "SELECT *,WH.LOCATION FROM PR_MASTER PR " +
+                "INNER JOIN WAREHOUSE WH ON PR.WAREHOUSE_ID=WH.WAREHOUSE_ID";
             DbConnection.cmd.CommandType = System.Data.CommandType.Text;
 
             using (DbConnection.dr = DbConnection.cmd.ExecuteReader())

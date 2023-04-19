@@ -45,6 +45,7 @@ namespace BiddingSystem
                 {
                     BindDataDropDown();
                     BindSupplier();
+                    bindPurchasingOfficer();
 
                 }
             }
@@ -90,6 +91,19 @@ namespace BiddingSystem
             ddlsupplier.Items.Insert(0, new ListItem("-Select-", ""));
         }
 
+        private void bindPurchasingOfficer()
+        {
+            List<CompanyLogin> companyLoginsPurchaseOfficer = new List<CompanyLogin>();
+            companyLoginsPurchaseOfficer = companyLoginController.GetAllUserListByDesignation(25);
+            ddlPurchasingOfficer.DataSource = companyLoginsPurchaseOfficer;
+            ddlPurchasingOfficer.DataTextField = "FirstName";
+            ddlPurchasingOfficer.DataValueField = "UserId";
+            ddlPurchasingOfficer.DataBind();
+            ddlPurchasingOfficer.Items.Insert(0, new ListItem("-Select-", ""));
+
+
+        }
+
         protected void gvAgeAnalysis_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -124,7 +138,7 @@ namespace BiddingSystem
             }
             if (txtPoCode.Text != "")
             {
-                ageAnalysis = ageAnalysis.Where(x => x.POCode == txtPoCode.Text).ToList();
+                ageAnalysis = ageAnalysis.Where(x => x.POCode.Trim().ToLower() == txtPoCode.Text.Trim().ToLower()).ToList();
                 flag = true;
             }
 
@@ -137,6 +151,11 @@ namespace BiddingSystem
             if (ddlSubdep.SelectedValue != "")
             {
                 ageAnalysis = ageAnalysis.Where(x => x.SubDepartmentId == Convert.ToInt32(ddlSubdep.SelectedValue)).ToList();
+                flag = true;
+            }
+            if (ddlPurchasingOfficer.SelectedValue != "")
+            {
+                ageAnalysis = ageAnalysis.Where(x => x.PurchasingOfficerId == Convert.ToInt32(ddlPurchasingOfficer.SelectedValue)).ToList();
                 flag = true;
             }
 

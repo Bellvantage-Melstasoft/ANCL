@@ -90,7 +90,7 @@
                                         <div class="col-sm-4">
                                             <label>PO Code</label>
                                             <div class="input-group margin">
-                                                <asp:TextBox ID="txtPoCode" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <asp:TextBox ID="txtPoCode" runat="server" CssClass="form-control" PlaceHolder="PO1"></asp:TextBox>
                                                 <%--   <span class="input-group-btn">
                                             <asp:Button runat="server" ID="btnPoCodeSearch" ValidationGroup="btnPoCodeSearch" OnClick="btnPoCodeSearch_Click" CssClass="btn btn-info" Text="Search" />
 
@@ -106,10 +106,6 @@
                                                 <asp:TextBox ID="txtStartDate" type="date" Width="50%" Text="Start Date" runat="server" data-date="" data-date-format="DD MMMM YYYY" CssClass="form-control" placeholder="from"></asp:TextBox>
 
                                                 <asp:TextBox ID="txtEndDate" type="date" Width="50%" Text="End Date" runat="server" data-date="" data-date-format="DD MMMM YYYY" CssClass="form-control" placeholder="to"></asp:TextBox>
-
-                                                <%-- <span class="input-group-btn">
-                                            <asp:Button runat="server" ID="btnPoDateSearch" ValidationGroup="btnPoDateSearch" OnClick="btnPoDateSearch_Click" CssClass="btn btn-info" Text="Search" />
-                                        </span>--%>
                                             </div>
                                         </div>
                                     </div>
@@ -138,18 +134,13 @@
                                             </div>
                                         </div>
 
-                                        <%-- <div class="col-sm-4">
-                                            <label>Status</label>
+                                        <div class="col-sm-4">
+                                            <label>Purchasing Officer</label>
                                             <div class="input-group margin">
-                                                <asp:DropDownList ID="DropDownList3" runat="server" CssClass="form-control">
-                                                    <asp:ListItem Value="">-Please Select-</asp:ListItem>
-                                                    <asp:ListItem Value="0">Pending</asp:ListItem>
-                                                    <asp:ListItem Value="1">Approved</asp:ListItem>
-                                                    <asp:ListItem Value="2">Rejected</asp:ListItem>
-
+                                                <asp:DropDownList ID="ddlPurchasingOfficer" runat="server" CssClass="form-control">
                                                 </asp:DropDownList>
                                             </div>
-                                        </div>--%>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -180,6 +171,7 @@
                                                 <asp:BoundField DataField="WaitingQuantity" HeaderText="Waiting Quantity" />
                                                 <asp:BoundField HeaderText="Waiting Days" />
                                                 <asp:BoundField DataField="TotalAmount" HeaderText="Total Amount" />
+                                                <asp:BoundField DataField="PurchasingOfficerId" HeaderText="Purchasing Officer" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                                             </Columns>
                                         </asp:GridView>
                                     </div>
