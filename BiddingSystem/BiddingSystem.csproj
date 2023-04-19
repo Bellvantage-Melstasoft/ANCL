@@ -251,6 +251,7 @@
     <Content Include="AdminResources\Login\vendor\select2\select2.min.js" />
     <Content Include="AdminViewSupplierDetails.aspx" />
     <Content Include="AddImportDetails.aspx" />
+    <Content Include="AgeAnalysisReport.aspx" />
     <Content Include="ApproveExpensePR.aspx" />
     <Content Include="ApproveForBidOpeningView.aspx" />
     <Content Include="ApprovedPOInvoices.aspx" />
@@ -624,6 +625,13 @@
     </Compile>
     <Compile Include="AddImportDetails.aspx.designer.cs">
       <DependentUpon>AddImportDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AgeAnalysisReport.aspx.cs">
+      <DependentUpon>AgeAnalysisReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgeAnalysisReport.aspx.designer.cs">
+      <DependentUpon>AgeAnalysisReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="ApproveExpensePR.aspx.cs">
       <DependentUpon>ApproveExpensePR.aspx</DependentUpon>
