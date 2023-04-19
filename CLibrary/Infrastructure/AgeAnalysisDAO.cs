@@ -18,7 +18,7 @@ namespace CLibrary.Infrastructure
         public List<AgeAnalysis> GetAgeAnalysis(DBConnection dbConnection)
         {
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "SELECT PO.PO_CODE,c.CREATED_DATE,c.GOOD_RECEIVED_DATE,d.SUPPLIER_NAME " +
+            dbConnection.cmd.CommandText = "SELECT PO.PO_CODE,c.CREATED_DATE,c.GOOD_RECEIVED_DATE,d.SUPPLIER_ID,d.SUPPLIER_NAME " +
                 ",e.ITEM_NAME,b.ITEM_PRICE,b.QUANTITY,b.RECEIVED_QTY,b.WAITING_QTY,b.TOTAL_AMOUNT,MR.SUB_DEPARTMENT_ID FROM PO_GRN a " +
                 "INNER JOIN PO_MASTER PO ON PO.PO_ID=a.PO_ID " +
                 "INNER JOIN PR_MASTER PR ON PR.PR_ID=PO.BASED_PR " +

@@ -20,6 +20,9 @@ namespace CLibrary.Domain
         [DBField("GOOD_RECEIVED_DATE")]
         public DateTime GoodReceivedDate { get; set; }
 
+        [DBField("SUPPLIER_ID")]
+        public int SupplierId { get; set; }
+
         [DBField("SUPPLIER_NAME")]
         public string SupplierName { get; set; }
 

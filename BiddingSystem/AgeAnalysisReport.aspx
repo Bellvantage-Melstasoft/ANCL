@@ -88,34 +88,28 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="col-sm-4">
-                                            <label>
-                                                Category
+                                            <label>PO Code</label>
                                             <div class="input-group margin">
-                                                <asp:DropDownList ID="ddlCategory" runat="server" class="form-control">
-                                                </asp:DropDownList>
+                                                <asp:TextBox ID="txtPoCode" runat="server" CssClass="form-control"></asp:TextBox>
+                                                <%--   <span class="input-group-btn">
+                                            <asp:Button runat="server" ID="btnPoCodeSearch" ValidationGroup="btnPoCodeSearch" OnClick="btnPoCodeSearch_Click" CssClass="btn btn-info" Text="Search" />
+
+                                        </span>--%>
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-4">
-                                            <label>Sub Category</label>
 
-                                            <div class="input-group margin">
-                                                <asp:DropDownList ID="ddlSubCategory" runat="server" class="form-control">
-                                                </asp:DropDownList>
-
-                                            </div>
-                                        </div>
 
                                         <div class="col-sm-4">
-                                            <label>Status</label>
+                                            <label>Date</label>
                                             <div class="input-group margin">
-                                                <asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-control">
-                                                    <asp:ListItem Value="">-Please Select-</asp:ListItem>
-                                                    <asp:ListItem Value="0">Pending</asp:ListItem>
-                                                    <asp:ListItem Value="1">Approved</asp:ListItem>
-                                                    <asp:ListItem Value="2">Rejected</asp:ListItem>
+                                                <asp:TextBox ID="txtStartDate" type="date" Width="50%" Text="Start Date" runat="server" data-date="" data-date-format="DD MMMM YYYY" CssClass="form-control" placeholder="from"></asp:TextBox>
 
-                                                </asp:DropDownList>
+                                                <asp:TextBox ID="txtEndDate" type="date" Width="50%" Text="End Date" runat="server" data-date="" data-date-format="DD MMMM YYYY" CssClass="form-control" placeholder="to"></asp:TextBox>
+
+                                                <%-- <span class="input-group-btn">
+                                            <asp:Button runat="server" ID="btnPoDateSearch" ValidationGroup="btnPoDateSearch" OnClick="btnPoDateSearch_Click" CssClass="btn btn-info" Text="Search" />
+                                        </span>--%>
                                             </div>
                                         </div>
                                     </div>
@@ -127,24 +121,24 @@
                                     <div class="col-sm-12">
                                         <div class="col-sm-4">
                                             <label>
-                                                Category
+                                                Sub Department
                                             <div class="input-group margin">
-                                                <asp:DropDownList ID="DropDownList1" runat="server" class="form-control">
+                                                <asp:DropDownList ID="ddlSubdep" runat="server" class="form-control">
                                                 </asp:DropDownList>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-4">
-                                            <label>Sub Category</label>
+                                            <label>Supplier</label>
 
                                             <div class="input-group margin">
-                                                <asp:DropDownList ID="DropDownList2" runat="server" class="form-control">
+                                                <asp:DropDownList ID="ddlsupplier" runat="server" class="form-control">
                                                 </asp:DropDownList>
 
                                             </div>
                                         </div>
 
-                                        <div class="col-sm-4">
+                                        <%-- <div class="col-sm-4">
                                             <label>Status</label>
                                             <div class="input-group margin">
                                                 <asp:DropDownList ID="DropDownList3" runat="server" CssClass="form-control">
@@ -155,7 +149,7 @@
 
                                                 </asp:DropDownList>
                                             </div>
-                                        </div>
+                                        </div>--%>
                                     </div>
                                 </div>
 
@@ -163,8 +157,8 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="col-sm-4">
-                                            <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-info" Text="Search" />
-                                            <asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" Text="Get All" />
+                                            <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-info" Text="Search" OnClick="btnSearch_Click" />
+                                            <asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" Text="Get All" OnClick="btnSearchAll_Click" />
                                         </div>
                                     </div>
                                 </div>

@@ -43,7 +43,8 @@ namespace BiddingSystem
 
                 if (!IsPostBack)
                 {
-                    BindDataSource();
+                    BindDataDropDown();
+                    BindSupplier();
 
                 }
             }
@@ -60,6 +61,33 @@ namespace BiddingSystem
             ageAnalysis = ageAnalysisController.GetAgeAnalysis();
             gvAgeAnalysis.DataSource = ageAnalysis;
             gvAgeAnalysis.DataBind();
+        }
+
+        private void BindDataDropDown()
+        {
+            List<SubDepartment> departments = new List<SubDepartment>();
+            SubDepartmentControllerInterface subDepartmentController = ControllerFactory.CreateSubDepartmentController();
+
+            departments = subDepartmentController.getAllDepartmentList(int.Parse(Session["CompanyId"].ToString()));
+
+            ddlSubdep.DataSource = departments;
+            ddlSubdep.DataValueField = "SubDepartmentID";
+            ddlSubdep.DataTextField = "SubDepartmentName";
+            ddlSubdep.DataBind();
+            ddlSubdep.Items.Insert(0, new ListItem("-Select Department-", ""));
+
+        }
+
+        private void BindSupplier()
+        {
+            List<Supplier> supplierList = new List<Supplier>();
+            SupplierController supplierController = ControllerFactory.CreateSupplierController();
+            supplierList = supplierController.GetAllSupplierList();
+            ddlsupplier.DataSource = supplierList;
+            ddlsupplier.DataTextField = "supplierName";
+            ddlsupplier.DataValueField = "supplierId";
+            ddlsupplier.DataBind();
+            ddlsupplier.Items.Insert(0, new ListItem("-Select-", ""));
         }
 
         protected void gvAgeAnalysis_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -80,6 +108,54 @@ namespace BiddingSystem
                     e.Row.Cells[8].Text = "No waiting";
                 }
             }
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            List<AgeAnalysis> ageAnalysis = new List<AgeAnalysis>();
+            ageAnalysis = ageAnalysisController.GetAgeAnalysis();
+
+            bool flag = false;
+
+            if (txtEndDate.Text != "" && txtStartDate.Text != "")
+            {
+                ageAnalysis = ageAnalysis.Where(x => x.CreatedDate <= DateTime.Parse(txtEndDate.Text) && x.CreatedDate >= DateTime.Parse(txtStartDate.Text)).ToList();
+                flag = true;
+            }
+            if (txtPoCode.Text != "")
+            {
+                ageAnalysis = ageAnalysis.Where(x => x.POCode == txtPoCode.Text).ToList();
+                flag = true;
+            }
+
+            if (ddlsupplier.SelectedValue != "")
+            {
+                ageAnalysis = ageAnalysis.Where(x => x.SupplierId == Convert.ToInt32(ddlsupplier.SelectedValue)).ToList();
+                flag = true;
+            }
+
+            if (ddlSubdep.SelectedValue != "")
+            {
+                ageAnalysis = ageAnalysis.Where(x => x.SubDepartmentId == Convert.ToInt32(ddlSubdep.SelectedValue)).ToList();
+                flag = true;
+            }
+
+            if (flag == true)
+            {
+                gvAgeAnalysis.DataSource = ageAnalysis;
+
+            }
+            else
+            {
+                gvAgeAnalysis.DataSource = null;
+
+            }
+            gvAgeAnalysis.DataBind();
+        }
+
+        protected void btnSearchAll_Click(object sender, EventArgs e)
+        {
+            BindDataSource();
         }
     }
 }
