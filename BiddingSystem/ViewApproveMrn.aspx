@@ -2,10 +2,10 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentSection" runat="server">
     <style type="text/css">
-
-      .ui-datepicker-calendar {
+        .ui-datepicker-calendar {
             display: none;
         }
+
         .select2-container--default .select2-selection--multiple .select2-selection__rendered .select2-selection__choice {
             color: black;
         }
@@ -30,19 +30,21 @@
             border: 1px solid #f8f8f8;
             vertical-align: middle;
         }
-        table#ContentSection_gvMrn tbody tr td.Description {
-            white-space: normal!important;
-        }
+
+            table#ContentSection_gvMrn tbody tr td.Description {
+                white-space: normal !important;
+            }
+
         table#ContentSection_gvMrn tbody tr:nth-child(1) th {
-            position:sticky;
+            position: sticky;
             top: 1px;
             background: #3C8DBC;
             color: white;
         }
-       .fixed {
-          width: 100%;  
-        }
 
+        .fixed {
+            width: 100%;
+        }
     </style>
     <style type="text/css">
         .tablegv {
@@ -71,10 +73,8 @@
                 background-color: #3C8DBC;
                 color: white;
             }
-
-       
     </style>
-     <script src="AdminResources/js/jquery1.8.min.js"></script>
+    <script src="AdminResources/js/jquery1.8.min.js"></script>
     <script type="text/javascript">
         $("[src*=plus]").live("click", function () {
             $(this).closest("tr").after("<tr><td></td><td colspan = '999'>" + $(this).next().html() + "</td></tr>")
@@ -85,7 +85,7 @@
             $(this).closest("tr").next().remove();
         });
     </script>
- <script src="AdminResources/js/jquery-1.10.2.min.js"></script>
+    <script src="AdminResources/js/jquery-1.10.2.min.js"></script>
     <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>--%>
@@ -101,124 +101,134 @@
                 <section class="content-header">
                     <h1>Approve Material Request Notes<small></small></h1>
                     <ol class="breadcrumb">
-                        <li><a href="AdminDashboard.aspx"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li><a href="AdminDashboard.aspx"><i class="fa fa-dashboard"></i>Home</a></li>
                         <li class="active">Approve Material Request Notes </li>
                     </ol>
                 </section>
                 <br />
                 <section class="content">
 
-                       <div class="panel panel-default" id="panelMRNBasicSearch" runat="server">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Basic Search
-                            <a class="arrowdown"  data-target="#basicSearch" data-toggle="collapse"  aria-expanded="false">
-                            <span class="expand_caret caret" ></span>
+                    <div class="panel panel-default" id="panelMRNBasicSearch" runat="server">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Basic Search
+                            <a class="arrowdown" data-target="#basicSearch" data-toggle="collapse" aria-expanded="false">
+                                <span class="expand_caret caret"></span>
                             </a>
-                        </h3>
-                    </div>
-                    <div class="panel-body collapse" id="basicSearch">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <asp:RadioButton ID="rdbMonth" runat="server" Checked="true" GroupName="basicSearch"></asp:RadioButton>
-                                <b>Search by Month</b><label class="lblerror hidden" style="color:red;" >*Fill this field</label>
-                                <br>
-                                <asp:TextBox ID="txtFDt" runat="server" CssClass="txtFDt form-control"></asp:TextBox>         
+                            </h3>
+                        </div>
+                        <div class="panel-body collapse" id="basicSearch">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <asp:RadioButton ID="rdbMonth" runat="server" Checked="true" GroupName="basicSearch"></asp:RadioButton>
+                                    <b>Search by Month</b><label class="lblerror hidden" style="color: red;">*Fill this field</label>
+                                    <br>
+                                    <asp:TextBox ID="txtFDt" runat="server" CssClass="txtFDt form-control"></asp:TextBox>
+                                </div>
+                                <div class="col-md-6">
+                                    <asp:RadioButton ID="rdbCode" runat="server" GroupName="basicSearch"></asp:RadioButton>
+                                    <b>Search by MRN Code</b><label class="lblerror hidden" style="color: red;">*Fill this field</label>
+                                    <asp:TextBox ID="txtMrnCode" runat="server" CssClass="form-control" PlaceHolder="LCL1 / IMP1"></asp:TextBox>
+                                </div>
                             </div>
-                           <div class="col-md-6">
-                            <asp:RadioButton ID="rdbCode" runat="server" GroupName="basicSearch"></asp:RadioButton>
-                              <b> Search by MRN Code</b><label class="lblerror hidden" style="color:red;" >*Fill this field</label>
-                               <asp:TextBox ID="txtMrnCode" runat="server" CssClass="form-control"  PlaceHolder="LCL1 / IMP1"></asp:TextBox>
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <asp:Image runat="server" ID="loadingImage1" class="loadingImage pull-right hidden" src="AdminResources/images/Spinner-0.6s-200px.gif" Style="margin-top: 5px; max-height: 40px;" />
+                                </div>
+                                <div class="col-md-1">
+                                    <asp:Button ID="btnBasicSearch" ValidationGroup="btnBasicSearch" OnClientClick="return BSFieldValidate()" OnClick="btnBasicSearch_Click" runat="server" Text="Search" Style="margin-top: 10px;" CssClass="btn btn-info pull-right"></asp:Button>
+                                </div>
                             </div>
                         </div>
-                         <div class="row">
-                            <div class="col-md-11">
-                                <asp:Image  runat="server" ID="loadingImage1" class="loadingImage pull-right hidden"   src="AdminResources/images/Spinner-0.6s-200px.gif" style="margin-top:5px;max-height: 40px;" />                                
-                            </div>
-                            <div class="col-md-1">
-                                <asp:Button ID="btnBasicSearch" ValidationGroup="btnBasicSearch" OnClientClick="return BSFieldValidate()" OnClick="btnBasicSearch_Click" runat="server" Text="Search" style="margin-top: 10px;" CssClass ="btn btn-info pull-right" ></asp:Button>
-                            </div>
-                          </div>
                     </div>
-                </div>
-                
-                <div class="panel panel-default" id="panelGridview" runat="server">
-                   <div class="panel-heading">
-                        <h3 class="panel-title">Material Request Notes</h3>
-                   </div>
-                   <div class="panel-body" style="overflow-x:scroll" >
-                        <asp:GridView runat="server" ID="gvMrn" GridLines="None" CssClass="table table-responsive tablegv" HeaderStyle-BackColor="#3C8DBC" HeaderStyle-ForeColor="White"  AutoGenerateColumns="false" DataKeyNames="MrnID" EmptyDataText="No records Found"
-                            AllowPaging="true"  PageSize="10" OnPageIndexChanging="gvMrnApp_PageIndexChanging">
-                        <Columns>
-                        <asp:BoundField DataField="MrnID"  HeaderText="MRN ID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"/>
+
+                    <div class="panel panel-default" id="panelGridview" runat="server">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Material Request Notes</h3>
+                        </div>
+                        <div class="panel-body" style="overflow-x: scroll">
+                            <asp:GridView runat="server" ID="gvMrn" GridLines="None" CssClass="table table-responsive tablegv" HeaderStyle-BackColor="#3C8DBC" HeaderStyle-ForeColor="White" AutoGenerateColumns="false" DataKeyNames="MrnID" EmptyDataText="No records Found"
+                                AllowPaging="true" PageSize="10" OnPageIndexChanging="gvMrnApp_PageIndexChanging">
+                                <Columns>
+                                    <%--<asp:BoundField DataField="MrnID"  HeaderText="MRN ID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"/>
                         <asp:TemplateField HeaderText="MRN Code">
                             <ItemTemplate>
                                 <asp:Label runat="server" ID="lblMrnCode" Text='<%# "MRN-"+Eval("MrnCode").ToString() %>'></asp:Label>
                             </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:BoundField DataField="SubDepartmentName"  HeaderText="Department" ItemStyle-CssClass="Department" />
-                        <asp:BoundField DataField="CreatedDate"  HeaderText="Created On"  DataFormatString="{0:dd-MM-yyyy}"/>
-                        <asp:BoundField DataField="RequiredFor"  HeaderText="Description" ItemStyle-CssClass="Description"/>
-                        <asp:BoundField DataField="CreatedByName"  HeaderText="Created By" />
-                        <asp:BoundField DataField="ExpectedDate"  HeaderText="Expected Date"  DataFormatString="{0:dd-MM-yyyy}"/>
-                        <asp:BoundField DataField="WarehouseName"  HeaderText="Warehouse" />                       
-                         <asp:TemplateField HeaderText="Mrn Type">
-                                    <ItemTemplate>
-                                        <asp:Label
-                                            runat="server"
-                                            Visible='<%# Eval("MrnType").ToString() == "1" ? true : false %>'
-                                            Text="Stock" />
-                                        <asp:Label
-                                            runat="server"
-                                            Visible='<%# Eval("MrnType").ToString() == "2" ? true : false %>'
-                                            Text="Non-stock" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                 <asp:TemplateField HeaderText="Purchasing Type">
-                                    <ItemTemplate>
-                                        <asp:Label
-                                            runat="server"
-                                            Visible='<%# Eval("PurchaseType").ToString() == "1" ? true : false %>'
-                                            Text="Local" CssClass="label label-warning"/>
-                                        <asp:Label
-                                            runat="server"
-                                            Visible='<%# Eval("PurchaseType").ToString() == "2" ? true : false %>'
-                                            Text="Import" CssClass="label label-success"/>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                        </asp:TemplateField>--%>
+                                    <asp:TemplateField HeaderText="MRN ID">
+                                        <ItemTemplate>
+                                            <a href='<%# "ViewMRNNew.aspx?MrnId=" + Eval("MrnID") %>'><%# Eval("MrnID") %></a>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="MRN Code">
+                                        <ItemTemplate>
+                                            <a href='<%# "ViewMRNNew.aspx?MrnId=" + Eval("MrnID") %>'><%# Eval("MrnCode") == null ? "MRN0" : "MRN-"+Eval("MrnCode").ToString() %></a>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="SubDepartmentName" HeaderText="Department" ItemStyle-CssClass="Department" />
+                                    <asp:BoundField DataField="CreatedDate" HeaderText="Created On" DataFormatString="{0:dd-MM-yyyy}" />
+                                    <asp:BoundField DataField="RequiredFor" HeaderText="Description" ItemStyle-CssClass="Description" />
+                                    <asp:BoundField DataField="CreatedByName" HeaderText="Created By" />
+                                    <asp:BoundField DataField="ExpectedDate" HeaderText="Expected Date" DataFormatString="{0:dd-MM-yyyy}" />
+                                    <asp:BoundField DataField="WarehouseName" HeaderText="Warehouse" />
+                                    <asp:TemplateField HeaderText="Mrn Type">
+                                        <ItemTemplate>
+                                            <asp:Label
+                                                runat="server"
+                                                Visible='<%# Eval("MrnType").ToString() == "1" ? true : false %>'
+                                                Text="Stock" />
+                                            <asp:Label
+                                                runat="server"
+                                                Visible='<%# Eval("MrnType").ToString() == "2" ? true : false %>'
+                                                Text="Non-stock" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Purchasing Type">
+                                        <ItemTemplate>
+                                            <asp:Label
+                                                runat="server"
+                                                Visible='<%# Eval("PurchaseType").ToString() == "1" ? true : false %>'
+                                                Text="Local" CssClass="label label-warning" />
+                                            <asp:Label
+                                                runat="server"
+                                                Visible='<%# Eval("PurchaseType").ToString() == "2" ? true : false %>'
+                                                Text="Import" CssClass="label label-success" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Purchasing Procedure">
-                                    <ItemTemplate>
-                                        <asp:Label
-                                            runat="server"
-                                            Visible='<%# Eval("PurchaseProcedure").ToString() == "1" ? true : false %>'
-                                            Text="Normal" CssClass="label label-warning"/>
-                                        <asp:Label
-                                            runat="server"
-                                            Visible='<%# Eval("PurchaseProcedure").ToString() == "3" ? true : false %>'
-                                            Text="Cover" CssClass="label label-success"/>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Expense Type">
-                                    <ItemTemplate>
-                                        <asp:Label
-                                            runat="server"
-                                            Visible='<%# Eval("ExpenseType").ToString() == "1" ? true : false %>'
-                                            Text="Capital Expense" CssClass="label label-warning"/>
-                                        <asp:Label
-                                            runat="server"
-                                            Visible='<%# Eval("ExpenseType").ToString() == "3" ? true : false %>'
-                                            Text="Operational Expense" CssClass="label label-success"/>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                        <asp:TemplateField HeaderText="Action">
-                            <ItemTemplate>
-                                <asp:LinkButton runat="server" ID="lbtnView" CssClass="btn btn-sm btn-info" Text="View" OnClick="lbtnView_Click"></asp:LinkButton>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
+                                        <ItemTemplate>
+                                            <asp:Label
+                                                runat="server"
+                                                Visible='<%# Eval("PurchaseProcedure").ToString() == "1" ? true : false %>'
+                                                Text="Normal" CssClass="label label-warning" />
+                                            <asp:Label
+                                                runat="server"
+                                                Visible='<%# Eval("PurchaseProcedure").ToString() == "3" ? true : false %>'
+                                                Text="Cover" CssClass="label label-success" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Expense Type">
+                                        <ItemTemplate>
+                                            <asp:Label
+                                                runat="server"
+                                                Visible='<%# Eval("ExpenseType").ToString() == "1" ? true : false %>'
+                                                Text="Capital Expense" CssClass="label label-warning" />
+                                            <asp:Label
+                                                runat="server"
+                                                Visible='<%# Eval("ExpenseType").ToString() == "3" ? true : false %>'
+                                                Text="Operational Expense" CssClass="label label-success" />
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Action">
+                                        <ItemTemplate>
+                                            <asp:LinkButton runat="server" ID="lbtnView" CssClass="btn btn-sm btn-info" Text="View" OnClick="lbtnView_Click"></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+                                </Columns>
+                            </asp:GridView>
 
-                   </div>
-                </div>
+                        </div>
+                    </div>
                 </section>
             </ContentTemplate>
         </asp:UpdatePanel>
@@ -235,75 +245,75 @@
     <script src="AdminResources/js/moment.min.js" type="text/javascript"></script>
 
 
-     <script type="text/javascript">
+    <script type="text/javascript">
 
-           function dateChange(obj) {
-               obj.className = (obj.value != '' ? obj.className + ' has-value' : obj.className);
-               if (obj.value) {
-                   $(obj).attr('data-date', moment(obj.value, 'YYYY-MM-DD').format($(obj).attr('data-date-format')));
-               } else {
-                   $(obj).attr('data-date', '');
-               }
-           }
+        function dateChange(obj) {
+            obj.className = (obj.value != '' ? obj.className + ' has-value' : obj.className);
+            if (obj.value) {
+                $(obj).attr('data-date', moment(obj.value, 'YYYY-MM-DD').format($(obj).attr('data-date-format')));
+            } else {
+                $(obj).attr('data-date', '');
+            }
+        }
 
-           Sys.Application.add_load(function () {
+        Sys.Application.add_load(function () {
 
-               $(function () {
-                   $('.select2').select2();
-               });
+            $(function () {
+                $('.select2').select2();
+            });
 
-               $('.collapse').on('show.bs.collapse', function () {
-                   $('.collapse.in').each(function () {
-                       $(this).collapse('hide');
-                   });
-               });
+            $('.collapse').on('show.bs.collapse', function () {
+                $('.collapse.in').each(function () {
+                    $(this).collapse('hide');
+                });
+            });
 
-               $("#basicSearch").collapse('show');
-               var customDates = $(".customDate");
-               for (x = 0 ; x < customDates.length ; ++x) {
-                   if ($(customDates[x]).val() != "") {
-                       $(customDates[x]).attr('data-date', moment($(customDates[x]).val(), 'YYYY-MM-DD').format($(customDates[x]).attr('data-date-format')));
-                   }
-               }
+            $("#basicSearch").collapse('show');
+            var customDates = $(".customDate");
+            for (x = 0; x < customDates.length; ++x) {
+                if ($(customDates[x]).val() != "") {
+                    $(customDates[x]).attr('data-date', moment($(customDates[x]).val(), 'YYYY-MM-DD').format($(customDates[x]).attr('data-date-format')));
+                }
+            }
 
-               $(function () {
-                   $('.txtFDt').datepicker({
-                       changeMonth: true,
-                       changeYear: true,
-                       showButtonPanel: true,
-                       currentText: 'Present',
-                       dateFormat: 'MM yy',
-                       onClose: function (dateText, inst) {
-                           //Get the selected month value
-                           var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-                           //Get the selected year value
-                           var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-                           //set month value to the textbox
-                           $(this).datepicker('setDate', new Date(year, month, 1));
-                       }
-                   });
+            $(function () {
+                $('.txtFDt').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    showButtonPanel: true,
+                    currentText: 'Present',
+                    dateFormat: 'MM yy',
+                    onClose: function (dateText, inst) {
+                        //Get the selected month value
+                        var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                        //Get the selected year value
+                        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                        //set month value to the textbox
+                        $(this).datepicker('setDate', new Date(year, month, 1));
+                    }
+                });
 
-               });
-           });
+            });
+        });
 
-           function BSFieldValidate() {
-               $("#ContentSection_loadingImage1").removeClass("hidden");
-               for (x = 0; x < $("#basicSearch input[type=radio]").length; ++x) {
-                   var radioObject = $("#basicSearch input[type=radio]")[x];
-                   if ($(radioObject).is(":checked")) {
-                       if ($($(radioObject).parent().find("input[type=text]")).val() == "") {
-                           $($(radioObject).parent().find("label.lblerror")).removeClass("hidden");
-                           return false;
-                       } else {
-                           $($(radioObject).parent().find("label.lblerror")).addClass("hidden");
-                       }
-                   }
-               }
-               return true;
-           }
+        function BSFieldValidate() {
+            $("#ContentSection_loadingImage1").removeClass("hidden");
+            for (x = 0; x < $("#basicSearch input[type=radio]").length; ++x) {
+                var radioObject = $("#basicSearch input[type=radio]")[x];
+                if ($(radioObject).is(":checked")) {
+                    if ($($(radioObject).parent().find("input[type=text]")).val() == "") {
+                        $($(radioObject).parent().find("label.lblerror")).removeClass("hidden");
+                        return false;
+                    } else {
+                        $($(radioObject).parent().find("label.lblerror")).addClass("hidden");
+                    }
+                }
+            }
+            return true;
+        }
 
        
-    </script>
+    </script >
 
 
-</asp:Content>
+</asp: Content >
