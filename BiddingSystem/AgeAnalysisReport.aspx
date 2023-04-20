@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BiddingAdmin.Master" AutoEventWireup="false" CodeBehind="AgeAnalysisReport.aspx.cs" Inherits="BiddingSystem.AgeAnalysisReport" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BiddingAdmin.Master" AutoEventWireup="true" CodeBehind="AgeAnalysisReport.aspx.cs" Inherits="BiddingSystem.AgeAnalysisReport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentSection" runat="server">
     <html>
