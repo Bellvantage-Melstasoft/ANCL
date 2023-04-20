@@ -3,10 +3,12 @@ using CLibrary.Controller;
 using CLibrary.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 
 namespace BiddingSystem
 {
@@ -176,5 +178,37 @@ namespace BiddingSystem
         {
             BindDataSource();
         }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+        }
+
+        protected void btnRun_ServerClick(object sender, EventArgs e)
+        {
+
+            BindDataSource();
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.Charset = "";
+            string FileName = "Loan Detail Report" + DateTime.Now + ".xls";
+            StringWriter strwritter = new StringWriter();
+            HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
+            gvAgeAnalysis.GridLines = GridLines.Both;
+            //tblTaSummary.HeaderStyle.Font.Bold = true;
+            gvAgeAnalysis.RenderControl(htmltextwrtter);
+            Response.Write(strwritter.ToString());
+            Response.End();
+
+        }
+
+
+
+
     }
 }

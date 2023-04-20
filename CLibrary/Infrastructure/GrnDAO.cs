@@ -434,7 +434,13 @@ namespace CLibrary.Infrastructure
 
             List<GrnMaster> GetGrnMasterList = new List<GrnMaster>();
             dbConnection.cmd.Parameters.Clear();
-            dbConnection.cmd.CommandText = "SELECT * FROM GRN_MASTER";
+            dbConnection.cmd.CommandText = "SELECT * FROM " + dbLibrary + ".PO_GRN a " +
+                "INNER JOIN PO_MASTER b ON a.PO_ID=b.PO_ID " +
+                "INNER JOIN GRN_MASTER c ON c.GRN_ID=a.GRN_ID " +
+                "INNER JOIN SUPPLIER d ON d.SUPPLIER_ID=c.SUPPLIER_ID " +
+                "INNER JOIN PR_MASTER e ON e.PR_ID=b.BASED_PR " +
+                "INNER JOIN MRN_MASTER f ON f.MRN_ID=e.MRN_ID " +
+                "JOIN SUB_DEPARTMENT g ON g.SUB_DEPARTMENT_ID=f.SUB_DEPARTMENT_ID";
             dbConnection.cmd.CommandType = System.Data.CommandType.Text;
             using (dbConnection.dr = dbConnection.cmd.ExecuteReader())
             {

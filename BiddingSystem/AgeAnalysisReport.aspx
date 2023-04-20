@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BiddingAdmin.Master" AutoEventWireup="true" CodeBehind="AgeAnalysisReport.aspx.cs" Inherits="BiddingSystem.AgeAnalysisReport" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BiddingAdmin.Master" AutoEventWireup="false" CodeBehind="AgeAnalysisReport.aspx.cs" Inherits="BiddingSystem.AgeAnalysisReport" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentSection" runat="server">
     <html>
@@ -150,6 +150,11 @@
                                         <div class="col-sm-4">
                                             <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-info" Text="Search" OnClick="btnSearch_Click" />
                                             <asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" Text="Get All" OnClick="btnSearchAll_Click" />
+                                            <button runat="server" id="btnRun" class="btn btn-success" onserverclick="btnRun_ServerClick"
+                                                title="Export To Excel">
+                                                <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+                                            </button>
+
                                         </div>
                                     </div>
                                 </div>
