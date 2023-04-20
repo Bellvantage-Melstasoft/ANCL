@@ -150,6 +150,9 @@
                                         <div class="col-sm-4">
                                             <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-info" Text="Search" OnClick="btnSearch_Click" />
                                             <asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" Text="Get All" OnClick="btnSearchAll_Click" />
+                                            <button runat="server" id="btnRun" onserverclick="btnRun_ServerClick" class="btn btn-success" title="Export To Excel">
+                                                <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -181,6 +184,9 @@
                         </div>
                     </section>
                 </ContentTemplate>
+                <Triggers>
+                    <asp:PostBackTrigger ControlID="btnRun" />
+                </Triggers>
             </asp:UpdatePanel>
         </form>
     </body>

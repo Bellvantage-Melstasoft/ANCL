@@ -3,6 +3,7 @@ using CLibrary.Controller;
 using CLibrary.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -175,6 +176,33 @@ namespace BiddingSystem
         protected void btnSearchAll_Click(object sender, EventArgs e)
         {
             BindDataSource();
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
+               server control at run time. */
+        }
+
+
+        protected void btnRun_ServerClick(object sender, EventArgs e)
+        {
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.Charset = "";
+            string FileName = "Age Analysis Report" + DateTime.Now + ".xls";
+            StringWriter strwritter = new StringWriter();
+            HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
+            gvAgeAnalysis.GridLines = GridLines.Both;
+            //tblTaSummary.HeaderStyle.Font.Bold = true;
+            gvAgeAnalysis.RenderControl(htmltextwrtter);
+            Response.Write(strwritter.ToString());
+            Response.End();
         }
     }
 }
