@@ -96,6 +96,15 @@ namespace BiddingSystem
         protected global::System.Web.UI.WebControls.Button btnSearchPoTable;
 
         /// <summary>
+        /// btnRun control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnRun;
+
+        /// <summary>
         /// tblPOReport control.
         /// </summary>
         /// <remarks>
@@ -159,6 +168,15 @@ namespace BiddingSystem
         protected global::System.Web.UI.WebControls.Button btnSupplierSearch;
 
         /// <summary>
+        /// btnrun2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnrun2;
+
+        /// <summary>
         /// tblSupplierReport control.
         /// </summary>
         /// <remarks>
@@ -202,6 +220,15 @@ namespace BiddingSystem
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearchItem;
+
+        /// <summary>
+        /// btnrun3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnrun3;
 
         /// <summary>
         /// tblItemReport control.
