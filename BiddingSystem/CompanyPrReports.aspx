@@ -238,6 +238,18 @@
                                                     <%--<asp:BoundField DataField="IsActive"  HeaderText="IsActive" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"/>--%>
                                                     <%--<asp:BoundField DataField="PrIsApproved"  HeaderText="PrIsApproved" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"/>--%>
                                                     <%--<asp:BoundField DataField="PrIsApprovedOeRejectDate"  HeaderText="PrIsApprovedOeRejectDate" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"/>--%>
+                                                    <asp:TemplateField HeaderText="Purchasing Type">
+                                                        <ItemTemplate>
+                                                            <asp:Label
+                                                                runat="server"
+                                                                Visible='<%# Eval("PRType").ToString() == "1" ? true : false %>'
+                                                                Text="Stock" CssClass="label label-warning" />
+                                                            <asp:Label
+                                                                runat="server"
+                                                                Visible='<%# Eval("PRType").ToString() == "2" ? true : false %>'
+                                                                Text="Non-Stock" CssClass="label label-info" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
 
                                                     <asp:TemplateField HeaderText="Purchasing Type">
                                                         <ItemTemplate>
@@ -270,11 +282,11 @@
                                                             </itemtemplate>
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <%--<asp:TemplateField HeaderText="Action">
+                                                    <asp:TemplateField HeaderText="Action">
                                                         <ItemTemplate>
                                                             <asp:LinkButton runat="server" ID="lbtnView" Text="View" OnClick="btnView_Click"></asp:LinkButton>
                                                         </ItemTemplate>
-                                                    </asp:TemplateField>--%>
+                                                    </asp:TemplateField>
                                                 </Columns>
                                                 <EmptyDataTemplate>
                                                     No Data To Show

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Ink;
 
 namespace BiddingSystem
 {
@@ -160,27 +161,62 @@ namespace BiddingSystem
         {
             List<GrnMaster> GrnMasterList = new List<GrnMaster>();
             GrnMasterList = grnController.GetAllGRNmasterList();
+            bool flag = false;
+
 
 
             if (ddlStatus.SelectedValue != "")
             {
                 GrnMasterList = GrnMasterList.Where(x => x.IsApproved == Convert.ToInt32(ddlStatus.SelectedValue)).ToList();
-
+                flag = true;
             }
 
             if (txtPOCode.Text != "")
             {
                 GrnMasterList = GrnMasterList.Where(x => x.POCode == txtPOCode.Text).ToList();
+                flag = true;
 
             }
 
             if (txtGrnCode.Text != "")
             {
                 GrnMasterList = GrnMasterList.Where(x => x.GrnCode == txtGrnCode.Text).ToList();
+                flag = true;
 
             }
 
-            gvPurchaseOrder.DataSource = GrnMasterList;
+            if (ddlPRType.SelectedValue != "")
+            {
+                GrnMasterList = GrnMasterList.Where(x => x.PRType == Convert.ToInt32(ddlPRType.SelectedValue)).ToList();
+                flag = true;
+
+            }
+
+
+            if (ddlPurchasingType.SelectedValue != "")
+            {
+                GrnMasterList = GrnMasterList.Where(x => x.PurchasingType == Convert.ToInt32(ddlPurchasingType.SelectedValue)).ToList();
+                flag = true;
+
+            }
+
+            if (ddlDepartment.SelectedValue != "")
+            {
+                GrnMasterList = GrnMasterList.Where(x => x.SubDepartmentId == Convert.ToInt32(ddlDepartment.SelectedValue)).ToList();
+                flag = true;
+
+            }
+
+            if (flag == true)
+            {
+                gvPurchaseOrder.DataSource = GrnMasterList;
+            }
+            else
+            {
+                gvPurchaseOrder.DataSource = null;
+            }
+
+
             gvPurchaseOrder.DataBind();
 
         }
