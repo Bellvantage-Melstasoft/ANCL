@@ -30,18 +30,19 @@
             border: 1px solid #f8f8f8;
             vertical-align: middle;
         }
-        table#ContentSection_gvMrn tbody tr td.Description {
-            white-space: normal!important;
-        }
+
+            table#ContentSection_gvMrn tbody tr td.Description {
+                white-space: normal !important;
+            }
+
         table#ContentSection_gvMrn tbody tr:nth-child(1) th {
-            position:sticky;
+            position: sticky;
             top: 1px;
             background: #3C8DBC;
             color: white;
         }
-
     </style>
-     <style type="text/css">
+    <style type="text/css">
         .tablegv {
             font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
             border-collapse: collapse;
@@ -68,8 +69,6 @@
                 background-color: #3C8DBC;
                 color: white;
             }
-
-       
     </style>
     <script src="AdminResources/js/jquery1.8.min.js"></script>
     <script type="text/javascript">
@@ -97,83 +96,87 @@
         <asp:UpdatePanel ID="Updatepanel1" runat="server">
             <ContentTemplate>
 
-        
+
 
                 <section class="content-header">
                     <h1>View PR/ MRN<small></small></h1>
                     <ol class="breadcrumb">
-                        <li><a href="AdminDashboard.aspx"><i class="fa fa-dashboard"></i> Home</a></li>
+                        <li><a href="AdminDashboard.aspx"><i class="fa fa-dashboard"></i>Home</a></li>
                         <li class="active">View PR/ MRN </li>
                     </ol>
                 </section>
                 <br />
                 <section class="content">
-                <div class="panel panel-default" id="panelMRNBasicSearch" runat="server">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Basic Search
-                            <a class="arrowdown"  data-target="#basicSearch" data-toggle="collapse"  aria-expanded="false">
-                            <span class="expand_caret caret" ></span>
+                    <div class="panel panel-default" id="panelMRNBasicSearch" runat="server">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Basic Search
+                            <a class="arrowdown" data-target="#basicSearch" data-toggle="collapse" aria-expanded="false">
+                                <span class="expand_caret caret"></span>
                             </a>
-                        </h3>
-                    </div>
-                    <div class="panel-body collapse" id="basicSearch">
-                        <div class="row">
-                            
-                           <div class="col-md-6">
-                            <asp:RadioButton ID="rdbMrn" runat="server" GroupName="basicSearch"></asp:RadioButton>
-                              <b> Search by MRN Code</b><label class="lblerror hidden" style="color:red;" >*Fill this field</label>
-                               <asp:TextBox ID="txtMrnCode" runat="server" CssClass="form-control" PlaceHolder="LCL1 / IMP1" ></asp:TextBox>
-                            </div>
-
-                            <div class="col-md-6">
-                            <asp:RadioButton ID="rdbPr" runat="server" GroupName="basicSearch"></asp:RadioButton>
-                              <b> Search by PR Code</b><label class="lblerror hidden" style="color:red;" >*Fill this field</label>
-                               <asp:TextBox ID="txtPrCode" runat="server" CssClass="form-control" PlaceHolder="LCL1 / IMP1"  ></asp:TextBox>
-                            </div>
+                            </h3>
                         </div>
-                         <div class="row">
-                            <div class="col-md-11">
-                                <asp:Image  runat="server" ID="loadingImage1" class="loadingImage pull-right hidden"   src="AdminResources/images/Spinner-0.6s-200px.gif" style="margin-top:5px;max-height: 40px;" />                                
+                        <div class="panel-body collapse" id="basicSearch">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <asp:RadioButton ID="rdbMrn" runat="server" GroupName="basicSearch"></asp:RadioButton>
+                                    <b>Search by MRN Code</b><label class="lblerror hidden" style="color: red;">*Fill this field</label>
+                                    <asp:TextBox ID="txtMrnCode" runat="server" CssClass="form-control" PlaceHolder="LCL1 / IMP1"></asp:TextBox>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <asp:RadioButton ID="rdbPr" runat="server" GroupName="basicSearch"></asp:RadioButton>
+                                    <b>Search by PR Code</b><label class="lblerror hidden" style="color: red;">*Fill this field</label>
+                                    <asp:TextBox ID="txtPrCode" runat="server" CssClass="form-control" PlaceHolder="LCL1 / IMP1"></asp:TextBox>
+                                </div>
                             </div>
-                            <div class="col-md-1">
-                                <asp:Button ID="btnBasicSearch" ValidationGroup="btnBasicSearch" OnClientClick="return BSFieldValidate()" OnClick="btnBasicSearch_Click" runat="server" Text="Search" style="margin-top: 10px;" CssClass ="btn btn-info pull-right" ></asp:Button>
+
+                            <div class="col mt-4">
+                                <asp:Image runat="server" ID="loadingImage1" class="loadingImage pull-right hidden" src="AdminResources/images/Spinner-0.6s-200px.gif" Style="margin-top: 5px; max-height: 40px;" />
+                                <asp:Button ID="btnBasicSearch" ValidationGroup="btnBasicSearch" OnClientClick="return BSFieldValidate()" OnClick="btnBasicSearch_Click" runat="server" Text="Search" Style="margin-top: 10px;" CssClass="btn btn-info"></asp:Button>
+                                <button runat="server" id="btnRun" onserverclick="btnRun_ServerClick" class="btn btn-success" style="margin-top: 10px;" title="Export To Excel">
+                                    <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+                                </button>
                             </div>
-                          </div>
+
+                        </div>
                     </div>
-                </div>
 
-               
-                    
-                <div class="panel panel-default" id="panelGridview" runat="server">
-                   
-                   <div class="panel-body" style="overflow-x:scroll">
-                        <asp:GridView runat="server" ID="gvMrnPR" GridLines="None"  HeaderStyle-BackColor="#3C8DBC" HeaderStyle-ForeColor="White" CssClass="table table-responsive tablegv" AutoGenerateColumns="false" DataKeyNames="MrnID" EmptyDataText="No records Found">
-                             <Columns>
-                                <asp:BoundField DataField="MrnID"  HeaderText="MRN ID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"/>
-                                
-                                 <asp:BoundField DataField="PRId"  HeaderText="PR ID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden"/>
-                                
-                                 <asp:TemplateField HeaderText="MRN Code">
-                                    <ItemTemplate>
-                                        <asp:LinkButton runat="server" Text='<%# Eval("MrnCode") == null ? "-": "MRN-"+ Eval("MrnCode").ToString() %>' OnClick="lBtnMrn_Click"></asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
 
-                                 <asp:TemplateField HeaderText="PR Code">
-                                    <ItemTemplate>
-                                        <asp:LinkButton runat="server" Text='<%# Eval("PRCode") == null ? "-":"PR-"+ Eval("PRCode").ToString() %>' OnClick="lBtnPR_Click"></asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                              
-                               
-                                 
-                                
-                            </Columns>
-                        </asp:GridView>
-                   </div>
-                </div>
+
+                    <div class="panel panel-default" id="panelGridview" runat="server">
+
+                        <div class="panel-body" style="overflow-x: scroll">
+                            <asp:GridView runat="server" ID="gvMrnPR" GridLines="None" HeaderStyle-BackColor="#3C8DBC" HeaderStyle-ForeColor="White" CssClass="table table-responsive tablegv" AutoGenerateColumns="false" DataKeyNames="MrnID" EmptyDataText="No records Found">
+                                <Columns>
+                                    <asp:BoundField DataField="MrnID" HeaderText="MRN ID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+
+                                    <asp:BoundField DataField="PRId" HeaderText="PR ID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
+
+                                    <asp:TemplateField HeaderText="MRN Code">
+                                        <ItemTemplate>
+                                            <asp:LinkButton runat="server" Text='<%# Eval("MrnCode") == null ? "-": "MRN-"+ Eval("MrnCode").ToString() %>' OnClick="lBtnMrn_Click"></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+                                    <asp:TemplateField HeaderText="PR Code">
+                                        <ItemTemplate>
+                                            <asp:LinkButton runat="server" Text='<%# Eval("PRCode") == null ? "-":"PR-"+ Eval("PRCode").ToString() %>' OnClick="lBtnPR_Click"></asp:LinkButton>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
+
+
+
+                                </Columns>
+                            </asp:GridView>
+                        </div>
+                    </div>
                 </section>
             </ContentTemplate>
+            <Triggers>
+                <asp:PostBackTrigger ControlID="btnRun" />
+            </Triggers>
         </asp:UpdatePanel>
     </form>
 
@@ -196,9 +199,9 @@
                 $(obj).attr('data-date', '');
             }
         }
-        
+
         Sys.Application.add_load(function () {
-            
+
             $('.select2').select2();
 
             $('.collapse').on('show.bs.collapse', function () {
@@ -209,14 +212,14 @@
 
             $("#basicSearch").collapse('show');
             var customDates = $(".customDate");
-            for (x = 0 ; x < customDates.length ; ++x) {
+            for (x = 0; x < customDates.length; ++x) {
                 if ($(customDates[x]).val() != "") {
                     customDates[x].className = (customDates[x].value != '' ? customDates[x].className + ' has-value' : customDates[x].className);
                     $(customDates[x]).attr('data-date', moment($(customDates[x]).val(), 'YYYY-MM-DD').format($(customDates[x]).attr('data-date-format')));
                 }
             }
-            
-                    
+
+
         });
 
         function BSFieldValidate() {
@@ -235,7 +238,7 @@
             return true;
         }
 
-        
+
     </script>
 
 </asp:Content>

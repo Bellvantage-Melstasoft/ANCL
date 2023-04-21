@@ -3,6 +3,7 @@ using CLibrary.Controller;
 using CLibrary.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -136,12 +137,18 @@ namespace BiddingSystem
 
         protected void btnSearchAll_Click(object sender, EventArgs e)
         {
+
+            BindDataSource();
+        }
+
+        private void BindDataSource()
+        {
             List<POMaster> pOMasterList = new List<POMaster>();
             pOMasterList = pOMasterController.GetAllPOMAster();
             gvPurchaseOrder.DataSource = pOMasterList;
             gvPurchaseOrder.DataBind();
-
         }
+
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
@@ -181,6 +188,37 @@ namespace BiddingSystem
 
             gvPurchaseOrder.DataSource = pOMasterList;
             gvPurchaseOrder.DataBind();
+        }
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+        }
+        protected void btnRun_ServerClick(object sender, EventArgs e)
+        {
+            BindDataSource();
+
+            // Remove the column you want to exclude
+            int columnIndexToRemove = 10; // Specify the index of the column to remove (zero-based)
+            gvPurchaseOrder.Columns[columnIndexToRemove].Visible = false;
+
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.Charset = "";
+            string FileName = "Company PO Report" + DateTime.Now + ".xls";
+            StringWriter strwritter = new StringWriter();
+            HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
+            gvPurchaseOrder.GridLines = GridLines.Both;
+            //tblTaSummary.HeaderStyle.Font.Bold = true;
+            gvPurchaseOrder.RenderControl(htmltextwrtter);
+            Response.Write(strwritter.ToString());
+            Response.End();
+
+            gvPurchaseOrder.Columns[columnIndexToRemove].Visible = true;
         }
     }
 }

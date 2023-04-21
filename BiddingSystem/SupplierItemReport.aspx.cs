@@ -3,6 +3,7 @@ using CLibrary.Controller;
 using CLibrary.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -114,6 +115,41 @@ namespace BiddingSystem
         protected void btnSearchAll_Click(object sender, EventArgs e)
         {
             BindDataSource();
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+        }
+
+        protected void btnRun_ServerClick1(object sender, EventArgs e)
+        {
+            BindDataSource();
+
+            // Remove the column you want to exclude
+            //int columnIndexToRemove = 10; // Specify the index of the column to remove (zero-based)
+            //gvSupplierItemReport.Columns[columnIndexToRemove].Visible = false;
+
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.Charset = "";
+            string FileName = "Supplier Item Report" + DateTime.Now + ".xls";
+            StringWriter strwritter = new StringWriter();
+            HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
+            gvSupplierItemReport.GridLines = GridLines.Both;
+            //tblTaSummary.HeaderStyle.Font.Bold = true;
+            gvSupplierItemReport.RenderControl(htmltextwrtter);
+            Response.Write(strwritter.ToString());
+            Response.End();
+
+            //gvSupplierItemReport.Columns[columnIndexToRemove].Visible = true;
+
+
         }
     }
 }
