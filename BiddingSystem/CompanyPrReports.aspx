@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BiddingAdmin.Master" AutoEventWireup="true" CodeBehind="CompanyPrReports.aspx.cs" Inherits="BiddingSystem.CompanyPrReports" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/BiddingAdmin.Master" AutoEventWireup="true" CodeBehind="CompanyPrReports.aspx.cs" Inherits="BiddingSystem.CompanyPrReports" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentSection" runat="server">
 
@@ -194,6 +194,9 @@
                             <div class="col-md-6">
                                 <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-info" Text="Search" OnClick="btnSearch_Click" />
                                 <asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" OnClick="btnSearchAll_Click" Text="Get All" />
+                                <button runat="server" id="btnRun" onserverclick="btnRun_ServerClick1" class="btn btn-success" title="Export To Excel">
+                                    <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+                                </button>
 
                             </div>
                         </div>

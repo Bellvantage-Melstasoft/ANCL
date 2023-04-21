@@ -3,6 +3,7 @@ using CLibrary.Controller;
 using CLibrary.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -221,6 +222,40 @@ namespace BiddingSystem
 
             gvPurchaseRequest.DataSource = pr_Master;
             gvPurchaseRequest.DataBind();
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+        }
+
+
+        protected void btnRun_ServerClick1(object sender, EventArgs e)
+        {
+            BindDataSource();
+
+            // Remove the column you want to exclude
+            int columnIndexToRemove = 10; // Specify the index of the column to remove (zero-based)
+            gvPurchaseRequest.Columns[columnIndexToRemove].Visible = false;
+
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.Charset = "";
+            string FileName = "Company PR Report" + DateTime.Now + ".xls";
+            StringWriter strwritter = new StringWriter();
+            HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
+            gvPurchaseRequest.GridLines = GridLines.Both;
+            //tblTaSummary.HeaderStyle.Font.Bold = true;
+            gvPurchaseRequest.RenderControl(htmltextwrtter);
+            Response.Write(strwritter.ToString());
+            Response.End();
+
+            gvPurchaseRequest.Columns[columnIndexToRemove].Visible = true;
         }
 
         //protected void ddlStatus_SelectedIndexChanged(object sender, EventArgs e)
