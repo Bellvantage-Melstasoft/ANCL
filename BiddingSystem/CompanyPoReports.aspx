@@ -370,6 +370,9 @@
                                 <div class="col-sm-4">
                                     <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-info" Text="Search" OnClick="btnSearch_Click" />
                                     <asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" OnClick="btnSearchAll_Click" Text="Get All" />
+                                    <button runat="server" id="btnRun" onserverclick="btnRun_ServerClick" class="btn btn-success" title="Export To Excel">
+                                        <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+                                    </button>
 
 
                                 </div>
