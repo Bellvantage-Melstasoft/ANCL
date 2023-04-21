@@ -117,6 +117,10 @@ namespace BiddingSystem
             BindDataSource();
         }
 
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+        }
+
         protected void btnRun_ServerClick1(object sender, EventArgs e)
         {
             BindDataSource();
