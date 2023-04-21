@@ -270,7 +270,7 @@ namespace BiddingSystem
             Response.ClearContent();
             Response.ClearHeaders();
             Response.Charset = "";
-            string FileName = "Company PR Report" + DateTime.Now + ".xls";
+            string FileName = "Recieved MRN Report" + DateTime.Now + ".xls";
             StringWriter strwritter = new StringWriter();
             HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
