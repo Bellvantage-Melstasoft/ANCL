@@ -208,6 +208,14 @@ namespace CLibrary.Domain
         [DBField("CLONED_COVERING_PR")]
         public int ClonedCoveringPR { get; set; }
 
+        [DBField("PR_TYPE")]
+        public int PRType { get; set; }
+        [DBField("PURCHASE_TYPE")]
+        public int PurchasingType { get; set; }
+
+        [DBField("SUB_DEPARTMENT_ID")]
+        public int SubDepartmentId { get; set; }
+
         public Supplier _Supplier { get; set; }
         public List<GrnDetails> _GrnDetailsList { get; set; }
         public CompanyDepartment _companyDepartment { get; set; }

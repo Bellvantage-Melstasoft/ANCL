@@ -3,13 +3,16 @@ using CLibrary.Controller;
 using CLibrary.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace BiddingSystem {
-    public partial class InventorySummaryReport : System.Web.UI.Page {
+namespace BiddingSystem
+{
+    public partial class InventorySummaryReport : System.Web.UI.Page
+    {
         ItemCategoryController itemCategoryController = ControllerFactory.CreateItemCategoryController();
         ItemSubCategoryController itemSubCategoryController = ControllerFactory.CreateItemSubCategoryController();
         AddItemController addItemController = ControllerFactory.CreateAddItemController();
@@ -17,8 +20,10 @@ namespace BiddingSystem {
         CompanyUserAccessController companyUserAccessController = ControllerFactory.CreateCompanyUserAccessController();
         CompanyLoginController companyLoginController = ControllerFactory.CreateCompanyLoginController();
         WarehouseInventoryBatchesController WarehouseInventoryBatchesController = ControllerFactory.CreateWarehouseInventoryBatchesController();
-        protected void Page_Load(object sender, EventArgs e) {
-            if (Session["CompanyId"] != null && Session["UserId"].ToString() != null) {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (Session["CompanyId"] != null && Session["UserId"].ToString() != null)
+            {
                 ((BiddingAdmin)Page.Master).mainTabValue = "hrefReports";
                 ((BiddingAdmin)Page.Master).subTabTitle = "subTabReports";
                 ((BiddingAdmin)Page.Master).subTabValue = "InventorySummaryReport.aspx";
@@ -29,16 +34,20 @@ namespace BiddingSystem {
                 ViewState["UserId"] = Session["UserId"].ToString();
 
                 CompanyLogin companyLogin = companyLoginController.GetUserbyuserId(int.Parse(Session["UserId"].ToString()));
-                if ((!companyUserAccessController.isAvilableAccess(int.Parse(ViewState["UserId"].ToString()), int.Parse(ViewState["CompanyId"].ToString()), 8, 7) && companyLogin.Usertype != "S") && companyLogin.Usertype != "GA") {
+                if ((!companyUserAccessController.isAvilableAccess(int.Parse(ViewState["UserId"].ToString()), int.Parse(ViewState["CompanyId"].ToString()), 8, 7) && companyLogin.Usertype != "S") && companyLogin.Usertype != "GA")
+                {
                     Response.Redirect("AdminDashboard.aspx");
                 }
             }
-            else {
+            else
+            {
                 Response.Redirect("LoginPage.aspx");
             }
-            if (!IsPostBack) {
+            if (!IsPostBack)
+            {
                 btnPrint.Visible = false;
-                try {
+                try
+                {
                     ddlMainCateGory.DataSource = itemCategoryController.FetchItemCategoryList(int.Parse(HttpContext.Current.Session["CompanyId"].ToString())).Where(x => x.IsActive == 1);
                     ddlMainCateGory.DataValueField = "CategoryId";
                     ddlMainCateGory.DataTextField = "CategoryName";
@@ -54,7 +63,8 @@ namespace BiddingSystem {
                     ddlWarehouse.Items.Insert(0, new ListItem("All", "0"));
 
                 }
-                catch (Exception ex) {
+                catch (Exception ex)
+                {
                 }
             }
         }
@@ -62,9 +72,12 @@ namespace BiddingSystem {
 
 
 
-        protected void ddlMainCateGory_SelectedIndexChanged(object sender, EventArgs e) {
-            try {
-                if (int.Parse(ddlMainCateGory.SelectedValue) != 0 || ddlMainCateGory.SelectedValue != "") {
+        protected void ddlMainCateGory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (int.Parse(ddlMainCateGory.SelectedValue) != 0 || ddlMainCateGory.SelectedValue != "")
+                {
                     int mainCategoryId = int.Parse(ddlMainCateGory.SelectedValue);
                     ddlSubCategory.DataSource = itemSubCategoryController.FetchItemSubCategoryByCategoryId(mainCategoryId, int.Parse(HttpContext.Current.Session["CompanyId"].ToString())).Where(x => x.IsActive == 1);
                     ddlSubCategory.DataTextField = "SubCategoryName";
@@ -77,14 +90,17 @@ namespace BiddingSystem {
                 }
 
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
 
             }
         }
 
-        protected void ddlSubCategory_SelectedIndexChanged(object sender, EventArgs e) {
+        protected void ddlSubCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-            try {
+            try
+            {
 
                 ddlItem.DataSource = addItemController.FetchItemsByCategories(int.Parse(ddlMainCateGory.SelectedValue), int.Parse(ddlSubCategory.SelectedValue), int.Parse(Session["CompanyId"].ToString())).Where(x => x.IsActive == 1).OrderBy(y => y.ItemId).ToList();
                 ddlItem.DataTextField = "ItemName";
@@ -95,12 +111,14 @@ namespace BiddingSystem {
 
 
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
 
             }
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e) {
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
             btnPrint.Visible = true;
             List<WarehouseInventory> FetchItemList = inventoryControllerInterface.FetchItemListDetailed(int.Parse(Session["CompanyId"].ToString()), int.Parse(ddlWarehouse.SelectedValue.ToString()), int.Parse(ddlItem.SelectedValue.ToString()), int.Parse(ddlMainCateGory.SelectedValue.ToString()), int.Parse(ddlSubCategory.SelectedValue.ToString()));
 
@@ -109,9 +127,12 @@ namespace BiddingSystem {
         }
 
 
-        protected void gvItems_RowDataBound(object sender, GridViewRowEventArgs e) {
-            try {
-                if (e.Row.RowType == DataControlRowType.DataRow) {
+        protected void gvItems_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            try
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
 
                     GridView gvBatchDetails = e.Row.FindControl("gvBatchDetails") as GridView;
 
@@ -125,9 +146,39 @@ namespace BiddingSystem {
 
 
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
             }
         }
 
-            }
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+        }
+
+        protected void btnRun_ServerClick(object sender, EventArgs e)
+        {
+            List<WarehouseInventory> FetchItemList = inventoryControllerInterface.FetchItemListDetailed(int.Parse(Session["CompanyId"].ToString()), int.Parse(ddlWarehouse.SelectedValue.ToString()), int.Parse(ddlItem.SelectedValue.ToString()), int.Parse(ddlMainCateGory.SelectedValue.ToString()), int.Parse(ddlSubCategory.SelectedValue.ToString()));
+
+            gvItems.DataSource = FetchItemList.Where(x => x.AvailableQty != 0 || x.StockValue != 0);
+            gvItems.DataBind();
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.Charset = "";
+            string FileName = "Inventory Summary Report" + DateTime.Now + ".xls";
+            StringWriter strwritter = new StringWriter();
+            HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
+            gvItems.GridLines = GridLines.Both;
+            //tblTaSummary.HeaderStyle.Font.Bold = true;
+            gvItems.RenderControl(htmltextwrtter);
+            Response.Write(strwritter.ToString());
+            Response.End();
+
+        }
+    }
 }

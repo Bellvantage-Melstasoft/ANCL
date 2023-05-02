@@ -370,6 +370,9 @@
                                 <div class="col-sm-4">
                                     <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-info" Text="Search" OnClick="btnSearch_Click" />
                                     <asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" OnClick="btnSearchAll_Click" Text="Get All" />
+                                    <button runat="server" id="btnRun" onserverclick="btnRun_ServerClick" class="btn btn-success" title="Export To Excel">
+                                        <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+                                    </button>
 
 
                                 </div>
@@ -405,6 +408,30 @@
                                                     <%--                                                    <asp:BoundField DataField="SupplierName" HeaderText="Supplier Name" />--%>
                                                     <asp:BoundField DataField="CreatedDate" HeaderText="PO Created Date" DataFormatString='<%$ appSettings:dateTimePattern %>' />
                                                     <asp:BoundField DataField="CreatedBy" HeaderText="PO Created By" />
+                                                    <asp:TemplateField HeaderText="Purchasing Type">
+                                                        <ItemTemplate>
+                                                            <asp:Label
+                                                                runat="server"
+                                                                Visible='<%# Eval("PRType").ToString() == "1" ? true : false %>'
+                                                                Text="Stock" CssClass="label label-warning" />
+                                                            <asp:Label
+                                                                runat="server"
+                                                                Visible='<%# Eval("PRType").ToString() == "2" ? true : false %>'
+                                                                Text="Non-Stock" CssClass="label label-info" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Purchasing Type">
+                                                        <ItemTemplate>
+                                                            <asp:Label
+                                                                runat="server"
+                                                                Visible='<%# Eval("PurchaseType").ToString() == "1" ? true : false %>'
+                                                                Text="Local" CssClass="label label-warning" />
+                                                            <asp:Label
+                                                                runat="server"
+                                                                Visible='<%# Eval("PurchaseType").ToString() == "2" ? true : false %>'
+                                                                Text="Import" CssClass="label label-success" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Approval Status">
                                                         <ItemTemplate>
                                                             <asp:Label
@@ -421,11 +448,11 @@
                                                                 Text="Rejected" CssClass="label label-danger" />
                                                         </ItemTemplate>
                                                     </asp:TemplateField>
-                                                    <%--<asp:TemplateField>
+                                                    <asp:TemplateField>
                                                         <ItemTemplate>
                                                             <asp:LinkButton runat="server" ID="lbtnView" Text="View" OnClick="btnView_Click"></asp:LinkButton>
                                                         </ItemTemplate>
-                                                    </asp:TemplateField>--%>
+                                                    </asp:TemplateField>
                                                 </Columns>
                                             </asp:GridView>
                                         </div>

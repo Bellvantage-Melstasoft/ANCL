@@ -4,6 +4,7 @@ using CLibrary.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -46,7 +47,7 @@ namespace BiddingSystem
                 {
                     DataTable dtSupplierReport = comparisionToLastYearPOReportController.GetComparisionToLastYearSupplierReports();
                     DataTable dtItemReport = comparisionToLastYearPOReportController.GetComparisionToLastYearItemReports();
-                    // BindDataPOTable(List<compar>);
+                    //BindDataPOTable(List<compar>);
                     BindDataTable1(dtSupplierReport);
                     BindDataToDropDownToPOTable();
                     BindDatatoItemReport(dtItemReport);
@@ -547,6 +548,78 @@ namespace BiddingSystem
             {
                 BindDatatoItemReport(dtItemReport);
             }
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
+               server control at run time. */
+        }
+        protected void btnRun_ServerClick(object sender, EventArgs e)
+        {
+            btnSearchPoTable_Click(e, new EventArgs());
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.Charset = "";
+            string FileName = "Comparison to Last Year PO Report" + DateTime.Now + ".xls";
+            StringWriter strwritter = new StringWriter();
+            HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
+            tblPOReport.GridLines = GridLines.Both;
+            //tblTaSummary.HeaderStyle.Font.Bold = true;
+            tblPOReport.RenderControl(htmltextwrtter);
+            Response.Write(strwritter.ToString());
+            Response.End();
+        }
+
+        protected void btnrun2_ServerClick(object sender, EventArgs e)
+        {
+            DataTable dtSupplierReport = comparisionToLastYearPOReportController.GetComparisionToLastYearSupplierReports();
+            BindDataTable1(dtSupplierReport);
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.Charset = "";
+            string FileName = "Comparison to Last Year Supplier Report" + DateTime.Now + ".xls";
+            StringWriter strwritter = new StringWriter();
+            HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
+            tblSupplierReport.GridLines = GridLines.Both;
+            //tblTaSummary.HeaderStyle.Font.Bold = true;
+            tblSupplierReport.RenderControl(htmltextwrtter);
+            Response.Write(strwritter.ToString());
+            Response.End();
+        }
+
+        protected void btnrun3_ServerClick(object sender, EventArgs e)
+        {
+            DataTable dtItemReport = comparisionToLastYearPOReportController.GetComparisionToLastYearItemReports();
+            BindDatatoItemReport(dtItemReport);
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.Charset = "";
+            string FileName = "Comparison to Last Year Item Report" + DateTime.Now + ".xls";
+            StringWriter strwritter = new StringWriter();
+            HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
+            tblItemReport.GridLines = GridLines.Both;
+            //tblTaSummary.HeaderStyle.Font.Bold = true;
+            tblItemReport.RenderControl(htmltextwrtter);
+            Response.Write(strwritter.ToString());
+            Response.End();
         }
     }
 }

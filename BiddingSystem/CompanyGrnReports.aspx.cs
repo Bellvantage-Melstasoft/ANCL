@@ -3,10 +3,13 @@ using CLibrary.Controller;
 using CLibrary.Domain;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Ink;
 
 namespace BiddingSystem
 {
@@ -149,6 +152,12 @@ namespace BiddingSystem
 
         protected void btnSearchAll_Click(object sender, EventArgs e)
         {
+            BindDataSource();
+
+        }
+
+        private void BindDataSource()
+        {
             List<GrnMaster> GrnMasterList = new List<GrnMaster>();
             GrnMasterList = grnController.GetAllGRNmasterList();
 
@@ -160,29 +169,97 @@ namespace BiddingSystem
         {
             List<GrnMaster> GrnMasterList = new List<GrnMaster>();
             GrnMasterList = grnController.GetAllGRNmasterList();
+            bool flag = false;
+
 
 
             if (ddlStatus.SelectedValue != "")
             {
                 GrnMasterList = GrnMasterList.Where(x => x.IsApproved == Convert.ToInt32(ddlStatus.SelectedValue)).ToList();
-
+                flag = true;
             }
 
             if (txtPOCode.Text != "")
             {
                 GrnMasterList = GrnMasterList.Where(x => x.POCode == txtPOCode.Text).ToList();
+                flag = true;
 
             }
 
             if (txtGrnCode.Text != "")
             {
                 GrnMasterList = GrnMasterList.Where(x => x.GrnCode == txtGrnCode.Text).ToList();
+                flag = true;
 
             }
 
-            gvPurchaseOrder.DataSource = GrnMasterList;
+            if (ddlPRType.SelectedValue != "")
+            {
+                GrnMasterList = GrnMasterList.Where(x => x.PRType == Convert.ToInt32(ddlPRType.SelectedValue)).ToList();
+                flag = true;
+
+            }
+
+
+            if (ddlPurchasingType.SelectedValue != "")
+            {
+                GrnMasterList = GrnMasterList.Where(x => x.PurchasingType == Convert.ToInt32(ddlPurchasingType.SelectedValue)).ToList();
+                flag = true;
+
+            }
+
+            if (ddlDepartment.SelectedValue != "")
+            {
+                GrnMasterList = GrnMasterList.Where(x => x.SubDepartmentId == Convert.ToInt32(ddlDepartment.SelectedValue)).ToList();
+                flag = true;
+
+            }
+
+            if (flag == true)
+            {
+                gvPurchaseOrder.DataSource = GrnMasterList;
+            }
+            else
+            {
+                gvPurchaseOrder.DataSource = null;
+            }
+
+
             gvPurchaseOrder.DataBind();
 
+        }
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+        }
+
+
+        protected void btnRun_ServerClick(object sender, EventArgs e)
+        {
+            BindDataSource();
+
+            // Remove the column you want to exclude
+            int columnIndexToRemove = 13; // Specify the index of the column to remove (zero-based)
+            gvPurchaseOrder.Columns[columnIndexToRemove].Visible = false;
+
+
+            Response.Clear();
+            Response.Buffer = true;
+            Response.ClearContent();
+            Response.ClearHeaders();
+            Response.Charset = "";
+            string FileName = "Company PR Report" + DateTime.Now + ".xls";
+            StringWriter strwritter = new StringWriter();
+            HtmlTextWriter htmltextwrtter = new HtmlTextWriter(strwritter);
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + FileName);
+            gvPurchaseOrder.GridLines = GridLines.Both;
+            //tblTaSummary.HeaderStyle.Font.Bold = true;
+            gvPurchaseOrder.RenderControl(htmltextwrtter);
+            Response.Write(strwritter.ToString());
+            Response.End();
+
+            gvPurchaseOrder.Columns[columnIndexToRemove].Visible = true;
         }
 
         //protected void btnGrnDateSearch_Click(object sender, EventArgs e)

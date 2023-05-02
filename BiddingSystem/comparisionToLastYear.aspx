@@ -177,6 +177,9 @@
                                     <div class="col-sm-12">
                                         <div class="col-sm-4">
                                             <asp:Button runat="server" ID="btnSearchPoTable" CssClass="btn btn-info" Text="Search" OnClick="btnSearchPoTable_Click" />
+                                            <button runat="server" id="btnRun" onserverclick="btnRun_ServerClick" class="btn btn-success" title="Export To Excel">
+                                                <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+                                            </button>
                                             <%--<asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" Text="Get All" OnClick="btnSearchAll_Click" />--%>
                                         </div>
                                     </div>
@@ -276,6 +279,9 @@
                                     <div class="col-sm-12">
                                         <div class="col-sm-4">
                                             <asp:Button runat="server" ID="btnSupplierSearch" CssClass="btn btn-info" Text="Search" OnClick="btnSupplierSearch_Click" />
+                                            <button runat="server" id="btnrun2" onserverclick="btnrun2_ServerClick" class="btn btn-success" title="Export To Excel">
+                                                <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+                                            </button>
                                             <%--<asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" Text="Get All" OnClick="btnSearchAll_Click" />--%>
                                         </div>
                                     </div>
@@ -377,6 +383,9 @@
                                     <div class="col-sm-12">
                                         <div class="col-sm-4">
                                             <asp:Button runat="server" ID="btnSearchItem" CssClass="btn btn-info" Text="Search" OnClick="btnSearchItem_Click" />
+                                            <button runat="server" id="btnrun3" onserverclick="btnrun3_ServerClick" class="btn btn-success" title="Export To Excel">
+                                                <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+                                            </button>
                                             <%--<asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" Text="Get All" OnClick="btnSearchAll_Click" />--%>
                                         </div>
                                     </div>
@@ -399,6 +408,11 @@
                         </div>
                     </section>
                 </ContentTemplate>
+                <Triggers>
+                    <asp:PostBackTrigger ControlID="btnRun" />
+                    <asp:PostBackTrigger ControlID="btnrun2" />
+                    <asp:PostBackTrigger ControlID="btnrun3" />
+                </Triggers>
             </asp:UpdatePanel>
         </form>
     </body>

@@ -335,6 +335,9 @@
                                         <div class="col-sm-4">
                                             <asp:Button runat="server" ID="btnSearch" CssClass="btn btn-info" Text="Search" OnClick="btnSearch_Click" />
                                             <asp:Button runat="server" ID="btnSearchAll" CssClass="btn btn-primary" Text="Get All" OnClick="btnSearchAll_Click" />
+                                            <button runat="server" id="btnRun" onserverclick="btnRun_ServerClick" class="btn btn-success" title="Export To Excel">
+                                                <i class="fa fa-file-export" style="margin-right: 10px"></i>Export To Excel
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -359,14 +362,16 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="table-responsive">
-                                            <asp:GridView runat="server" ID="gvPurchaseOrder" EmptyDataText="No records Found" GridLines="None" CssClass="table table-responsive"
-                                                AutoGenerateColumns="false">
+                                            <asp:GridView runat="server" ID="gvPurchaseOrder" EmptyDataText="No records Found" GridLines="None"
+                                                CssClass="table table-responsive tablegv" AutoGenerateColumns="false"
+                                                HeaderStyle-BackColor="#3C8DBC" HeaderStyle-ForeColor="White">
                                                 <Columns>
                                                     <asp:BoundField DataField="GrnId" HeaderText="GrnId" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                                                     <asp:BoundField DataField="PoID" HeaderText="PoID" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
                                                     <asp:BoundField DataField="GrnCode" HeaderText="GRN Code" />
                                                     <asp:BoundField DataField="PoCode" HeaderText="PoCode" />
                                                     <asp:BoundField DataField="SupplierName" HeaderText="Supplier Name" />
+                                                    <asp:BoundField DataField="subdepartment" HeaderText="Sub Department" />
                                                     <asp:BoundField DataField="GoodReceivedDate" HeaderText="Good Received Date" />
                                                     <asp:BoundField DataField="TotalVat" HeaderText="Vat Amount" DataFormatString="{0:N2}" />
                                                     <asp:BoundField DataField="TotalNbt" HeaderText="NBT Amount" DataFormatString="{0:N2}" HeaderStyle-CssClass="hidden" ItemStyle-CssClass="hidden" />
@@ -376,7 +381,30 @@
                              <asp:Label CssClass="activePhase" runat="server" ID="lblStatus" Text="Pending" BackColor="Gold" Font-Bold="true" ForeColor="White" ></asp:Label>
                          </ItemTemplate>
                      </asp:TemplateField>--%>
-
+                                                    <asp:TemplateField HeaderText="Purchasing Type">
+                                                        <ItemTemplate>
+                                                            <asp:Label
+                                                                runat="server"
+                                                                Visible='<%# Eval("PRType").ToString() == "1" ? true : false %>'
+                                                                Text="Stock" CssClass="label label-warning" />
+                                                            <asp:Label
+                                                                runat="server"
+                                                                Visible='<%# Eval("PRType").ToString() == "2" ? true : false %>'
+                                                                Text="Non-Stock" CssClass="label label-info" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Purchasing Type">
+                                                        <ItemTemplate>
+                                                            <asp:Label
+                                                                runat="server"
+                                                                Visible='<%# Eval("PurchasingType").ToString() == "1" ? true : false %>'
+                                                                Text="Local" CssClass="label label-warning" />
+                                                            <asp:Label
+                                                                runat="server"
+                                                                Visible='<%# Eval("PurchasingType").ToString() == "2" ? true : false %>'
+                                                                Text="Import" CssClass="label label-success" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Approval Status">
                                                         <ItemTemplate>
                                                             <asp:Label
@@ -409,6 +437,9 @@
 
 
                 </ContentTemplate>
+                <Triggers>
+                    <asp:PostBackTrigger ControlID="btnRun" />
+                </Triggers>
             </asp:UpdatePanel>
         </form>
 
